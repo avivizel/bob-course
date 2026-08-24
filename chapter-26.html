@@ -54,7 +54,7 @@
 <a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
 <a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
 <a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
-<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>Bob On-Prem / Air-Gap — מה ידוע ומה עדיין תלוי בזמינות המוצר</a>
     </aside>
     <div class="main-column">
       <header class="chapter-header">
@@ -67,6 +67,7 @@
         <p class="subtitle">אבטחה מהתכנון</p>
       </header>
       <main class="content">
+        
         <section class="section">
           <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
           <div class="card card-goal"><p><strong>בסוף הפרק:</strong> אבטחה מהתכנון</p></div>
@@ -74,7 +75,7 @@
 
         <section class="section">
           <h2>מבוא</h2>
-          <p>Security = requirements. OWASP basics: injection, auth, secrets, headers.</p>
+          <p>Security = requirements. OWASP basics: injection, auth, secrets, headers. חיבור גבולות אמון וכלים (Tool Trust) לניהול אבטחה שלם לצד איומי אבטחה מבוססי AI.</p>
         </section>
 
         
@@ -84,27 +85,44 @@
           <p class="concept-hint">רחפו מעל שם המושג (או לחצו במסך מגע) לפירוט: מבוא, משמעות וכוונה.</p>
   <div class="concept-grid"><article class="concept-card">
       <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-26-0">
-        Input Validation
+        Validation vs Parameterization
         <span class="concept-info" aria-hidden="true">i</span>
       </button>
       <div class="concept-popup" id="concept-pop-26-0" role="tooltip" hidden>
-        <p class="popup-kicker">Input Validation</p>
+        <p class="popup-kicker">Validation vs Parameterization</p>
         <p class="popup-label">מבוא</p>
-        <p>כל קלט הוא חשוד עד שהוכח אחרת — כולל JSON ופרמטרים ב-URL.</p>
+        <p>המושג <strong><em>Validation vs Parameterization</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
         <p class="popup-label">משמעות</p>
-        <p>ניקוי ובדיקה בשרת: אורך, תווים, טיפוס, לפני שימוש ב-DB או במודל.</p>
+        <p>Validation בודק אם הקלט חוקי עסקי (למשל priority ∈ {low, medium, high}). Parameterization מונע הזרקת קוד (כמו SQL Injection) ע'י הפרדת נתונים מפקודות בשרת.</p>
         <p class="popup-label">כוונה</p>
-        <p>הכוונה: לא <strong><em>לסמוך על הלקוח</em></strong>. Frontend הוא הצעה, לא חוק.</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — להניח שאימות בלבד (sanitize) מונע הזרקות מבלי להשתמש בפרמטריזציה.</p>
       </div>
-      <p>all inputs.</p>
-      <div class="example"><strong>דוגמה:</strong> sanitize title</div>
-      <div class="pitfall"><strong>זהירות:</strong> trust client.</div>
+      <p>Validation בודק אם הקלט חוקי עסקי (למשל priority ∈ {low, medium, high}). Parameterization מונע הזרקת קוד (כמו SQL Injection) ע'י הפרדת נתונים מפקודות בשרת.</p>
+      <div class="example"><strong>דוגמה:</strong> אימות שדה מול סט ערכים ושימוש ב-parameterized query</div>
+      <div class="pitfall"><strong>זהירות:</strong> להניח שאימות בלבד (sanitize) מונע הזרקות מבלי להשתמש בפרמטריזציה.</div>
     </article><article class="concept-card">
       <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-26-1">
-        Secrets Management
+        Output Encoding
         <span class="concept-info" aria-hidden="true">i</span>
       </button>
       <div class="concept-popup" id="concept-pop-26-1" role="tooltip" hidden>
+        <p class="popup-kicker">Output Encoding</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Output Encoding</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>קידוד נתונים ביציאה לפי ה-context שבו הם מוצגים (למשל HTML encoding להגנה מפני XSS בדפדפן).</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — להציג קלט משתמש כפי שהוא ללא קידוד.</p>
+      </div>
+      <p>קידוד נתונים ביציאה לפי ה-context שבו הם מוצגים (למשל HTML encoding להגנה מפני XSS בדפדפן).</p>
+      <div class="example"><strong>דוגמה:</strong> המרת &lt; ל-&amp;lt; בדפדפן</div>
+      <div class="pitfall"><strong>זהירות:</strong> להציג קלט משתמש כפי שהוא ללא קידוד.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-26-2">
+        Secrets Management
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-26-2" role="tooltip" hidden>
         <p class="popup-kicker">Secrets Management</p>
         <p class="popup-label">מבוא</p>
         <p>מפתח ב-git נשאר בהיסטוריה גם אחרי מחיקה מהקובץ.</p>
@@ -117,39 +135,56 @@
       <div class="example"><strong>דוגמה:</strong> API_KEY env</div>
       <div class="pitfall"><strong>זהירות:</strong> git commit.</div>
     </article><article class="concept-card">
-      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-26-2">
-        Headers
-        <span class="concept-info" aria-hidden="true">i</span>
-      </button>
-      <div class="concept-popup" id="concept-pop-26-2" role="tooltip" hidden>
-        <p class="popup-kicker">Headers</p>
-        <p class="popup-label">מבוא</p>
-        <p>דפדפן בלי מדיניות אבטחה חשוף ל-XSS ולחיבור לא מוצפן.</p>
-        <p class="popup-label">משמעות</p>
-        <p>כותרות כמו CSP ו-HSTS (למשל דרך helmet) שמצמצמות התקפות נפוצות.</p>
-        <p class="popup-label">כוונה</p>
-        <p>הכוונה: לא להשאיר defaults ריקים ב-production. זה חלק מ-secure by design.</p>
-      </div>
-      <p>CSP, HSTS.</p>
-      <div class="example"><strong>דוגמה:</strong> helmet.js</div>
-      <div class="pitfall"><strong>זהירות:</strong> default none.</div>
-    </article><article class="concept-card">
       <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-26-3">
-        Threat Model
+        Security Headers
         <span class="concept-info" aria-hidden="true">i</span>
       </button>
       <div class="concept-popup" id="concept-pop-26-3" role="tooltip" hidden>
-        <p class="popup-kicker">Threat Model</p>
+        <p class="popup-kicker">Security Headers</p>
         <p class="popup-label">מבוא</p>
-        <p>אבטחה בסוף הפרויקט היא יקרה. Threat model שואל <strong><em>מי תוקף מה</em></strong> מראש.</p>
+        <p>המושג <strong><em>Security Headers</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
         <p class="popup-label">משמעות</p>
-        <p>רשימת נכסים, איומים והגנות: למשל גישה למשימה לפי ID של אחר.</p>
+        <p>הגדרות הגנה בדפדפן (כגון CSP, HSTS, X-Content-Type-Options ו-secure cookie attributes). ב-Flask ניתן להגדיר headers ישירות או באמצעות extension מתאים, אך יש לבדוק את תיעוד הגרסה שבה משתמש הפרויקט.</p>
         <p class="popup-label">כוונה</p>
-        <p>הכוונה: לכתוב איום לכל פיצ'ר ב-Plan, לא לחכות לאודיט חיצוני.</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — חוסר שימוש ב-Security Headers.</p>
       </div>
-      <p>who attacks what.</p>
-      <div class="example"><strong>דוגמה:</strong> IDOR on /tasks/:id</div>
-      <div class="pitfall"><strong>זהירות:</strong> no threats.</div>
+      <p>הגדרות הגנה בדפדפן (כגון CSP, HSTS, X-Content-Type-Options ו-secure cookie attributes). ב-Flask ניתן להגדיר headers ישירות או באמצעות extension מתאים, אך יש לבדוק את תיעוד הגרסה שבה משתמש הפרויקט.</p>
+      <div class="example"><strong>דוגמה:</strong> CSP header לסינון מקורות קוד</div>
+      <div class="pitfall"><strong>זהירות:</strong> חוסר שימוש ב-Security Headers.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-26-4">
+        Tool Trust Boundary
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-26-4" role="tooltip" hidden>
+        <p class="popup-kicker">Tool Trust Boundary</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Tool Trust Boundary</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>גבול האמון שבין ה-Agent לכלים שלו. כל שינוי משפיע או פעולת כתיבה מחייבים אישור אנושי וחשיפה ממוקדת של secrets (ראו פרק 22).</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — חשיפת משתני סביבה רגישים ישירות לכלים חיצוניים ללא בקרה.</p>
+      </div>
+      <p>גבול האמון שבין ה-Agent לכלים שלו. כל שינוי משפיע או פעולת כתיבה מחייבים אישור אנושי וחשיפה ממוקדת של secrets (ראו פרק 22).</p>
+      <div class="example"><strong>דוגמה:</strong> שימוש ב-Least Privilege בהפעלת כלים</div>
+      <div class="pitfall"><strong>זהירות:</strong> חשיפת משתני סביבה רגישים ישירות לכלים חיצוניים ללא בקרה.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-26-5">
+        AI Security Threats
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-26-5" role="tooltip" hidden>
+        <p class="popup-kicker">AI Security Threats</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>AI Security Threats</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>איומי אבטחה ייחודיים ל-AI: Prompt Injection (הזרקת פקודות), Excessive Agency (אוטונומיה מוגזמת), Over-privileged Tools (כלים בעלי הרשאות יתר), Sensitive Context Leakage (דליפת מידע רגיש מה-Context) וקוד לא בטוח שנוצר ע'י המודל.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — סמיכה עיוורת על סוכן AI ללא גבולות אבטחה ו-Least Privilege.</p>
+      </div>
+      <p>איומי אבטחה ייחודיים ל-AI: Prompt Injection (הזרקת פקודות), Excessive Agency (אוטונומיה מוגזמת), Over-privileged Tools (כלים בעלי הרשאות יתר), Sensitive Context Leakage (דליפת מידע רגיש מה-Context) וקוד לא בטוח שנוצר ע'י המודל.</p>
+      <div class="example"><strong>דוגמה:</strong> דליפת API_KEY דרך prompt או הפעלת כלי הרסני</div>
+      <div class="pitfall"><strong>זהירות:</strong> סמיכה עיוורת על סוכן AI ללא גבולות אבטחה ו-Least Privilege.</div>
     </article></div>
         </section>
 
@@ -166,7 +201,7 @@
           <div class="mode-row"><span class="mode-pill mode-ask">Ask</span></div>
           <p>Threat model + RAVEN security review לפני feature.</p>
           <h3>Prompt לדוגמה</h3>
-          <pre class="prompt">Threat model TaskFlow: assets, threats, mitigations. STRIDE lite. Then add RAVEN notes: Assumptions about trust boundaries, Effects on attack surface, and No-go items such as no secrets in code. No code.</pre>
+          <pre class="prompt">Threat model TaskFlow: assets, threats (including prompt injection, excessive agency, over-privileged tools, sensitive context leakage, secrets in prompts, and unsafe generated code), mitigations. STRIDE lite. Then add RAVEN notes: Assumptions about trust boundaries, Effects on attack surface, and No-go items such as no secrets in code. No code.</pre>
           <p><strong>למה זה עובד:</strong> מאחד threat modeling עם גבולות אבטחה מפורשים.</p>
         </section>
 
@@ -182,8 +217,21 @@
         
 
         <section class="section">
+      <div class="section-label label-judgment"><span class="dot"></span>עצור והחלט</div>
+      <div class="judgment-list"><div class="judgment-item">
+      <div class="judgment-scenario"><strong>תרחיש:</strong> Bob מציע להוסיף fallback hardcoded API key בקוד כדי <strong><em>לא לשבור את ה-demo בpresentation</em></strong>.</div>
+      <details class="judgment-details">
+        <summary class="judgment-q">עצור והחלט — מה עושים?</summary>
+        <div class="judgment-a">דוחים. Hardcoded API key בקוד = secret בגיט = בעיית אבטחה קריטית גם ב-demo. הדרך הנכונה: .env עם API_KEY=demo_placeholder + הוראת README לsetup. Demo key שנחשף ב-repo יכול להיות scraped ולעלות כסף או לגרום נזק. <strong><em>לא לשבור demo</em></strong> אינו סיבה מספקת — Security headers are not negotiable.</div>
+      </details>
+    </div></div>
+    </section>
+
+        
+
+        <section class="section">
           <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
-          <ol class="steps"><li>Threat model.</li><li>RAVEN security review: Assumptions / Effects / No-go.</li><li>Fix 1 finding.</li><li>Secret scan.</li><li>Header check.</li><li>הצלחה = threat model עם STRIDE lite, לפחות finding אחת תוקנה, secret scan נקי, CSP header פעיל, ו-No-go כמו <strong><em>אין secrets בקוד</em></strong> נשמר.</li></ol>
+          <ol class="steps"><li>Threat model הכולל איומי OWASP ואיומי AI ייחודיים.</li><li>RAVEN security review: Assumptions / Effects / No-go.</li><li>Fix 1 finding.</li><li>Secret scan.</li><li>Security Headers check (CSP, HSTS).</li><li>הצלחה = threat model עם STRIDE lite ואיומי AI, לפחות finding אחת תוקנה, secret scan נקי, Security Headers (כגון CSP) מוגדרים, ו-No-go כמו <strong><em>אין secrets בקוד</em></strong> נשמר.</li></ol>
         </section>
 
         <section class="section">
@@ -194,8 +242,11 @@
         <section class="section">
           <div class="section-label label-quiz"><span class="dot"></span>בדקו את עצמכם</div>
           <div class="quiz"><details>
-      <summary>Injection?</summary>
-      <div class="answer"><strong>תשובה לדוגמה:</strong> params — validate + param queries.</div>
+      <summary>מה ההבדל בין Validation, Parameterization ו-Output Encoding?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> Validation בודק חוקיות עסקית (למוצר); Parameterization מפריד פקודות מנתונים (למניעת SQL injection); Output Encoding מונע הרצת קוד זדוני בדפדפן (למניעת XSS).</div>
+    </details><details>
+      <summary>מנו חמישה איומי אבטחה ייחודיים לסוכני AI (AI Security Threats).</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> 1. Prompt Injection (הזרקת פקודות); 2. Excessive Agency (אוטונומיה מוגזמת ללא פיקוח); 3. Over-privileged Tools (כלים עם הרשאות יתר); 4. Sensitive Context Leakage (דליפת סודות ומידע מהקונטקסט); 5. Unsafe Generated Code (יצירת קוד פגיע).</div>
     </details><details>
       <summary>Secrets in git?</summary>
       <div class="answer"><strong>תשובה לדוגמה:</strong> rotate + gitignore + scan.</div>
@@ -208,7 +259,7 @@
         <section class="section">
           <h2>סיכום</h2>
           <div class="summary-box">
-            <ul><li>Threat model.</li><li>Validate server.</li><li>Secrets out git.</li><li>Headers.</li></ul>
+            <ul><li>Threat model הכולל איומי OWASP ואיומי AI.</li><li>Validation ≠ Parameterization ≠ Output Encoding.</li><li>Secrets out git.</li><li>Security Headers Framework-neutral.</li><li>חיבור גבולות אמון וכלים (Tool Trust) לניהול אבטחה שלם (פרק 22).</li></ul>
           </div>
         </section>
       </main>

@@ -54,7 +54,7 @@
 <a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
 <a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
 <a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
-<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>Bob On-Prem / Air-Gap — מה ידוע ומה עדיין תלוי בזמינות המוצר</a>
     </aside>
     <div class="main-column">
       <header class="chapter-header">
@@ -67,6 +67,7 @@
         <p class="subtitle">סיבה אמיתית — לא ניחוש</p>
       </header>
       <main class="content">
+        
         <section class="section">
           <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
           <div class="card card-goal"><p><strong>בסוף הפרק:</strong> סיבה אמיתית — לא ניחוש</p></div>
@@ -74,7 +75,7 @@
 
         <section class="section">
           <h2>מבוא</h2>
-          <p>Debug = reproduce → isolate → hypothesis → test. Bob מ accelerate — לא מחליף method.</p>
+          <p>Debug = reproduce → isolate → hypothesis → test. Bob מ accelerate — לא מחליף method. מודל RAVEN מסייע להתמקד בהנחות השגויות, בדרכי האימות, ובמניעת תופעות לוואי.</p>
         </section>
 
         
@@ -150,13 +151,30 @@
       <p>logs, breakpoints.</p>
       <div class="example"><strong>דוגמה:</strong> console + network tab</div>
       <div class="pitfall"><strong>זהירות:</strong> fix without proof.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-24-4">
+        RAVEN Debugging
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-24-4" role="tooltip" hidden>
+        <p class="popup-kicker">RAVEN Debugging</p>
+        <p class="popup-label">מבוא</p>
+        <p>שימוש במודל RAVEN לצורך פתרון באגים וחקירת תקלות.</p>
+        <p class="popup-label">משמעות</p>
+        <p>Assumptions (אילו הנחות שגויות עשינו?), Verification (כיצד נוכיח שהבאג נפתר בבדיקה מדויקת?), Effects (אילו מערכות קצה או לוגיקה עלולות להיפגע מהתיקון המקומי).</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: למנוע תיקונים חפוזים שרק מטפלים בסימפטום ויוצרים באגים חדשים.</p>
+      </div>
+      <p>שימוש ב-RAVEN לזיהוי הנחות שגויות (Assumptions), הגדרת ראיות אימות לתיקון (Verification), ומיפוי השפעות הקוד על רכיבים אחרים (Effects).</p>
+      <div class="example"><strong>דוגמה:</strong> בדיקה אם שינוי שאילתה משפיע על APIs אחרים.</div>
+      <div class="pitfall"><strong>זהירות:</strong> תיקון מקומי שיוצר באג במקום אחר מבלי לבחון Effects.</div>
     </article></div>
         </section>
 
         <section class="section">
           <div class="section-label label-analogy"><span class="dot"></span>משל מהעולם האמיתי</div>
           <div class="card card-analogy"><p><strong><em>תתקן</em></strong> בלי reproduce steps נותן ל-Bob תוצר שנראה נכון — עד שהבאג מתרחש שוב. Hypothesis testable מכוונת את Bob לאסוף logs ספציפיים, לא לשנות קוד באקראי. שינוי קוד לפני ראיה הוא debugging בהנחה, לא בבדיקה.</p></div>
-          <p><strong>שאלות לחשיבה:</strong> כתבו bug report ל-TaskFlow: reproduce steps (3 שלבים), expected vs actual, ו-hypothesis אחת עם איך לבדוק אותה — לפני שנוגעים בקוד.</p>
+          <p><strong>שאלות לחשיבה:</strong> כתבו bug report ל-TaskFlow: reproduce steps (3 שלבים), expected vs actual, ו-hypothesis אחת עם איך לבדוק אותה — לפני שנוגעים בקוד. בצעו RAVEN review ממוקד לזיהוי הנחות, אימות והשפעות השינוי.</p>
         </section>
 
         
@@ -164,9 +182,9 @@
         <section class="section">
           <div class="section-label label-bob"><span class="dot"></span>עבודה עם IBM Bob</div>
           <div class="mode-row"><span class="mode-pill mode-ask">Ask</span></div>
-          <p>Evidence before fix.</p>
+          <p>Evidence before fix — ניתוח בעזרת RAVEN.</p>
           <h3>Prompt לדוגמה</h3>
-          <pre class="prompt">Bug: [describe]. List 3 hypotheses, how to test each, what evidence needed. No code changes.</pre>
+          <pre class="prompt">Bug: [describe]. Run a RAVEN debugging review focused on: Assumptions (what code paths or properties did we assume?), Verification (how to prove the fix works with logs or test cases), and Effects (what other modules or endpoints might break). No code changes yet.</pre>
           <p><strong>למה זה עובד:</strong> Method over magic.</p>
         </section>
 
@@ -174,10 +192,14 @@
           <div class="section-label label-warning"><span class="dot"></span>טעות נפוצה</div>
           <div class="card card-warning">
             <p><strong>לא:</strong> <strong><em>fix it</em></strong> loop.</p>
-            <p><strong>כן:</strong> reproduce → hypothesis → test → fix.</p>
+            <p><strong>כן:</strong> reproduce → hypothesis → test → RAVEN debugging review → fix.</p>
           </div>
           
         </section>
+
+        
+
+        
 
         
 

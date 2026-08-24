@@ -54,7 +54,7 @@
 <a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
 <a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
 <a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
-<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>Bob On-Prem / Air-Gap — מה ידוע ומה עדיין תלוי בזמינות המוצר</a>
     </aside>
     <div class="main-column">
       <header class="chapter-header">
@@ -67,6 +67,7 @@
         <p class="subtitle">כללים עקביים לכל הפרויקט</p>
       </header>
       <main class="content">
+        
         <section class="section">
           <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
           <div class="card card-goal"><p><strong>בסוף הפרק:</strong> כללים עקביים לכל הפרויקט</p></div>
@@ -74,7 +75,7 @@
 
         <section class="section">
           <h2>מבוא</h2>
-          <p>Rules = התנהגות קבועה של Bob. Custom Modes = תפקידים (Reviewer, Planner). סטנדרט = פחות variance בין sessions. מבנה: .bob/rules/ לכל המצבים, .bob/rules-agent/ / rules-plan/ / rules-ask/ לכל מצב.</p>
+          <p>Rules = התנהגות קבועה של Bob. Custom Modes = תפקידים (Reviewer, Planner). סטנדרט = פחות variance בין sessions. מבנה: .bob/rules/ לכל המצבים, .bob/rules-code/ / rules-plan/ / rules-ask/ לכל מצב.</p>
         </section>
 
         
@@ -177,12 +178,12 @@
         <p class="popup-label">מבוא</p>
         <p>המושג <strong><em>Mode-specific Rules</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
         <p class="popup-label">משמעות</p>
-        <p>Rules שחלות רק ב-mode מסוים: .bob/rules-agent/, rules-plan/, rules-ask/.</p>
+        <p>Rules שחלות רק ב-mode מסוים: .bob/rules-code/, rules-plan/, rules-ask/.</p>
         <p class="popup-label">כוונה</p>
         <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לשים rules ספציפיות ל-Agent ב-.bob/rules/ הכללי — חלות גם ב-Ask ומבלבלות.</p>
       </div>
-      <p>Rules שחלות רק ב-mode מסוים: .bob/rules-agent/, rules-plan/, rules-ask/.</p>
-      <div class="example"><strong>דוגמה:</strong> rules-agent: <strong><em>הרץ tests לפני done</em></strong>. rules-ask: <strong><em>תמיד cite source</em></strong>.</div>
+      <p>Rules שחלות רק ב-mode מסוים: .bob/rules-code/, rules-plan/, rules-ask/.</p>
+      <div class="example"><strong>דוגמה:</strong> rules-code: <strong><em>הרץ tests לפני done</em></strong>. rules-ask: <strong><em>תמיד cite source</em></strong>.</div>
       <div class="pitfall"><strong>זהירות:</strong> לשים rules ספציפיות ל-Agent ב-.bob/rules/ הכללי — חלות גם ב-Ask ומבלבלות.</div>
     </article></div>
         </section>
@@ -215,6 +216,10 @@
 
         
 
+        
+
+        
+
         <section class="section">
           <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
           <ol class="steps"><li>כתבו 3 rules מדידות ל-TaskFlow.</li><li>הניחו rule שBob יפר — בדקו האם הוא מציין זאת.</li><li>עדכנו rule שלא עבד.</li><li>commitו rules עם הסבר למה כל rule נוספה.</li><li>הצלחה = כל rule שלכם ניתנת לבדיקה: אפשר לאמר <strong><em>כן/לא — הRule הושמר</em></strong>.</li></ol>
@@ -240,15 +245,15 @@
       <summary>Rule שלא ניתן לאכוף — מה קורה?</summary>
       <div class="answer"><strong>תשובה לדוגמה:</strong> Bob מתעלם ממנה או מפרש לפי שיקול דעתו. Rule חייבת להיות בינארית — הושמרה / לא הושמרה.</div>
     </details><details>
-      <summary>מה ההבדל בין .bob/rules/ לבין .bob/rules-agent/?</summary>
-      <div class="answer"><strong>תשובה לדוגמה:</strong> rules/ = חל על כל mode. rules-agent/ = רק ב-Agent. rules שמוגבלות ל-Agent לא צריכות לטעון ב-Ask.</div>
+      <summary>מה ההבדל בין .bob/rules/ לבין .bob/rules-code/?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> rules/ = חל על כל mode. rules-code/ = רק ב-Agent/Code mode. rules שמוגבלות ל-Agent לא צריכות לטעון ב-Ask.</div>
     </details></div>
         </section>
 
         <section class="section">
           <h2>סיכום</h2>
           <div class="summary-box">
-            <ul><li>Rules קצרות.</li><li>.bob/rules-agent/ rules-plan/ rules-ask/ — לכל מצב.</li><li>Conventions ב-AGENTS.</li><li>Review drift.</li></ul>
+            <ul><li>Rules קצרות.</li><li>.bob/rules-code/ rules-plan/ rules-ask/ — לכל מצב.</li><li>Conventions ב-AGENTS.</li><li>Review drift.</li></ul>
           </div>
         </section>
       </main>

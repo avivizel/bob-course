@@ -54,7 +54,7 @@
 <a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
 <a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
 <a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
-<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>Bob On-Prem / Air-Gap — מה ידוע ומה עדיין תלוי בזמינות המוצר</a>
     </aside>
     <div class="main-column">
       <header class="chapter-header">
@@ -67,6 +67,7 @@
         <p class="subtitle">ביקורת דרך פעולה לפני קוד</p>
       </header>
       <main class="content">
+        
         <section class="section">
           <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
           <div class="card card-goal"><p><strong>בסוף הפרק:</strong> ביקורת דרך פעולה לפני קוד</p></div>
@@ -144,11 +145,11 @@
       <div class="concept-popup" id="concept-pop-13-3" role="tooltip" hidden>
         <p class="popup-kicker">RAVEN Review</p>
         <p class="popup-label">מבוא</p>
-        <p>המושג <strong><em>RAVEN Review</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p>מודל ביקורת שיטתי ל-Plan של Bob לפני מעבר לביצוע.</p>
         <p class="popup-label">משמעות</p>
-        <p>מסגרת לביקורת plan לפני Agent: Requirements / Assumptions / Verification / Effects / No-go.</p>
+        <p>Requirements (דרישות), Assumptions (הנחות), Verification (דרכי אימות), Effects (השפעות), No-go (גבולות).</p>
         <p class="popup-label">כוונה</p>
-        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — auto-approve plan.</p>
+        <p>הכוונה: להפוך כל תוכנית לבדיקה מעמיקה — במיוחד של הנחות סמויות ותופעות לוואי.</p>
       </div>
       <p>מסגרת לביקורת plan לפני Agent: Requirements / Assumptions / Verification / Effects / No-go.</p>
       <div class="example"><strong>דוגמה:</strong> האם הplan מכסה את ה-AC? אילו הנחות Bob הוסיף? איך כל שלב ייבדק?</div>
@@ -220,6 +221,19 @@ List components or behavior that must not change.
 
 Do not implement anything yet.</pre><p style="margin-top:0.75rem">אם שלב ב-plan מנוסח «נעדכן קבצים לפי הצורך» — זה No-go. בקשו ניסוח ספציפי לפני אישור.</p></div>
     </section>
+
+        <section class="section">
+      <div class="section-label label-judgment"><span class="dot"></span>עצור והחלט</div>
+      <div class="judgment-list"><div class="judgment-item">
+      <div class="judgment-scenario"><strong>תרחיש:</strong> Bob הכין Plan ובו הוא כותב: <strong><em>נמיגרציה SQLite ל-PostgreSQL כי הוא production-ready</em></strong>.</div>
+      <details class="judgment-details">
+        <summary class="judgment-q">עצור והחלט — איזה item ב-RAVEN נכשל כאן?</summary>
+        <div class="judgment-a">Assumptions — Bob הוסיף הנחה שלא ביקשתם: ש-SQLite אינו מתאים ל-production. זוהי החלטה ארכיטקטונית שדורשת אישור מפורש, לא הנחה שקטה בPlan. בנוסף: Effects — migration ל-DB אחרת משפיע על כל ה-queries, ה-schema, ה-dev environment וה-deploy. No-go: אם לא קבעתם מפורש שמותר לשנות DB — זה No-go.</div>
+      </details>
+    </div></div>
+    </section>
+
+        
 
         <section class="section">
           <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>

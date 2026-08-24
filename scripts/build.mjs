@@ -96,6 +96,30 @@ function renderQuiz(quiz) {
     .join("")}</div>`;
 }
 
+function renderJudgment(items) {
+  return `<div class="judgment-list">${items
+    .map(
+      (j) => `<div class="judgment-item">
+      <div class="judgment-scenario"><strong>תרחיש:</strong> ${esc(j.scenario)}</div>
+      <details class="judgment-details">
+        <summary class="judgment-q">עצור והחלט — ${esc(j.q)}</summary>
+        <div class="judgment-a">${esc(j.a)}</div>
+      </details>
+    </div>`
+    )
+    .join("")}</div>`;
+}
+
+function renderPrinciple(p) {
+  return `<section class="section">
+    <div class="section-label label-principle"><span class="dot"></span>${esc(p.title)}</div>
+    <div class="card card-principle">
+      <p>${esc(p.text)}</p>
+      <pre class="prompt">${esc(p.loop)}</pre>
+    </div>
+  </section>`;
+}
+
 function renderModes(modes) {
   const cls = { Ask: "mode-ask", Plan: "mode-plan", Agent: "mode-agent" };
   return `<div class="mode-row">${modes.map((m) => `<span class="mode-pill ${cls[m] || ""}">${esc(m)}</span>`).join("")}</div>`;
@@ -131,6 +155,32 @@ function chapterPage(ch) {
     </section>`
     : "";
 
+  const judgmentBlock = ch.judgment && ch.judgment.length > 0
+    ? `<section class="section">
+      <div class="section-label label-judgment"><span class="dot"></span>עצור והחלט</div>
+      ${renderJudgment(ch.judgment)}
+    </section>`
+    : "";
+
+  const principleBlock = ch.principle
+    ? renderPrinciple(ch.principle)
+    : "";
+
+  const versionBlock = ch.verifiedAt || ch.sources
+    ? `<section class="version-box">
+        <div class="version-header"><strong>מידע תלוי גרסה ומוצר</strong></div>
+        <div class="version-body">
+          ${ch.verifiedAt ? `<p>נבדק ואומת מול תיעוד IBM בתאריך: <strong>${esc(ch.verifiedAt)}</strong></p>` : ""}
+          ${ch.sources && ch.sources.length > 0 ? `
+            <p class="sources-title">מקורות רשמיים:</p>
+            <ul class="sources-list">
+              ${ch.sources.map(s => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.label)}</a></li>`).join("")}
+            </ul>
+          ` : ""}
+        </div>
+      </section>`
+    : "";
+
   return `<!doctype html>
 <html lang="he" dir="rtl">
 <head>
@@ -160,6 +210,7 @@ function chapterPage(ch) {
         <p class="subtitle">${esc(ch.subtitle)}</p>
       </header>
       <main class="content">
+        ${versionBlock}
         <section class="section">
           <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
           <div class="card card-goal"><p><strong>בסוף הפרק:</strong> ${esc(ch.subtitle)}</p></div>
@@ -204,6 +255,10 @@ function chapterPage(ch) {
         </section>
 
         ${deepBlock}
+
+        ${judgmentBlock}
+
+        ${principleBlock}
 
         <section class="section">
           <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
@@ -364,6 +419,15 @@ function indexPage() {
             ${PHASES.map((p, i) => `${i ? '<span class="flow-arrow">→</span>' : ""}<div class="flow-node ${i === 0 ? "primary" : i === PHASES.length - 1 ? "storage" : "secondary"}">${esc(p.label)}</div>`).join("")}
           </div>
         </section>
+
+        <section class="section">
+          <div class="section-label label-capstone"><span class="dot"></span>הערכה מסכמת</div>
+          <div class="card card-capstone">
+            <p><strong>סיימתם את כל הפרקים?</strong> בדקו אם אתם יודעים לנהל Bob בפרויקט לא מוכר.</p>
+            <p style="margin-bottom:1rem">ה-Final Assessment מעמיד אתכם מול repository שלא ראיתם — ומבקש להוסיף feature אחד, עם RAVEN, Diff review, tests והסבר מלא.</p>
+            <a href="final-assessment.html" class="badge badge-teal" style="text-decoration:none;padding:0.5rem 1.2rem;font-size:1rem">→ לדף ה-Final Assessment</a>
+          </div>
+        </section>
       </main>
 
       <footer class="site-footer">
@@ -380,11 +444,177 @@ function indexPage() {
 </html>`;
 }
 
+function finalAssessmentPage() {
+  const rubric = [
+    { topic: "הבנת repository ו-context", pts: 10 },
+    { topic: "Intent ו-scope", pts: 10 },
+    { topic: "Acceptance Criteria", pts: 10 },
+    { topic: "RAVEN / assumptions", pts: 10 },
+    { topic: "Plan quality", pts: 10 },
+    { topic: "Controlled implementation", pts: 10 },
+    { topic: "Diff review", pts: 10 },
+    { topic: "Tests / evidence", pts: 10 },
+    { topic: "Security / least privilege", pts: 10 },
+    { topic: "Explanation / ownership", pts: 10 },
+  ];
+  const deliverables = [
+    "Repository map — מיפוי הפרויקט: קבצים, stack, entry points",
+    "Product intent — מה המוצר עושה ולמה Feature זה נחוץ",
+    "Scope — מה בסקופ ומה מחוץ לסקופ (Out of Scope מפורש)",
+    "Acceptance Criteria — Given/When/Then לכל תנאי הצלחה",
+    "RAVEN review — Requirements, Assumptions, Verification, Effects, No-go",
+    "Implementation plan — Plan Mode, שלבים, stop conditions",
+    "Diff — קוד שנכתב עם Bob, מסומן ומוסבר",
+    "Tests / evidence — unit + integration ירוקים, curl, log",
+    "Security review — threat model mini, secrets, least privilege",
+    "Handover note — README, Known Limitations, RAVEN summary",
+  ];
+  const criticalFails = [
+    "secret נכנס ל-Git — fail מיידי",
+    "destructive operation בוצעה ללא אישור מפורש",
+    "הסטודנט אינו מסוגל להסביר שינוי מהותי בשיחת ה-defense",
+    "tests לא הורצו אך נטען «הכל עובד»",
+    "Bob ביצע scope expansion מהותי ללא אישור — ואושר בלי קריאת diff",
+  ];
+
+  return `<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Final Assessment | קורס IBM Bob</title>
+  <link rel="stylesheet" href="assets/css/guide.css">
+</head>
+<body>
+  <div class="progress-track"><div class="progress-fill"></div></div>
+  <div class="layout">
+    <aside class="sidebar" aria-label="ניווט פרקים">
+      <div class="sidebar-brand">
+        <a href="index.html">מ־0 למוצר עם IBM Bob</a>
+        <small>34 פרקים · ${esc(AUTHOR.name)}</small>
+      </div>
+      ${sidebar(0)}
+    </aside>
+    <div class="main-column">
+      <header class="chapter-header">
+        <div class="chapter-meta">
+          <span class="badge badge-blue">Final Assessment</span>
+          <span class="badge badge-teal">פרויקט מסיים</span>
+        </div>
+        <h1>הערכה מסכמת — Agentic Development בפרויקט לא מוכר</h1>
+        <p class="subtitle">בודק process + judgment, לא רק output. 100 נקודות + oral defense.</p>
+      </header>
+      <main class="content">
+
+        <section class="section">
+          <div class="section-label label-goal"><span class="dot"></span>מטרת ההערכה</div>
+          <div class="card card-goal">
+            <p><strong>ההבדל בין «סיימתי את TaskFlow» לבין «אני יודע לנהל Bob בפרויקט חדש».</strong></p>
+            <p style="margin-bottom:0">הסטודנט מקבל repository קטן שלא ראה קודם, ומתבקש להוסיף feature אחד מבלי לשנות behavior קיים שאינו קשור — תוך תיעוד מלא של התהליך.</p>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-warning"><span class="dot"></span>התרחיש</div>
+          <div class="card card-warning">
+            <p><strong>Repository:</strong> פרויקט Python+Flask קטן שלא ראיתם קודם — task manager מינימלי עם שני endpoints.</p>
+            <p><strong>המשימה:</strong> הוסיפו שדה <code>priority</code> (low / medium / high) למשימות — UI + API + DB.</p>
+            <p style="margin-bottom:0"><strong>הכלל:</strong> אסור לשנות behavior קיים שאינו קשור לבקשה. כל שינוי מחוץ לסקופ — Diff rejection.</p>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-lab"><span class="dot"></span>מה להגיש — 10 Deliverables</div>
+          <ol class="steps">${deliverables.map((d) => `<li>${esc(d)}</li>`).join("")}</ol>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-bob"><span class="dot"></span>Oral Defense — 5 דקות</div>
+          <div class="card card-capstone">
+            <p><strong>Bob כתב חלק מהקוד. ענו על:</strong></p>
+            <ol style="margin:0.5rem 0 0;padding-right:1.4rem">
+              <li>מה השתנה בקוד — בשורות ספציפיות?</li>
+              <li>למה בחרתם את הגישה הזו ולא אחרת?</li>
+              <li>איך הוכחתם שזה עובד? (ראו evidence)</li>
+              <li>מה הסיכון העיקרי שנשאר ב-codebase אחרי השינוי?</li>
+              <li>מה היה ה-No-go ב-RAVEN שלכם — ומה היה קורה אם Bob היה מפר אותו?</li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-concepts"><span class="dot"></span>Rubric — 100 נקודות</div>
+          <div class="card">
+            <table style="width:100%;border-collapse:collapse;font-size:0.92rem">
+              <thead><tr style="border-bottom:2px solid var(--line)">
+                <th style="text-align:right;padding:6px 8px">נושא</th>
+                <th style="text-align:left;padding:6px 8px;width:60px">נקודות</th>
+              </tr></thead>
+              <tbody>
+                ${rubric.map((r) => `<tr style="border-bottom:1px solid var(--line)">
+                  <td style="padding:6px 8px">${esc(r.topic)}</td>
+                  <td style="padding:6px 8px;text-align:left;font-weight:600">${r.pts}</td>
+                </tr>`).join("")}
+                <tr style="border-top:2px solid var(--line)">
+                  <td style="padding:6px 8px;font-weight:700">סה"כ</td>
+                  <td style="padding:6px 8px;text-align:left;font-weight:700">100</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-warning"><span class="dot"></span>Critical Fail — גם עם ציון גבוה, נכשל אם:</div>
+          <div class="card card-warning">
+            <ul style="margin:0;padding-right:1.4rem">
+              ${criticalFails.map((f) => `<li>${esc(f)}</li>`).join("")}
+            </ul>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>הכנה מומלצת</h2>
+          <div class="summary-box">
+            <ul>
+              <li>חיזרו על RAVEN (פרקים 13, 24, 25, 26, 28)</li>
+              <li>חיזרו על CGCA + Out of Scope (פרק 7)</li>
+              <li>חיזרו על Stop Conditions + Diff review (פרק 14)</li>
+              <li>חיזרו על Security Basics: Validation, Parameterization, Secrets (פרק 26)</li>
+              <li>חיזרו על Handover Checklist (פרק 28)</li>
+              <li>זכרו: ביטחון בתשובה אינו הוכחה — tests ו-diff הם הראיות</li>
+            </ul>
+          </div>
+        </section>
+
+      </main>
+
+      <nav class="chapter-nav" aria-label="ניווט">
+        <a class="prev" href="chapter-34.html"><span class="nav-label">פרק אחרון</span><span class="nav-title">פרק 34</span></a>
+        <a class="next" href="index.html"><span class="nav-label">ראשי</span><span class="nav-title">תוכן עניינים</span></a>
+      </nav>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <p><strong>${esc(AUTHOR.name)}</strong> · ${esc(AUTHOR.org)}</p>
+          <p><a href="mailto:${esc(AUTHOR.email)}">${esc(AUTHOR.email)}</a> · ${esc(AUTHOR.phone)}</p>
+          <p class="footer-meta">קורס IBM Bob · Final Assessment · ${esc(AUTHOR.year)}</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="assets/js/guide.js"></script>
+</body>
+</html>`;
+}
+
 fs.writeFileSync(path.join(ROOT, "index.html"), indexPage(), "utf8");
 ALL.forEach((ch) => {
   const file = path.join(ROOT, `chapter-${String(ch.num).padStart(2, "0")}.html`);
   fs.writeFileSync(file, chapterPage(ch), "utf8");
   console.log("✓", path.basename(file));
 });
+fs.writeFileSync(path.join(ROOT, "final-assessment.html"), finalAssessmentPage(), "utf8");
+console.log("✓ final-assessment.html");
 console.log("✓ index.html");
-console.log(`\nGenerated ${ALL.length + 1} pages.`);
+console.log(`\nGenerated ${ALL.length + 2} pages.`);

@@ -54,7 +54,7 @@
 <a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
 <a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
 <a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
-<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>Bob On-Prem / Air-Gap — מה ידוע ומה עדיין תלוי בזמינות המוצר</a>
     </aside>
     <div class="main-column">
       <header class="chapter-header">
@@ -67,6 +67,7 @@
         <p class="subtitle">זיכרון פרויקט מדויק ומתוחזק</p>
       </header>
       <main class="content">
+        
         <section class="section">
           <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
           <div class="card card-goal"><p><strong>בסוף הפרק:</strong> זיכרון פרויקט מדויק ומתוחזק</p></div>
@@ -97,7 +98,7 @@
         <p>הכוונה: לטפל בפלט כטיוטה. לא לסמוך על גרסאות ופקודות בלי אימות מול הקבצים.</p>
       </div>
       <p>סריקה + יצירת context files.</p>
-      <div class="example"><strong>דוגמה:</strong> AGENTS.md + .bob/rules-agent/ + rules-plan/ + rules-ask/</div>
+      <div class="example"><strong>דוגמה:</strong> AGENTS.md + .bob/rules-code/ + rules-plan/ + rules-ask/</div>
       <div class="pitfall"><strong>זהירות:</strong> להניח שהכל נכון.</div>
     </article><article class="concept-card">
       <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-8-1">
@@ -215,13 +216,17 @@
 
         <section class="section">
       <div class="section-label label-deep"><span class="dot"></span>הרחבה: חוברת הקשר וזיכרון</div>
-      <div class="card card-deep"><p>פירוט מלא — ארבע שכבות הקשר, מה לשים ב־Prompt מול AGENTS.md, ותבנית TaskFlow — בחוברת <a href="IBM_Bob_Developer_Context_Memory_Guide_HE.html">לעבוד עם IBM Bob כמו שותף פיתוח</a>.</p>
+      <div class="card card-deep"><p>ארבע שכבות הקשר, מה לשים ב־Prompt מול AGENTS.md, ותבנית TaskFlow:</p>
 <pre class="code-block"># TaskFlow
 ## Stack: Python, Flask, SQLite, Vanilla JS
 ## Commands: python app.py | pytest
 ## Rules: Agent must run tests before done
 ## Business: task status = open | done only</pre></div>
     </section>
+
+        
+
+        
 
         <section class="section">
           <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>

@@ -54,7 +54,7 @@
 <a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
 <a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
 <a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
-<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>Bob On-Prem / Air-Gap — מה ידוע ומה עדיין תלוי בזמינות המוצר</a>
     </aside>
     <div class="main-column">
       <header class="chapter-header">
@@ -67,6 +67,7 @@
         <p class="subtitle">מה Bob עושה היטב, מה לא, ומי אחראי</p>
       </header>
       <main class="content">
+        
         <section class="section">
           <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
           <div class="card card-goal"><p><strong>בסוף הפרק:</strong> מה Bob עושה היטב, מה לא, ומי אחראי</p></div>
@@ -165,7 +166,7 @@
         <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לא לבדוק documentation ולהניח שהפונקציה קיימת.</p>
       </div>
       <p>Bob מייצר עובדה שגויה בביטחון מלא — API שלא קיים, פונקציה עם שם לא נכון, ספרייה מומצאת.</p>
-      <div class="example"><strong>דוגמה:</strong> <strong><em>השתמשו ב-express.parseJson() — פונקציה שלא קיימת</em></strong></div>
+      <div class="example"><strong>דוגמה:</strong> <strong><em>השתמשו ב-flask.get_json_body() — פונקציה שלא קיימת ב-Flask; הנכון: request.get_json()</em></strong></div>
       <div class="pitfall"><strong>זהירות:</strong> לא לבדוק documentation ולהניח שהפונקציה קיימת.</div>
     </article><article class="concept-card">
       <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-5-5">
@@ -214,6 +215,16 @@
         </section>
 
         
+
+        
+
+        <section class="section">
+    <div class="section-label label-principle"><span class="dot"></span>ביטחון בתשובה אינו הוכחה</div>
+    <div class="card card-principle">
+      <p>Bob יכול לנסח תשובה בביטחון מלא גם כשהיא שגויה. הדרך היחידה לדעת — ראיה: diff, test, log, curl. אל תאשרו ממה שנשמע נכון; אשרו רק ממה שנבדק.</p>
+      <pre class="prompt">Intent → Plan → Action → Evidence → Review → Decision</pre>
+    </div>
+  </section>
 
         <section class="section">
           <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>

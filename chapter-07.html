@@ -54,7 +54,7 @@
 <a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
 <a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
 <a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
-<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>Bob On-Prem / Air-Gap — מה ידוע ומה עדיין תלוי בזמינות המוצר</a>
     </aside>
     <div class="main-column">
       <header class="chapter-header">
@@ -67,6 +67,7 @@
         <p class="subtitle">Prompt ברור, מוגבל וניתן לבדיקה</p>
       </header>
       <main class="content">
+        
         <section class="section">
           <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
           <div class="card card-goal"><p><strong>בסוף הפרק:</strong> Prompt ברור, מוגבל וניתן לבדיקה</p></div>
@@ -231,6 +232,19 @@ Constraints: [stack, what is forbidden]
 Acceptance: [measurable conditions]
 Out of scope: [what not to do]</pre></div>
     </section>
+
+        <section class="section">
+      <div class="section-label label-judgment"><span class="dot"></span>עצור והחלט</div>
+      <div class="judgment-list"><div class="judgment-item">
+      <div class="judgment-scenario"><strong>תרחיש:</strong> קיבלתם מ-Bob prompt שנשמע מקצועי: <strong><em>הוסף validation לכל שדות הטופס, כולל בדיקת XSS</em></strong>. אין בו Constraints, אין Out of Scope, אין AC מדיד.</div>
+      <details class="judgment-details">
+        <summary class="judgment-q">עצור והחלט — מה חסר ב-prompt הזה ומה הסיכון?</summary>
+        <div class="judgment-a">חסרים: Constraints (באיזו ספרייה? Server-side? Client-side?), Out of Scope (אילו שדות לא לגעת בהם?), AC מדיד (מה נחשב XSS מוגן — encode, reject, log?). הסיכון: Bob יממש validation כללי שיכול לשבור שדות קיימים או לפספס שדות קריטיים.</div>
+      </details>
+    </div></div>
+    </section>
+
+        
 
         <section class="section">
           <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>

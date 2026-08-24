@@ -54,7 +54,7 @@
 <a class="nav-link active" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
 <a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
 <a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
-<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>Bob On-Prem / Air-Gap — מה ידוע ומה עדיין תלוי בזמינות המוצר</a>
     </aside>
     <div class="main-column">
       <header class="chapter-header">
@@ -67,6 +67,18 @@
         <p class="subtitle">בניית agents עצמאיים עם ADK ופריסה ל-Orchestrate</p>
       </header>
       <main class="content">
+        <section class="version-box">
+        <div class="version-header"><strong>מידע תלוי גרסה ומוצר</strong></div>
+        <div class="version-body">
+          <p>נבדק ואומת מול תיעוד IBM בתאריך: <strong>2026-08-24</strong></p>
+          
+            <p class="sources-title">מקורות רשמיים:</p>
+            <ul class="sources-list">
+              <li><a href="https://developer.watson-orchestrate.ibm.com/agents/import_agent" target="_blank" rel="noopener noreferrer">watsonx Orchestrate — import_agent documentation</a></li><li><a href="https://developer.watson-orchestrate.ibm.com/docs/adk" target="_blank" rel="noopener noreferrer">watsonx Orchestrate developer guide</a></li>
+            </ul>
+          
+        </div>
+      </section>
         <section class="section">
           <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
           <div class="card card-goal"><p><strong>בסוף הפרק:</strong> בניית agents עצמאיים עם ADK ופריסה ל-Orchestrate</p></div>
@@ -74,7 +86,7 @@
 
         <section class="section">
           <h2>מבוא</h2>
-          <p>watsonx Orchestrate היא פלטפורמת agents של IBM — כל agent הוא יחידה עצמאית עם כלים (tools), זיכרון ומודל LLM. ADK (Agent Development Kit) הוא ה-Python SDK לבניית agents ב-code ופריסתם ל-Orchestrate. Bob הוא השותף הטבעי: Plan מתכנן את ה-topology, Agent כותב את ה-tools, ו-ADK CLI פורס לפלטפורמה.</p>
+          <p>watsonx Orchestrate היא פלטפורמת agents של IBM — כל agent הוא יחידה עצמאית עם כלים (tools), זיכרון ומודל LLM. ADK (Agent Development Kit) הוא ה-Python SDK לבניית agents ב-code ופריסתם ל-Orchestrate. Bob הוא השותף הטבעי: Plan מתכנן את ה-topology, Agent כותב את ה-tools, ו-orchestrate CLI פורס לפלטפורמה.</p>
         </section>
 
         
@@ -111,11 +123,11 @@
         <p class="popup-label">משמעות</p>
         <p>Python SDK רשמי להגדרת agents, tools ו-multi-agent orchestrations בקוד, ופריסה ל-Orchestrate.</p>
         <p class="popup-label">כוונה</p>
-        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לכתוב tool לוגיקה ישירות ב-agent definition — tool חייב להיות פונקציה נפרדת מ-decorated.</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לכתוב tool לוגיקה ישירות ב-agent definition — tool חייב להיות פונקציה מוגדרת נפרדת.</p>
       </div>
       <p>Python SDK רשמי להגדרת agents, tools ו-multi-agent orchestrations בקוד, ופריסה ל-Orchestrate.</p>
-      <div class="example"><strong>דוגמה:</strong> @tool def get_open_tasks(): ... — decorator שהופך פונקציה ל-tool</div>
-      <div class="pitfall"><strong>זהירות:</strong> לכתוב tool לוגיקה ישירות ב-agent definition — tool חייב להיות פונקציה נפרדת מ-decorated.</div>
+      <div class="example"><strong>דוגמה:</strong> הגדרת פונקציות הכלים של הסוכן ב-Python</div>
+      <div class="pitfall"><strong>זהירות:</strong> לכתוב tool לוגיקה ישירות ב-agent definition — tool חייב להיות פונקציה מוגדרת נפרדת.</div>
     </article><article class="concept-card">
       <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-31-2">
         Skill
@@ -152,21 +164,21 @@
       <div class="pitfall"><strong>זהירות:</strong> orchestrator שמכיל כל הלוגיקה — שוברים isolation ומקשים test.</div>
     </article><article class="concept-card">
       <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-31-4">
-        ADK CLI
+        ADK CLI (orchestrate)
         <span class="concept-info" aria-hidden="true">i</span>
       </button>
       <div class="concept-popup" id="concept-pop-31-4" role="tooltip" hidden>
-        <p class="popup-kicker">ADK CLI</p>
+        <p class="popup-kicker">ADK CLI (orchestrate)</p>
         <p class="popup-label">מבוא</p>
-        <p>המושג <strong><em>ADK CLI</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p>המושג <strong><em>ADK CLI (orchestrate)</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
         <p class="popup-label">משמעות</p>
-        <p>כלי שורת פקודה לפריסה, בדיקה וניהול agents ב-Orchestrate: wxo agent deploy | skill publish | agent test.</p>
+        <p>כלי שורת פקודה הרשמי לניהול סוכנים ב-Orchestrate. הפקודות המרכזיות משתמשות במשפחת הפקודות orchestrate לניהול ה-lifecycle.</p>
         <p class="popup-label">כוונה</p>
-        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — פריסה ישירה ל-production בלי test ב-local ADK server.</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — שימוש בפקודות CLI ישנות כגון wxo או הנחה ש-deploy מקבל ישירות קובץ YAML מקומי.</p>
       </div>
-      <p>כלי שורת פקודה לפריסה, בדיקה וניהול agents ב-Orchestrate: wxo agent deploy | skill publish | agent test.</p>
-      <div class="example"><strong>דוגמה:</strong> wxo agent deploy --file agent.yaml --env production</div>
-      <div class="pitfall"><strong>זהירות:</strong> פריסה ישירה ל-production בלי test ב-local ADK server.</div>
+      <p>כלי שורת פקודה הרשמי לניהול סוכנים ב-Orchestrate. הפקודות המרכזיות משתמשות במשפחת הפקודות orchestrate לניהול ה-lifecycle.</p>
+      <div class="example"><strong>דוגמה:</strong> orchestrate agents import, orchestrate agents deploy</div>
+      <div class="pitfall"><strong>זהירות:</strong> שימוש בפקודות CLI ישנות כגון wxo או הנחה ש-deploy מקבל ישירות קובץ YAML מקומי.</div>
     </article><article class="concept-card">
       <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-31-5">
         Agent Catalog
@@ -193,16 +205,16 @@
           <p><strong>שאלות לחשיבה:</strong> ב-TaskFlow: אילו agents נדרשים? מה ה-tool של כל אחד? מי ה-orchestrator?</p>
         </section>
 
-        <section class="section"><h2>תרשים זרימה</h2><div class="flow-diagram"><div class="flow-node primary">Bob IDE + ADK</div><span class="flow-arrow">→</span><div class="flow-node secondary">wxo CLI deploy</div><span class="flow-arrow">→</span><div class="flow-node">Orchestrate Platform</div><span class="flow-arrow">→</span><div class="flow-node storage">Agent Catalog</div></div>
+        <section class="section"><h2>תרשים זרימה</h2><div class="flow-diagram"><div class="flow-node primary">Local ADK Project</div><span class="flow-arrow">→</span><div class="flow-node secondary">orchestrate agents import</div><span class="flow-arrow">→</span><div class="flow-node">Draft Stage</div><span class="flow-arrow">→</span><div class="flow-node secondary">orchestrate agents deploy</div><span class="flow-arrow">→</span><div class="flow-node storage">Live Agent Catalog</div></div>
 <div class="flow-diagram" style="margin-top:0.5rem"><div class="flow-node primary">User / App</div><span class="flow-arrow">→</span><div class="flow-node secondary">Orchestrator Agent</div><span class="flow-arrow">→</span><div class="flow-node">Specialist Agents</div><span class="flow-arrow">→</span><div class="flow-node storage">Tools / Skills / APIs</div></div>
-<p style="font-size:0.85rem;color:var(--ink-secondary);margin-top:0.25rem">Bob עוזר בשלב הפיתוח. ADK CLI פורס. Orchestrate מריץ בפרודקשן.</p></section>
+<p style="font-size:0.85rem;color:var(--ink-secondary);margin-top:0.25rem">Bob מסייע בפיתוח. ADK CLI מייבא (import) לטיוטה ומפעיל (deploy) ל-Live. Orchestrate מריץ בפרודקשן.</p></section>
 
         <section class="section">
           <div class="section-label label-bob"><span class="dot"></span>עבודה עם IBM Bob</div>
           <div class="mode-row"><span class="mode-pill mode-ask">Ask</span><span class="mode-pill mode-plan">Plan</span><span class="mode-pill mode-agent">Agent</span></div>
           <p>Ask להבנת Orchestrate topology → Plan לארכיטקטורת agents ו-tools → Agent לכתיבת Python tools ו-YAML + deploy.</p>
           <h3>Prompt לדוגמה</h3>
-          <pre class="prompt">In Plan mode: design a multi-agent system for TaskFlow. Define: orchestrator agent, specialist agents (task, notification, report), tools per agent, skill schemas. No code yet.</pre>
+          <pre class="prompt">In Plan mode: design a multi-agent system for TaskFlow. Define: orchestrator agent, specialist agents (task, notification, report), tools per agent, skill schemas, and deployment steps using orchestrate CLI (import, deploy). No code yet.</pre>
           <p><strong>למה זה עובד:</strong> Topology Plan לפני קוד — agents הם microservices. ארכיטקטורה שגויה יקרה לתקן.</p>
         </section>
 
@@ -213,11 +225,11 @@
             <p><strong>כן:</strong> orchestrator קטן + specialist agents עם tool אחד-שניים כל אחד.</p>
           </div>
           <div class="compare-grid">
-        <div class="compare-bad"><div class="compare-label">Prompt חלש</div><pre class="prompt">Build me a watsonx Orchestrate agent for TaskFlow</pre></div>
+        <div class="compare-bad"><div class="compare-label">Prompt חלש</div><pre class="prompt">Build me a watsonx Orchestrate agent and deploy it with wxo CLI</pre></div>
         <div class="compare-good"><div class="compare-label">Prompt חזק</div><pre class="prompt">Context: @docs/taskflow-api.md
-Goal: Define ADK agent <strong><em>TaskAgent</em></strong> with two tools: get_open_tasks and create_task
-Constraints: use ADK Python SDK, tools must be pure functions, no side-effects in agent init
-AC: wxo agent test passes locally before deploy</pre></div>
+Goal: Define ADK agent <strong><em>TaskAgent</em></strong> structure and describe how to import it to Draft using 'orchestrate agents import' and deploy to Live using 'orchestrate agents deploy'
+Constraints: specify that watsonx Orchestrate Developer Edition supports Draft mode only (deploy to Live is unavailable there)
+AC: list the exact CLI command family and steps</pre></div>
       </div>
         </section>
 
@@ -225,27 +237,34 @@ AC: wxo agent test passes locally before deploy</pre></div>
       <div class="section-label label-deep"><span class="dot"></span>מבנה ADK Project עם AGENTS.md</div>
       <div class="card card-deep"><pre class="code-block"># AGENTS.md — watsonx Orchestrate / ADK Project
 ## Platform: watsonx Orchestrate (SaaS or CPD)
-## SDK: ibm-watsonx-orchestrate-adk (Python 3.11+)
-## CLI: wxo (agent deploy | skill publish | agent test | agent logs)
+## CLI: orchestrate
+## Commands:
+#   orchestrate agents import -f agents/task_agent.yaml  — Import to Draft
+#   orchestrate agents deploy --name TaskAgent            — Deploy Draft to Live
+#   orchestrate agents undeploy --name TaskAgent          — Remove Live Agent
+#   orchestrate env activate &lt;environment-name&gt;          — Activate Environment
 ## Project structure:
 #   agents/          — agent YAML definitions
-#   tools/           — @tool decorated Python functions
+#   tools/           — tool Python functions
 #   skills/          — skill schemas (OpenAPI or AppConnect)
-#   tests/           — wxo agent test cases
 ## Rules:
-- Plan agent topology before any code (orchestrator + specialists)
-- Each tool = one pure function; no state in tools
-- wxo agent test must pass before wxo agent deploy
-- Never hardcode API keys — use Orchestrate secret manager
-- Deploy order: tools → skills → specialist agents → orchestrator
+#   - Plan agent topology before any code (orchestrator + specialists)
+#   - Import local definition to Draft before deployment
+#   - watsonx Orchestrate Developer Edition works with Draft only (no Live deploy)
+#   - Each tool = one pure function; no state in tools
+#   - Never hardcode API keys — use Orchestrate secret manager
 ## Refs:
-- ADK docs: developer.watson-orchestrate.ibm.com/docs/adk
-- Tutorial: developer.watson-orchestrate.ibm.com/tutorials/advanced_tutorials</pre></div>
+#   - ADK docs: developer.watson-orchestrate.ibm.com/docs/adk
+#   - Import endpoint: developer.watson-orchestrate.ibm.com/agents/import_agent</pre></div>
     </section>
+
+        
+
+        
 
         <section class="section">
           <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
-          <ol class="steps"><li>התקינו ADK: pip install ibm-watsonx-orchestrate-adk.</li><li>Ask: בקשו מ-Bob להסביר את מבנה ADK project (agent.yaml + tools.py).</li><li>Plan: תכננו orchestrator + שני specialists ל-TaskFlow.</li><li>Agent: כתבו tool אחד עם @tool decorator — בדקו locally עם wxo agent test.</li><li>Deploy ל-staging: wxo agent deploy --env staging.</li></ol>
+          <ol class="steps"><li>התקינו את ה-CLI הרשמי: pip install ibm-watsonx-orchestrate-adk.</li><li>Ask: בקשו מ-Bob להסביר את מבנה פרויקט ADK (קובצי YAML של ה-agents ופונקציות ה-tools ב-Python).</li><li>Plan: תכננו orchestrator ושני specialists ל-TaskFlow.</li><li>ייבאו את ה-agent המקומי לטיוטה ב-Orchestrate (Draft): orchestrate agents import -f agents/task_agent.yaml.</li><li>למדו את ההבדל: import מעלה הגדרה מקומית ל-Draft, בעוד ש-deploy מפעיל את ה-Draft והופך אותו ל-Live (זמין רק בסביבות מלאות; ב-Developer Edition פיתוח מבוצע מול Draft ו-deploy ל-Live אינו זמין).</li><li>הצלחה = ה-agent יובא בהצלחה כ-Draft, וכלים נבדקו ישירות ב-Agent Builder / test chat, או כ-unit tests ייעודיים לפונקציות ה-tools.</li></ol>
         </section>
 
         <section class="section">
@@ -256,21 +275,21 @@ AC: wxo agent test passes locally before deploy</pre></div>
         <section class="section">
           <div class="section-label label-quiz"><span class="dot"></span>בדקו את עצמכם</div>
           <div class="quiz"><details>
-      <summary>הבדל Agent ב-Bob לעומת Agent ב-Orchestrate?</summary>
-      <div class="answer"><strong>תשובה לדוגמה:</strong> Bob Agent Mode = מצב IDE לכתיבת קוד. Orchestrate Agent = יחידה פרוסה עם LLM+tools שרצה בפרודקשן.</div>
+      <summary>מה ההבדל בין orchestrate agents import לבין deploy?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> import מעלה הגדרה מקומית מקובץ YAML והופך אותה ל-Draft (טיוטה) בפלטפורמה. deploy מפעיל את ה-Draft והופך אותו ל-Live (פעיל ב-Catalog). הפקודה deploy אינה מקבלת קובץ YAML מקומי ישירות.</div>
     </details><details>
-      <summary>למה @tool decorator?</summary>
-      <div class="answer"><strong>תשובה לדוגמה:</strong> ADK רושם את הפונקציה ב-schema של ה-agent — הLLM יודע מתי ואיך להפעיל אותה.</div>
+      <summary>האם ניתן לבצע deploy ל-Live ב-Developer Edition?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> לא. watsonx Orchestrate Developer Edition מיועדת לפיתוח לא-ייצורי ועובדת עם Draft בלבד. לפי תיעוד IBM, הפעלת deploy ל-Live אינה זמינה שם.</div>
     </details><details>
-      <summary>test לפני deploy?</summary>
-      <div class="answer"><strong>תשובה לדוגמה:</strong> wxo agent test מריץ agent locally מול ADK dev server — בלי זה באגים מגיעים ישר לפרודקשן.</div>
+      <summary>כיצד בודקים סוכנים וכלים ב-ADK?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> ניתן לבדוק את הכלים כ-unit tests רגילים ב-Python (הואיל והם פונקציות סטנדרטיות), או לבצע בדיקה אינטראקטיבית ב-test chat בתוך ה-Agent Builder בפלטפורמה.</div>
     </details></div>
         </section>
 
         <section class="section">
           <h2>סיכום</h2>
           <div class="summary-box">
-            <ul><li>ADK = Python SDK לפיתוח agents.</li><li>Plan topology לפני קוד.</li><li>Tool = פונקציה נפרדת עם @decorator.</li><li>test locally → deploy staging → production.</li></ul>
+            <ul><li>ADK = Python SDK לפיתוח סוכנים וכלים.</li><li>משפחת הפקודות orchestrate מנהלת את ה-lifecycle של הסוכנים.</li><li>הבדילו בין import (מקומי ל-Draft) לבין deploy (מ-Draft ל-Live).</li><li>ב-Developer Edition עובדים מול Draft; פריסת Live חסומה.</li></ul>
           </div>
         </section>
       </main>

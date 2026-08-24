@@ -54,7 +54,7 @@
 <a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
 <a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
 <a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
-<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>Bob On-Prem / Air-Gap — מה ידוע ומה עדיין תלוי בזמינות המוצר</a>
     </aside>
     <div class="main-column">
       <header class="chapter-header">
@@ -67,6 +67,7 @@
         <p class="subtitle">בחירת Mode לפי מטרה וסיכון</p>
       </header>
       <main class="content">
+        
         <section class="section">
           <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
           <div class="card card-goal"><p><strong>בסוף הפרק:</strong> בחירת Mode לפי מטרה וסיכון</p></div>
@@ -212,6 +213,19 @@
           </div>
           
         </section>
+
+        
+
+        <section class="section">
+      <div class="section-label label-judgment"><span class="dot"></span>עצור והחלט</div>
+      <div class="judgment-list"><div class="judgment-item">
+      <div class="judgment-scenario"><strong>תרחיש:</strong> Bob מציע להשתמש ב-Agent Mode כדי לעדכן שורת הערה אחת בקובץ README.</div>
+      <details class="judgment-details">
+        <summary class="judgment-q">עצור והחלט — האם צריך Agent Mode עבור שינוי זה? מה השיקול?</summary>
+        <div class="judgment-a">Agent Mode הוא המצב שכותב לקבצים בפועל — אם רוצים שBob יכתוב את השינוי ב-README, צריך Agent. השאלה היא לא <strong><em>מותר?</em></strong> אלא <strong><em>האם הסיכון מצדיק Escalation מלא?</em></strong>. לשינוי שורה אחת בתיעוד: רוב הזמן כדאי להשתמש ב-Ask לניסוח, ואז לעדכן ידנית — זה מהיר יותר ומחייב פחות oversight. אם בוחרים Agent, ה-stop condition ו-diff review עדיין חלים.</div>
+      </details>
+    </div></div>
+    </section>
 
         
 

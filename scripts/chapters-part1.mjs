@@ -153,7 +153,7 @@ export const CHAPTERS = [
       { term: "Context", def: "מה Bob רואה במשימה.", example: "@AGENTS.md + @src/", pitfall: "context ישן/שגוי." },
       { term: "הנחה", def: "מה Bob ממלא כשחסר מידע.", example: "«כנראה SQLite»", pitfall: "לא לגלות הנחות." },
       { term: "אחריות אנושית", def: "אתם מאשרים, בודקים, חותמים.", example: "Diff review לפני merge", pitfall: "approve בלי קריאה." },
-      { term: "Hallucination", def: "Bob מייצר עובדה שגויה בביטחון מלא — API שלא קיים, פונקציה עם שם לא נכון, ספרייה מומצאת.", example: "«השתמשו ב-express.parseJson() — פונקציה שלא קיימת»", pitfall: "לא לבדוק documentation ולהניח שהפונקציה קיימת." },
+      { term: "Hallucination", def: "Bob מייצר עובדה שגויה בביטחון מלא — API שלא קיים, פונקציה עם שם לא נכון, ספרייה מומצאת.", example: "«השתמשו ב-flask.get_json_body() — פונקציה שלא קיימת ב-Flask; הנכון: request.get_json()»", pitfall: "לא לבדוק documentation ולהניח שהפונקציה קיימת." },
       { term: "Verification", def: "בדיקה אקטיבית שהפלט נכון: tests, curl, console log, docs check.", example: "curl localhost:3000/api/tasks — מאמת שה-endpoint קיים ומחזיר JSON", pitfall: "«נראה נכון» ≠ עובד. Verification = ראיה." },
     ],
     analogy: { text: "Bob פועל על Context שסיפקתם — אם הContext חסר, הוא ממלא פערים בהנחות סבירות אך לא מאומתות. תוצאה נכונה בניסוח ≠ תוצאה נכונה בפועל. ה-diff ו-test הם הראיה היחידה; approve בלי קריאה הוא חתימה על מסמך שלא קראתם.", bridge: "שלחו ל-Bob בקשה עמומה: «שפר את TaskFlow». קבלו תשובה. בדקו: כמה הנחות זיהיתם בתשובה? שכתבו את הבקשה עם CGCA ושלחו שוב — מה השתנה?" },
@@ -167,6 +167,11 @@ export const CHAPTERS = [
       { q: "מי אחראי על קוד AI?", a: "המפתח שאישר merge." },
     ],
     summary: ["Bob = שותף, לא בעלים.", "חשפו הנחות תמיד.", "ראיה > ביטחון.", "אחריות לא עוברת."],
+    principle: {
+      title: "ביטחון בתשובה אינו הוכחה",
+      text: "Bob יכול לנסח תשובה בביטחון מלא גם כשהיא שגויה. הדרך היחידה לדעת — ראיה: diff, test, log, curl. אל תאשרו ממה שנשמע נכון; אשרו רק ממה שנבדק.",
+      loop: "Intent → Plan → Action → Evidence → Review → Decision",
+    },
   },
   {
     num: 6,
@@ -197,6 +202,13 @@ export const CHAPTERS = [
       { q: "Plan review — מה מחפשים?", a: "הנחות לא מוצהרות («לפי הצורך»), שינויי DB ללא migration, שלבים ללא AC ברור." },
     ],
     summary: ["Mode = רמת סיכון.", "Escalation, לא קפיצה.", "Plan = חוזה.", "Agent = שלבים קטנים."],
+    judgment: [
+      {
+        scenario: "Bob מציע להשתמש ב-Agent Mode כדי לעדכן שורת הערה אחת בקובץ README.",
+        q: "האם צריך Agent Mode עבור שינוי זה? מה השיקול?",
+        a: "Agent Mode הוא המצב שכותב לקבצים בפועל — אם רוצים שBob יכתוב את השינוי ב-README, צריך Agent. השאלה היא לא «מותר?» אלא «האם הסיכון מצדיק Escalation מלא?». לשינוי שורה אחת בתיעוד: רוב הזמן כדאי להשתמש ב-Ask לניסוח, ואז לעדכן ידנית — זה מהיר יותר ומחייב פחות oversight. אם בוחרים Agent, ה-stop condition ו-diff review עדיין חלים.",
+      },
+    ],
   },
   {
     num: 7,
@@ -227,6 +239,13 @@ export const CHAPTERS = [
       { q: "Out of Scope implicit vs explicit?", a: "Implicit = Bob משנה מה שנראה לו רלוונטי. Explicit = «Do not touch @api/» — גבול פיזי שBob מכבד." },
     ],
     summary: ["CGCA = מינימום.", "בקשה אחת = feature אחד.", "AC לפני Agent.", "שמרו templates."],
+    judgment: [
+      {
+        scenario: "קיבלתם מ-Bob prompt שנשמע מקצועי: «הוסף validation לכל שדות הטופס, כולל בדיקת XSS». אין בו Constraints, אין Out of Scope, אין AC מדיד.",
+        q: "מה חסר ב-prompt הזה ומה הסיכון?",
+        a: "חסרים: Constraints (באיזו ספרייה? Server-side? Client-side?), Out of Scope (אילו שדות לא לגעת בהם?), AC מדיד (מה נחשב XSS מוגן — encode, reject, log?). הסיכון: Bob יממש validation כללי שיכול לשבור שדות קיימים או לפספס שדות קריטיים.",
+      },
+    ],
     deep: { title: "תבנית CGCA", html: `<pre class="prompt">Context: @path/to/files
 Goal: [one outcome]
 Constraints: [stack, what is forbidden]
@@ -241,7 +260,7 @@ Out of scope: [what not to do]</pre>` },
     time: "30 דק'",
     intro: "שיחה חדשה = הקשר מוגבל. יש הבדל בין מה Bob רואה עכשיו (@ ו-Prompt) לבין מה שנטען מ-AGENTS.md בכל שיחה. /init מייצר טיוטה — חובה לבדוק ולתחזק. חשוב: AGENTS.md צריך להיות קצר — הוא נטען לחלון ההקשר בכל שיחה ומתחרה על מקום.",
     concepts: [
-      { term: "/init", def: "סריקה + יצירת context files.", example: "AGENTS.md + .bob/rules-agent/ + rules-plan/ + rules-ask/", pitfall: "להניח שהכל נכון." },
+      { term: "/init", def: "סריקה + יצירת context files.", example: "AGENTS.md + .bob/rules-code/ + rules-plan/ + rules-ask/", pitfall: "להניח שהכל נכון." },
       { term: "AGENTS.md", def: "מדריך: מטרה, מבנה, כללים. קצר = יעיל. ארוך מדי = Bob מתעלם ממה שקבור בסוף.", example: "TaskFlow = task manager", pitfall: "AGENTS.md ישן או עמוס מדי." },
       { term: "Context Budget", def: "לחלון ההקשר יש גודל מוגבל. יותר קבצים ≠ תוצאות טובות יותר.", example: "AGENTS.md קצר + @קובץ ספציפי עדיף על @כל-הפרויקט", pitfall: "לצרף הכל בתקווה שBob יבין טוב יותר." },
       { term: "תחזוקה", def: "עדכון אחרי שינוי stack.", example: "הוספת Flask → עדכון AGENTS", pitfall: "init פעם אחת." },
@@ -261,7 +280,7 @@ Out of scope: [what not to do]</pre>` },
       { q: "Staleness — דוגמה לתוצאה?", a: "AGENTS: SQLite. מציאות: PostgreSQL. Bob מייצר queries עם SQLite syntax שנכשלות בproduction." },
     ],
     summary: ["/init = טיוטה.", "שיחה ≠ קובץ: @ למשימה, AGENTS לקבוע.", "AGENTS.md קצר ומדויק — context budget מוגבל.", "Audit לפני Agent."],
-    deep: { title: "הרחבה: חוברת הקשר וזיכרון", html: `<p>פירוט מלא — ארבע שכבות הקשר, מה לשים ב־Prompt מול AGENTS.md, ותבנית TaskFlow — בחוברת <a href="IBM_Bob_Developer_Context_Memory_Guide_HE.html">לעבוד עם IBM Bob כמו שותף פיתוח</a>.</p>
+    deep: { title: "הרחבה: חוברת הקשר וזיכרון", html: `<p>ארבע שכבות הקשר, מה לשים ב־Prompt מול AGENTS.md, ותבנית TaskFlow:</p>
 <pre class="code-block"># TaskFlow
 ## Stack: Python, Flask, SQLite, Vanilla JS
 ## Commands: python app.py | pytest
@@ -303,14 +322,14 @@ Out of scope: [what not to do]</pre>` },
     subtitle: "כללים עקביים לכל הפרויקט",
     phase: "bob",
     time: "30 דק'",
-    intro: "Rules = התנהגות קבועה של Bob. Custom Modes = תפקידים (Reviewer, Planner). סטנדרט = פחות variance בין sessions. מבנה: .bob/rules/ לכל המצבים, .bob/rules-agent/ / rules-plan/ / rules-ask/ לכל מצב.",
+    intro: "Rules = התנהגות קבועה של Bob. Custom Modes = תפקידים (Reviewer, Planner). סטנדרט = פחות variance בין sessions. מבנה: .bob/rules/ לכל המצבים, .bob/rules-code/ / rules-plan/ / rules-ask/ לכל מצב.",
     concepts: [
       { term: "Rules", def: "הוראות ב-.bob/rules/ — חלות על כל המצבים.", example: "עברית בתגובות", pitfall: "100 rules — conflict." },
       { term: "Custom Mode", def: "persona + הרשאות.", example: "Reviewer: read + comment", pitfall: "mode בלי מטרה." },
       { term: "Convention", def: "סגנון קוד אחיד.", example: "camelCase JS", pitfall: "Bob ממציא סגנון." },
       { term: "Drift", def: "סטייה מהכללים.", example: "rules לא מעודכנות", pitfall: "ignore drift." },
       { term: "Rule Quality", def: "Rule טוב = ניתן לבדיקה, חל על כל session, לא סותר rule אחר.", example: "«כל Agent iteration מסתיים ב-pytest» — ניתן לבדוק", pitfall: "Rule ש-Bob לא יכול לאכוף — «כתוב קוד נקי» = לא testable ולא אכיף." },
-      { term: "Mode-specific Rules", def: "Rules שחלות רק ב-mode מסוים: .bob/rules-agent/, rules-plan/, rules-ask/.", example: "rules-agent: «הרץ tests לפני done». rules-ask: «תמיד cite source».", pitfall: "לשים rules ספציפיות ל-Agent ב-.bob/rules/ הכללי — חלות גם ב-Ask ומבלבלות." },
+      { term: "Mode-specific Rules", def: "Rules שחלות רק ב-mode מסוים: .bob/rules-code/, rules-plan/, rules-ask/.", example: "rules-code: «הרץ tests לפני done». rules-ask: «תמיד cite source».", pitfall: "לשים rules ספציפיות ל-Agent ב-.bob/rules/ הכללי — חלות גם ב-Ask ומבלבלות." },
     ],
     analogy: { text: "Rules הן הגדרות התנהגות קבועות שחוסכות הוראות חוזרות בכל prompt. בלי rules — Bob ממציא סגנון, בוחר שפה ומחליט על convention בכל שיחה. יותר מ-10–15 rules מסותרות פוגעות: Bob מתעלם ממה שקבור בסוף הרשימה.", bridge: "כתבו rule אחד ל-TaskFlow שיחסוך לכם הוראה חוזרת. בדקו: האם ה-rule testable? האם Bob יודע מתי הוא הפר אותו?" },
     bob: { modes: ["Plan"], workflow: "Rules קצרות, focused.", prompt: "Propose 5 rules for TaskFlow covering tests, commits, and scope. Do not create files yet.", promptWhy: "Plan rules — לא spam." },
@@ -322,8 +341,8 @@ Out of scope: [what not to do]</pre>` },
       { q: "Custom Mode?", a: "תפקיד + scope — לא רק שם." },
       { q: "Drift?", a: "עדכון rules כש-stack משתנה." },
       { q: "Rule שלא ניתן לאכוף — מה קורה?", a: "Bob מתעלם ממנה או מפרש לפי שיקול דעתו. Rule חייבת להיות בינארית — הושמרה / לא הושמרה." },
-      { q: "מה ההבדל בין .bob/rules/ לבין .bob/rules-agent/?", a: "rules/ = חל על כל mode. rules-agent/ = רק ב-Agent. rules שמוגבלות ל-Agent לא צריכות לטעון ב-Ask." },
+      { q: "מה ההבדל בין .bob/rules/ לבין .bob/rules-code/?", a: "rules/ = חל על כל mode. rules-code/ = רק ב-Agent/Code mode. rules שמוגבלות ל-Agent לא צריכות לטעון ב-Ask." },
     ],
-    summary: ["Rules קצרות.", ".bob/rules-agent/ rules-plan/ rules-ask/ — לכל מצב.", "Conventions ב-AGENTS.", "Review drift."],
+    summary: ["Rules קצרות.", ".bob/rules-code/ rules-plan/ rules-ask/ — לכל מצב.", "Conventions ב-AGENTS.", "Review drift."],
   },
 ];

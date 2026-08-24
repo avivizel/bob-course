@@ -54,7 +54,7 @@
 <a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
 <a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
 <a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
-<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>Bob On-Prem / Air-Gap — מה ידוע ומה עדיין תלוי בזמינות המוצר</a>
     </aside>
     <div class="main-column">
       <header class="chapter-header">
@@ -67,6 +67,7 @@
         <p class="subtitle">Ground → Cite → Verify → Abstain</p>
       </header>
       <main class="content">
+        
         <section class="section">
           <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
           <div class="card card-goal"><p><strong>בסוף הפרק:</strong> Ground → Cite → Verify → Abstain</p></div>
@@ -74,7 +75,7 @@
 
         <section class="section">
           <h2>מבוא</h2>
-          <p>RAG = Retrieve → Add evidence to context → Generate. המטרה אינה <strong><em>אין hallucinations</em></strong>, אלא לקשור כל תשובה ל-evidence, לבדוק אותו, ולהימנע מתשובה כשאין בסיס מספיק.</p>
+          <p>RAG (Retrieval-Augmented Generation) = שליפת מסמכים רלוונטיים → הוספתם כ-context ל-prompt → יצירת תשובה. המטרה אינה <strong><em>אין hallucinations</em></strong>, אלא לקשור כל תשובה ל-evidence, לבדוק אותו, ולהימנע מתשובה כשאין בסיס מספיק.</p>
         </section>
 
         <section class="section">
@@ -99,8 +100,8 @@
         <p class="popup-label">כוונה</p>
         <p>הכוונה: לא לענות מ<strong><em>ידע כללי</em></strong> על מדיניות הצוות — רק מ-docs/.</p>
       </div>
-      <p>Retrieve → Add evidence to context → Generate.</p>
-      <div class="example"><strong>דוגמה:</strong> docs/ → evidence → answer</div>
+      <p>Retrieval-Augmented Generation — שליפה → הרחבת ה-context → יצירה. מוסיף מסמכים כראיות לפרומפט לפני הגנרציה.</p>
+      <div class="example"><strong>דוגמה:</strong> docs/ → retrieved chunk → grounded answer</div>
       <div class="pitfall"><strong>זהירות:</strong> להניח ש-RAG מונע hallucinations.</div>
     </article><article class="concept-card">
       <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-21-1">
@@ -203,6 +204,10 @@
       <div class="section-label label-deep"><span class="dot"></span>Failure modes ב-RAG</div>
       <div class="card card-deep"><ul style="margin:0;padding-right:1.2rem"><li><strong>retrieval miss</strong> — המסמך הנכון לא נשלף כלל</li><li><strong>bad ranking</strong> — נשלף מקור חלש מעל מקור טוב יותר</li><li><strong>irrelevant or incomplete context</strong> — יש evidence חלקי או לא רלוונטי</li><li><strong>incorrect synthesis</strong> — המודל מחבר בין עובדות למסקנה שלא נתמכת</li><li><strong>citation mismatch</strong> — הציטוט קיים, אבל לא תומך בפועל בטענה</li><li><strong>stale or malicious source</strong> — המקור שנשלף ישן או זדוני</li></ul><p style="margin-top:0.75rem">הצלחה ב-RAG אינה «המודל ענה», אלא «הטענה נתמכת — או שהמערכת נמנעה מתשובה».</p></div>
     </section>
+
+        
+
+        
 
         <section class="section">
           <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
