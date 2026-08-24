@@ -64,17 +64,17 @@
           <span class="badge">45 דק'</span>
         </div>
         <h1>אמינות, Grounding ו-RAG</h1>
-        <p class="subtitle">תשובות מבוססות מידע מותר</p>
+        <p class="subtitle">Ground → Cite → Verify → Abstain</p>
       </header>
       <main class="content">
         <section class="section">
           <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
-          <div class="card card-goal"><p><strong>בסוף הפרק:</strong> תשובות מבוססות מידע מותר</p></div>
+          <div class="card card-goal"><p><strong>בסוף הפרק:</strong> Ground → Cite → Verify → Abstain</p></div>
         </section>
 
         <section class="section">
           <h2>מבוא</h2>
-          <p>RAG = retrieve docs + generate. Grounding = cite sources. No hallucination policy.</p>
+          <p>RAG = Retrieve → Add evidence to context → Generate. המטרה אינה <strong><em>אין hallucinations</em></strong>, אלא לקשור כל תשובה ל-evidence, לבדוק אותו, ולהימנע מתשובה כשאין בסיס מספיק.</p>
         </section>
 
         <section class="section">
@@ -99,9 +99,9 @@
         <p class="popup-label">כוונה</p>
         <p>הכוונה: לא לענות מ<strong><em>ידע כללי</em></strong> על מדיניות הצוות — רק מ-docs/.</p>
       </div>
-      <p>retrieve + augment + generate.</p>
-      <div class="example"><strong>דוגמה:</strong> docs/ → answer</div>
-      <div class="pitfall"><strong>זהירות:</strong> no retrieval.</div>
+      <p>Retrieve → Add evidence to context → Generate.</p>
+      <div class="example"><strong>דוגמה:</strong> docs/ → evidence → answer</div>
+      <div class="pitfall"><strong>זהירות:</strong> להניח ש-RAG מונע hallucinations.</div>
     </article><article class="concept-card">
       <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-21-1">
         Grounding
@@ -116,32 +116,15 @@
         <p class="popup-label">כוונה</p>
         <p>הכוונה: אם אין מקור — להגיד <strong><em>לא נמצא במסמכים</em></strong>, לא לנחש.</p>
       </div>
-      <p>answer from sources.</p>
-      <div class="example"><strong>דוגמה:</strong> cite doc §3</div>
-      <div class="pitfall"><strong>זהירות:</strong> fabricate.</div>
+      <p>קישור התשובה ל-evidence מאומת — לא רק ציטוט.</p>
+      <div class="example"><strong>דוגמה:</strong> התשובה נתמכת בפסקה שנשלפה ונבדקה</div>
+      <div class="pitfall"><strong>זהירות:</strong> citation בלי בדיקה שהמקור באמת תומך בטענה.</div>
     </article><article class="concept-card">
       <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-21-2">
-        Chunk
-        <span class="concept-info" aria-hidden="true">i</span>
-      </button>
-      <div class="concept-popup" id="concept-pop-21-2" role="tooltip" hidden>
-        <p class="popup-kicker">Chunk</p>
-        <p class="popup-label">מבוא</p>
-        <p>מסמך שלם גדול מדי לחיפוש מדויק. Chunk שובר אותו לחתיכות.</p>
-        <p class="popup-label">משמעות</p>
-        <p>קטעי טקסט בגודל מוגדר (למשל ~500 תווים) שמאונדקסים לשליפה.</p>
-        <p class="popup-label">כוונה</p>
-        <p>הכוונה: לא להזין את כל המדריך בכל שאלה — זה יקר ולא מדויק.</p>
-      </div>
-      <p>doc pieces for search.</p>
-      <div class="example"><strong>דוגמה:</strong> 500 char chunks</div>
-      <div class="pitfall"><strong>זהירות:</strong> whole doc.</div>
-    </article><article class="concept-card">
-      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-21-3">
         Citation
         <span class="concept-info" aria-hidden="true">i</span>
       </button>
-      <div class="concept-popup" id="concept-pop-21-3" role="tooltip" hidden>
+      <div class="concept-popup" id="concept-pop-21-2" role="tooltip" hidden>
         <p class="popup-kicker">Citation</p>
         <p class="popup-label">מבוא</p>
         <p>אמון נבנה כשאפשר ללחוץ על המקור. Citation הוא הקישור.</p>
@@ -150,68 +133,105 @@
         <p class="popup-label">כוונה</p>
         <p>הכוונה: לדרוש ציטוט בכל תשובת RAG. אין ציטוט = אין תשובה.</p>
       </div>
-      <p>link to source.</p>
+      <p>הצגת מקור ברור שאפשר לבדוק.</p>
       <div class="example"><strong>דוגמה:</strong> [policy.md#L12]</div>
       <div class="pitfall"><strong>זהירות:</strong> no cite.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-21-3">
+        Abstain
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-21-3" role="tooltip" hidden>
+        <p class="popup-kicker">Abstain</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Abstain</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>אם אין evidence מספיק — לא ממציאים תשובה.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לענות תשובה סבירה אך לא נתמכת.</p>
+      </div>
+      <p>אם אין evidence מספיק — לא ממציאים תשובה.</p>
+      <div class="example"><strong>דוגמה:</strong> <strong><em>לא נמצא במסמכים</em></strong></div>
+      <div class="pitfall"><strong>זהירות:</strong> לענות תשובה סבירה אך לא נתמכת.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-21-4">
+        Failure Mode
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-21-4" role="tooltip" hidden>
+        <p class="popup-kicker">Failure Mode</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Failure Mode</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>דרך טיפוסית שבה מערכת RAG עדיין נכשלת.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לבדוק רק אם <strong><em>המודל ענה</em></strong>.</p>
+      </div>
+      <p>דרך טיפוסית שבה מערכת RAG עדיין נכשלת.</p>
+      <div class="example"><strong>דוגמה:</strong> retrieval miss או citation mismatch</div>
+      <div class="pitfall"><strong>זהירות:</strong> לבדוק רק אם <strong><em>המודל ענה</em></strong>.</div>
     </article></div>
         </section>
 
         <section class="section">
           <div class="section-label label-analogy"><span class="dot"></span>משל מהעולם האמיתי</div>
-          <div class="card card-analogy"><p>RAG מפריד בין מה שהמודל <strong><em>יודע</em></strong> מה-training לבין מה שמותר לו להגיד בהקשר זה. בלי retrieval, המודל עונה מה-training data — שעלולה להיות ישנה, שגויה, או לא רלוונטית לארגון. עם retrieval + citation — ניתן לבדוק כל תשובה.</p></div>
-          <p><strong>שאלות לחשיבה:</strong> רשמו 3 מסמכים שיכנסו ל-docs/ של TaskFlow RAG, וכתבו שאלה אחת שצריכה להיות ל-<strong><em>לא נמצא</em></strong> — בדקו שהמערכת שלכם עונה נכון.</p>
+          <div class="card card-analogy"><p>RAG מפריד בין מה שהמודל <strong><em>יודע</em></strong> מה-training לבין מה שמותר לו להגיד בהקשר זה. אבל retrieval לבדו לא מבטיח אמת: המערכת יכולה לשלוף מקור לא נכון, לדרג מקור חלש מעל חזק, או לייצר synthesis שלא נתמך בפועל. לכן המודל הנכון הוא Ground → Cite → Verify → Abstain.</p></div>
+          <p><strong>שאלות לחשיבה:</strong> רשמו 3 מסמכים שיכנסו ל-docs/ של TaskFlow RAG. לאחר מכן כתבו: שאלה אחת שיש לה תשובה, שאלה אחת שאין לה תשובה, ושאלה אחת עם מידע דומה אך לא תומך — ובדקו שהמערכת שלכם עונה, נמנעת, או דוחה בהתאם.</p>
         </section>
 
-        <section class="section"><h2>תרשים זרימה</h2><div class="flow-diagram"><div class="flow-node">Query</div><span class="flow-arrow">→</span><div class="flow-node secondary">Retrieve</div><span class="flow-arrow">→</span><div class="flow-node">Context</div><span class="flow-arrow">→</span><div class="flow-node primary">Answer + Cite</div></div></section>
+        <section class="section"><h2>תרשים זרימה</h2><div class="flow-diagram"><div class="flow-node">Ground</div><span class="flow-arrow">→</span><div class="flow-node secondary">Cite</div><span class="flow-arrow">→</span><div class="flow-node">Verify</div><span class="flow-arrow">→</span><div class="flow-node primary">Abstain if needed</div></div></section>
 
         <section class="section">
           <div class="section-label label-bob"><span class="dot"></span>עבודה עם IBM Bob</div>
           <div class="mode-row"><span class="mode-pill mode-plan">Plan</span><span class="mode-pill mode-agent">Agent</span></div>
-          <p>docs/ first, then RAG plan.</p>
+          <p>docs/ first, then RAG plan + evaluation.</p>
           <h3>Prompt לדוגמה</h3>
-          <pre class="prompt">Plan RAG for docs/: chunk strategy, cite format, <strong><em>I don't know</em></strong> rule.</pre>
-          <p><strong>למה זה עובד:</strong> Trust architecture.</p>
+          <pre class="prompt">Plan RAG for docs/: retrieval strategy, evidence format, citation format, verification step, and abstain rule. Include failure modes and a mini evaluation set. Do not claim RAG prevents hallucinations.</pre>
+          <p><strong>למה זה עובד:</strong> הופך אמינות לתכנון מדיד, לא לסיסמה.</p>
         </section>
 
         <section class="section">
           <div class="section-label label-warning"><span class="dot"></span>טעות נפוצה</div>
           <div class="card card-warning">
-            <p><strong>לא:</strong> answer without source.</p>
-            <p><strong>כן:</strong> no cite → <strong><em>לא נמצא במסמכים</em></strong>.</p>
+            <p><strong>לא:</strong> RAG = no hallucination.</p>
+            <p><strong>כן:</strong> Ground → Cite → Verify → Abstain.</p>
           </div>
           
         </section>
 
-        
+        <section class="section">
+      <div class="section-label label-deep"><span class="dot"></span>Failure modes ב-RAG</div>
+      <div class="card card-deep"><ul style="margin:0;padding-right:1.2rem"><li><strong>retrieval miss</strong> — המסמך הנכון לא נשלף כלל</li><li><strong>bad ranking</strong> — נשלף מקור חלש מעל מקור טוב יותר</li><li><strong>irrelevant or incomplete context</strong> — יש evidence חלקי או לא רלוונטי</li><li><strong>incorrect synthesis</strong> — המודל מחבר בין עובדות למסקנה שלא נתמכת</li><li><strong>citation mismatch</strong> — הציטוט קיים, אבל לא תומך בפועל בטענה</li><li><strong>stale or malicious source</strong> — המקור שנשלף ישן או זדוני</li></ul><p style="margin-top:0.75rem">הצלחה ב-RAG אינה «המודל ענה», אלא «הטענה נתמכת — או שהמערכת נמנעה מתשובה».</p></div>
+    </section>
 
         <section class="section">
           <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
-          <ol class="steps"><li>Create docs/sample.</li><li>Chunk plan.</li><li>Retrieve test.</li><li>Cite check.</li><li>Hallucination test.</li><li>הצלחה = שאלה שיש לה תשובה ב-docs מחזירה citation; שאלה ללא מענה מחזירה <strong><em>לא נמצא במסמכים</em></strong>.</li></ol>
+          <ol class="steps"><li>Create docs/sample.</li><li>בנו mini evaluation set של 15 שאלות: 10 עם תשובה במסמכים, 3 ללא תשובה, 2 עם מידע דומה אך לא תומך.</li><li>לכל שאלה מדדו: Retrieved correct source? Answer supported? Citation correct? Should abstain? Did abstain when required?</li><li>נתחו 4 failure modes לפחות: retrieval miss, bad ranking, unsupported claim, citation mismatch.</li><li>תקנו כלל או retrieval אחד לפי הממצאים.</li><li>הצלחה = כל claim ניתן לקשור ל-evidence, ובמקרים ללא evidence המערכת נמנעת מתשובה.</li></ol>
         </section>
 
         <section class="section">
           <h2>תרגיל עצמאי</h2>
-          <p>Question with no doc — expected response?</p>
+          <p>תנו דוגמה ל-2 שאלות שצריכות abstain ולמה.</p>
         </section>
 
         <section class="section">
           <div class="section-label label-quiz"><span class="dot"></span>בדקו את עצמכם</div>
           <div class="quiz"><details>
-      <summary>RAG vs fine-tune?</summary>
-      <div class="answer"><strong>תשובה לדוגמה:</strong> RAG = dynamic docs; fine-tune = model change.</div>
+      <summary>RAG מונע hallucinations?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> לא. הוא יכול לשפר grounding, אבל עדיין קיימים כשלים כמו retrieval miss, incorrect synthesis או citation mismatch.</div>
     </details><details>
-      <summary>Grounding?</summary>
-      <div class="answer"><strong>תשובה לדוגמה:</strong> answer tied to retrieved text.</div>
+      <summary>מה ההבדל בין Grounding ל-Citation?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> Grounding הוא קישור התשובה ל-evidence מאומת; citation הוא מנגנון שמראה את המקור כדי לאפשר בדיקה.</div>
     </details><details>
-      <summary>No cite?</summary>
-      <div class="answer"><strong>תשובה לדוגמה:</strong> say unknown — don't guess.</div>
+      <summary>מתי צריך Abstain?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> כשאין evidence מספיק, כשהמקור לא תומך בטענה, או כשהשליפה לא מהימנה — לא מנחשים.</div>
     </details></div>
         </section>
 
         <section class="section">
           <h2>סיכום</h2>
           <div class="summary-box">
-            <ul><li>Retrieve first.</li><li>Always cite.</li><li>Unknown OK.</li><li>Test hallucination.</li></ul>
+            <ul><li>Ground first.</li><li>Cite clearly.</li><li>Verify support.</li><li>Abstain without evidence.</li></ul>
           </div>
         </section>
       </main>
