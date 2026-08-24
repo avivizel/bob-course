@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>פרק 2: סביבת העבודה של המפתח | קורס IBM Bob</title>
+  <link rel="stylesheet" href="assets/css/guide.css">
+</head>
+<body data-chapter="2">
+  <div class="progress-track"><div class="progress-fill"></div></div>
+  <div class="layout">
+    <aside class="sidebar" aria-label="ניווט פרקים">
+      <div class="sidebar-brand">
+        <a href="index.html">מ־0 למוצר עם IBM Bob</a>
+        <small>34 פרקים · אבי ויזל</small>
+      </div>
+      <div class="nav-phase">יסודות</div>
+<a class="nav-link" href="chapter-01.html"><span class="nav-num">1</span>מהי מערכת תוכנה?</a>
+<a class="nav-link active" href="chapter-02.html"><span class="nav-num">2</span>סביבת העבודה של המפתח</a>
+<a class="nav-link" href="chapter-03.html"><span class="nav-num">3</span>Git ורשת הביטחון</a>
+<a class="nav-link" href="chapter-04.html"><span class="nav-num">4</span>יסודות תכנות ללא עומס תחבירי</a>
+<div class="nav-phase">עבודה עם Bob</div>
+<a class="nav-link" href="chapter-05.html"><span class="nav-num">5</span>Bob כשותף למחזור חיי הפיתוח</a>
+<a class="nav-link" href="chapter-06.html"><span class="nav-num">6</span>מצבי Ask, Plan ו-Agent</a>
+<a class="nav-link" href="chapter-07.html"><span class="nav-num">7</span>כתיבת הנחיות יעילות ל-Bob</a>
+<a class="nav-link" href="chapter-08.html"><span class="nav-num">8</span>Context, /init ו-AGENTS.md</a>
+<a class="nav-link" href="chapter-09.html"><span class="nav-num">9</span>גבולות גישה והרשאות</a>
+<a class="nav-link" href="chapter-10.html"><span class="nav-num">10</span>Rules, Custom Modes וסטנדרטיזציה</a>
+<div class="nav-phase">מוצר ותכנון</div>
+<a class="nav-link" href="chapter-11.html"><span class="nav-num">11</span>Product Intent ו-Mini PRD</a>
+<a class="nav-link" href="chapter-12.html"><span class="nav-num">12</span>Stories, קריטריוני קבלה ו-Vertical Slice</a>
+<a class="nav-link" href="chapter-13.html"><span class="nav-num">13</span>תכנון עם Plan Mode</a>
+<a class="nav-link" href="chapter-14.html"><span class="nav-num">14</span>מימוש Agentic באיטרציות</a>
+<div class="nav-phase">בניית Capstone</div>
+<a class="nav-link" href="chapter-15.html"><span class="nav-num">15</span>HTML, CSS וחוויית משתמש</a>
+<a class="nav-link" href="chapter-16.html"><span class="nav-num">16</span>JavaScript ופיתוח מבוסס רכיבים</a>
+<a class="nav-link" href="chapter-17.html"><span class="nav-num">17</span>Backend ו-API</a>
+<a class="nav-link" href="chapter-18.html"><span class="nav-num">18</span>מסד נתונים ושכבת מידע</a>
+<a class="nav-link" href="chapter-19.html"><span class="nav-num">19</span>Full Stack, זהות והרשאות</a>
+<div class="nav-phase">AI וכלים</div>
+<a class="nav-link" href="chapter-20.html"><span class="nav-num">20</span>API של מודל AI</a>
+<a class="nav-link" href="chapter-21.html"><span class="nav-num">21</span>אמינות, Grounding ו-RAG</a>
+<a class="nav-link" href="chapter-22.html"><span class="nav-num">22</span>MCP, כלים ו-Workflows</a>
+<a class="nav-link" href="chapter-23.html"><span class="nav-num">23</span>Skills ו-Subagents</a>
+<div class="nav-phase">איכות ותפעול</div>
+<a class="nav-link" href="chapter-24.html"><span class="nav-num">24</span>Debugging שיטתי עם Bob</a>
+<a class="nav-link" href="chapter-25.html"><span class="nav-num">25</span>בדיקות ו-Code Review</a>
+<a class="nav-link" href="chapter-26.html"><span class="nav-num">26</span>Secure by Design עם Bob</a>
+<a class="nav-link" href="chapter-27.html"><span class="nav-num">27</span>ארכיטקטורה, פריסה ותפעול</a>
+<a class="nav-link" href="chapter-28.html"><span class="nav-num">28</span>עלויות, ממשל והעברת מוצר</a>
+<div class="nav-phase">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</div>
+<a class="nav-link" href="chapter-29.html"><span class="nav-num">29</span>Bob ו-IBM i — Premium Package</a>
+<a class="nav-link" href="chapter-30.html"><span class="nav-num">30</span>Bob ו-IBM Z — Z Understand וקוד Mainframe</a>
+<a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
+<a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
+<a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+    </aside>
+    <div class="main-column">
+      <header class="chapter-header">
+        <div class="chapter-meta">
+          <span class="badge badge-blue">פרק 2 מתוך 34</span>
+          <span class="badge badge-blue">יסודות</span>
+          <span class="badge">30 דק'</span>
+        </div>
+        <h1>סביבת העבודה של המפתח</h1>
+        <p class="subtitle">IBM Bob IDE, קבצים ופקודות הפעלה</p>
+      </header>
+      <main class="content">
+        <section class="section">
+          <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
+          <div class="card card-goal"><p><strong>בסוף הפרק:</strong> IBM Bob IDE, קבצים ופקודות הפעלה</p></div>
+        </section>
+
+        <section class="section">
+          <h2>מבוא</h2>
+          <p>סביבת הפיתוח היא שולחן העבודה שלכם. Explorer, Editor, Terminal ו-Bob Chat — כשיודעים מה כל חלק עושה, פחות מפחדים משגיאות.</p>
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-concepts"><span class="dot"></span>מושגי מפתח</div>
+          <p class="concept-hint">רחפו מעל שם המושג (או לחצו במסך מגע) לפירוט: מבוא, משמעות וכוונה.</p>
+  <div class="concept-grid"><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-2-0">
+        Explorer
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-2-0" role="tooltip" hidden>
+        <p class="popup-kicker">Explorer</p>
+        <p class="popup-label">מבוא</p>
+        <p>לפני שעורכים קוד צריך לדעת איפה הוא יושב. Explorer הוא המפה של הפרויקט.</p>
+        <p class="popup-label">משמעות</p>
+        <p>עץ התיקיות והקבצים ב-IDE: app, templates, requirements.txt ועוד. כל נתיב הוא כתובת מדויקת.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לצרף ל-Bob את הקובץ הנכון עם @ — אחרת הוא עלול לערוך מקום לא רלוונטי.</p>
+      </div>
+      <p>עץ הקבצים — מבט על מבנה הפרויקט.</p>
+      <div class="example"><strong>דוגמה:</strong> app/, templates/, requirements.txt.</div>
+      <div class="pitfall"><strong>זהירות:</strong> לערוך קובץ לא נכון כי לא בדקתם נתיב.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-2-1">
+        Editor
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-2-1" role="tooltip" hidden>
+        <p class="popup-kicker">Editor</p>
+        <p class="popup-label">מבוא</p>
+        <p>כאן קוראים ומשנים קוד. כל שינוי כאן הוא שינוי אמיתי בפרויקט.</p>
+        <p class="popup-label">משמעות</p>
+        <p>חלון העריכה ב-IDE: שורות, הדגשת תחביר, ו-Diff אחרי ש-Bob או אתם שיניתם קובץ.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לא לאשר עריכה בלי לקרוא. Editor הוא המקום שבו האחריות נראית.</p>
+      </div>
+      <p>קריאה ועריכת קוד.</p>
+      <div class="example"><strong>דוגמה:</strong> שינוי tasks.html.</div>
+      <div class="pitfall"><strong>זהירות:</strong> שינוי בלי Diff review.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-2-2">
+        Terminal
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-2-2" role="tooltip" hidden>
+        <p class="popup-kicker">Terminal</p>
+        <p class="popup-label">מבוא</p>
+        <p>המחשב מציית לפקודות טקסט. Terminal הוא הפתח להריץ אותן.</p>
+        <p class="popup-label">משמעות</p>
+        <p>חלון שמריץ python, pip, git, בדיקות ושרת מקומי. פלט השגיאה מופיע כאן.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין פקודה לפני הרצה. Ask יכול להסביר; Terminal מבצע.</p>
+      </div>
+      <p>הרצת פקודות: python, pip, git, בדיקות.</p>
+      <div class="example"><strong>דוגמה:</strong> python app.py</div>
+      <div class="pitfall"><strong>זהירות:</strong> הרצת פקודה לא מוכרת בלי Ask.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-2-3">
+        Build &amp; Run
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-2-3" role="tooltip" hidden>
+        <p class="popup-kicker">Build &amp; Run</p>
+        <p class="popup-label">מבוא</p>
+        <p>יש הבדל בין <strong><em>לראות אצלכם במחשב</em></strong> לבין <strong><em>להכין גרסה ללקוח</em></strong>.</p>
+        <p class="popup-label">משמעות</p>
+        <p>Run (למשל python app.py) מפעיל סביבת פיתוח מקומית. Build או packaging מכינים תוצר לפריסה כשצריך.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לא לבדוק ב-production ולא לבלבל בין הרצה מקומית לבין הכנת תוצר לפריסה.</p>
+      </div>
+      <p>Run = הפעלה מקומית. Build = הכנת תוצר לפריסה כשצריך.</p>
+      <div class="example"><strong>דוגמה:</strong> python app.py → הפעלה מקומית</div>
+      <div class="pitfall"><strong>זהירות:</strong> לבלבל בין סביבת פיתוח לפריסה.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-2-4">
+        requirements.txt
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-2-4" role="tooltip" hidden>
+        <p class="popup-kicker">requirements.txt</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>requirements.txt</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>רשימת חבילות Python בפרויקט. שם מגדירים מה צריך להתקין כדי להריץ.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — להתקין חבילה ידנית בלי לעדכן requirements.txt.</p>
+      </div>
+      <p>רשימת חבילות Python בפרויקט. שם מגדירים מה צריך להתקין כדי להריץ.</p>
+      <div class="example"><strong>דוגמה:</strong> flask==3.0.0</div>
+      <div class="pitfall"><strong>זהירות:</strong> להתקין חבילה ידנית בלי לעדכן requirements.txt.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-2-5">
+        Error Log
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-2-5" role="tooltip" hidden>
+        <p class="popup-kicker">Error Log</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Error Log</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>פלט שגיאות ב-Terminal. השורה הראשונה = הגורם; השורות הבאות = stack trace.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לקרוא רק את שורת ה-stack האחרונה ולפספס את הסיבה האמיתית.</p>
+      </div>
+      <p>פלט שגיאות ב-Terminal. השורה הראשונה = הגורם; השורות הבאות = stack trace.</p>
+      <div class="example"><strong>דוגמה:</strong> ModuleNotFoundError: No module named 'tasks' → בדקו את הנתיב או ההתקנה</div>
+      <div class="pitfall"><strong>זהירות:</strong> לקרוא רק את שורת ה-stack האחרונה ולפספס את הסיבה האמיתית.</div>
+    </article></div>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-analogy"><span class="dot"></span>משל מהעולם האמיתי</div>
+          <div class="card card-analogy"><p>Explorer, Editor ו-Terminal הם שלוש נקודות מבט על אותו פרויקט: מבנה, תוכן, הרצה. כשיש שגיאת הרצה — Explorer מראה היכן הקובץ, Editor מראה את השורה, Terminal מראה את הודעת השגיאה. שלושתם חייבים לעבוד יחד.</p></div>
+          <p><strong>שאלות לחשיבה:</strong> פתחו requirements.txt ב-Ask ובקשו מ-Bob: <strong><em>אילו חבילות הפרויקט צריך, ומה יקרה אם חבילה חסרה?</em></strong> — קבלו תשובה מפורשת לפני שמריצים.</p>
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-bob"><span class="dot"></span>עבודה עם IBM Bob</div>
+          <div class="mode-row"><span class="mode-pill mode-ask">Ask</span></div>
+          <p>Ask + קריאת קבצי תצורה בלבד.</p>
+          <h3>Prompt לדוגמה</h3>
+          <pre class="prompt">In Ask mode: read requirements.txt and README. Explain install, run, and test. Do not run any commands.</pre>
+          <p><strong>למה זה עובד:</strong> מצמצם לקבצי תצורה — פלט מדויק ובטוח.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-warning"><span class="dot"></span>טעות נפוצה</div>
+          <div class="card card-warning">
+            <p><strong>לא:</strong> python app.py לא עובד — מריצים pip install מ-Stack Overflow בלי לדעת מה הוא מתקין.</p>
+            <p><strong>כן:</strong> בקשו מ-Bob: <strong><em>קראו requirements.txt ואמרו לי מה חסר לפי החבילות</em></strong> — הסיבה לפני הפתרון.</p>
+          </div>
+          
+        </section>
+
+        <section class="section">
+      <div class="section-label label-deep"><span class="dot"></span>Stack הקורס</div>
+      <div class="card card-deep"><div class="prereq-grid"><div class="prereq-item"><strong>Python 3.11+</strong><span>שרת וכלים</span></div><div class="prereq-item"><strong>Git</strong><span>גרסאות</span></div><div class="prereq-item"><strong>דפדפן מודרני</strong><span>Chrome / Edge</span></div></div></div>
+    </section>
+
+        <section class="section">
+          <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
+          <ol class="steps"><li>פתחו TaskFlow ב-Bob IDE.</li><li>בקשו מ-Bob הסבר לכל חבילה ב-requirements.txt.</li><li>הריצו python app.py אחרי שהבנתם מה הוא עושה.</li><li>פתחו שגיאה מכוונת — מחקו חבילה — ובדקו מה מופיע בTerminal.</li><li>תעדו: מה השגיאה הראשונה שראיתם? האם הצגתם לBob את שורה 1 של הlog?</li><li>הצלחה = הבנתם איך הפרויקט רץ בפיתוח וזיהיתם שגיאה אחת בעצמכם.</li></ol>
+        </section>
+
+        <section class="section">
+          <h2>תרגיל עצמאי</h2>
+          <p>מצאו 3 קבצים שלא יודעים מה תפקידם — שאלו Bob ב-Ask.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-quiz"><span class="dot"></span>בדקו את עצמכם</div>
+          <div class="quiz"><details>
+      <summary>הבדל קובץ מקור vs תצורה?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> מקור = לוגיקה/ממשק. תצורה = הגדרות (requirements.txt, .env).</div>
+    </details><details>
+      <summary>מה עושה requirements.txt?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> מגדיר אילו חבילות Python צריך להתקין כדי שהפרויקט ירוץ בצורה עקבית.</div>
+    </details><details>
+      <summary>למה לקרוא שגיאה מההתחלה?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> השורה הראשונה לרוב מצביעה על הסיבה; סוף הלוג = תוצאה.</div>
+    </details><details>
+      <summary>מה ההבדל בין pip install -r requirements.txt לבין python app.py?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> pip install מתקין את התלויות. python app.py מפעיל את האפליקציה. אם מדלגים על ההתקנה — ההרצה עלולה להיכשל.</div>
+    </details><details>
+      <summary>שגיאה ב-Terminal מדווחת על קובץ שלא מכירים — מה עושים ראשון?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> בקשו מ-Bob לזהות את הקובץ ב-Explorer ולהסביר תפקידו לפני כל שינוי.</div>
+    </details></div>
+        </section>
+
+        <section class="section">
+          <h2>סיכום</h2>
+          <div class="summary-box">
+            <ul><li>IDE = Explorer + Editor + Terminal + Bob.</li><li>Stack הקורס: Python + HTML/CSS/JS.</li><li>קראו קבצי תצורה לפני הרצה.</li><li>Terminal הוא כלי — לא מקור אמת.</li></ul>
+          </div>
+        </section>
+      </main>
+
+      <nav class="chapter-nav" aria-label="ניווט בין פרקים">
+        <a class="prev" href="chapter-01.html"><span class="nav-label">פרק קודם</span><span class="nav-title">מהי מערכת תוכנה?</span></a>
+        <a class="next" href="chapter-03.html"><span class="nav-label">פרק הבא</span><span class="nav-title">Git ורשת הביטחון</span></a>
+      </nav>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <p><strong>אבי ויזל</strong> · IBM Israel</p>
+          <p><a href="mailto:aviv@il.ibm.com">aviv@il.ibm.com</a> · 050-729-2012</p>
+          <p class="footer-meta">קורס IBM Bob · פרק 2 · 2026</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="assets/js/guide.js"></script>
+</body>
+</html>

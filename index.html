@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>קורס IBM Bob — מדריך מלא</title>
+  <link rel="stylesheet" href="assets/css/guide.css">
+</head>
+<body>
+  <div class="progress-track"><div class="progress-fill"></div></div>
+  <div class="layout">
+    <aside class="sidebar" aria-label="ניווט פרקים">
+      <div class="sidebar-brand">
+        <a href="index.html">מ־0 למוצר עם IBM Bob</a>
+        <small>34 פרקים · אבי ויזל</small>
+      </div>
+      <div class="nav-phase">יסודות</div>
+<a class="nav-link" href="chapter-01.html"><span class="nav-num">1</span>מהי מערכת תוכנה?</a>
+<a class="nav-link" href="chapter-02.html"><span class="nav-num">2</span>סביבת העבודה של המפתח</a>
+<a class="nav-link" href="chapter-03.html"><span class="nav-num">3</span>Git ורשת הביטחון</a>
+<a class="nav-link" href="chapter-04.html"><span class="nav-num">4</span>יסודות תכנות ללא עומס תחבירי</a>
+<div class="nav-phase">עבודה עם Bob</div>
+<a class="nav-link" href="chapter-05.html"><span class="nav-num">5</span>Bob כשותף למחזור חיי הפיתוח</a>
+<a class="nav-link" href="chapter-06.html"><span class="nav-num">6</span>מצבי Ask, Plan ו-Agent</a>
+<a class="nav-link" href="chapter-07.html"><span class="nav-num">7</span>כתיבת הנחיות יעילות ל-Bob</a>
+<a class="nav-link" href="chapter-08.html"><span class="nav-num">8</span>Context, /init ו-AGENTS.md</a>
+<a class="nav-link" href="chapter-09.html"><span class="nav-num">9</span>גבולות גישה והרשאות</a>
+<a class="nav-link" href="chapter-10.html"><span class="nav-num">10</span>Rules, Custom Modes וסטנדרטיזציה</a>
+<div class="nav-phase">מוצר ותכנון</div>
+<a class="nav-link" href="chapter-11.html"><span class="nav-num">11</span>Product Intent ו-Mini PRD</a>
+<a class="nav-link" href="chapter-12.html"><span class="nav-num">12</span>Stories, קריטריוני קבלה ו-Vertical Slice</a>
+<a class="nav-link" href="chapter-13.html"><span class="nav-num">13</span>תכנון עם Plan Mode</a>
+<a class="nav-link" href="chapter-14.html"><span class="nav-num">14</span>מימוש Agentic באיטרציות</a>
+<div class="nav-phase">בניית Capstone</div>
+<a class="nav-link" href="chapter-15.html"><span class="nav-num">15</span>HTML, CSS וחוויית משתמש</a>
+<a class="nav-link" href="chapter-16.html"><span class="nav-num">16</span>JavaScript ופיתוח מבוסס רכיבים</a>
+<a class="nav-link" href="chapter-17.html"><span class="nav-num">17</span>Backend ו-API</a>
+<a class="nav-link" href="chapter-18.html"><span class="nav-num">18</span>מסד נתונים ושכבת מידע</a>
+<a class="nav-link" href="chapter-19.html"><span class="nav-num">19</span>Full Stack, זהות והרשאות</a>
+<div class="nav-phase">AI וכלים</div>
+<a class="nav-link" href="chapter-20.html"><span class="nav-num">20</span>API של מודל AI</a>
+<a class="nav-link" href="chapter-21.html"><span class="nav-num">21</span>אמינות, Grounding ו-RAG</a>
+<a class="nav-link" href="chapter-22.html"><span class="nav-num">22</span>MCP, כלים ו-Workflows</a>
+<a class="nav-link" href="chapter-23.html"><span class="nav-num">23</span>Skills ו-Subagents</a>
+<div class="nav-phase">איכות ותפעול</div>
+<a class="nav-link" href="chapter-24.html"><span class="nav-num">24</span>Debugging שיטתי עם Bob</a>
+<a class="nav-link" href="chapter-25.html"><span class="nav-num">25</span>בדיקות ו-Code Review</a>
+<a class="nav-link" href="chapter-26.html"><span class="nav-num">26</span>Secure by Design עם Bob</a>
+<a class="nav-link" href="chapter-27.html"><span class="nav-num">27</span>ארכיטקטורה, פריסה ותפעול</a>
+<a class="nav-link" href="chapter-28.html"><span class="nav-num">28</span>עלויות, ממשל והעברת מוצר</a>
+<div class="nav-phase">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</div>
+<a class="nav-link" href="chapter-29.html"><span class="nav-num">29</span>Bob ו-IBM i — Premium Package</a>
+<a class="nav-link" href="chapter-30.html"><span class="nav-num">30</span>Bob ו-IBM Z — Z Understand וקוד Mainframe</a>
+<a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
+<a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
+<a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+    </aside>
+    <div class="main-column">
+      <header class="hero">
+        <div class="chapter-meta" style="justify-content:center;margin-bottom:1rem">
+          <span class="badge badge-blue">מדריך מקצועי</span>
+          <span class="badge badge-teal">34 פרקים</span>
+        </div>
+        <h1>מ־0 למוצר מקצועי עם IBM Bob</h1>
+        <p>פיתוח תוכנה מבוסס AI — מתודה, אחריות, ופרויקט Capstone מלא</p>
+      </header>
+      <main class="content">
+        <section class="section">
+          <div class="section-label label-goal"><span class="dot"></span>איך ללמוד</div>
+          <div class="card card-goal">
+            <p>קראו לפי הסדר. בצעו מעבדה בכל פרק. <strong>אל תאשרו פעולה שאינכם מסוגלים להסביר.</strong></p>
+            <p>Bob הוא שותף מהיר — לא replacement. אתם מגדירים מטרה, Mode, הרשאות, קוראים Plan ו-Diff, ודורשים ראיות.</p>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-deep"><span class="dot"></span>דרישות קדם</div>
+          <div class="prereq-grid">
+            <div class="prereq-item"><strong>מחשב + דפדפן</strong><span>Chrome / Edge</span></div>
+            <div class="prereq-item"><strong>Python 3.11+</strong><span>pip, שרת מקומי</span></div>
+            <div class="prereq-item"><strong>Git</strong><span>commits, diff, branches</span></div>
+          </div>
+          <p style="margin-top:1rem;color:var(--ink-secondary)"><strong>Stack הקורס:</strong> HTML + CSS + JavaScript (Vanilla) · Python + Flask · SQLite</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-capstone"><span class="dot"></span>פרויקט Capstone — TaskFlow</div>
+          <div class="card card-capstone">
+            <p>מערכת ניהול משימות צוותית — פרויקט Capstone שבונים לאורך פרקים 11–28</p>
+            <div class="flow-diagram" style="margin-top:1rem">
+              <div class="flow-node">PRD</div><span class="flow-arrow">→</span>
+              <div class="flow-node">Stories</div><span class="flow-arrow">→</span>
+              <div class="flow-node secondary">Plan</div><span class="flow-arrow">→</span>
+              <div class="flow-node">Build</div><span class="flow-arrow">→</span>
+              <div class="flow-node storage">Handover</div>
+            </div>
+            <p style="margin-top:1rem;font-size:0.92rem">פרקים 11–28 מקשרים כל נושא ל-TaskFlow. פרקים 29–30 מרחיבים ל-IBM i ו-IBM Z.</p>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>תוכן העניינים</h2>
+          <div class="toc-grid"><a class="toc-card" href="chapter-01.html">
+      <h3><span class="badge badge-blue">1</span> מהי מערכת תוכנה?</h3>
+      <p>להבין ממה בנויה תוכנה ואיך מידע נע בין החלקים שלה · 25 דק'</p>
+    </a><a class="toc-card" href="chapter-02.html">
+      <h3><span class="badge badge-blue">2</span> סביבת העבודה של המפתח</h3>
+      <p>IBM Bob IDE, קבצים ופקודות הפעלה · 30 דק'</p>
+    </a><a class="toc-card" href="chapter-03.html">
+      <h3><span class="badge badge-blue">3</span> Git ורשת הביטחון</h3>
+      <p>ניהול גרסאות — להבין שינוי ולחזור אחורה · 30 דק'</p>
+    </a><a class="toc-card" href="chapter-04.html">
+      <h3><span class="badge badge-blue">4</span> יסודות תכנות ללא עומס תחבירי</h3>
+      <p>רעיונות לפני סימנים ושפות · 25 דק'</p>
+    </a><a class="toc-card" href="chapter-05.html">
+      <h3><span class="badge badge-blue">5</span> Bob כשותף למחזור חיי הפיתוח</h3>
+      <p>מה Bob עושה היטב, מה לא, ומי אחראי · 30 דק'</p>
+    </a><a class="toc-card" href="chapter-06.html">
+      <h3><span class="badge badge-blue">6</span> מצבי Ask, Plan ו-Agent</h3>
+      <p>בחירת Mode לפי מטרה וסיכון · 25 דק'</p>
+    </a><a class="toc-card" href="chapter-07.html">
+      <h3><span class="badge badge-blue">7</span> כתיבת הנחיות יעילות ל-Bob</h3>
+      <p>Prompt ברור, מוגבל וניתן לבדיקה · 35 דק'</p>
+    </a><a class="toc-card" href="chapter-08.html">
+      <h3><span class="badge badge-blue">8</span> Context, /init ו-AGENTS.md</h3>
+      <p>זיכרון פרויקט מדויק ומתוחזק · 30 דק'</p>
+    </a><a class="toc-card" href="chapter-09.html">
+      <h3><span class="badge badge-blue">9</span> גבולות גישה והרשאות</h3>
+      <p>רק הסמכויות הדרושות למשימה · 25 דק'</p>
+    </a><a class="toc-card" href="chapter-10.html">
+      <h3><span class="badge badge-blue">10</span> Rules, Custom Modes וסטנדרטיזציה</h3>
+      <p>כללים עקביים לכל הפרויקט · 30 דק'</p>
+    </a><a class="toc-card" href="chapter-11.html">
+      <h3><span class="badge badge-blue">11</span> Product Intent ו-Mini PRD</h3>
+      <p>בעיה וערך לפני פתרון · 40 דק'</p>
+    </a><a class="toc-card" href="chapter-12.html">
+      <h3><span class="badge badge-blue">12</span> Stories, קריטריוני קבלה ו-Vertical Slice</h3>
+      <p>חלקים קטנים עם ערך · 35 דק'</p>
+    </a><a class="toc-card" href="chapter-13.html">
+      <h3><span class="badge badge-blue">13</span> תכנון עם Plan Mode</h3>
+      <p>ביקורת דרך פעולה לפני קוד · 30 דק'</p>
+    </a><a class="toc-card" href="chapter-14.html">
+      <h3><span class="badge badge-blue">14</span> מימוש Agentic באיטרציות</h3>
+      <p>תוכנית לפועל — צעדים קטנים · 40 דק'</p>
+    </a><a class="toc-card" href="chapter-15.html">
+      <h3><span class="badge badge-blue">15</span> HTML, CSS וחוויית משתמש</h3>
+      <p>מסך ברור, נגיש, רספונסיבי · 45 דק'</p>
+    </a><a class="toc-card" href="chapter-16.html">
+      <h3><span class="badge badge-blue">16</span> JavaScript ופיתוח מבוסס רכיבים</h3>
+      <p>התנהגות ורכיבים · 45 דק'</p>
+    </a><a class="toc-card" href="chapter-17.html">
+      <h3><span class="badge badge-blue">17</span> Backend ו-API</h3>
+      <p>שרת מקבל בקשה ומחזיר תשובה · 50 דק'</p>
+    </a><a class="toc-card" href="chapter-18.html">
+      <h3><span class="badge badge-blue">18</span> מסד נתונים ושכבת מידע</h3>
+      <p>אחסון עקבי וניתן לשאילתה · 45 דק'</p>
+    </a><a class="toc-card" href="chapter-19.html">
+      <h3><span class="badge badge-blue">19</span> Full Stack, זהות והרשאות</h3>
+      <p>חיבור שכבות + הגנה · 50 דק'</p>
+    </a><a class="toc-card" href="chapter-20.html">
+      <h3><span class="badge badge-blue">20</span> API של מודל AI</h3>
+      <p>שילוב מודל — פלט, עלות, כשלים · 40 דק'</p>
+    </a><a class="toc-card" href="chapter-21.html">
+      <h3><span class="badge badge-blue">21</span> אמינות, Grounding ו-RAG</h3>
+      <p>תשובות מבוססות מידע מותר · 45 דק'</p>
+    </a><a class="toc-card" href="chapter-22.html">
+      <h3><span class="badge badge-blue">22</span> MCP, כלים ו-Workflows</h3>
+      <p>Bob + מערכות חיצוניות · 35 דק'</p>
+    </a><a class="toc-card" href="chapter-23.html">
+      <h3><span class="badge badge-blue">23</span> Skills ו-Subagents</h3>
+      <p>שיטות חוזרות — שליטה · 35 דק'</p>
+    </a><a class="toc-card" href="chapter-24.html">
+      <h3><span class="badge badge-blue">24</span> Debugging שיטתי עם Bob</h3>
+      <p>סיבה אמיתית — לא ניחוש · 40 דק'</p>
+    </a><a class="toc-card" href="chapter-25.html">
+      <h3><span class="badge badge-blue">25</span> בדיקות ו-Code Review</h3>
+      <p>הוכחה + איכות · 45 דק'</p>
+    </a><a class="toc-card" href="chapter-26.html">
+      <h3><span class="badge badge-blue">26</span> Secure by Design עם Bob</h3>
+      <p>אבטחה מהתכנון · 40 דק'</p>
+    </a><a class="toc-card" href="chapter-27.html">
+      <h3><span class="badge badge-blue">27</span> ארכיטקטורה, פריסה ותפעול</h3>
+      <p>מקומי → production · 45 דק'</p>
+    </a><a class="toc-card" href="chapter-28.html">
+      <h3><span class="badge badge-blue">28</span> עלויות, ממשל והעברת מוצר</h3>
+      <p>Cost, ownership, handover · 50 דק'</p>
+    </a><a class="toc-card" href="chapter-29.html">
+      <h3><span class="badge badge-blue">29</span> Bob ו-IBM i — Premium Package</h3>
+      <p>RPG, DB2 for i — Developer Mode, DB Mode, Workflows ויכולות מתקדמות · 55 דק'</p>
+    </a><a class="toc-card" href="chapter-30.html">
+      <h3><span class="badge badge-blue">30</span> Bob ו-IBM Z — Z Understand וקוד Mainframe</h3>
+      <p>COBOL, PL/I, CICS, Db2 — ניתוח גרוס לפני שינוי · 55 דק'</p>
+    </a><a class="toc-card" href="chapter-31.html">
+      <h3><span class="badge badge-blue">31</span> Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</h3>
+      <p>בניית agents עצמאיים עם ADK ופריסה ל-Orchestrate · 55 דק'</p>
+    </a><a class="toc-card" href="chapter-32.html">
+      <h3><span class="badge badge-blue">32</span> Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</h3>
+      <p>OpenRewrite, AMA ו-UI Modernization Workflow · 55 דק'</p>
+    </a><a class="toc-card" href="chapter-33.html">
+      <h3><span class="badge badge-blue">33</span> ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</h3>
+      <p>מה עובר על הקו, איפה המודלים רצים, ואיך להגן על IP · 35 דק'</p>
+    </a><a class="toc-card" href="chapter-34.html">
+      <h3><span class="badge badge-blue">34</span> ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</h3>
+      <p>CPD, watsonx.ai פנימי, Air-Gap ו-Private Model Registry · 40 דק'</p>
+    </a></div>
+        </section>
+
+        <section class="section">
+          <h2>מפת שלבי הקורס</h2>
+          <div class="flow-diagram">
+            <div class="flow-node primary">יסודות</div><span class="flow-arrow">→</span><div class="flow-node secondary">עבודה עם Bob</div><span class="flow-arrow">→</span><div class="flow-node secondary">מוצר ותכנון</div><span class="flow-arrow">→</span><div class="flow-node secondary">בניית Capstone</div><span class="flow-arrow">→</span><div class="flow-node secondary">AI וכלים</div><span class="flow-arrow">→</span><div class="flow-node secondary">איכות ותפעול</div><span class="flow-arrow">→</span><div class="flow-node storage">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <p><strong>אבי ויזל</strong> · IBM Israel</p>
+          <p><a href="mailto:aviv@il.ibm.com">aviv@il.ibm.com</a> · 050-729-2012</p>
+          <p class="footer-meta">קורס IBM Bob · מדריך מלא · 2026</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="assets/js/guide.js"></script>
+</body>
+</html>

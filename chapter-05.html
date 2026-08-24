@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>פרק 5: Bob כשותף למחזור חיי הפיתוח | קורס IBM Bob</title>
+  <link rel="stylesheet" href="assets/css/guide.css">
+</head>
+<body data-chapter="5">
+  <div class="progress-track"><div class="progress-fill"></div></div>
+  <div class="layout">
+    <aside class="sidebar" aria-label="ניווט פרקים">
+      <div class="sidebar-brand">
+        <a href="index.html">מ־0 למוצר עם IBM Bob</a>
+        <small>34 פרקים · אבי ויזל</small>
+      </div>
+      <div class="nav-phase">יסודות</div>
+<a class="nav-link" href="chapter-01.html"><span class="nav-num">1</span>מהי מערכת תוכנה?</a>
+<a class="nav-link" href="chapter-02.html"><span class="nav-num">2</span>סביבת העבודה של המפתח</a>
+<a class="nav-link" href="chapter-03.html"><span class="nav-num">3</span>Git ורשת הביטחון</a>
+<a class="nav-link" href="chapter-04.html"><span class="nav-num">4</span>יסודות תכנות ללא עומס תחבירי</a>
+<div class="nav-phase">עבודה עם Bob</div>
+<a class="nav-link active" href="chapter-05.html"><span class="nav-num">5</span>Bob כשותף למחזור חיי הפיתוח</a>
+<a class="nav-link" href="chapter-06.html"><span class="nav-num">6</span>מצבי Ask, Plan ו-Agent</a>
+<a class="nav-link" href="chapter-07.html"><span class="nav-num">7</span>כתיבת הנחיות יעילות ל-Bob</a>
+<a class="nav-link" href="chapter-08.html"><span class="nav-num">8</span>Context, /init ו-AGENTS.md</a>
+<a class="nav-link" href="chapter-09.html"><span class="nav-num">9</span>גבולות גישה והרשאות</a>
+<a class="nav-link" href="chapter-10.html"><span class="nav-num">10</span>Rules, Custom Modes וסטנדרטיזציה</a>
+<div class="nav-phase">מוצר ותכנון</div>
+<a class="nav-link" href="chapter-11.html"><span class="nav-num">11</span>Product Intent ו-Mini PRD</a>
+<a class="nav-link" href="chapter-12.html"><span class="nav-num">12</span>Stories, קריטריוני קבלה ו-Vertical Slice</a>
+<a class="nav-link" href="chapter-13.html"><span class="nav-num">13</span>תכנון עם Plan Mode</a>
+<a class="nav-link" href="chapter-14.html"><span class="nav-num">14</span>מימוש Agentic באיטרציות</a>
+<div class="nav-phase">בניית Capstone</div>
+<a class="nav-link" href="chapter-15.html"><span class="nav-num">15</span>HTML, CSS וחוויית משתמש</a>
+<a class="nav-link" href="chapter-16.html"><span class="nav-num">16</span>JavaScript ופיתוח מבוסס רכיבים</a>
+<a class="nav-link" href="chapter-17.html"><span class="nav-num">17</span>Backend ו-API</a>
+<a class="nav-link" href="chapter-18.html"><span class="nav-num">18</span>מסד נתונים ושכבת מידע</a>
+<a class="nav-link" href="chapter-19.html"><span class="nav-num">19</span>Full Stack, זהות והרשאות</a>
+<div class="nav-phase">AI וכלים</div>
+<a class="nav-link" href="chapter-20.html"><span class="nav-num">20</span>API של מודל AI</a>
+<a class="nav-link" href="chapter-21.html"><span class="nav-num">21</span>אמינות, Grounding ו-RAG</a>
+<a class="nav-link" href="chapter-22.html"><span class="nav-num">22</span>MCP, כלים ו-Workflows</a>
+<a class="nav-link" href="chapter-23.html"><span class="nav-num">23</span>Skills ו-Subagents</a>
+<div class="nav-phase">איכות ותפעול</div>
+<a class="nav-link" href="chapter-24.html"><span class="nav-num">24</span>Debugging שיטתי עם Bob</a>
+<a class="nav-link" href="chapter-25.html"><span class="nav-num">25</span>בדיקות ו-Code Review</a>
+<a class="nav-link" href="chapter-26.html"><span class="nav-num">26</span>Secure by Design עם Bob</a>
+<a class="nav-link" href="chapter-27.html"><span class="nav-num">27</span>ארכיטקטורה, פריסה ותפעול</a>
+<a class="nav-link" href="chapter-28.html"><span class="nav-num">28</span>עלויות, ממשל והעברת מוצר</a>
+<div class="nav-phase">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</div>
+<a class="nav-link" href="chapter-29.html"><span class="nav-num">29</span>Bob ו-IBM i — Premium Package</a>
+<a class="nav-link" href="chapter-30.html"><span class="nav-num">30</span>Bob ו-IBM Z — Z Understand וקוד Mainframe</a>
+<a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
+<a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
+<a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+    </aside>
+    <div class="main-column">
+      <header class="chapter-header">
+        <div class="chapter-meta">
+          <span class="badge badge-blue">פרק 5 מתוך 34</span>
+          <span class="badge badge-teal">עבודה עם Bob</span>
+          <span class="badge">30 דק'</span>
+        </div>
+        <h1>Bob כשותף למחזור חיי הפיתוח</h1>
+        <p class="subtitle">מה Bob עושה היטב, מה לא, ומי אחראי</p>
+      </header>
+      <main class="content">
+        <section class="section">
+          <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
+          <div class="card card-goal"><p><strong>בסוף הפרק:</strong> מה Bob עושה היטב, מה לא, ומי אחראי</p></div>
+        </section>
+
+        <section class="section">
+          <h2>מבוא</h2>
+          <p>Bob קורא, מתכנן, עורך ומריץ — אבל אין לו גישה לכוונה העסקית שלכם. הוא משלים חוסרים בהנחות. האחריות נשארת אצלכם.</p>
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-concepts"><span class="dot"></span>מושגי מפתח</div>
+          <p class="concept-hint">רחפו מעל שם המושג (או לחצו במסך מגע) לפירוט: מבוא, משמעות וכוונה.</p>
+  <div class="concept-grid"><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-5-0">
+        AI SDLC Partner
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-5-0" role="tooltip" hidden>
+        <p class="popup-kicker">AI SDLC Partner</p>
+        <p class="popup-label">מבוא</p>
+        <p>Bob יכול ללוות מחזור חיים שלם: הבנה, תכנון, קוד, בדיקה, תיעוד. זה לא אומר שהוא הבעלים.</p>
+        <p class="popup-label">משמעות</p>
+        <p>שותף מבוסס AI לכל שלבי הפיתוח. הוא מאיץ עבודה; האדם מגדיר יעד ומאשר תוצאה.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להשתמש ב-Bob בכל השלבים — בלי להעביר אליו אחריות על נכונות ובטיחות.</p>
+      </div>
+      <p>סיוע בכל שלבי הפיתוח — לא החלפה.</p>
+      <div class="example"><strong>דוגמה:</strong> PRD → Plan → Code → Test</div>
+      <div class="pitfall"><strong>זהירות:</strong> <strong><em>Bob יבנה הכל</em></strong>.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-5-1">
+        Context
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-5-1" role="tooltip" hidden>
+        <p class="popup-kicker">Context</p>
+        <p class="popup-label">מבוא</p>
+        <p>מודל לא <strong><em>זוכר את הפרויקט</em></strong> מעצמו. הוא רואה רק מה שמופיע בשיחה ובקבצים שצורפו.</p>
+        <p class="popup-label">משמעות</p>
+        <p>כל המידע הזמין למשימה: AGENTS.md, קבצים עם @, היסטוריית השיחה והכללים.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לספק הקשר מעודכן ומדויק. הקשר ישן מייצר פתרון לבעיה של אתמול.</p>
+      </div>
+      <p>מה Bob רואה במשימה.</p>
+      <div class="example"><strong>דוגמה:</strong> @AGENTS.md + @src/</div>
+      <div class="pitfall"><strong>זהירות:</strong> context ישן/שגוי.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-5-2">
+        הנחה
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-5-2" role="tooltip" hidden>
+        <p class="popup-kicker">הנחה</p>
+        <p class="popup-label">מבוא</p>
+        <p>כשחסר פרט, Bob לא עוצר תמיד. הוא משלים פער בהשערה ומתקדם.</p>
+        <p class="popup-label">משמעות</p>
+        <p>פרט שלא נאמר במפורש וש-Bob בוחר כדי להמשיך: ספרייה, מבנה, כלל עסקי.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לדרוש ש-Bob ירשום הנחות לפני קוד — כדי שתוכלו לאשר או לדחות אותן.</p>
+      </div>
+      <p>מה Bob ממלא כשחסר מידע.</p>
+      <div class="example"><strong>דוגמה:</strong> <strong><em>כנראה SQLite</em></strong></div>
+      <div class="pitfall"><strong>זהירות:</strong> לא לגלות הנחות.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-5-3">
+        אחריות אנושית
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-5-3" role="tooltip" hidden>
+        <p class="popup-kicker">אחריות אנושית</p>
+        <p class="popup-label">מבוא</p>
+        <p>קוד שנכנס ל-main הוא באחריות מי שאישר אותו, גם אם AI כתב אותו.</p>
+        <p class="popup-label">משמעות</p>
+        <p>האדם קובע מטרה, קורא Plan ו-Diff, מריץ בדיקות, ומחליט merge או rollback.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לא ללחוץ Approve מתוך אמון בניסוח בטוח. ביטחון ≠ נכונות.</p>
+      </div>
+      <p>אתם מאשרים, בודקים, חותמים.</p>
+      <div class="example"><strong>דוגמה:</strong> Diff review לפני merge</div>
+      <div class="pitfall"><strong>זהירות:</strong> approve בלי קריאה.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-5-4">
+        Hallucination
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-5-4" role="tooltip" hidden>
+        <p class="popup-kicker">Hallucination</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Hallucination</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>Bob מייצר עובדה שגויה בביטחון מלא — API שלא קיים, פונקציה עם שם לא נכון, ספרייה מומצאת.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לא לבדוק documentation ולהניח שהפונקציה קיימת.</p>
+      </div>
+      <p>Bob מייצר עובדה שגויה בביטחון מלא — API שלא קיים, פונקציה עם שם לא נכון, ספרייה מומצאת.</p>
+      <div class="example"><strong>דוגמה:</strong> <strong><em>השתמשו ב-express.parseJson() — פונקציה שלא קיימת</em></strong></div>
+      <div class="pitfall"><strong>זהירות:</strong> לא לבדוק documentation ולהניח שהפונקציה קיימת.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-5-5">
+        Verification
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-5-5" role="tooltip" hidden>
+        <p class="popup-kicker">Verification</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Verification</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>בדיקה אקטיבית שהפלט נכון: tests, curl, console log, docs check.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — <strong><em>נראה נכון</em></strong> ≠ עובד. Verification = ראיה.</p>
+      </div>
+      <p>בדיקה אקטיבית שהפלט נכון: tests, curl, console log, docs check.</p>
+      <div class="example"><strong>דוגמה:</strong> curl localhost:3000/api/tasks — מאמת שה-endpoint קיים ומחזיר JSON</div>
+      <div class="pitfall"><strong>זהירות:</strong> <strong><em>נראה נכון</em></strong> ≠ עובד. Verification = ראיה.</div>
+    </article></div>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-analogy"><span class="dot"></span>משל מהעולם האמיתי</div>
+          <div class="card card-analogy"><p>Bob פועל על Context שסיפקתם — אם הContext חסר, הוא ממלא פערים בהנחות סבירות אך לא מאומתות. תוצאה נכונה בניסוח ≠ תוצאה נכונה בפועל. ה-diff ו-test הם הראיה היחידה; approve בלי קריאה הוא חתימה על מסמך שלא קראתם.</p></div>
+          <p><strong>שאלות לחשיבה:</strong> שלחו ל-Bob בקשה עמומה: <strong><em>שפר את TaskFlow</em></strong>. קבלו תשובה. בדקו: כמה הנחות זיהיתם בתשובה? שכתבו את הבקשה עם CGCA ושלחו שוב — מה השתנה?</p>
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-bob"><span class="dot"></span>עבודה עם IBM Bob</div>
+          <div class="mode-row"><span class="mode-pill mode-ask">Ask</span></div>
+          <p>בקשה לחשוף הנחות לפני כל פעולה.</p>
+          <h3>Prompt לדוגמה</h3>
+          <pre class="prompt">Before any action: write what you understood, list assumptions, ask blocking questions, and propose how to verify. Do not change code.</pre>
+          <p><strong>למה זה עובד:</strong> מונע <strong><em>פתרון נכון לבעיה לא נכונה</em></strong>.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-warning"><span class="dot"></span>טעות נפוצה</div>
+          <div class="card card-warning">
+            <p><strong>לא:</strong> Bob הציע להוסיף Redis לcache — אישרתם. לא שאלתם: האם TaskFlow בכלל סובל מbottleneck שRedisיפתור?</p>
+            <p><strong>כן:</strong> <strong><em>לפני כל שינוי: מה הנחת? מה הראיה שזו הבעיה האמיתית?</em></strong></p>
+          </div>
+          
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
+          <ol class="steps"><li>בקשה עמומה: <strong><em>שפר את האפליקציה</em></strong>.</li><li>רשמו כמה הנחות Bob הכניס.</li><li>שכתבו בקשה עם Goal + AC.</li><li>השוו תוצאות — כמה הנחות נותרו?</li><li>בדקו פונקציה אחת שBob הציע: האם היא קיימת? הריצו curl.</li><li>הצלחה = מצאתם הנחה אחת לא מוצהרת ואמתתם אותה (או דחיתם).</li></ol>
+        </section>
+
+        <section class="section">
+          <h2>תרגיל עצמאי</h2>
+          <p>כתבו בקשה גרועה + גרסה מתוקנת — 3 הבדלים.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-quiz"><span class="dot"></span>בדקו את עצמכם</div>
+          <div class="quiz"><details>
+      <summary>למה Bob פותר בעיה לא נכונה?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> חסר context / Goal / AC — הוא מנחש.</div>
+    </details><details>
+      <summary>הצעה vs ראיה?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> הצעה = טענה; ראיה = diff, test, log.</div>
+    </details><details>
+      <summary>מי אחראי על קוד AI?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> המפתח שאישר merge.</div>
+    </details></div>
+        </section>
+
+        <section class="section">
+          <h2>סיכום</h2>
+          <div class="summary-box">
+            <ul><li>Bob = שותף, לא בעלים.</li><li>חשפו הנחות תמיד.</li><li>ראיה &gt; ביטחון.</li><li>אחריות לא עוברת.</li></ul>
+          </div>
+        </section>
+      </main>
+
+      <nav class="chapter-nav" aria-label="ניווט בין פרקים">
+        <a class="prev" href="chapter-04.html"><span class="nav-label">פרק קודם</span><span class="nav-title">יסודות תכנות ללא עומס תחבירי</span></a>
+        <a class="next" href="chapter-06.html"><span class="nav-label">פרק הבא</span><span class="nav-title">מצבי Ask, Plan ו-Agent</span></a>
+      </nav>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <p><strong>אבי ויזל</strong> · IBM Israel</p>
+          <p><a href="mailto:aviv@il.ibm.com">aviv@il.ibm.com</a> · 050-729-2012</p>
+          <p class="footer-meta">קורס IBM Bob · פרק 5 · 2026</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="assets/js/guide.js"></script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>פרק 13: תכנון עם Plan Mode | קורס IBM Bob</title>
+  <link rel="stylesheet" href="assets/css/guide.css">
+</head>
+<body data-chapter="13">
+  <div class="progress-track"><div class="progress-fill"></div></div>
+  <div class="layout">
+    <aside class="sidebar" aria-label="ניווט פרקים">
+      <div class="sidebar-brand">
+        <a href="index.html">מ־0 למוצר עם IBM Bob</a>
+        <small>34 פרקים · אבי ויזל</small>
+      </div>
+      <div class="nav-phase">יסודות</div>
+<a class="nav-link" href="chapter-01.html"><span class="nav-num">1</span>מהי מערכת תוכנה?</a>
+<a class="nav-link" href="chapter-02.html"><span class="nav-num">2</span>סביבת העבודה של המפתח</a>
+<a class="nav-link" href="chapter-03.html"><span class="nav-num">3</span>Git ורשת הביטחון</a>
+<a class="nav-link" href="chapter-04.html"><span class="nav-num">4</span>יסודות תכנות ללא עומס תחבירי</a>
+<div class="nav-phase">עבודה עם Bob</div>
+<a class="nav-link" href="chapter-05.html"><span class="nav-num">5</span>Bob כשותף למחזור חיי הפיתוח</a>
+<a class="nav-link" href="chapter-06.html"><span class="nav-num">6</span>מצבי Ask, Plan ו-Agent</a>
+<a class="nav-link" href="chapter-07.html"><span class="nav-num">7</span>כתיבת הנחיות יעילות ל-Bob</a>
+<a class="nav-link" href="chapter-08.html"><span class="nav-num">8</span>Context, /init ו-AGENTS.md</a>
+<a class="nav-link" href="chapter-09.html"><span class="nav-num">9</span>גבולות גישה והרשאות</a>
+<a class="nav-link" href="chapter-10.html"><span class="nav-num">10</span>Rules, Custom Modes וסטנדרטיזציה</a>
+<div class="nav-phase">מוצר ותכנון</div>
+<a class="nav-link" href="chapter-11.html"><span class="nav-num">11</span>Product Intent ו-Mini PRD</a>
+<a class="nav-link" href="chapter-12.html"><span class="nav-num">12</span>Stories, קריטריוני קבלה ו-Vertical Slice</a>
+<a class="nav-link active" href="chapter-13.html"><span class="nav-num">13</span>תכנון עם Plan Mode</a>
+<a class="nav-link" href="chapter-14.html"><span class="nav-num">14</span>מימוש Agentic באיטרציות</a>
+<div class="nav-phase">בניית Capstone</div>
+<a class="nav-link" href="chapter-15.html"><span class="nav-num">15</span>HTML, CSS וחוויית משתמש</a>
+<a class="nav-link" href="chapter-16.html"><span class="nav-num">16</span>JavaScript ופיתוח מבוסס רכיבים</a>
+<a class="nav-link" href="chapter-17.html"><span class="nav-num">17</span>Backend ו-API</a>
+<a class="nav-link" href="chapter-18.html"><span class="nav-num">18</span>מסד נתונים ושכבת מידע</a>
+<a class="nav-link" href="chapter-19.html"><span class="nav-num">19</span>Full Stack, זהות והרשאות</a>
+<div class="nav-phase">AI וכלים</div>
+<a class="nav-link" href="chapter-20.html"><span class="nav-num">20</span>API של מודל AI</a>
+<a class="nav-link" href="chapter-21.html"><span class="nav-num">21</span>אמינות, Grounding ו-RAG</a>
+<a class="nav-link" href="chapter-22.html"><span class="nav-num">22</span>MCP, כלים ו-Workflows</a>
+<a class="nav-link" href="chapter-23.html"><span class="nav-num">23</span>Skills ו-Subagents</a>
+<div class="nav-phase">איכות ותפעול</div>
+<a class="nav-link" href="chapter-24.html"><span class="nav-num">24</span>Debugging שיטתי עם Bob</a>
+<a class="nav-link" href="chapter-25.html"><span class="nav-num">25</span>בדיקות ו-Code Review</a>
+<a class="nav-link" href="chapter-26.html"><span class="nav-num">26</span>Secure by Design עם Bob</a>
+<a class="nav-link" href="chapter-27.html"><span class="nav-num">27</span>ארכיטקטורה, פריסה ותפעול</a>
+<a class="nav-link" href="chapter-28.html"><span class="nav-num">28</span>עלויות, ממשל והעברת מוצר</a>
+<div class="nav-phase">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</div>
+<a class="nav-link" href="chapter-29.html"><span class="nav-num">29</span>Bob ו-IBM i — Premium Package</a>
+<a class="nav-link" href="chapter-30.html"><span class="nav-num">30</span>Bob ו-IBM Z — Z Understand וקוד Mainframe</a>
+<a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
+<a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
+<a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+    </aside>
+    <div class="main-column">
+      <header class="chapter-header">
+        <div class="chapter-meta">
+          <span class="badge badge-blue">פרק 13 מתוך 34</span>
+          <span class="badge badge-purple">מוצר ותכנון</span>
+          <span class="badge">30 דק'</span>
+        </div>
+        <h1>תכנון עם Plan Mode</h1>
+        <p class="subtitle">ביקורת דרך פעולה לפני קוד</p>
+      </header>
+      <main class="content">
+        <section class="section">
+          <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
+          <div class="card card-goal"><p><strong>בסוף הפרק:</strong> ביקורת דרך פעולה לפני קוד</p></div>
+        </section>
+
+        <section class="section">
+          <h2>מבוא</h2>
+          <p>Plan Mode = blueprint. קוראים, מערערים, מאשרים — ורק אז Agent.</p>
+        </section>
+
+        <section class="section">
+      <div class="section-label label-capstone"><span class="dot"></span>פרויקט Capstone — TaskFlow</div>
+      <div class="card card-capstone"><p>Plan ל-slice <strong><em>יצירת משימה</em></strong> — קבצים, שלבים, tests.</p></div>
+    </section>
+
+        <section class="section">
+          <div class="section-label label-concepts"><span class="dot"></span>מושגי מפתח</div>
+          <p class="concept-hint">רחפו מעל שם המושג (או לחצו במסך מגע) לפירוט: מבוא, משמעות וכוונה.</p>
+  <div class="concept-grid"><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-13-0">
+        Plan Document
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-13-0" role="tooltip" hidden>
+        <p class="popup-kicker">Plan Document</p>
+        <p class="popup-label">מבוא</p>
+        <p>תוכנית שחיה רק בצ'אט נעלמת. מסמך plan אפשר לבקר ולשמור.</p>
+        <p class="popup-label">משמעות</p>
+        <p>קובץ עם שלבים, קבצים ייגעו, בדיקות וסיכונים — למשל plan/create-task.md.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לייצר ארטיפקט שניתן לאשר, לשנות, ולתת ל-Agent שלב-שלב.</p>
+      </div>
+      <p>קבצים, שלבים, סיכונים.</p>
+      <div class="example"><strong>דוגמה:</strong> plan/create-task.md</div>
+      <div class="pitfall"><strong>זהירות:</strong> plan בראש.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-13-1">
+        Risk
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-13-1" role="tooltip" hidden>
+        <p class="popup-kicker">Risk</p>
+        <p class="popup-label">מבוא</p>
+        <p>תוכנית בלי סיכונים היא אופטימיות. Risk אומר מה עלול להישבר.</p>
+        <p class="popup-label">משמעות</p>
+        <p>אירוע אפשרי שפוגע ביעד: מיגרציה, הרשאות, תלות חיצונית, חוסר בדיקות.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לכתוב mitigation לכל סיכון — אחרת מגלים אותו באמצע Agent.</p>
+      </div>
+      <p>מה עלול להשתבש.</p>
+      <div class="example"><strong>דוגמה:</strong> DB migration</div>
+      <div class="pitfall"><strong>זהירות:</strong> ignore risks.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-13-2">
+        Rollback Point
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-13-2" role="tooltip" hidden>
+        <p class="popup-kicker">Rollback Point</p>
+        <p class="popup-label">מבוא</p>
+        <p>לפני ש-Agent נוגע בחמישה קבצים צריך נקודת עיגון.</p>
+        <p class="popup-label">משמעות</p>
+        <p>commit או tag נקי לפני המימוש, כדי שאפשר יהיה לחזור במדויק.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לא להתחיל Agent על working tree מלוכלך. קודם נקודה יציבה.</p>
+      </div>
+      <p>commit לפני Agent.</p>
+      <div class="example"><strong>דוגמה:</strong> git tag pre-slice-1</div>
+      <div class="pitfall"><strong>זהירות:</strong> no checkpoint.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-13-3">
+        RAVEN Review
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-13-3" role="tooltip" hidden>
+        <p class="popup-kicker">RAVEN Review</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>RAVEN Review</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>מסגרת לביקורת plan לפני Agent: Requirements / Assumptions / Verification / Effects / No-go.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — auto-approve plan.</p>
+      </div>
+      <p>מסגרת לביקורת plan לפני Agent: Requirements / Assumptions / Verification / Effects / No-go.</p>
+      <div class="example"><strong>דוגמה:</strong> האם הplan מכסה את ה-AC? אילו הנחות Bob הוסיף? איך כל שלב ייבדק?</div>
+      <div class="pitfall"><strong>זהירות:</strong> auto-approve plan.</div>
+    </article></div>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-analogy"><span class="dot"></span>משל מהעולם האמיתי</div>
+          <div class="card card-analogy"><p>Plan שנכתב לפני קוד חושף הנחות — כלומר החלקים שBob ממלא לבד מבלי לדעת. Plan שנכתב אחרי קוד הוא תיעוד, לא תכנון. RAVEN review מחפש את ה-<strong><em>נעדכן לפי הצורך</em></strong> שבplan — זה תמיד הגיאה שתעלה בproblems.</p></div>
+          <p><strong>שאלות לחשיבה:</strong> פתחו plan/create-task.md ו-RAVEN אותו: זהו הנחה אחת לא מוצהרת וכתבו כיצד לבדוק אותה לפני שמתחילים לכתוב קוד.</p>
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-bob"><span class="dot"></span>עבודה עם IBM Bob</div>
+          <div class="mode-row"><span class="mode-pill mode-plan">Plan</span></div>
+          <p>Plan → RAVEN review → Agent.</p>
+          <h3>Prompt לדוגמה</h3>
+          <pre class="prompt">Plan: create task slice. Files, steps, tests, risks. Save plan/create-task.md. No code.</pre>
+          <p><strong>למה זה עובד:</strong> Artifact = reviewable.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-warning"><span class="dot"></span>טעות נפוצה</div>
+          <div class="card card-warning">
+            <p><strong>לא:</strong> Agent בלי plan מאושר.</p>
+            <p><strong>כן:</strong> Plan file → RAVEN review → approve → step 1.</p>
+          </div>
+          
+        </section>
+
+        <section class="section">
+      <div class="section-label label-deep"><span class="dot"></span>RAVEN — מסגרת ביקורת Plan</div>
+      <div class="card card-deep"><ul style="margin:0;padding-right:1.2rem"><li><strong>R</strong>equirements — האם ה-plan מכסה את כל ה-AC ורק אותם?</li><li><strong>A</strong>ssumptions — אילו הנחות Bob הוסיף? האם הן נכונות?</li><li><strong>V</strong>erification — כיצד כל שלב ייבדק?</li><li><strong>E</strong>ffects — מה ההשפעה על API, נתונים, אבטחה וביצועים?</li><li><strong>N</strong>o-go — היכן נדרש אישור אנושי לפני המשך?</li></ul><p style="margin-top:0.75rem">אם שלב ב-plan מנוסח «נעדכן קבצים לפי הצורך» — זה No-go. בקשו ניסוח ספציפי לפני אישור.</p></div>
+    </section>
+
+        <section class="section">
+          <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
+          <ol class="steps"><li>Plan Mode → create task.</li><li>RAVEN: בדקו Requirements, Assumptions, Verification, Effects, No-go.</li><li>Approve.</li><li>שמרו plan/.</li><li>הצלחה = קובץ plan/create-task.md ב-repo, עם RAVEN pass ולפחות הנחה אחת שזוהתה ותוקנה.</li></ol>
+        </section>
+
+        <section class="section">
+          <h2>תרגיל עצמאי</h2>
+          <p>החילו RAVEN על plan קיים — מצאו הנחה אחת לא מוצהרת.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-quiz"><span class="dot"></span>בדקו את עצמכם</div>
+          <div class="quiz"><details>
+      <summary>Plan vs prompt?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> Plan = persistent, structured, reviewable.</div>
+    </details><details>
+      <summary>RAVEN — N = ?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> No-go: איפה נדרש אישור אנושי לפני המשך.</div>
+    </details><details>
+      <summary>Plan ארוך?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> Split plans — per slice.</div>
+    </details></div>
+        </section>
+
+        <section class="section">
+          <h2>סיכום</h2>
+          <div class="summary-box">
+            <ul><li>Plan = חוזה.</li><li>RAVEN review לפני Agent.</li><li>Risks explicit.</li><li>plan/ ב-repo.</li></ul>
+          </div>
+        </section>
+      </main>
+
+      <nav class="chapter-nav" aria-label="ניווט בין פרקים">
+        <a class="prev" href="chapter-12.html"><span class="nav-label">פרק קודם</span><span class="nav-title">Stories, קריטריוני קבלה ו-Vertical Slice</span></a>
+        <a class="next" href="chapter-14.html"><span class="nav-label">פרק הבא</span><span class="nav-title">מימוש Agentic באיטרציות</span></a>
+      </nav>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <p><strong>אבי ויזל</strong> · IBM Israel</p>
+          <p><a href="mailto:aviv@il.ibm.com">aviv@il.ibm.com</a> · 050-729-2012</p>
+          <p class="footer-meta">קורס IBM Bob · פרק 13 · 2026</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="assets/js/guide.js"></script>
+</body>
+</html>

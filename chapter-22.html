@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>פרק 22: MCP, כלים ו-Workflows | קורס IBM Bob</title>
+  <link rel="stylesheet" href="assets/css/guide.css">
+</head>
+<body data-chapter="22">
+  <div class="progress-track"><div class="progress-fill"></div></div>
+  <div class="layout">
+    <aside class="sidebar" aria-label="ניווט פרקים">
+      <div class="sidebar-brand">
+        <a href="index.html">מ־0 למוצר עם IBM Bob</a>
+        <small>34 פרקים · אבי ויזל</small>
+      </div>
+      <div class="nav-phase">יסודות</div>
+<a class="nav-link" href="chapter-01.html"><span class="nav-num">1</span>מהי מערכת תוכנה?</a>
+<a class="nav-link" href="chapter-02.html"><span class="nav-num">2</span>סביבת העבודה של המפתח</a>
+<a class="nav-link" href="chapter-03.html"><span class="nav-num">3</span>Git ורשת הביטחון</a>
+<a class="nav-link" href="chapter-04.html"><span class="nav-num">4</span>יסודות תכנות ללא עומס תחבירי</a>
+<div class="nav-phase">עבודה עם Bob</div>
+<a class="nav-link" href="chapter-05.html"><span class="nav-num">5</span>Bob כשותף למחזור חיי הפיתוח</a>
+<a class="nav-link" href="chapter-06.html"><span class="nav-num">6</span>מצבי Ask, Plan ו-Agent</a>
+<a class="nav-link" href="chapter-07.html"><span class="nav-num">7</span>כתיבת הנחיות יעילות ל-Bob</a>
+<a class="nav-link" href="chapter-08.html"><span class="nav-num">8</span>Context, /init ו-AGENTS.md</a>
+<a class="nav-link" href="chapter-09.html"><span class="nav-num">9</span>גבולות גישה והרשאות</a>
+<a class="nav-link" href="chapter-10.html"><span class="nav-num">10</span>Rules, Custom Modes וסטנדרטיזציה</a>
+<div class="nav-phase">מוצר ותכנון</div>
+<a class="nav-link" href="chapter-11.html"><span class="nav-num">11</span>Product Intent ו-Mini PRD</a>
+<a class="nav-link" href="chapter-12.html"><span class="nav-num">12</span>Stories, קריטריוני קבלה ו-Vertical Slice</a>
+<a class="nav-link" href="chapter-13.html"><span class="nav-num">13</span>תכנון עם Plan Mode</a>
+<a class="nav-link" href="chapter-14.html"><span class="nav-num">14</span>מימוש Agentic באיטרציות</a>
+<div class="nav-phase">בניית Capstone</div>
+<a class="nav-link" href="chapter-15.html"><span class="nav-num">15</span>HTML, CSS וחוויית משתמש</a>
+<a class="nav-link" href="chapter-16.html"><span class="nav-num">16</span>JavaScript ופיתוח מבוסס רכיבים</a>
+<a class="nav-link" href="chapter-17.html"><span class="nav-num">17</span>Backend ו-API</a>
+<a class="nav-link" href="chapter-18.html"><span class="nav-num">18</span>מסד נתונים ושכבת מידע</a>
+<a class="nav-link" href="chapter-19.html"><span class="nav-num">19</span>Full Stack, זהות והרשאות</a>
+<div class="nav-phase">AI וכלים</div>
+<a class="nav-link" href="chapter-20.html"><span class="nav-num">20</span>API של מודל AI</a>
+<a class="nav-link" href="chapter-21.html"><span class="nav-num">21</span>אמינות, Grounding ו-RAG</a>
+<a class="nav-link active" href="chapter-22.html"><span class="nav-num">22</span>MCP, כלים ו-Workflows</a>
+<a class="nav-link" href="chapter-23.html"><span class="nav-num">23</span>Skills ו-Subagents</a>
+<div class="nav-phase">איכות ותפעול</div>
+<a class="nav-link" href="chapter-24.html"><span class="nav-num">24</span>Debugging שיטתי עם Bob</a>
+<a class="nav-link" href="chapter-25.html"><span class="nav-num">25</span>בדיקות ו-Code Review</a>
+<a class="nav-link" href="chapter-26.html"><span class="nav-num">26</span>Secure by Design עם Bob</a>
+<a class="nav-link" href="chapter-27.html"><span class="nav-num">27</span>ארכיטקטורה, פריסה ותפעול</a>
+<a class="nav-link" href="chapter-28.html"><span class="nav-num">28</span>עלויות, ממשל והעברת מוצר</a>
+<div class="nav-phase">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</div>
+<a class="nav-link" href="chapter-29.html"><span class="nav-num">29</span>Bob ו-IBM i — Premium Package</a>
+<a class="nav-link" href="chapter-30.html"><span class="nav-num">30</span>Bob ו-IBM Z — Z Understand וקוד Mainframe</a>
+<a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
+<a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
+<a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+    </aside>
+    <div class="main-column">
+      <header class="chapter-header">
+        <div class="chapter-meta">
+          <span class="badge badge-blue">פרק 22 מתוך 34</span>
+          <span class="badge badge-purple">AI וכלים</span>
+          <span class="badge">35 דק'</span>
+        </div>
+        <h1>MCP, כלים ו-Workflows</h1>
+        <p class="subtitle">Bob + מערכות חיצוניות</p>
+      </header>
+      <main class="content">
+        <section class="section">
+          <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
+          <div class="card card-goal"><p><strong>בסוף הפרק:</strong> Bob + מערכות חיצוניות</p></div>
+        </section>
+
+        <section class="section">
+          <h2>מבוא</h2>
+          <p>MCP = Model Context Protocol — כלים מcontrolled ל-Bob (DB, API, files). Workflows = רצף מוגדר.</p>
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-concepts"><span class="dot"></span>מושגי מפתח</div>
+          <p class="concept-hint">רחפו מעל שם המושג (או לחצו במסך מגע) לפירוט: מבוא, משמעות וכוונה.</p>
+  <div class="concept-grid"><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-22-0">
+        MCP Server
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-22-0" role="tooltip" hidden>
+        <p class="popup-kicker">MCP Server</p>
+        <p class="popup-label">מבוא</p>
+        <p>Bob צריך כלים למערכות חיצוניות, אבל לא מפתח מנהל לכל דבר.</p>
+        <p class="popup-label">משמעות</p>
+        <p>שרת Model Context Protocol שמספק כלים מוגדרים: קריאת DB, API, קבצים.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לחבר MCP עם הרשאות מינימליות — עדיף read-only מול staging, לא admin ל-prod.</p>
+      </div>
+      <p>tool provider.</p>
+      <div class="example"><strong>דוגמה:</strong> DB read-only MCP</div>
+      <div class="pitfall"><strong>זהירות:</strong> full admin MCP.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-22-1">
+        Tool Scope
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-22-1" role="tooltip" hidden>
+        <p class="popup-kicker">Tool Scope</p>
+        <p class="popup-label">מבוא</p>
+        <p>כלי שיכול DROP TABLE אינו כלי בטוח לסוכן. Scope מגביל פעולות.</p>
+        <p class="popup-label">משמעות</p>
+        <p>רשימת הפעולות המותרות בכלי: למשל SELECT בלבד, בלי DELETE/DROP.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לבדוק כל כלי לפני חיבור: מה הוא יכול לשבור אם Bob טועה.</p>
+      </div>
+      <p>allowed operations.</p>
+      <div class="example"><strong>דוגמה:</strong> SELECT only</div>
+      <div class="pitfall"><strong>זהירות:</strong> DROP allowed.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-22-2">
+        Workflow
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-22-2" role="tooltip" hidden>
+        <p class="popup-kicker">Workflow</p>
+        <p class="popup-label">מבוא</p>
+        <p>רצף אד-הוק משתנה בכל פעם. Workflow הוא סדר קבוע שאפשר לבדוק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>שלבים ממוספרים: lint → test → report, עם קלט ופלט ברורים.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להפוך עבודה חוזרת לרצף, לא לשיחה חדשה בכל שבוע.</p>
+      </div>
+      <p>ordered steps.</p>
+      <div class="example"><strong>דוגמה:</strong> lint → test → report</div>
+      <div class="pitfall"><strong>זהירות:</strong> ad hoc.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-22-3">
+        Audit
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-22-3" role="tooltip" hidden>
+        <p class="popup-kicker">Audit</p>
+        <p class="popup-label">מבוא</p>
+        <p>אם אי אפשר לדעת מי הריץ כלי — אי אפשר לחקור תקלה או אירוע.</p>
+        <p class="popup-label">משמעות</p>
+        <p>רישום קריאות כלים: מי, מתי, איזה כלי, איזה פרמטרים (בלי סודות).</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לחייב לוג ל-MCP. בלי audit אין ממשל.</p>
+      </div>
+      <p>log tool calls.</p>
+      <div class="example"><strong>דוגמה:</strong> who queried what</div>
+      <div class="pitfall"><strong>זהירות:</strong> no logs.</div>
+    </article></div>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-analogy"><span class="dot"></span>משל מהעולם האמיתי</div>
+          <div class="card card-analogy"><p>MCP tool עם הרשאות write לDB בproduction הוא גרסת AI של <strong><em>DROP TABLE</em></strong> בלי undo. כל tool שנרשם ל-Bob מוסיף קצה התקפה פוטנציאלי. read-only MCP על staging הוא ההפרש בין ניסוי מבוקר לבין תקלה בלתי הפיכה.</p></div>
+          <p><strong>שאלות לחשיבה:</strong> רשמו את ה-MCP tools ש-TaskFlow Bob ישתמש בהם: לכל tool — scope (read/write), סביבה (staging/prod), ואיזה audit log נדרש. ודאו שאין write ל-prod.</p>
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-bob"><span class="dot"></span>עבודה עם IBM Bob</div>
+          <div class="mode-row"><span class="mode-pill mode-ask">Ask</span></div>
+          <p>Understand MCP catalog.</p>
+          <h3>Prompt לדוגמה</h3>
+          <pre class="prompt">List MCP tools available. For each: capability, risk, least privilege recommendation.</pre>
+          <p><strong>למה זה עובד:</strong> Tool governance.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-warning"><span class="dot"></span>טעות נפוצה</div>
+          <div class="card card-warning">
+            <p><strong>לא:</strong> MCP with write to prod.</p>
+            <p><strong>כן:</strong> read-only staging MCP.</p>
+          </div>
+          
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
+          <ol class="steps"><li>Inventory MCP tools.</li><li>Risk table.</li><li>Workflow diagram.</li><li>Audit requirement.</li><li>הצלחה = טבלת risk עם כל MCP tool, scope מינימלי מוגדר לכל אחד ו-workflow diagram ב-docs/.</li></ol>
+        </section>
+
+        <section class="section">
+          <h2>תרגיל עצמאי</h2>
+          <p>Workflow: <strong><em>release check</em></strong> — 4 steps.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-quiz"><span class="dot"></span>בדקו את עצמכם</div>
+          <div class="quiz"><details>
+      <summary>MCP?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> standard for AI tools.</div>
+    </details><details>
+      <summary>Tool scope?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> minimum ops.</div>
+    </details><details>
+      <summary>Audit?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> compliance + debug.</div>
+    </details></div>
+        </section>
+
+        <section class="section">
+          <h2>סיכום</h2>
+          <div class="summary-box">
+            <ul><li>MCP = controlled tools.</li><li>Least privilege.</li><li>Workflows explicit.</li><li>Audit logs.</li></ul>
+          </div>
+        </section>
+      </main>
+
+      <nav class="chapter-nav" aria-label="ניווט בין פרקים">
+        <a class="prev" href="chapter-21.html"><span class="nav-label">פרק קודם</span><span class="nav-title">אמינות, Grounding ו-RAG</span></a>
+        <a class="next" href="chapter-23.html"><span class="nav-label">פרק הבא</span><span class="nav-title">Skills ו-Subagents</span></a>
+      </nav>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <p><strong>אבי ויזל</strong> · IBM Israel</p>
+          <p><a href="mailto:aviv@il.ibm.com">aviv@il.ibm.com</a> · 050-729-2012</p>
+          <p class="footer-meta">קורס IBM Bob · פרק 22 · 2026</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="assets/js/guide.js"></script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>פרק 3: Git ורשת הביטחון | קורס IBM Bob</title>
+  <link rel="stylesheet" href="assets/css/guide.css">
+</head>
+<body data-chapter="3">
+  <div class="progress-track"><div class="progress-fill"></div></div>
+  <div class="layout">
+    <aside class="sidebar" aria-label="ניווט פרקים">
+      <div class="sidebar-brand">
+        <a href="index.html">מ־0 למוצר עם IBM Bob</a>
+        <small>34 פרקים · אבי ויזל</small>
+      </div>
+      <div class="nav-phase">יסודות</div>
+<a class="nav-link" href="chapter-01.html"><span class="nav-num">1</span>מהי מערכת תוכנה?</a>
+<a class="nav-link" href="chapter-02.html"><span class="nav-num">2</span>סביבת העבודה של המפתח</a>
+<a class="nav-link active" href="chapter-03.html"><span class="nav-num">3</span>Git ורשת הביטחון</a>
+<a class="nav-link" href="chapter-04.html"><span class="nav-num">4</span>יסודות תכנות ללא עומס תחבירי</a>
+<div class="nav-phase">עבודה עם Bob</div>
+<a class="nav-link" href="chapter-05.html"><span class="nav-num">5</span>Bob כשותף למחזור חיי הפיתוח</a>
+<a class="nav-link" href="chapter-06.html"><span class="nav-num">6</span>מצבי Ask, Plan ו-Agent</a>
+<a class="nav-link" href="chapter-07.html"><span class="nav-num">7</span>כתיבת הנחיות יעילות ל-Bob</a>
+<a class="nav-link" href="chapter-08.html"><span class="nav-num">8</span>Context, /init ו-AGENTS.md</a>
+<a class="nav-link" href="chapter-09.html"><span class="nav-num">9</span>גבולות גישה והרשאות</a>
+<a class="nav-link" href="chapter-10.html"><span class="nav-num">10</span>Rules, Custom Modes וסטנדרטיזציה</a>
+<div class="nav-phase">מוצר ותכנון</div>
+<a class="nav-link" href="chapter-11.html"><span class="nav-num">11</span>Product Intent ו-Mini PRD</a>
+<a class="nav-link" href="chapter-12.html"><span class="nav-num">12</span>Stories, קריטריוני קבלה ו-Vertical Slice</a>
+<a class="nav-link" href="chapter-13.html"><span class="nav-num">13</span>תכנון עם Plan Mode</a>
+<a class="nav-link" href="chapter-14.html"><span class="nav-num">14</span>מימוש Agentic באיטרציות</a>
+<div class="nav-phase">בניית Capstone</div>
+<a class="nav-link" href="chapter-15.html"><span class="nav-num">15</span>HTML, CSS וחוויית משתמש</a>
+<a class="nav-link" href="chapter-16.html"><span class="nav-num">16</span>JavaScript ופיתוח מבוסס רכיבים</a>
+<a class="nav-link" href="chapter-17.html"><span class="nav-num">17</span>Backend ו-API</a>
+<a class="nav-link" href="chapter-18.html"><span class="nav-num">18</span>מסד נתונים ושכבת מידע</a>
+<a class="nav-link" href="chapter-19.html"><span class="nav-num">19</span>Full Stack, זהות והרשאות</a>
+<div class="nav-phase">AI וכלים</div>
+<a class="nav-link" href="chapter-20.html"><span class="nav-num">20</span>API של מודל AI</a>
+<a class="nav-link" href="chapter-21.html"><span class="nav-num">21</span>אמינות, Grounding ו-RAG</a>
+<a class="nav-link" href="chapter-22.html"><span class="nav-num">22</span>MCP, כלים ו-Workflows</a>
+<a class="nav-link" href="chapter-23.html"><span class="nav-num">23</span>Skills ו-Subagents</a>
+<div class="nav-phase">איכות ותפעול</div>
+<a class="nav-link" href="chapter-24.html"><span class="nav-num">24</span>Debugging שיטתי עם Bob</a>
+<a class="nav-link" href="chapter-25.html"><span class="nav-num">25</span>בדיקות ו-Code Review</a>
+<a class="nav-link" href="chapter-26.html"><span class="nav-num">26</span>Secure by Design עם Bob</a>
+<a class="nav-link" href="chapter-27.html"><span class="nav-num">27</span>ארכיטקטורה, פריסה ותפעול</a>
+<a class="nav-link" href="chapter-28.html"><span class="nav-num">28</span>עלויות, ממשל והעברת מוצר</a>
+<div class="nav-phase">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</div>
+<a class="nav-link" href="chapter-29.html"><span class="nav-num">29</span>Bob ו-IBM i — Premium Package</a>
+<a class="nav-link" href="chapter-30.html"><span class="nav-num">30</span>Bob ו-IBM Z — Z Understand וקוד Mainframe</a>
+<a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
+<a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
+<a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+    </aside>
+    <div class="main-column">
+      <header class="chapter-header">
+        <div class="chapter-meta">
+          <span class="badge badge-blue">פרק 3 מתוך 34</span>
+          <span class="badge badge-blue">יסודות</span>
+          <span class="badge">30 דק'</span>
+        </div>
+        <h1>Git ורשת הביטחון</h1>
+        <p class="subtitle">ניהול גרסאות — להבין שינוי ולחזור אחורה</p>
+      </header>
+      <main class="content">
+        <section class="section">
+          <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
+          <div class="card card-goal"><p><strong>בסוף הפרק:</strong> ניהול גרסאות — להבין שינוי ולחזור אחורה</p></div>
+        </section>
+
+        <section class="section">
+          <h2>מבוא</h2>
+          <p>Git הוא מחברת תיעוד של כל שינוי. עם Bob שעובד מהר, Git הוא רשת הביטחון — commit קטן, הודעה ברורה, אפשרות rollback.</p>
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-concepts"><span class="dot"></span>מושגי מפתח</div>
+          <p class="concept-hint">רחפו מעל שם המושג (או לחצו במסך מגע) לפירוט: מבוא, משמעות וכוונה.</p>
+  <div class="concept-grid"><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-3-0">
+        Commit
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-3-0" role="tooltip" hidden>
+        <p class="popup-kicker">Commit</p>
+        <p class="popup-label">מבוא</p>
+        <p>Git זוכר נקודות בזמן. Commit הוא צילום מצב עם הודעה <strong><em>למה שיניתי</em></strong>.</p>
+        <p class="popup-label">משמעות</p>
+        <p>יחידת שינוי שמורה בהיסטוריה, עם הודעה קצרה. אפשר לחזור אליה.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: commit קטן וממוקד — קל לבדוק, קל לבטל, קל להסביר לצוות.</p>
+      </div>
+      <p>צילום מצב עם הודעה.</p>
+      <div class="example"><strong>דוגמה:</strong> feat: add task filter</div>
+      <div class="pitfall"><strong>זהירות:</strong> commit ענק עם 20 שינויים.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-3-1">
+        Branch
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-3-1" role="tooltip" hidden>
+        <p class="popup-kicker">Branch</p>
+        <p class="popup-label">מבוא</p>
+        <p>לא כל ניסוי צריך לשבור את הגרסה היציבה. Branch הוא מסלול נפרד.</p>
+        <p class="popup-label">משמעות</p>
+        <p>קו פיתוח מקביל ל-main. עובדים שם, בודקים, ורק אז ממזגים.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לבודד עבודה של Bob או פיצ'ר חדש עד שיש ראיות שהוא תקין.</p>
+      </div>
+      <p>קו פיתוח נפרד.</p>
+      <div class="example"><strong>דוגמה:</strong> feature/task-filter</div>
+      <div class="pitfall"><strong>זהירות:</strong> לעבוד ישירות על main בלי בדיקה.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-3-2">
+        Diff
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-3-2" role="tooltip" hidden>
+        <p class="popup-kicker">Diff</p>
+        <p class="popup-label">מבוא</p>
+        <p><strong><em>סיימתי</em></strong> אינו ראיה. Diff מראה בדיוק מה השתנה.</p>
+        <p class="popup-label">משמעות</p>
+        <p>השוואת שורות: מה נוסף, מה נמחק, באילו קבצים. זה כלי הביקורת המרכזי.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לקרוא Diff לפני commit, לפני merge, ולפני אישור עבודת Agent.</p>
+      </div>
+      <p>השוואה לפני/אחרי.</p>
+      <div class="example"><strong>דוגמה:</strong> git diff</div>
+      <div class="pitfall"><strong>זהירות:</strong> לא לקרוא Diff לפני commit.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-3-3">
+        Rollback
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-3-3" role="tooltip" hidden>
+        <p class="popup-kicker">Rollback</p>
+        <p class="popup-label">מבוא</p>
+        <p>טעות תקרה. Rollback הוא היכולת לחזור בלי פאניקה.</p>
+        <p class="popup-label">משמעות</p>
+        <p>חזרה ל-commit או לגרסה קודמת (למשל git revert) כשהכיוון נכשל.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: ליצור נקודת חזרה לפני Agent — אחרת אין לאן ליפול.</p>
+      </div>
+      <p>חזרה לגרסה תקינה. לפני commit: git restore . | אחרי commit: git revert</p>
+      <div class="example"><strong>דוגמה:</strong> git restore . לביטול שינויים מקומיים</div>
+      <div class="pitfall"><strong>זהירות:</strong> למחוק היסטוריה ב-force push.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-3-4">
+        Commit Message
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-3-4" role="tooltip" hidden>
+        <p class="popup-kicker">Commit Message</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Commit Message</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>תיאור השינוי בפורמט type: subject. ה-type הנפוץ: feat, fix, refactor, docs, test.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — <strong><em>update</em></strong> או <strong><em>wip</em></strong> — חסרי ערך בלי subject ספציפי.</p>
+      </div>
+      <p>תיאור השינוי בפורמט type: subject. ה-type הנפוץ: feat, fix, refactor, docs, test.</p>
+      <div class="example"><strong>דוגמה:</strong> fix: prevent duplicate task on double-submit</div>
+      <div class="pitfall"><strong>זהירות:</strong> <strong><em>update</em></strong> או <strong><em>wip</em></strong> — חסרי ערך בלי subject ספציפי.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-3-5">
+        .gitignore
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-3-5" role="tooltip" hidden>
+        <p class="popup-kicker">.gitignore</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>.gitignore</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>רשימת קבצים שGit לא עוקב אחריהם. חיוני לסינון .env, node_modules, build artifacts.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לשכוח להוסיף .env ל-.gitignore לפני commit ראשון.</p>
+      </div>
+      <p>רשימת קבצים שGit לא עוקב אחריהם. חיוני לסינון .env, node_modules, build artifacts.</p>
+      <div class="example"><strong>דוגמה:</strong> .env לא נכנס ל-repo — מונע חשיפת secrets</div>
+      <div class="pitfall"><strong>זהירות:</strong> לשכוח להוסיף .env ל-.gitignore לפני commit ראשון.</div>
+    </article></div>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-analogy"><span class="dot"></span>משל מהעולם האמיתי</div>
+          <div class="card card-analogy"><p>commit הוא checkpoint — נקודת חזרה ידועה. בלי commit לפני שינוי גדול של Bob, ה-diff מכסה עשרות קבצים בבת אחת ואי אפשר לדעת מה שייך לשינוי המתוכנן ומה הוסיף Bob מיוזמתו. Rollback הופך ל-<strong><em>מחיקת הכל</em></strong> במקום <strong><em>חזרה לנקודה X</em></strong>.</p></div>
+          <p><strong>שאלות לחשיבה:</strong> לפני שמבקשים מ-Bob שינוי: הריצו <strong><em>git status</em></strong> ו-<strong><em>git diff</em></strong> ב-Ask. אם אין clean working tree — commitו ראשון. בדקו: האם commit message מסביר למה, לא רק מה?</p>
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-bob"><span class="dot"></span>עבודה עם IBM Bob</div>
+          <div class="mode-row"><span class="mode-pill mode-ask">Ask</span><span class="mode-pill mode-agent">Agent</span></div>
+          <p>Agent רק אחרי commit; שינויים קטנים.</p>
+          <h3>Prompt לדוגמה</h3>
+          <pre class="prompt">Show git status and git diff. Summarize changes in one line per file. Do not commit.</pre>
+          <p><strong>למה זה עובד:</strong> מכריח review לפני פעולה.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-warning"><span class="dot"></span>טעות נפוצה</div>
+          <div class="card card-warning">
+            <p><strong>לא:</strong> <strong><em>תתקן הכל</em></strong> בלי commit — אין נקודת חזרה. Bob שינה 12 קבצים; לא ברור מה נדרש ומה יוזמה.</p>
+            <p><strong>כן:</strong> commit clean → prompt מוגדר → שינוי אחד → diff → commit עם הסבר.</p>
+          </div>
+          
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
+          <ol class="steps"><li>git init / clone TaskFlow.</li><li>commit ראשון: <strong><em>init: add TaskFlow project structure</em></strong>.</li><li>בקשו מ-Bob שינוי קטן ב-CSS.</li><li>הריצו git diff — קראו כל שינוי.</li><li>commitו עם message שמסביר את הסיבה.</li><li>הצלחה = git log מראה שני commits עם messages מובנים, וה-diff של כל commit ברור.</li></ol>
+        </section>
+
+        <section class="section">
+          <h2>תרגיל עצמאי</h2>
+          <p>צרו branch, שינוי, merge — תעדו כל שלב.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-quiz"><span class="dot"></span>בדקו את עצמכם</div>
+          <div class="quiz"><details>
+      <summary>מתי commit?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> אחרי יחידת עבודה שלמה ונבדקת — לא באמצע.</div>
+    </details><details>
+      <summary>למה Diff לפני Agent?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> לראות בדיוק מה השתנה — לא לסמוך על <strong><em>סיימתי</em></strong>.</div>
+    </details><details>
+      <summary>Branch vs main?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> Branch = ניסוי מבודד; main = יציב.</div>
+    </details><details>
+      <summary>commit message טוב נראה איך?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> type: subject קצר ומדויק. <strong><em>fix: prevent duplicate task on double-submit</em></strong> — לא <strong><em>update</em></strong> או <strong><em>changes</em></strong>.</div>
+    </details><details>
+      <summary>למה .gitignore חייב להיות בcommit הראשון?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> אם .env נכנס ל-repo — secrets דולפים לhistory גם אחרי מחיקה. git filter-branch מורכב ואינו פתרון מושלם.</div>
+    </details></div>
+        </section>
+
+        <section class="section">
+          <h2>סיכום</h2>
+          <div class="summary-box">
+            <ul><li>Commit קטן = rollback קל.</li><li>Diff הוא חבר — לא אויב.</li><li>Bob + Git = מהירות + ביטחון.</li><li>אל ת-force push ל-main.</li></ul>
+          </div>
+        </section>
+      </main>
+
+      <nav class="chapter-nav" aria-label="ניווט בין פרקים">
+        <a class="prev" href="chapter-02.html"><span class="nav-label">פרק קודם</span><span class="nav-title">סביבת העבודה של המפתח</span></a>
+        <a class="next" href="chapter-04.html"><span class="nav-label">פרק הבא</span><span class="nav-title">יסודות תכנות ללא עומס תחבירי</span></a>
+      </nav>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <p><strong>אבי ויזל</strong> · IBM Israel</p>
+          <p><a href="mailto:aviv@il.ibm.com">aviv@il.ibm.com</a> · 050-729-2012</p>
+          <p class="footer-meta">קורס IBM Bob · פרק 3 · 2026</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="assets/js/guide.js"></script>
+</body>
+</html>

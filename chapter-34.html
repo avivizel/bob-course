@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>פרק 34: ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית | קורס IBM Bob</title>
+  <link rel="stylesheet" href="assets/css/guide.css">
+</head>
+<body data-chapter="34">
+  <div class="progress-track"><div class="progress-fill"></div></div>
+  <div class="layout">
+    <aside class="sidebar" aria-label="ניווט פרקים">
+      <div class="sidebar-brand">
+        <a href="index.html">מ־0 למוצר עם IBM Bob</a>
+        <small>34 פרקים · אבי ויזל</small>
+      </div>
+      <div class="nav-phase">יסודות</div>
+<a class="nav-link" href="chapter-01.html"><span class="nav-num">1</span>מהי מערכת תוכנה?</a>
+<a class="nav-link" href="chapter-02.html"><span class="nav-num">2</span>סביבת העבודה של המפתח</a>
+<a class="nav-link" href="chapter-03.html"><span class="nav-num">3</span>Git ורשת הביטחון</a>
+<a class="nav-link" href="chapter-04.html"><span class="nav-num">4</span>יסודות תכנות ללא עומס תחבירי</a>
+<div class="nav-phase">עבודה עם Bob</div>
+<a class="nav-link" href="chapter-05.html"><span class="nav-num">5</span>Bob כשותף למחזור חיי הפיתוח</a>
+<a class="nav-link" href="chapter-06.html"><span class="nav-num">6</span>מצבי Ask, Plan ו-Agent</a>
+<a class="nav-link" href="chapter-07.html"><span class="nav-num">7</span>כתיבת הנחיות יעילות ל-Bob</a>
+<a class="nav-link" href="chapter-08.html"><span class="nav-num">8</span>Context, /init ו-AGENTS.md</a>
+<a class="nav-link" href="chapter-09.html"><span class="nav-num">9</span>גבולות גישה והרשאות</a>
+<a class="nav-link" href="chapter-10.html"><span class="nav-num">10</span>Rules, Custom Modes וסטנדרטיזציה</a>
+<div class="nav-phase">מוצר ותכנון</div>
+<a class="nav-link" href="chapter-11.html"><span class="nav-num">11</span>Product Intent ו-Mini PRD</a>
+<a class="nav-link" href="chapter-12.html"><span class="nav-num">12</span>Stories, קריטריוני קבלה ו-Vertical Slice</a>
+<a class="nav-link" href="chapter-13.html"><span class="nav-num">13</span>תכנון עם Plan Mode</a>
+<a class="nav-link" href="chapter-14.html"><span class="nav-num">14</span>מימוש Agentic באיטרציות</a>
+<div class="nav-phase">בניית Capstone</div>
+<a class="nav-link" href="chapter-15.html"><span class="nav-num">15</span>HTML, CSS וחוויית משתמש</a>
+<a class="nav-link" href="chapter-16.html"><span class="nav-num">16</span>JavaScript ופיתוח מבוסס רכיבים</a>
+<a class="nav-link" href="chapter-17.html"><span class="nav-num">17</span>Backend ו-API</a>
+<a class="nav-link" href="chapter-18.html"><span class="nav-num">18</span>מסד נתונים ושכבת מידע</a>
+<a class="nav-link" href="chapter-19.html"><span class="nav-num">19</span>Full Stack, זהות והרשאות</a>
+<div class="nav-phase">AI וכלים</div>
+<a class="nav-link" href="chapter-20.html"><span class="nav-num">20</span>API של מודל AI</a>
+<a class="nav-link" href="chapter-21.html"><span class="nav-num">21</span>אמינות, Grounding ו-RAG</a>
+<a class="nav-link" href="chapter-22.html"><span class="nav-num">22</span>MCP, כלים ו-Workflows</a>
+<a class="nav-link" href="chapter-23.html"><span class="nav-num">23</span>Skills ו-Subagents</a>
+<div class="nav-phase">איכות ותפעול</div>
+<a class="nav-link" href="chapter-24.html"><span class="nav-num">24</span>Debugging שיטתי עם Bob</a>
+<a class="nav-link" href="chapter-25.html"><span class="nav-num">25</span>בדיקות ו-Code Review</a>
+<a class="nav-link" href="chapter-26.html"><span class="nav-num">26</span>Secure by Design עם Bob</a>
+<a class="nav-link" href="chapter-27.html"><span class="nav-num">27</span>ארכיטקטורה, פריסה ותפעול</a>
+<a class="nav-link" href="chapter-28.html"><span class="nav-num">28</span>עלויות, ממשל והעברת מוצר</a>
+<div class="nav-phase">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</div>
+<a class="nav-link" href="chapter-29.html"><span class="nav-num">29</span>Bob ו-IBM i — Premium Package</a>
+<a class="nav-link" href="chapter-30.html"><span class="nav-num">30</span>Bob ו-IBM Z — Z Understand וקוד Mainframe</a>
+<a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
+<a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
+<a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
+<a class="nav-link active" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+    </aside>
+    <div class="main-column">
+      <header class="chapter-header">
+        <div class="chapter-meta">
+          <span class="badge badge-blue">פרק 34 מתוך 34</span>
+          <span class="badge badge-teal">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</span>
+          <span class="badge">40 דק'</span>
+        </div>
+        <h1>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</h1>
+        <p class="subtitle">CPD, watsonx.ai פנימי, Air-Gap ו-Private Model Registry</p>
+      </header>
+      <main class="content">
+        <section class="section">
+          <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
+          <div class="card card-goal"><p><strong>בסוף הפרק:</strong> CPD, watsonx.ai פנימי, Air-Gap ו-Private Model Registry</p></div>
+        </section>
+
+        <section class="section">
+          <h2>מבוא</h2>
+          <p>ארגונים רבים — ובפרט בתעשיות מוסדרות כמו פיננסים, בריאות, ממשל ותעשייה כבדה — אינם יכולים לשלוח קוד או נתונים רגישים לענן ציבורי. Bob On-Prem (מכונה גם <strong><em>Self-Hosted</em></strong> או <strong><em>Air-Gapped</em></strong>) מאפשר אותה חוויית IDE בדיוק, אבל ה-inference רץ על תשתית פנימית: IBM Cloud Pak for Data (CPD) על OpenShift, עם watsonx.ai כ-inference engine. שום prompt לא עוזב את הרשת הארגונית. מקורות: &lt;a href=&quot;https://www.ibm.com/docs/en/cloud-paks/cp-data&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;IBM Cloud Pak for Data Documentation&lt;/a&gt; ו-&lt;a href=&quot;https://www.ibm.com/docs/en/watsonx/saas&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;IBM watsonx.ai Documentation&lt;/a&gt;.</p>
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-concepts"><span class="dot"></span>מושגי מפתח</div>
+          <p class="concept-hint">רחפו מעל שם המושג (או לחצו במסך מגע) לפירוט: מבוא, משמעות וכוונה.</p>
+  <div class="concept-grid"><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-34-0">
+        IBM Cloud Pak for Data (CPD)
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-34-0" role="tooltip" hidden>
+        <p class="popup-kicker">IBM Cloud Pak for Data (CPD)</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>IBM Cloud Pak for Data (CPD)</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>פלטפורמת AI ו-data של IBM לפריסה On-Prem או ב-private cloud. רצה על OpenShift. מספקת את שירותי watsonx.ai, governance ו-data fabric בתוך מרכז הנתונים הארגוני.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לבלבל בין CPD (הפלטפורמה) לבין watsonx.ai (שירות ה-inference). CPD היא הכלי — watsonx.ai הוא השירות שרץ עליה.</p>
+      </div>
+      <p>פלטפורמת AI ו-data של IBM לפריסה On-Prem או ב-private cloud. רצה על OpenShift. מספקת את שירותי watsonx.ai, governance ו-data fabric בתוך מרכז הנתונים הארגוני.</p>
+      <div class="example"><strong>דוגמה:</strong> CPD על RHOCP 4.14 → watsonx.ai service → Granite / Mistral / Llama on GPU nodes → Bob IDE</div>
+      <div class="pitfall"><strong>זהירות:</strong> לבלבל בין CPD (הפלטפורמה) לבין watsonx.ai (שירות ה-inference). CPD היא הכלי — watsonx.ai הוא השירות שרץ עליה.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-34-1">
+        watsonx.ai On-Prem Inference
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-34-1" role="tooltip" hidden>
+        <p class="popup-kicker">watsonx.ai On-Prem Inference</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>watsonx.ai On-Prem Inference</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>שירות ה-inference של IBM שרץ בתוך CPD. מטפל ב-model loading, GPU scheduling, API, ו-rate limiting — בדיוק כמו ב-SaaS, אבל על hardware ארגוני.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — להניח שכל המודלים מה-SaaS זמינים On-Prem — model availability תלוי ב-entitlement ובנפח ה-GPU.</p>
+      </div>
+      <p>שירות ה-inference של IBM שרץ בתוך CPD. מטפל ב-model loading, GPU scheduling, API, ו-rate limiting — בדיוק כמו ב-SaaS, אבל על hardware ארגוני.</p>
+      <div class="example"><strong>דוגמה:</strong> POST https://cpd.internal/ml/v1/text/generation → Granite model → completion חוזר ל-Bob IDE</div>
+      <div class="pitfall"><strong>זהירות:</strong> להניח שכל המודלים מה-SaaS זמינים On-Prem — model availability תלוי ב-entitlement ובנפח ה-GPU.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-34-2">
+        Air-Gap Deployment
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-34-2" role="tooltip" hidden>
+        <p class="popup-kicker">Air-Gap Deployment</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Air-Gap Deployment</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>סביבה ללא חיבור לאינטרנט ציבורי. Bob IDE, CPD ו-model images מגיעים דרך private registry (Artifactory, Quay, IBM ICR Mirror). אפס egress traffic.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לצפות לעדכוני מודלים אוטומטיים ב-air-gap — הם מגיעים רק דרך image pull מפורש מ-private registry.</p>
+      </div>
+      <p>סביבה ללא חיבור לאינטרנט ציבורי. Bob IDE, CPD ו-model images מגיעים דרך private registry (Artifactory, Quay, IBM ICR Mirror). אפס egress traffic.</p>
+      <div class="example"><strong>דוגמה:</strong> Bob IDE → internal proxy → CPD API (no TLS pinning to IBM Cloud) → watsonx.ai GPU → completion</div>
+      <div class="pitfall"><strong>זהירות:</strong> לצפות לעדכוני מודלים אוטומטיים ב-air-gap — הם מגיעים רק דרך image pull מפורש מ-private registry.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-34-3">
+        Private Model Registry
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-34-3" role="tooltip" hidden>
+        <p class="popup-kicker">Private Model Registry</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Private Model Registry</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>מאגר פנימי של model images ו-adapters. המודלים נמשכים פעם אחת מ-IBM ICR ומאוחסנים ב-Quay / Artifactory פנימי. כל deployment משתמש בעותק פנימי בלבד.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לשכוח לעדכן את ה-registry הפנימי כשיוצאת גרסה חדשה — המודל פנימי לא מתעדכן לבד.</p>
+      </div>
+      <p>מאגר פנימי של model images ו-adapters. המודלים נמשכים פעם אחת מ-IBM ICR ומאוחסנים ב-Quay / Artifactory פנימי. כל deployment משתמש בעותק פנימי בלבד.</p>
+      <div class="example"><strong>דוגמה:</strong> ibm-granite-8b → pull לפעם אחת → push ל-registry.internal/ibm/granite-8b → CPD pull מ-registry.internal</div>
+      <div class="pitfall"><strong>זהירות:</strong> לשכוח לעדכן את ה-registry הפנימי כשיוצאת גרסה חדשה — המודל פנימי לא מתעדכן לבד.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-34-4">
+        Bob Model Gateway (On-Prem)
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-34-4" role="tooltip" hidden>
+        <p class="popup-kicker">Bob Model Gateway (On-Prem)</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Bob Model Gateway (On-Prem)</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>בסביבת On-Prem, Bob Model Gateway רץ כ-container על OpenShift. מנתב בין Bob IDE לבין watsonx.ai הפנימי. AuthN/AuthZ דרך LDAP / SAML ארגוני במקום IBM IAM.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — להשתמש ב-API key של IBM Cloud ב-On-Prem — AuthN On-Prem עובד מול IdP הארגוני, לא מול IBM IAM.</p>
+      </div>
+      <p>בסביבת On-Prem, Bob Model Gateway רץ כ-container על OpenShift. מנתב בין Bob IDE לבין watsonx.ai הפנימי. AuthN/AuthZ דרך LDAP / SAML ארגוני במקום IBM IAM.</p>
+      <div class="example"><strong>דוגמה:</strong> Bob IDE → Bob Gateway Pod (OpenShift) → AuthZ (LDAP) → watsonx.ai inference → completion</div>
+      <div class="pitfall"><strong>זהירות:</strong> להשתמש ב-API key של IBM Cloud ב-On-Prem — AuthN On-Prem עובד מול IdP הארגוני, לא מול IBM IAM.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-34-5">
+        Data Residency ו-Compliance
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-34-5" role="tooltip" hidden>
+        <p class="popup-kicker">Data Residency ו-Compliance</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Data Residency ו-Compliance</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>ב-On-Prem כל prompts, completions ו-audit logs נשארים בתוך הרשת הארגונית. אין שיתוף נתונים עם IBM Cloud. מתאים ל-GDPR, PCI-DSS, HIPAA, ISO 27001.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לחשוב שAir-Gap אוטומטי ב-On-Prem — נדרשת הגדרה מפורשת של network policies ו-egress rules.</p>
+      </div>
+      <p>ב-On-Prem כל prompts, completions ו-audit logs נשארים בתוך הרשת הארגונית. אין שיתוף נתונים עם IBM Cloud. מתאים ל-GDPR, PCI-DSS, HIPAA, ISO 27001.</p>
+      <div class="example"><strong>דוגמה:</strong> מוסד פיננסי: קוד COBOL עם לוגיקת חישוב ריבית → prompt ל-CPD מקומי → completion מקומי → audit log מקומי</div>
+      <div class="pitfall"><strong>זהירות:</strong> לחשוב שAir-Gap אוטומטי ב-On-Prem — נדרשת הגדרה מפורשת של network policies ו-egress rules.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-34-6">
+        GPU Requirements
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-34-6" role="tooltip" hidden>
+        <p class="popup-kicker">GPU Requirements</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>GPU Requirements</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>watsonx.ai On-Prem דורש NVIDIA GPU nodes על OpenShift. גודל המודל קובע את כמות ה-VRAM. Granite 8B: ~20GB VRAM. מודלים גדולים יותר — multi-GPU.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לתכנן On-Prem בלי GPU — CPD CPU-only מאוד איטי לinference ואינו מתאים לייצור.</p>
+      </div>
+      <p>watsonx.ai On-Prem דורש NVIDIA GPU nodes על OpenShift. גודל המודל קובע את כמות ה-VRAM. Granite 8B: ~20GB VRAM. מודלים גדולים יותר — multi-GPU.</p>
+      <div class="example"><strong>דוגמה:</strong> NVIDIA A100 80GB × 2 → Granite 8B + Llama 70B בו-זמנית. H100 × 4 → מודלים גדולים יותר במקביל.</div>
+      <div class="pitfall"><strong>זהירות:</strong> לתכנן On-Prem בלי GPU — CPD CPU-only מאוד איטי לinference ואינו מתאים לייצור.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-34-7">
+        Bob + CPD — Data Flow
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-34-7" role="tooltip" hidden>
+        <p class="popup-kicker">Bob + CPD — Data Flow</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Bob + CPD — Data Flow</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>Bob IDE → TLS (internal CA) → Bob Gateway Pod → watsonx.ai API → model inference → completion → IDE. Metering ו-audit נשמרים ב-CPD. אין egress.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — להשתמש ב-self-signed certificate ללא internal CA — Bob IDE לא יאמין לendpoint.</p>
+      </div>
+      <p>Bob IDE → TLS (internal CA) → Bob Gateway Pod → watsonx.ai API → model inference → completion → IDE. Metering ו-audit נשמרים ב-CPD. אין egress.</p>
+      <div class="example"><strong>דוגמה:</strong> מפתח RPG → Developer Mode → Bob Gateway (OpenShift) → Granite (CPD) → refactoring suggestion → IDE (ללא יציאה מהרשת)</div>
+      <div class="pitfall"><strong>זהירות:</strong> להשתמש ב-self-signed certificate ללא internal CA — Bob IDE לא יאמין לendpoint.</div>
+    </article></div>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-analogy"><span class="dot"></span>משל מהעולם האמיתי</div>
+          <div class="card card-analogy"><p>ב-SaaS, prompt עובר TLS לinfrastructure של IBM Cloud — מחוץ לרשת הארגונית. ב-On-Prem, אותו prompt עובר TLS לGateway Pod שרץ בתוך OpenShift הארגוני — ולא יוצא. ההבדל הוא לא ביכולת, אלא היכן פועלת ה-inference ומי שולט בנתונים.</p></div>
+          <p><strong>שאלות לחשיבה:</strong> ב-TaskFlow: אם הפרויקט נמצא בסביבת בנק — איזה מרכיב תדרשו לאמת ראשון? מה הצעד הראשון ב-On-Prem deployment?</p>
+        </section>
+
+        <section class="section"><h2>תרשים זרימה</h2><div class="flow-diagram"><div class="flow-node primary">Bob IDE</div><span class="flow-arrow">TLS (internal CA) →</span><div class="flow-node secondary">Bob Gateway Pod (OpenShift)</div><span class="flow-arrow">→</span><div class="flow-node">watsonx.ai (CPD)</div><span class="flow-arrow">→</span><div class="flow-node storage">GPU Nodes · Private Model Registry</div></div>
+<div class="flow-diagram" style="margin-top:0.5rem"><div class="flow-node primary">AuthN: LDAP/SAML</div><span class="flow-arrow">→</span><div class="flow-node secondary">AuthZ: RBAC (OpenShift)</div><span class="flow-arrow">→</span><div class="flow-node">Metering + Audit Log (CPD)</div><span class="flow-arrow">→</span><div class="flow-node storage">SIEM פנימי</div></div>
+<p style="font-size:0.85rem;color:var(--ink-secondary);margin-top:0.25rem">אפס egress לאינטרנט. כל model inference, audit ו-metering רצים בתוך הרשת הארגונית.</p></section>
+
+        <section class="section">
+          <div class="section-label label-bob"><span class="dot"></span>עבודה עם IBM Bob</div>
+          <div class="mode-row"><span class="mode-pill mode-ask">Ask</span><span class="mode-pill mode-plan">Plan</span></div>
+          <p>Ask לניתוח ארכיטקטורת On-Prem ובחינת דרישות GPU, network policy ו-model availability. Plan לתכנון deployment: CPD, network, registry, AuthN.</p>
+          <h3>Prompt לדוגמה</h3>
+          <pre class="prompt">In Ask mode: I am planning a Bob On-Prem deployment for a financial institution. What are the key components, GPU requirements, and network policies needed? What compliance risks should I document? Do not change files.</pre>
+          <p><strong>למה זה עובד:</strong> Ask מתאים לתכנון ארכיטקטורה לפני כל implementation. Bob מזהה פערים ו-compliance gaps לפני שמתחילים.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-warning"><span class="dot"></span>טעות נפוצה</div>
+          <div class="card card-warning">
+            <p><strong>לא:</strong> לפרוס Bob On-Prem עם self-signed certificates ובלי network egress policy — Bob IDE לא יתחבר, ו-prompts עלולים לדלוף.</p>
+            <p><strong>כן:</strong> Internal CA → Bob Gateway → network policy: egress denied for all → watsonx.ai GPU nodes → audit to SIEM.</p>
+          </div>
+          <div class="compare-grid">
+        <div class="compare-bad"><div class="compare-label">Prompt חלש</div><pre class="prompt">Deploy Bob with cloud API key pointing to IBM Cloud</pre></div>
+        <div class="compare-good"><div class="compare-label">Prompt חזק</div><pre class="prompt">On-Prem deployment checklist:
+1. CPD on RHOCP 4.14+, watsonx.ai service installed
+2. GPU nodes with NVIDIA operator
+3. Private model registry (Quay/Artifactory) with approved models
+4. Bob Gateway Pod configured for internal LDAP/SAML
+5. Internal CA cert → Bob IDE trust store
+6. Network policy: no public egress from inference namespace
+7. Audit logs → SIEM
+8. .bobignore: secrets, .env, *.pem</pre></div>
+      </div>
+        </section>
+
+        <section class="section">
+      <div class="section-label label-deep"><span class="dot"></span>On-Prem Deployment Architecture</div>
+      <div class="card card-deep"><p style="margin-bottom:0.5rem;font-size:0.85rem;color:var(--ink-secondary)">מקורות: <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data" target="_blank" rel="noopener">IBM Cloud Pak for Data docs</a> · <a href="https://www.ibm.com/docs/en/watsonx/saas" target="_blank" rel="noopener">IBM watsonx.ai docs</a> · <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data?topic=installing-openshift-container-platform" target="_blank" rel="noopener">CPD on OpenShift Installation Guide</a></p>
+<p style="margin-bottom:0.75rem"><strong>שכבות ה-On-Prem Stack:</strong></p>
+<table style="width:100%;border-collapse:collapse;font-size:0.9rem;margin-bottom:1rem">
+<thead><tr style="border-bottom:2px solid var(--line)"><th style="text-align:right;padding:6px 8px">שכבה</th><th style="text-align:right;padding:6px 8px">רכיב</th><th style="text-align:right;padding:6px 8px">הערה</th></tr></thead>
+<tbody>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px"><strong>IDE</strong></td><td style="padding:6px 8px">Bob IDE (VS Code extension)</td><td style="padding:6px 8px">מתחבר ל-Gateway Pod, לא ל-IBM Cloud</td></tr>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px"><strong>Gateway</strong></td><td style="padding:6px 8px">Bob Gateway Pod (OpenShift)</td><td style="padding:6px 8px">AuthN: LDAP/SAML; AuthZ: RBAC; Metering</td></tr>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px"><strong>Inference</strong></td><td style="padding:6px 8px">watsonx.ai (CPD service)</td><td style="padding:6px 8px">REST API; GPU scheduling; model serving</td></tr>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px"><strong>Models</strong></td><td style="padding:6px 8px">Private registry (Quay/Artifactory)</td><td style="padding:6px 8px">Granite, Llama, Mistral — pulled once from ICR</td></tr>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px"><strong>Compute</strong></td><td style="padding:6px 8px">NVIDIA GPU nodes (RHOCP)</td><td style="padding:6px 8px">NVIDIA operator required; A100/H100 recommended</td></tr>
+<tr><td style="padding:6px 8px"><strong>Audit</strong></td><td style="padding:6px 8px">CPD Audit Log → SIEM</td><td style="padding:6px 8px">כל prompt + completion + tool action</td></tr>
+</tbody>
+</table>
+<pre class="code-block"># AGENTS.md — Bob On-Prem Project
+## Deployment: CPD on RHOCP 4.14+ · watsonx.ai service
+## Inference endpoint: https://cpd.internal/ml/v1/text/generation
+## AuthN: LDAP/SAML (NOT IBM Cloud API key)
+## Model registry: registry.internal/ibm/ (Quay/Artifactory)
+## GPU: NVIDIA A100/H100 nodes — NVIDIA operator required
+## Network: NO public egress from inference namespace
+## Audit: all prompts + completions → /var/log/cpd-audit → SIEM
+## Compliance: GDPR / PCI-DSS / HIPAA — data stays in datacenter
+## Rules:
+- Never use IBM Cloud API key — use internal LDAP/SAML token
+- All model pulls via registry.internal only
+- .bobignore: .env, secrets/, *.pem, *.key, config/prod*
+- Bob Gateway cert: signed by internal CA (add to IDE trust store)
+- GPU node failure → inference degraded — monitor nvidia-smi on nodes</pre></div>
+    </section>
+
+        <section class="section">
+          <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
+          <ol class="steps"><li>ציירו Data Flow diagram: Bob IDE → Gateway → watsonx.ai → GPU → completion (ללא אינטרנט).</li><li>זהו: איזה GPU nodes נדרשים למודל שבחרתם? (Granite 8B = ~20GB VRAM)</li><li>בדקו: האם ל-RHOCP שלכם יש NVIDIA GPU operator מותקן?</li><li>תכננו network policy: אילו namespaces מורשים לדבר עם watsonx.ai?</li><li>הכינו רשימת מודלים לייבא ל-private registry (private model list).</li><li>Plan mode: בקשו מBob לכתוב AGENTS.md ל-On-Prem project עם כל ה-compliance requirements.</li></ol>
+        </section>
+
+        <section class="section">
+          <h2>תרגיל עצמאי</h2>
+          <p>כתבו deployment checklist מלא ל-Bob On-Prem בארגון פיננסי: CPD, GPU, registry, AuthN, network policy, audit, .bobignore.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-quiz"><span class="dot"></span>בדקו את עצמכם</div>
+          <div class="quiz"><details>
+      <summary>מה ההבדל בין Bob SaaS ל-Bob On-Prem מבחינת Data Flow?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> SaaS: prompts עוברים TLS לIBM Cloud inference. On-Prem: prompts עוברים TLS לGateway Pod ב-OpenShift — אפס egress לאינטרנט.</div>
+    </details><details>
+      <summary>מה תפקיד CPD ב-On-Prem?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> פלטפורמת האירוח — מריצה את watsonx.ai, מנהלת GPU scheduling, AuthZ ו-metering. לא ה-inference עצמו.</div>
+    </details><details>
+      <summary>למה private model registry?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> Air-gap: אי אפשר לפנות ל-IBM ICR ישירות. מושכים מודלים פעם אחת → שומרים פנימי → CPD pull מהregistry הפנימי.</div>
+    </details><details>
+      <summary>מה דרישות ה-GPU המינימליות?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> NVIDIA GPU nodes עם NVIDIA operator על RHOCP. Granite 8B ≈ 20GB VRAM. מודלים גדולים → multi-GPU. CPU-only = לא מתאים לייצור.</div>
+    </details><details>
+      <summary>איך AuthN שונה ב-On-Prem?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> SaaS: IBM IAM + API key. On-Prem: LDAP / SAML ארגוני מול Bob Gateway Pod. אין שימוש ב-IBM Cloud IAM.</div>
+    </details></div>
+        </section>
+
+        <section class="section">
+          <h2>סיכום</h2>
+          <div class="summary-box">
+            <ul><li>Bob On-Prem = CPD + watsonx.ai + OpenShift — אפס egress.</li><li>GPU nodes עם NVIDIA operator — דרישת חובה.</li><li>Private model registry — pull פעם אחת, serve פנימי.</li><li>AuthN/AuthZ: LDAP/SAML ארגוני, לא IBM IAM.</li><li>Audit logs → SIEM פנימי — compliance מלא.</li><li>Data residency מוחלט: כל prompt ו-completion נשאר ב-datacenter.</li></ul>
+          </div>
+        </section>
+      </main>
+
+      <nav class="chapter-nav" aria-label="ניווט בין פרקים">
+        <a class="prev" href="chapter-33.html"><span class="nav-label">פרק קודם</span><span class="nav-title">ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</span></a>
+        <a class="next" href="index.html"><span class="nav-label">סיום</span><span class="nav-title">חזרה לראשי</span></a>
+      </nav>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <p><strong>אבי ויזל</strong> · IBM Israel</p>
+          <p><a href="mailto:aviv@il.ibm.com">aviv@il.ibm.com</a> · 050-729-2012</p>
+          <p class="footer-meta">קורס IBM Bob · פרק 34 · 2026</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="assets/js/guide.js"></script>
+</body>
+</html>

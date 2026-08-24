@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>פרק 31: Bob ו-watsonx Orchestrate — ADK ופיתוח Agents | קורס IBM Bob</title>
+  <link rel="stylesheet" href="assets/css/guide.css">
+</head>
+<body data-chapter="31">
+  <div class="progress-track"><div class="progress-fill"></div></div>
+  <div class="layout">
+    <aside class="sidebar" aria-label="ניווט פרקים">
+      <div class="sidebar-brand">
+        <a href="index.html">מ־0 למוצר עם IBM Bob</a>
+        <small>34 פרקים · אבי ויזל</small>
+      </div>
+      <div class="nav-phase">יסודות</div>
+<a class="nav-link" href="chapter-01.html"><span class="nav-num">1</span>מהי מערכת תוכנה?</a>
+<a class="nav-link" href="chapter-02.html"><span class="nav-num">2</span>סביבת העבודה של המפתח</a>
+<a class="nav-link" href="chapter-03.html"><span class="nav-num">3</span>Git ורשת הביטחון</a>
+<a class="nav-link" href="chapter-04.html"><span class="nav-num">4</span>יסודות תכנות ללא עומס תחבירי</a>
+<div class="nav-phase">עבודה עם Bob</div>
+<a class="nav-link" href="chapter-05.html"><span class="nav-num">5</span>Bob כשותף למחזור חיי הפיתוח</a>
+<a class="nav-link" href="chapter-06.html"><span class="nav-num">6</span>מצבי Ask, Plan ו-Agent</a>
+<a class="nav-link" href="chapter-07.html"><span class="nav-num">7</span>כתיבת הנחיות יעילות ל-Bob</a>
+<a class="nav-link" href="chapter-08.html"><span class="nav-num">8</span>Context, /init ו-AGENTS.md</a>
+<a class="nav-link" href="chapter-09.html"><span class="nav-num">9</span>גבולות גישה והרשאות</a>
+<a class="nav-link" href="chapter-10.html"><span class="nav-num">10</span>Rules, Custom Modes וסטנדרטיזציה</a>
+<div class="nav-phase">מוצר ותכנון</div>
+<a class="nav-link" href="chapter-11.html"><span class="nav-num">11</span>Product Intent ו-Mini PRD</a>
+<a class="nav-link" href="chapter-12.html"><span class="nav-num">12</span>Stories, קריטריוני קבלה ו-Vertical Slice</a>
+<a class="nav-link" href="chapter-13.html"><span class="nav-num">13</span>תכנון עם Plan Mode</a>
+<a class="nav-link" href="chapter-14.html"><span class="nav-num">14</span>מימוש Agentic באיטרציות</a>
+<div class="nav-phase">בניית Capstone</div>
+<a class="nav-link" href="chapter-15.html"><span class="nav-num">15</span>HTML, CSS וחוויית משתמש</a>
+<a class="nav-link" href="chapter-16.html"><span class="nav-num">16</span>JavaScript ופיתוח מבוסס רכיבים</a>
+<a class="nav-link" href="chapter-17.html"><span class="nav-num">17</span>Backend ו-API</a>
+<a class="nav-link" href="chapter-18.html"><span class="nav-num">18</span>מסד נתונים ושכבת מידע</a>
+<a class="nav-link" href="chapter-19.html"><span class="nav-num">19</span>Full Stack, זהות והרשאות</a>
+<div class="nav-phase">AI וכלים</div>
+<a class="nav-link" href="chapter-20.html"><span class="nav-num">20</span>API של מודל AI</a>
+<a class="nav-link" href="chapter-21.html"><span class="nav-num">21</span>אמינות, Grounding ו-RAG</a>
+<a class="nav-link" href="chapter-22.html"><span class="nav-num">22</span>MCP, כלים ו-Workflows</a>
+<a class="nav-link" href="chapter-23.html"><span class="nav-num">23</span>Skills ו-Subagents</a>
+<div class="nav-phase">איכות ותפעול</div>
+<a class="nav-link" href="chapter-24.html"><span class="nav-num">24</span>Debugging שיטתי עם Bob</a>
+<a class="nav-link" href="chapter-25.html"><span class="nav-num">25</span>בדיקות ו-Code Review</a>
+<a class="nav-link" href="chapter-26.html"><span class="nav-num">26</span>Secure by Design עם Bob</a>
+<a class="nav-link" href="chapter-27.html"><span class="nav-num">27</span>ארכיטקטורה, פריסה ותפעול</a>
+<a class="nav-link" href="chapter-28.html"><span class="nav-num">28</span>עלויות, ממשל והעברת מוצר</a>
+<div class="nav-phase">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</div>
+<a class="nav-link" href="chapter-29.html"><span class="nav-num">29</span>Bob ו-IBM i — Premium Package</a>
+<a class="nav-link" href="chapter-30.html"><span class="nav-num">30</span>Bob ו-IBM Z — Z Understand וקוד Mainframe</a>
+<a class="nav-link active" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
+<a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
+<a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+    </aside>
+    <div class="main-column">
+      <header class="chapter-header">
+        <div class="chapter-meta">
+          <span class="badge badge-blue">פרק 31 מתוך 34</span>
+          <span class="badge badge-teal">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</span>
+          <span class="badge">55 דק'</span>
+        </div>
+        <h1>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</h1>
+        <p class="subtitle">בניית agents עצמאיים עם ADK ופריסה ל-Orchestrate</p>
+      </header>
+      <main class="content">
+        <section class="section">
+          <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
+          <div class="card card-goal"><p><strong>בסוף הפרק:</strong> בניית agents עצמאיים עם ADK ופריסה ל-Orchestrate</p></div>
+        </section>
+
+        <section class="section">
+          <h2>מבוא</h2>
+          <p>watsonx Orchestrate היא פלטפורמת agents של IBM — כל agent הוא יחידה עצמאית עם כלים (tools), זיכרון ומודל LLM. ADK (Agent Development Kit) הוא ה-Python SDK לבניית agents ב-code ופריסתם ל-Orchestrate. Bob הוא השותף הטבעי: Plan מתכנן את ה-topology, Agent כותב את ה-tools, ו-ADK CLI פורס לפלטפורמה.</p>
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-concepts"><span class="dot"></span>מושגי מפתח</div>
+          <p class="concept-hint">רחפו מעל שם המושג (או לחצו במסך מגע) לפירוט: מבוא, משמעות וכוונה.</p>
+  <div class="concept-grid"><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-31-0">
+        watsonx Orchestrate Agent
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-31-0" role="tooltip" hidden>
+        <p class="popup-kicker">watsonx Orchestrate Agent</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>watsonx Orchestrate Agent</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>יחידה עצמאית: LLM + tools + memory + identity. מופיע ב-Agent Catalog ויכול לקבל הפניות מ-agents אחרים.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לבלבל בין Bob Agent Mode (מצב IDE) לבין Orchestrate Agent (יחידה פרוסה בפלטפורמה).</p>
+      </div>
+      <p>יחידה עצמאית: LLM + tools + memory + identity. מופיע ב-Agent Catalog ויכול לקבל הפניות מ-agents אחרים.</p>
+      <div class="example"><strong>דוגמה:</strong> agent <strong><em>TaskReviewer</em></strong> עם tool לקריאת Jira ו-tool לכתיבת דו&quot;ח</div>
+      <div class="pitfall"><strong>זהירות:</strong> לבלבל בין Bob Agent Mode (מצב IDE) לבין Orchestrate Agent (יחידה פרוסה בפלטפורמה).</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-31-1">
+        ADK — Agent Development Kit
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-31-1" role="tooltip" hidden>
+        <p class="popup-kicker">ADK — Agent Development Kit</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>ADK — Agent Development Kit</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>Python SDK רשמי להגדרת agents, tools ו-multi-agent orchestrations בקוד, ופריסה ל-Orchestrate.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לכתוב tool לוגיקה ישירות ב-agent definition — tool חייב להיות פונקציה נפרדת מ-decorated.</p>
+      </div>
+      <p>Python SDK רשמי להגדרת agents, tools ו-multi-agent orchestrations בקוד, ופריסה ל-Orchestrate.</p>
+      <div class="example"><strong>דוגמה:</strong> @tool def get_open_tasks(): ... — decorator שהופך פונקציה ל-tool</div>
+      <div class="pitfall"><strong>זהירות:</strong> לכתוב tool לוגיקה ישירות ב-agent definition — tool חייב להיות פונקציה נפרדת מ-decorated.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-31-2">
+        Skill
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-31-2" role="tooltip" hidden>
+        <p class="popup-kicker">Skill</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Skill</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>יכולת קריאה (callable capability) שנחשפת ל-agent: REST API, AppConnect flow, Python function, או Orchestrate native integration.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — skill בלי schema ברור — agent לא יודע מתי להפעיל אותו.</p>
+      </div>
+      <p>יכולת קריאה (callable capability) שנחשפת ל-agent: REST API, AppConnect flow, Python function, או Orchestrate native integration.</p>
+      <div class="example"><strong>דוגמה:</strong> skill <strong><em>CreateTask</em></strong> = POST /api/tasks עם schema מוגדר</div>
+      <div class="pitfall"><strong>זהירות:</strong> skill בלי schema ברור — agent לא יודע מתי להפעיל אותו.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-31-3">
+        Multi-Agent Orchestration
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-31-3" role="tooltip" hidden>
+        <p class="popup-kicker">Multi-Agent Orchestration</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Multi-Agent Orchestration</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>Agent אחד (orchestrator) מנתב עבודה ל-agents מומחים לפי intent. כל sub-agent אחראי על domain.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — orchestrator שמכיל כל הלוגיקה — שוברים isolation ומקשים test.</p>
+      </div>
+      <p>Agent אחד (orchestrator) מנתב עבודה ל-agents מומחים לפי intent. כל sub-agent אחראי על domain.</p>
+      <div class="example"><strong>דוגמה:</strong> OrchestratorAgent → TaskAgent | NotificationAgent | ReportAgent</div>
+      <div class="pitfall"><strong>זהירות:</strong> orchestrator שמכיל כל הלוגיקה — שוברים isolation ומקשים test.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-31-4">
+        ADK CLI
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-31-4" role="tooltip" hidden>
+        <p class="popup-kicker">ADK CLI</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>ADK CLI</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>כלי שורת פקודה לפריסה, בדיקה וניהול agents ב-Orchestrate: wxo agent deploy | skill publish | agent test.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — פריסה ישירה ל-production בלי test ב-local ADK server.</p>
+      </div>
+      <p>כלי שורת פקודה לפריסה, בדיקה וניהול agents ב-Orchestrate: wxo agent deploy | skill publish | agent test.</p>
+      <div class="example"><strong>דוגמה:</strong> wxo agent deploy --file agent.yaml --env production</div>
+      <div class="pitfall"><strong>זהירות:</strong> פריסה ישירה ל-production בלי test ב-local ADK server.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-31-5">
+        Agent Catalog
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-31-5" role="tooltip" hidden>
+        <p class="popup-kicker">Agent Catalog</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Agent Catalog</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>רגיסטרי של agents פרוסים שניתן לגלות ולהפנות מ-agents אחרים בפלטפורמה.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — שני agents עם שמות דומים ב-catalog — orchestrator בוחר את הלא נכון.</p>
+      </div>
+      <p>רגיסטרי של agents פרוסים שניתן לגלות ולהפנות מ-agents אחרים בפלטפורמה.</p>
+      <div class="example"><strong>דוגמה:</strong> orchestrator מחפש <strong><em>TaskAgent</em></strong> ב-catalog לפי capability tag</div>
+      <div class="pitfall"><strong>זהירות:</strong> שני agents עם שמות דומים ב-catalog — orchestrator בוחר את הלא נכון.</div>
+    </article></div>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-analogy"><span class="dot"></span>משל מהעולם האמיתי</div>
+          <div class="card card-analogy"><p>Agent אחד ענק עם גישה לכל הtools מייצר coupling: שגיאה בlogic אחת גורמת לתקלה בכל שאר הפעולות, וקשה לdebug. Specialist agents — כל אחד עם tool מינימלי — מאפשרים isolation, testing עצמאי ורי-פריסה של agent בודד בלי לפגוע בשאר.</p></div>
+          <p><strong>שאלות לחשיבה:</strong> ב-TaskFlow: אילו agents נדרשים? מה ה-tool של כל אחד? מי ה-orchestrator?</p>
+        </section>
+
+        <section class="section"><h2>תרשים זרימה</h2><div class="flow-diagram"><div class="flow-node primary">Bob IDE + ADK</div><span class="flow-arrow">→</span><div class="flow-node secondary">wxo CLI deploy</div><span class="flow-arrow">→</span><div class="flow-node">Orchestrate Platform</div><span class="flow-arrow">→</span><div class="flow-node storage">Agent Catalog</div></div>
+<div class="flow-diagram" style="margin-top:0.5rem"><div class="flow-node primary">User / App</div><span class="flow-arrow">→</span><div class="flow-node secondary">Orchestrator Agent</div><span class="flow-arrow">→</span><div class="flow-node">Specialist Agents</div><span class="flow-arrow">→</span><div class="flow-node storage">Tools / Skills / APIs</div></div>
+<p style="font-size:0.85rem;color:var(--ink-secondary);margin-top:0.25rem">Bob עוזר בשלב הפיתוח. ADK CLI פורס. Orchestrate מריץ בפרודקשן.</p></section>
+
+        <section class="section">
+          <div class="section-label label-bob"><span class="dot"></span>עבודה עם IBM Bob</div>
+          <div class="mode-row"><span class="mode-pill mode-ask">Ask</span><span class="mode-pill mode-plan">Plan</span><span class="mode-pill mode-agent">Agent</span></div>
+          <p>Ask להבנת Orchestrate topology → Plan לארכיטקטורת agents ו-tools → Agent לכתיבת Python tools ו-YAML + deploy.</p>
+          <h3>Prompt לדוגמה</h3>
+          <pre class="prompt">In Plan mode: design a multi-agent system for TaskFlow. Define: orchestrator agent, specialist agents (task, notification, report), tools per agent, skill schemas. No code yet.</pre>
+          <p><strong>למה זה עובד:</strong> Topology Plan לפני קוד — agents הם microservices. ארכיטקטורה שגויה יקרה לתקן.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-warning"><span class="dot"></span>טעות נפוצה</div>
+          <div class="card card-warning">
+            <p><strong>לא:</strong> לכתוב agent אחד ענק עם כל הלוגיקה.</p>
+            <p><strong>כן:</strong> orchestrator קטן + specialist agents עם tool אחד-שניים כל אחד.</p>
+          </div>
+          <div class="compare-grid">
+        <div class="compare-bad"><div class="compare-label">Prompt חלש</div><pre class="prompt">Build me a watsonx Orchestrate agent for TaskFlow</pre></div>
+        <div class="compare-good"><div class="compare-label">Prompt חזק</div><pre class="prompt">Context: @docs/taskflow-api.md
+Goal: Define ADK agent <strong><em>TaskAgent</em></strong> with two tools: get_open_tasks and create_task
+Constraints: use ADK Python SDK, tools must be pure functions, no side-effects in agent init
+AC: wxo agent test passes locally before deploy</pre></div>
+      </div>
+        </section>
+
+        <section class="section">
+      <div class="section-label label-deep"><span class="dot"></span>מבנה ADK Project עם AGENTS.md</div>
+      <div class="card card-deep"><pre class="code-block"># AGENTS.md — watsonx Orchestrate / ADK Project
+## Platform: watsonx Orchestrate (SaaS or CPD)
+## SDK: ibm-watsonx-orchestrate-adk (Python 3.11+)
+## CLI: wxo (agent deploy | skill publish | agent test | agent logs)
+## Project structure:
+#   agents/          — agent YAML definitions
+#   tools/           — @tool decorated Python functions
+#   skills/          — skill schemas (OpenAPI or AppConnect)
+#   tests/           — wxo agent test cases
+## Rules:
+- Plan agent topology before any code (orchestrator + specialists)
+- Each tool = one pure function; no state in tools
+- wxo agent test must pass before wxo agent deploy
+- Never hardcode API keys — use Orchestrate secret manager
+- Deploy order: tools → skills → specialist agents → orchestrator
+## Refs:
+- ADK docs: developer.watson-orchestrate.ibm.com/docs/adk
+- Tutorial: developer.watson-orchestrate.ibm.com/tutorials/advanced_tutorials</pre></div>
+    </section>
+
+        <section class="section">
+          <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
+          <ol class="steps"><li>התקינו ADK: pip install ibm-watsonx-orchestrate-adk.</li><li>Ask: בקשו מ-Bob להסביר את מבנה ADK project (agent.yaml + tools.py).</li><li>Plan: תכננו orchestrator + שני specialists ל-TaskFlow.</li><li>Agent: כתבו tool אחד עם @tool decorator — בדקו locally עם wxo agent test.</li><li>Deploy ל-staging: wxo agent deploy --env staging.</li></ol>
+        </section>
+
+        <section class="section">
+          <h2>תרגיל עצמאי</h2>
+          <p>הגדירו Agent Catalog entry ל-TaskAgent: שם, capabilities, tools, authentication.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-quiz"><span class="dot"></span>בדקו את עצמכם</div>
+          <div class="quiz"><details>
+      <summary>הבדל Agent ב-Bob לעומת Agent ב-Orchestrate?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> Bob Agent Mode = מצב IDE לכתיבת קוד. Orchestrate Agent = יחידה פרוסה עם LLM+tools שרצה בפרודקשן.</div>
+    </details><details>
+      <summary>למה @tool decorator?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> ADK רושם את הפונקציה ב-schema של ה-agent — הLLM יודע מתי ואיך להפעיל אותה.</div>
+    </details><details>
+      <summary>test לפני deploy?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> wxo agent test מריץ agent locally מול ADK dev server — בלי זה באגים מגיעים ישר לפרודקשן.</div>
+    </details></div>
+        </section>
+
+        <section class="section">
+          <h2>סיכום</h2>
+          <div class="summary-box">
+            <ul><li>ADK = Python SDK לפיתוח agents.</li><li>Plan topology לפני קוד.</li><li>Tool = פונקציה נפרדת עם @decorator.</li><li>test locally → deploy staging → production.</li></ul>
+          </div>
+        </section>
+      </main>
+
+      <nav class="chapter-nav" aria-label="ניווט בין פרקים">
+        <a class="prev" href="chapter-30.html"><span class="nav-label">פרק קודם</span><span class="nav-title">Bob ו-IBM Z — Z Understand וקוד Mainframe</span></a>
+        <a class="next" href="chapter-32.html"><span class="nav-label">פרק הבא</span><span class="nav-title">Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</span></a>
+      </nav>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <p><strong>אבי ויזל</strong> · IBM Israel</p>
+          <p><a href="mailto:aviv@il.ibm.com">aviv@il.ibm.com</a> · 050-729-2012</p>
+          <p class="footer-meta">קורס IBM Bob · פרק 31 · 2026</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="assets/js/guide.js"></script>
+</body>
+</html>

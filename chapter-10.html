@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>פרק 10: Rules, Custom Modes וסטנדרטיזציה | קורס IBM Bob</title>
+  <link rel="stylesheet" href="assets/css/guide.css">
+</head>
+<body data-chapter="10">
+  <div class="progress-track"><div class="progress-fill"></div></div>
+  <div class="layout">
+    <aside class="sidebar" aria-label="ניווט פרקים">
+      <div class="sidebar-brand">
+        <a href="index.html">מ־0 למוצר עם IBM Bob</a>
+        <small>34 פרקים · אבי ויזל</small>
+      </div>
+      <div class="nav-phase">יסודות</div>
+<a class="nav-link" href="chapter-01.html"><span class="nav-num">1</span>מהי מערכת תוכנה?</a>
+<a class="nav-link" href="chapter-02.html"><span class="nav-num">2</span>סביבת העבודה של המפתח</a>
+<a class="nav-link" href="chapter-03.html"><span class="nav-num">3</span>Git ורשת הביטחון</a>
+<a class="nav-link" href="chapter-04.html"><span class="nav-num">4</span>יסודות תכנות ללא עומס תחבירי</a>
+<div class="nav-phase">עבודה עם Bob</div>
+<a class="nav-link" href="chapter-05.html"><span class="nav-num">5</span>Bob כשותף למחזור חיי הפיתוח</a>
+<a class="nav-link" href="chapter-06.html"><span class="nav-num">6</span>מצבי Ask, Plan ו-Agent</a>
+<a class="nav-link" href="chapter-07.html"><span class="nav-num">7</span>כתיבת הנחיות יעילות ל-Bob</a>
+<a class="nav-link" href="chapter-08.html"><span class="nav-num">8</span>Context, /init ו-AGENTS.md</a>
+<a class="nav-link" href="chapter-09.html"><span class="nav-num">9</span>גבולות גישה והרשאות</a>
+<a class="nav-link active" href="chapter-10.html"><span class="nav-num">10</span>Rules, Custom Modes וסטנדרטיזציה</a>
+<div class="nav-phase">מוצר ותכנון</div>
+<a class="nav-link" href="chapter-11.html"><span class="nav-num">11</span>Product Intent ו-Mini PRD</a>
+<a class="nav-link" href="chapter-12.html"><span class="nav-num">12</span>Stories, קריטריוני קבלה ו-Vertical Slice</a>
+<a class="nav-link" href="chapter-13.html"><span class="nav-num">13</span>תכנון עם Plan Mode</a>
+<a class="nav-link" href="chapter-14.html"><span class="nav-num">14</span>מימוש Agentic באיטרציות</a>
+<div class="nav-phase">בניית Capstone</div>
+<a class="nav-link" href="chapter-15.html"><span class="nav-num">15</span>HTML, CSS וחוויית משתמש</a>
+<a class="nav-link" href="chapter-16.html"><span class="nav-num">16</span>JavaScript ופיתוח מבוסס רכיבים</a>
+<a class="nav-link" href="chapter-17.html"><span class="nav-num">17</span>Backend ו-API</a>
+<a class="nav-link" href="chapter-18.html"><span class="nav-num">18</span>מסד נתונים ושכבת מידע</a>
+<a class="nav-link" href="chapter-19.html"><span class="nav-num">19</span>Full Stack, זהות והרשאות</a>
+<div class="nav-phase">AI וכלים</div>
+<a class="nav-link" href="chapter-20.html"><span class="nav-num">20</span>API של מודל AI</a>
+<a class="nav-link" href="chapter-21.html"><span class="nav-num">21</span>אמינות, Grounding ו-RAG</a>
+<a class="nav-link" href="chapter-22.html"><span class="nav-num">22</span>MCP, כלים ו-Workflows</a>
+<a class="nav-link" href="chapter-23.html"><span class="nav-num">23</span>Skills ו-Subagents</a>
+<div class="nav-phase">איכות ותפעול</div>
+<a class="nav-link" href="chapter-24.html"><span class="nav-num">24</span>Debugging שיטתי עם Bob</a>
+<a class="nav-link" href="chapter-25.html"><span class="nav-num">25</span>בדיקות ו-Code Review</a>
+<a class="nav-link" href="chapter-26.html"><span class="nav-num">26</span>Secure by Design עם Bob</a>
+<a class="nav-link" href="chapter-27.html"><span class="nav-num">27</span>ארכיטקטורה, פריסה ותפעול</a>
+<a class="nav-link" href="chapter-28.html"><span class="nav-num">28</span>עלויות, ממשל והעברת מוצר</a>
+<div class="nav-phase">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</div>
+<a class="nav-link" href="chapter-29.html"><span class="nav-num">29</span>Bob ו-IBM i — Premium Package</a>
+<a class="nav-link" href="chapter-30.html"><span class="nav-num">30</span>Bob ו-IBM Z — Z Understand וקוד Mainframe</a>
+<a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
+<a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
+<a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+    </aside>
+    <div class="main-column">
+      <header class="chapter-header">
+        <div class="chapter-meta">
+          <span class="badge badge-blue">פרק 10 מתוך 34</span>
+          <span class="badge badge-teal">עבודה עם Bob</span>
+          <span class="badge">30 דק'</span>
+        </div>
+        <h1>Rules, Custom Modes וסטנדרטיזציה</h1>
+        <p class="subtitle">כללים עקביים לכל הפרויקט</p>
+      </header>
+      <main class="content">
+        <section class="section">
+          <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
+          <div class="card card-goal"><p><strong>בסוף הפרק:</strong> כללים עקביים לכל הפרויקט</p></div>
+        </section>
+
+        <section class="section">
+          <h2>מבוא</h2>
+          <p>Rules = התנהגות קבועה של Bob. Custom Modes = תפקידים (Reviewer, Planner). סטנדרט = פחות variance בין sessions. מבנה: .bob/rules/ לכל המצבים, .bob/rules-agent/ / rules-plan/ / rules-ask/ לכל מצב.</p>
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-concepts"><span class="dot"></span>מושגי מפתח</div>
+          <p class="concept-hint">רחפו מעל שם המושג (או לחצו במסך מגע) לפירוט: מבוא, משמעות וכוונה.</p>
+  <div class="concept-grid"><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-10-0">
+        Rules
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-10-0" role="tooltip" hidden>
+        <p class="popup-kicker">Rules</p>
+        <p class="popup-label">מבוא</p>
+        <p>בלי כללים קבועים כל שיחה מתחילה מאפס. Rules הם התנהגות גלובלית של Bob.</p>
+        <p class="popup-label">משמעות</p>
+        <p>הוראות קצרות שחלות תמיד: שפה, בדיקות חובה, סגנון commit, מה לא לגעת.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: מעט כללים שניתנים לבדיקה. מאה כללים סותרים מתעלמים מהם.</p>
+      </div>
+      <p>הוראות ב-.bob/rules/ — חלות על כל המצבים.</p>
+      <div class="example"><strong>דוגמה:</strong> עברית בתגובות</div>
+      <div class="pitfall"><strong>זהירות:</strong> 100 rules — conflict.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-10-1">
+        Custom Mode
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-10-1" role="tooltip" hidden>
+        <p class="popup-kicker">Custom Mode</p>
+        <p class="popup-label">מבוא</p>
+        <p>לא כל משימה צריכה את אותו <strong><em>Bob</em></strong>. Custom Mode הוא תפקיד עם הרשאות.</p>
+        <p class="popup-label">משמעות</p>
+        <p>מצב מותאם: למשל Reviewer שרק קורא ומעיר, או Planner בלי עריכה.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להגדיר תפקיד + scope. שם בלי גבולות הוא קישוט.</p>
+      </div>
+      <p>persona + הרשאות.</p>
+      <div class="example"><strong>דוגמה:</strong> Reviewer: read + comment</div>
+      <div class="pitfall"><strong>זהירות:</strong> mode בלי מטרה.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-10-2">
+        Convention
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-10-2" role="tooltip" hidden>
+        <p class="popup-kicker">Convention</p>
+        <p class="popup-label">מבוא</p>
+        <p>שני סגנונות באותו פרויקט עולים בזמן review. Convention מיישר קו.</p>
+        <p class="popup-label">משמעות</p>
+        <p>הסכמה על שמות, מבנה תיקיות, פורמט, ושפה — כדי ש-Bob לא ימציא סגנון.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לכתוב conventions ב-AGENTS.md ולדרוש עמידה בהם ב-Plan.</p>
+      </div>
+      <p>סגנון קוד אחיד.</p>
+      <div class="example"><strong>דוגמה:</strong> camelCase JS</div>
+      <div class="pitfall"><strong>זהירות:</strong> Bob ממציא סגנון.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-10-3">
+        Drift
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-10-3" role="tooltip" hidden>
+        <p class="popup-kicker">Drift</p>
+        <p class="popup-label">מבוא</p>
+        <p>הכללים נכתבו בינואר. באפריל ה-stack השתנה. Drift הוא הפער.</p>
+        <p class="popup-label">משמעות</p>
+        <p>סטייה בין מה שכתוב ב-rules/AGENTS לבין איך באמת עובדים בקוד.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לבדוק drift אחרי שינוי משמעותי, ולעדכן מסמכים לפני שהם מכשילים.</p>
+      </div>
+      <p>סטייה מהכללים.</p>
+      <div class="example"><strong>דוגמה:</strong> rules לא מעודכנות</div>
+      <div class="pitfall"><strong>זהירות:</strong> ignore drift.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-10-4">
+        Rule Quality
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-10-4" role="tooltip" hidden>
+        <p class="popup-kicker">Rule Quality</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Rule Quality</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>Rule טוב = ניתן לבדיקה, חל על כל session, לא סותר rule אחר.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — Rule ש-Bob לא יכול לאכוף — <strong><em>כתוב קוד נקי</em></strong> = לא testable ולא אכיף.</p>
+      </div>
+      <p>Rule טוב = ניתן לבדיקה, חל על כל session, לא סותר rule אחר.</p>
+      <div class="example"><strong>דוגמה:</strong> <strong><em>כל Agent iteration מסתיים ב-pytest</em></strong> — ניתן לבדוק</div>
+      <div class="pitfall"><strong>זהירות:</strong> Rule ש-Bob לא יכול לאכוף — <strong><em>כתוב קוד נקי</em></strong> = לא testable ולא אכיף.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-10-5">
+        Mode-specific Rules
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-10-5" role="tooltip" hidden>
+        <p class="popup-kicker">Mode-specific Rules</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Mode-specific Rules</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>Rules שחלות רק ב-mode מסוים: .bob/rules-agent/, rules-plan/, rules-ask/.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לשים rules ספציפיות ל-Agent ב-.bob/rules/ הכללי — חלות גם ב-Ask ומבלבלות.</p>
+      </div>
+      <p>Rules שחלות רק ב-mode מסוים: .bob/rules-agent/, rules-plan/, rules-ask/.</p>
+      <div class="example"><strong>דוגמה:</strong> rules-agent: <strong><em>הרץ tests לפני done</em></strong>. rules-ask: <strong><em>תמיד cite source</em></strong>.</div>
+      <div class="pitfall"><strong>זהירות:</strong> לשים rules ספציפיות ל-Agent ב-.bob/rules/ הכללי — חלות גם ב-Ask ומבלבלות.</div>
+    </article></div>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-analogy"><span class="dot"></span>משל מהעולם האמיתי</div>
+          <div class="card card-analogy"><p>Rules הן הגדרות התנהגות קבועות שחוסכות הוראות חוזרות בכל prompt. בלי rules — Bob ממציא סגנון, בוחר שפה ומחליט על convention בכל שיחה. יותר מ-10–15 rules מסותרות פוגעות: Bob מתעלם ממה שקבור בסוף הרשימה.</p></div>
+          <p><strong>שאלות לחשיבה:</strong> כתבו rule אחד ל-TaskFlow שיחסוך לכם הוראה חוזרת. בדקו: האם ה-rule testable? האם Bob יודע מתי הוא הפר אותו?</p>
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-bob"><span class="dot"></span>עבודה עם IBM Bob</div>
+          <div class="mode-row"><span class="mode-pill mode-plan">Plan</span></div>
+          <p>Rules קצרות, focused.</p>
+          <h3>Prompt לדוגמה</h3>
+          <pre class="prompt">Propose 5 rules for TaskFlow covering tests, commits, and scope. Do not create files yet.</pre>
+          <p><strong>למה זה עובד:</strong> Plan rules — לא spam.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-warning"><span class="dot"></span>טעות נפוצה</div>
+          <div class="card card-warning">
+            <p><strong>לא:</strong> 20 rules — ביניהן <strong><em>כתוב קוד מסודר</em></strong> ו-<strong><em>תמיד תסביר מה עשית</em></strong>. Bob מתעלם מהרשימה כולה.</p>
+            <p><strong>כן:</strong> 5 rules מדידות: <strong><em>Run pytest before done</em></strong>, <strong><em>No new Python packages without Ask first</em></strong>, <strong><em>Scope to named files only</em></strong>.</p>
+          </div>
+          
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
+          <ol class="steps"><li>כתבו 3 rules מדידות ל-TaskFlow.</li><li>הניחו rule שBob יפר — בדקו האם הוא מציין זאת.</li><li>עדכנו rule שלא עבד.</li><li>commitו rules עם הסבר למה כל rule נוספה.</li><li>הצלחה = כל rule שלכם ניתנת לבדיקה: אפשר לאמר <strong><em>כן/לא — הRule הושמר</em></strong>.</li></ol>
+        </section>
+
+        <section class="section">
+          <h2>תרגיל עצמאי</h2>
+          <p>Custom Mode <strong><em>QA</em></strong> — מה ההרשאות?</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-quiz"><span class="dot"></span>בדקו את עצמכם</div>
+          <div class="quiz"><details>
+      <summary>Rules vs AGENTS?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> AGENTS = מה הפרויקט; Rules = איך Bob מתנהג בו.</div>
+    </details><details>
+      <summary>Custom Mode?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> תפקיד + scope — לא רק שם.</div>
+    </details><details>
+      <summary>Drift?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> עדכון rules כש-stack משתנה.</div>
+    </details><details>
+      <summary>Rule שלא ניתן לאכוף — מה קורה?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> Bob מתעלם ממנה או מפרש לפי שיקול דעתו. Rule חייבת להיות בינארית — הושמרה / לא הושמרה.</div>
+    </details><details>
+      <summary>מה ההבדל בין .bob/rules/ לבין .bob/rules-agent/?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> rules/ = חל על כל mode. rules-agent/ = רק ב-Agent. rules שמוגבלות ל-Agent לא צריכות לטעון ב-Ask.</div>
+    </details></div>
+        </section>
+
+        <section class="section">
+          <h2>סיכום</h2>
+          <div class="summary-box">
+            <ul><li>Rules קצרות.</li><li>.bob/rules-agent/ rules-plan/ rules-ask/ — לכל מצב.</li><li>Conventions ב-AGENTS.</li><li>Review drift.</li></ul>
+          </div>
+        </section>
+      </main>
+
+      <nav class="chapter-nav" aria-label="ניווט בין פרקים">
+        <a class="prev" href="chapter-09.html"><span class="nav-label">פרק קודם</span><span class="nav-title">גבולות גישה והרשאות</span></a>
+        <a class="next" href="chapter-11.html"><span class="nav-label">פרק הבא</span><span class="nav-title">Product Intent ו-Mini PRD</span></a>
+      </nav>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <p><strong>אבי ויזל</strong> · IBM Israel</p>
+          <p><a href="mailto:aviv@il.ibm.com">aviv@il.ibm.com</a> · 050-729-2012</p>
+          <p class="footer-meta">קורס IBM Bob · פרק 10 · 2026</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="assets/js/guide.js"></script>
+</body>
+</html>

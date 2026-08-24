@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>פרק 33: ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows | קורס IBM Bob</title>
+  <link rel="stylesheet" href="assets/css/guide.css">
+</head>
+<body data-chapter="33">
+  <div class="progress-track"><div class="progress-fill"></div></div>
+  <div class="layout">
+    <aside class="sidebar" aria-label="ניווט פרקים">
+      <div class="sidebar-brand">
+        <a href="index.html">מ־0 למוצר עם IBM Bob</a>
+        <small>34 פרקים · אבי ויזל</small>
+      </div>
+      <div class="nav-phase">יסודות</div>
+<a class="nav-link" href="chapter-01.html"><span class="nav-num">1</span>מהי מערכת תוכנה?</a>
+<a class="nav-link" href="chapter-02.html"><span class="nav-num">2</span>סביבת העבודה של המפתח</a>
+<a class="nav-link" href="chapter-03.html"><span class="nav-num">3</span>Git ורשת הביטחון</a>
+<a class="nav-link" href="chapter-04.html"><span class="nav-num">4</span>יסודות תכנות ללא עומס תחבירי</a>
+<div class="nav-phase">עבודה עם Bob</div>
+<a class="nav-link" href="chapter-05.html"><span class="nav-num">5</span>Bob כשותף למחזור חיי הפיתוח</a>
+<a class="nav-link" href="chapter-06.html"><span class="nav-num">6</span>מצבי Ask, Plan ו-Agent</a>
+<a class="nav-link" href="chapter-07.html"><span class="nav-num">7</span>כתיבת הנחיות יעילות ל-Bob</a>
+<a class="nav-link" href="chapter-08.html"><span class="nav-num">8</span>Context, /init ו-AGENTS.md</a>
+<a class="nav-link" href="chapter-09.html"><span class="nav-num">9</span>גבולות גישה והרשאות</a>
+<a class="nav-link" href="chapter-10.html"><span class="nav-num">10</span>Rules, Custom Modes וסטנדרטיזציה</a>
+<div class="nav-phase">מוצר ותכנון</div>
+<a class="nav-link" href="chapter-11.html"><span class="nav-num">11</span>Product Intent ו-Mini PRD</a>
+<a class="nav-link" href="chapter-12.html"><span class="nav-num">12</span>Stories, קריטריוני קבלה ו-Vertical Slice</a>
+<a class="nav-link" href="chapter-13.html"><span class="nav-num">13</span>תכנון עם Plan Mode</a>
+<a class="nav-link" href="chapter-14.html"><span class="nav-num">14</span>מימוש Agentic באיטרציות</a>
+<div class="nav-phase">בניית Capstone</div>
+<a class="nav-link" href="chapter-15.html"><span class="nav-num">15</span>HTML, CSS וחוויית משתמש</a>
+<a class="nav-link" href="chapter-16.html"><span class="nav-num">16</span>JavaScript ופיתוח מבוסס רכיבים</a>
+<a class="nav-link" href="chapter-17.html"><span class="nav-num">17</span>Backend ו-API</a>
+<a class="nav-link" href="chapter-18.html"><span class="nav-num">18</span>מסד נתונים ושכבת מידע</a>
+<a class="nav-link" href="chapter-19.html"><span class="nav-num">19</span>Full Stack, זהות והרשאות</a>
+<div class="nav-phase">AI וכלים</div>
+<a class="nav-link" href="chapter-20.html"><span class="nav-num">20</span>API של מודל AI</a>
+<a class="nav-link" href="chapter-21.html"><span class="nav-num">21</span>אמינות, Grounding ו-RAG</a>
+<a class="nav-link" href="chapter-22.html"><span class="nav-num">22</span>MCP, כלים ו-Workflows</a>
+<a class="nav-link" href="chapter-23.html"><span class="nav-num">23</span>Skills ו-Subagents</a>
+<div class="nav-phase">איכות ותפעול</div>
+<a class="nav-link" href="chapter-24.html"><span class="nav-num">24</span>Debugging שיטתי עם Bob</a>
+<a class="nav-link" href="chapter-25.html"><span class="nav-num">25</span>בדיקות ו-Code Review</a>
+<a class="nav-link" href="chapter-26.html"><span class="nav-num">26</span>Secure by Design עם Bob</a>
+<a class="nav-link" href="chapter-27.html"><span class="nav-num">27</span>ארכיטקטורה, פריסה ותפעול</a>
+<a class="nav-link" href="chapter-28.html"><span class="nav-num">28</span>עלויות, ממשל והעברת מוצר</a>
+<div class="nav-phase">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</div>
+<a class="nav-link" href="chapter-29.html"><span class="nav-num">29</span>Bob ו-IBM i — Premium Package</a>
+<a class="nav-link" href="chapter-30.html"><span class="nav-num">30</span>Bob ו-IBM Z — Z Understand וקוד Mainframe</a>
+<a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
+<a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
+<a class="nav-link active" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+    </aside>
+    <div class="main-column">
+      <header class="chapter-header">
+        <div class="chapter-meta">
+          <span class="badge badge-blue">פרק 33 מתוך 34</span>
+          <span class="badge badge-teal">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</span>
+          <span class="badge">35 דק'</span>
+        </div>
+        <h1>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</h1>
+        <p class="subtitle">מה עובר על הקו, איפה המודלים רצים, ואיך להגן על IP</p>
+      </header>
+      <main class="content">
+        <section class="section">
+          <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
+          <div class="card card-goal"><p><strong>בסוף הפרק:</strong> מה עובר על הקו, איפה המודלים רצים, ואיך להגן על IP</p></div>
+        </section>
+
+        <section class="section">
+          <h2>מבוא</h2>
+          <p>Bob SaaS רץ על AWS + IBM Cloud בשלושה אזורים: ארה&quot;ב, אירופה ויפן. כל prompt עובר דרך שכבת AuthN/AuthZ, Bob Model Gateway ו-Metering לפני שמגיע למודל. Bob תומך במגוון LLMs — IBM Granite, Claude, Llama ועוד. להבין את ה-Data Flow אומר לדעת מה יוצא מה-IDE, מה נשמר, ומה לא.</p>
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-concepts"><span class="dot"></span>מושגי מפתח</div>
+          <p class="concept-hint">רחפו מעל שם המושג (או לחצו במסך מגע) לפירוט: מבוא, משמעות וכוונה.</p>
+  <div class="concept-grid"><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-33-0">
+        LLMs הזמינים ב-Bob
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-33-0" role="tooltip" hidden>
+        <p class="popup-kicker">LLMs הזמינים ב-Bob</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>LLMs הזמינים ב-Bob</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>Bob תומך במספר מודלים: IBM Granite דרך watsonx.ai; Anthropic Claude; Meta Llama; Mistral — דרך שכבת ה-inference.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — להניח שכל המודלים זמינים בכל region ובכל חבילה — הזמינות תלויה ב-entitlement ובאזור.</p>
+      </div>
+      <p>Bob תומך במספר מודלים: IBM Granite דרך watsonx.ai; Anthropic Claude; Meta Llama; Mistral — דרך שכבת ה-inference.</p>
+      <div class="example"><strong>דוגמה:</strong> Granite לקוד IBM ו-enterprise; Claude לניתוח ו-reasoning מורכב</div>
+      <div class="pitfall"><strong>זהירות:</strong> להניח שכל המודלים זמינים בכל region ובכל חבילה — הזמינות תלויה ב-entitlement ובאזור.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-33-1">
+        Regional Deployment
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-33-1" role="tooltip" hidden>
+        <p class="popup-kicker">Regional Deployment</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Regional Deployment</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>Bob SaaS פרוס בשלושה אזורים: US (AWS us-east-1/us-west-1 + IBM Cloud us-east), Europe (AWS eu-central-1 + IBM Cloud eu-de/eu-gb), Japan (AWS ap-northeast-1 + IBM Cloud jp-tok). הלקוח מתחבר לאזור הקרוב — לשמירת data residency.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — להניח שהנתונים עוברים לארה&quot;ב כברירת מחדל — יש לבחור אזור מפורשות בהגדרות.</p>
+      </div>
+      <p>Bob SaaS פרוס בשלושה אזורים: US (AWS us-east-1/us-west-1 + IBM Cloud us-east), Europe (AWS eu-central-1 + IBM Cloud eu-de/eu-gb), Japan (AWS ap-northeast-1 + IBM Cloud jp-tok). הלקוח מתחבר לאזור הקרוב — לשמירת data residency.</p>
+      <div class="example"><strong>דוגמה:</strong> לקוח אירופאי → endpoint EU → AWS eu-central-1 (Frankfurt) + IBM Cloud eu-de</div>
+      <div class="pitfall"><strong>זהירות:</strong> להניח שהנתונים עוברים לארה&quot;ב כברירת מחדל — יש לבחור אזור מפורשות בהגדרות.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-33-2">
+        Bob Model Gateway
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-33-2" role="tooltip" hidden>
+        <p class="popup-kicker">Bob Model Gateway</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Bob Model Gateway</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>שכבת routing בין ה-Client ל-LLMs. מטפל ב-AuthZ, Metering, feature flags ו-audit. הוא לא ה-LLM — הוא ה-broker שמנתב לכל מודל.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לבלבל בין Bob Model Gateway (IBM infra) לבין ה-LLM עצמו.</p>
+      </div>
+      <p>שכבת routing בין ה-Client ל-LLMs. מטפל ב-AuthZ, Metering, feature flags ו-audit. הוא לא ה-LLM — הוא ה-broker שמנתב לכל מודל.</p>
+      <div class="example"><strong>דוגמה:</strong> Bob IDE → TLS → Bob Model Gateway (IBM Cloud) → Granite / Claude / Llama → completion → IDE</div>
+      <div class="pitfall"><strong>זהירות:</strong> לבלבל בין Bob Model Gateway (IBM infra) לבין ה-LLM עצמו.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-33-3">
+        מה עובר על הקו
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-33-3" role="tooltip" hidden>
+        <p class="popup-kicker">מה עובר על הקו</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>מה עובר על הקו</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>Prompts + code snippets שנקראו + terminal output שצורף = inference payload. קוד שנשמר בדיסק, node_modules, .env = לא יוצא בלי @ מפורש.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — להניח שBob רואה את כל ה-repo — הוא רואה רק מה שנשלח בפועל.</p>
+      </div>
+      <p>Prompts + code snippets שנקראו + terminal output שצורף = inference payload. קוד שנשמר בדיסק, node_modules, .env = לא יוצא בלי @ מפורש.</p>
+      <div class="example"><strong>דוגמה:</strong> git diff שצורף ב-@ → יוצא ל-LLM. .env שב-.bobignore → לא יוצא לעולם</div>
+      <div class="pitfall"><strong>זהירות:</strong> להניח שBob רואה את כל ה-repo — הוא רואה רק מה שנשלח בפועל.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-33-4">
+        AuthN + AuthZ
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-33-4" role="tooltip" hidden>
+        <p class="popup-kicker">AuthN + AuthZ</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>AuthN + AuthZ</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>AuthN = SSO / API key. AuthZ = הרשאות per-tool ב-Harness. Metering = מדידת token usage לחיוב ו-governance.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לחשוב שRules ב-AGENTS.md = security enforcement. הם הכוונה — AuthZ ב-Harness היא האכיפה.</p>
+      </div>
+      <p>AuthN = SSO / API key. AuthZ = הרשאות per-tool ב-Harness. Metering = מדידת token usage לחיוב ו-governance.</p>
+      <div class="example"><strong>דוגמה:</strong> SSO ארגוני → Bob IDE → Harness מחליט אילו כלים מותרים → LLM inference → audit log</div>
+      <div class="pitfall"><strong>זהירות:</strong> לחשוב שRules ב-AGENTS.md = security enforcement. הם הכוונה — AuthZ ב-Harness היא האכיפה.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-33-5">
+        On-Prem / Air-Gap
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-33-5" role="tooltip" hidden>
+        <p class="popup-kicker">On-Prem / Air-Gap</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>On-Prem / Air-Gap</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>אותה ארכיטקטורה — endpoint inference הוא watsonx.ai פנימי (OpenShift) במקום inference בענן. תמונות קונטיינר מ-private registry. prompts לא יוצאים מהרשת.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לחשוב ש-air-gap = פחות יכולות. אותה לולאה, endpoint פנימי בלבד.</p>
+      </div>
+      <p>אותה ארכיטקטורה — endpoint inference הוא watsonx.ai פנימי (OpenShift) במקום inference בענן. תמונות קונטיינר מ-private registry. prompts לא יוצאים מהרשת.</p>
+      <div class="example"><strong>דוגמה:</strong> Bob IDE → enterprise Harness → watsonx.ai GPU nodes (OpenShift) — NO public egress</div>
+      <div class="pitfall"><strong>זהירות:</strong> לחשוב ש-air-gap = פחות יכולות. אותה לולאה, endpoint פנימי בלבד.</div>
+    </article></div>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-analogy"><span class="dot"></span>משל מהעולם האמיתי</div>
+          <div class="card card-analogy"><p>Bob שולח רק מה שנמצא בinference payload — קבצים שצורפו ב-@, טקסט שנכתב בprompt, ו-terminal output שנוסף. קוד שיושב בדיסק אבל לא צורף לא יוצא. .bobignore הוא ההגדרה המפורשת של <strong><em>לא לשלוח</em></strong> — בלי .bobignore, מידע רגיש עלול להגיע ל-LLM בלי כוונה דרך @ רחב.</p></div>
+          <p><strong>שאלות לחשיבה:</strong> עבור הפרויקט שלכם: איזה אזור נכון? איזה מודל? מה ב-.bobignore? מי מנהל את ה-AuthZ?</p>
+        </section>
+
+        <section class="section"><h2>תרשים זרימה</h2><div class="flow-diagram"><div class="flow-node primary">Bob IDE/Shell</div><span class="flow-arrow">TLS →</span><div class="flow-node secondary">Bob Model Gateway (IBM Cloud)</div><span class="flow-arrow">→</span><div class="flow-node">Granite · Claude · Llama · Mistral</div><span class="flow-arrow">→</span><div class="flow-node storage">Completion → IDE</div></div>
+<div class="flow-diagram" style="margin-top:0.5rem"><div class="flow-node primary" style="text-align:center"><strong>US</strong><br><small style="font-weight:400;font-size:0.75rem">us-east-1 · us-west-1<br>IBM Cloud us-east</small></div><span class="flow-arrow">|</span><div class="flow-node secondary" style="text-align:center"><strong>EU</strong><br><small style="font-weight:400;font-size:0.75rem">eu-central-1 · eu-west-1<br>eu-west-3 · eu-north-1<br>IBM Cloud eu-de · eu-gb</small></div><span class="flow-arrow">|</span><div class="flow-node storage" style="text-align:center"><strong>JP</strong><br><small style="font-weight:400;font-size:0.75rem">ap-northeast-1 (Tokyo)<br>ap-northeast-3 (Osaka)<br>IBM Cloud jp-tok</small></div></div>
+<p style="font-size:0.85rem;color:var(--ink-secondary);margin-top:0.25rem">Redis + IBM COS + Admin DB = תשתית אחסון. המודלים לא שומרים קוד.</p></section>
+
+        <section class="section">
+          <div class="section-label label-bob"><span class="dot"></span>עבודה עם IBM Bob</div>
+          <div class="mode-row"><span class="mode-pill mode-ask">Ask</span></div>
+          <p>Ask לבדיקת data flow ו-.bobignore לפני כל עבודה עם קוד רגיש.</p>
+          <h3>Prompt לדוגמה</h3>
+          <pre class="prompt">In Ask mode: read .bobignore and AGENTS.md. Verify that .env, secrets/, and *.key are excluded. List what would be sent to the LLM if I attach @src/. Do not change files.</pre>
+          <p><strong>למה זה עובד:</strong> Audit data flow לפני עבודה עם IP רגיש — מה Bob רואה = מה יוצא.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-warning"><span class="dot"></span>טעות נפוצה</div>
+          <div class="card card-warning">
+            <p><strong>לא:</strong> להניח שBob רואה את כל ה-repo ושומר קוד בענן.</p>
+            <p><strong>כן:</strong> רק מה שנשלח ב-@ או נקרא ע&quot;י tool יוצא לLLM. הגנה = .bobignore + AuthZ + data residency region.</p>
+          </div>
+          
+        </section>
+
+        <section class="section">
+      <div class="section-label label-deep"><span class="dot"></span>IBM Bob — LLMs ו-Regional Endpoints</div>
+      <div class="card card-deep"><p style="margin-bottom:0.75rem"><strong>מודלים זמינים ב-Bob (SaaS):</strong></p>
+<table style="width:100%;border-collapse:collapse;font-size:0.9rem;margin-bottom:1rem">
+<thead><tr style="border-bottom:2px solid var(--line)"><th style="text-align:right;padding:6px 8px">משפחה</th><th style="text-align:right;padding:6px 8px">מודלים</th><th style="text-align:right;padding:6px 8px">שימוש מומלץ</th></tr></thead>
+<tbody>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px"><strong>IBM Granite</strong></td><td style="padding:6px 8px">Granite</td><td style="padding:6px 8px">קוד IBM · enterprise · עברית</td></tr>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px"><strong>Anthropic Claude</strong></td><td style="padding:6px 8px">Claude</td><td style="padding:6px 8px">ניתוח · reasoning · טקסט ארוך</td></tr>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px"><strong>Meta Llama</strong></td><td style="padding:6px 8px">Llama</td><td style="padding:6px 8px">קוד כללי · open-weight</td></tr>
+<tr><td style="padding:6px 8px"><strong>Mistral</strong></td><td style="padding:6px 8px">Mistral</td><td style="padding:6px 8px">ניתוח · code generation</td></tr>
+</tbody>
+</table>
+<p style="margin-bottom:0.5rem"><strong>Regional Endpoints:</strong></p>
+<table style="width:100%;border-collapse:collapse;font-size:0.9rem">
+<thead><tr style="border-bottom:2px solid var(--line)"><th style="text-align:right;padding:6px 8px">Region</th><th style="text-align:right;padding:6px 8px">IBM Cloud</th><th style="text-align:right;padding:6px 8px">Inference (AWS)</th></tr></thead>
+<tbody>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px"><strong>US</strong></td><td style="padding:6px 8px">us-east</td><td style="padding:6px 8px">us-east-1 · us-west-1</td></tr>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px"><strong>Europe</strong></td><td style="padding:6px 8px">eu-de · eu-gb</td><td style="padding:6px 8px">eu-central-1 (Frankfurt) · eu-south-2 (Spain) · eu-west-1 (Ireland) · eu-west-3 (Paris) · eu-north-1 (Stockholm) · eu-south-1 (Milan)</td></tr>
+<tr><td style="padding:6px 8px"><strong>Japan</strong></td><td style="padding:6px 8px">jp-tok</td><td style="padding:6px 8px">ap-northeast-1 (Tokyo) · ap-northeast-3 (Osaka)</td></tr>
+</tbody>
+</table>
+<p style="margin-top:0.75rem;font-size:0.85rem">Infrastructure משותפת לכל region: Redis · IBM COS · Admin DB (Master + Read Replica). AuthN/AuthZ + Metering = IBM Cloud layer.</p></div>
+    </section>
+
+        <section class="section">
+          <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
+          <ol class="steps"><li>בדקו .bobignore — ודאו .env, secrets, *.pem חסומים.</li><li>Ask: בקשו מBob לרשום מה יישלח ל-LLM אם תצרפו @src/.</li><li>זהו את ה-region שהארגון שלכם משתמש בו — EU/US/JP.</li><li>בדקו שה-AuthZ settings מגבילים כלים מסוכנים (rm, deploy).</li></ol>
+        </section>
+
+        <section class="section">
+          <h2>תרגיל עצמאי</h2>
+          <p>כתבו .bobignore מלא לפרויקט TaskFlow + AGENTS.md section על data residency ו-model choice.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-quiz"><span class="dot"></span>בדקו את עצמכם</div>
+          <div class="quiz"><details>
+      <summary>אילו LLMs זמינים ב-Bob?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> IBM Granite (granite-3-8b-instruct ועוד), Anthropic Claude 3.5 Sonnet / Claude 3 Haiku, Meta Llama 3, Mistral Large. הזמינות תלויה ב-entitlement ובאזור.</div>
+    </details><details>
+      <summary>מה תפקיד Bob Model Gateway?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> Broker בין ה-IDE ל-LLMs — מנתב, מאמת (AuthZ), מודד (Metering) ומתעד (audit). הוא לא ה-LLM עצמו.</div>
+    </details><details>
+      <summary>הבדל AuthN ל-AuthZ ב-Bob?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> AuthN = מי אתה (SSO/API key). AuthZ = מה מותר לך (Harness per-tool permissions).</div>
+    </details><details>
+      <summary>Air-gap vs SaaS?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> אותה לולאה. SaaS = endpoint inference בענן. Air-gap = watsonx.ai פנימי על OpenShift. prompts לא עוזבים הרשת.</div>
+    </details></div>
+        </section>
+
+        <section class="section">
+          <h2>סיכום</h2>
+          <div class="summary-box">
+            <ul><li>LLMs: Granite · Claude · Llama · Mistral — לפי entitlement.</li><li>3 regions: US / EU / JP — data residency לפי צורך.</li><li>Model Gateway = broker, לא LLM.</li><li>.bobignore + AuthZ = הגנה אמיתית.</li></ul>
+          </div>
+        </section>
+      </main>
+
+      <nav class="chapter-nav" aria-label="ניווט בין פרקים">
+        <a class="prev" href="chapter-32.html"><span class="nav-label">פרק קודם</span><span class="nav-title">Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</span></a>
+        <a class="next" href="chapter-34.html"><span class="nav-label">פרק הבא</span><span class="nav-title">ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</span></a>
+      </nav>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <p><strong>אבי ויזל</strong> · IBM Israel</p>
+          <p><a href="mailto:aviv@il.ibm.com">aviv@il.ibm.com</a> · 050-729-2012</p>
+          <p class="footer-meta">קורס IBM Bob · פרק 33 · 2026</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="assets/js/guide.js"></script>
+</body>
+</html>

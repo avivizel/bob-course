@@ -1,0 +1,1292 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="חוברת הדרכה קצה־לקצה לעבודה נכונה, יעילה ובטוחה עם IBM Bob">
+  <title>IBM Bob — חוברת הדרכה קצה־לקצה למפתחים</title>
+  <style type="text/css">:root{--ink:#161616;--muted:#525252;--line:#d9d9d9;--soft:#f4f4f4;--blue:#0f62fe;--blue-dark:#0043ce;--teal:#005d5d;--warn:#fff8e1;--danger:#fff1f1;--ok:#defbe6;--code:#161616;--white:#fff;--radius:10px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:#f8f8f8;font-family:"IBM Plex Sans Hebrew","Noto Sans Hebrew",Arial,sans-serif;line-height:1.72;font-size:17px}body>header,body>nav,body>main,body>footer,body>section{max-width:1180px;margin-inline:auto}.page-columns{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:32px;align-items:start}.content{min-width:0;background:var(--white);padding:56px 68px;box-shadow:0 1px 4px #00000014}.toc-panel{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow:auto;background:var(--white);border:1px solid var(--line);padding:20px;border-radius:var(--radius);font-size:14px}.toc-panel h2{font-size:16px;margin:0 0 12px;border:0;padding:0}.toc-panel ul{padding-right:18px;margin:0}.toc-panel ul ul{padding-right:16px}.toc-panel li{margin:.35rem 0}.toc-panel a{text-decoration:none;color:#393939}.toc-panel a:hover{color:var(--blue);text-decoration:underline}.hero{max-width:none;background:linear-gradient(135deg,#001d6c,#0f62fe 72%,#1192e8);color:#fff;padding:60px max(5vw,24px);margin:0 0 28px}.hero-inner{max-width:1180px;margin:auto}.hero .eyebrow{letter-spacing:.04em;font-size:14px;font-weight:700;opacity:.9}.hero h1{font-size:clamp(2.2rem,5vw,4.2rem);line-height:1.1;margin:.35em 0 .25em;max-width:900px}.hero p{font-size:1.2rem;max-width:800px;margin:.4rem 0}.hero .meta{font-size:.95rem;opacity:.85;margin-top:28px}h1,h2,h3,h4{line-height:1.25;scroll-margin-top:24px}h2{font-size:2rem;margin:2.7rem 0 1rem;border-bottom:2px solid var(--ink);padding-bottom:.45rem}h3{font-size:1.42rem;margin:2rem 0 .8rem;color:#262626}h4{font-size:1.1rem;margin:1.5rem 0 .5rem}p{margin:.75rem 0}a{color:var(--blue-dark);text-underline-offset:3px}blockquote{margin:1.2rem 0;padding:16px 20px;border-right:5px solid var(--blue);background:#edf5ff;color:#001141}blockquote p{margin:0}ul,ol{padding-right:1.5rem}li{margin:.35rem 0}table{width:100%;border-collapse:collapse;margin:1.4rem 0;font-size:.95rem;display:block;overflow-x:auto}thead{background:#262626;color:#fff}th,td{padding:12px 14px;border:1px solid var(--line);text-align:right;vertical-align:top;min-width:130px}tbody tr:nth-child(even){background:#f7f7f7}code{direction:ltr;unicode-bidi:embed;font-family:"IBM Plex Mono",Consolas,monospace;background:#e8e8e8;padding:.12em .32em;border-radius:4px;font-size:.9em}pre{direction:ltr;text-align:left;background:var(--code);color:#f4f4f4;border-radius:8px;padding:18px 20px;overflow:auto;line-height:1.55;font-size:.9rem;box-shadow:inset 0 0 0 1px #393939}pre code{background:transparent;padding:0;color:inherit;unicode-bidi:normal}.callout{border-right:5px solid var(--blue);background:#edf5ff;padding:16px 20px;margin:1.3rem 0}.callout.warning{border-color:#f1c21b;background:var(--warn)}.callout.critical{border-color:#da1e28;background:var(--danger)}.callout.success{border-color:#24a148;background:var(--ok)}.callout strong:first-child{display:block;margin-bottom:.3rem}.decision-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:1.5rem 0}.decision-card{border-top:4px solid var(--blue);background:var(--soft);padding:18px}.decision-card h3{font-size:1.05rem;margin:0 0 .5rem}.checklist{list-style:none;padding:0}.checklist li{position:relative;padding-right:30px;margin:.65rem 0}.checklist li:before{content:"□";position:absolute;right:0;color:var(--blue);font-size:1.3rem;line-height:1.2}.source-note{font-size:.9rem;color:var(--muted);border-top:1px solid var(--line);padding-top:18px;margin-top:48px}.skip-link{position:absolute;right:-9999px;top:0;background:#fff;color:#000;padding:10px;z-index:99}.skip-link:focus{right:10px}.print-only{display:none}@media(max-width:950px){.page-columns{display:block}.toc-panel{position:relative;max-height:none;margin:0 16px 18px}.content{padding:38px 28px;margin:0 12px}.decision-grid{grid-template-columns:1fr}.hero{padding-block:42px}}@media(max-width:560px){body{font-size:16px}.content{padding:28px 18px;margin:0}.hero h1{font-size:2.25rem}h2{font-size:1.65rem}th,td{padding:9px 10px}}@media print{body{background:#fff;font-size:11pt}.hero{background:#fff!important;color:#000;padding:20mm 0 10mm;border-bottom:3px solid #000}.toc-panel{display:none}.page-columns{display:block}.content{box-shadow:none;padding:0;max-width:none}.print-only{display:block}a{color:#000;text-decoration:none}a[href^="http"]:after{content:" (" attr(href) ")";font-size:8pt;word-break:break-all}pre{white-space:pre-wrap;box-shadow:none}h2{break-before:page}table,pre,blockquote,.callout{break-inside:avoid}}
+</style>
+<style>
+.arch { margin: 1.8rem 0 2.4rem; }
+.arch-legend { font-size: .86rem; color: var(--muted); margin: .4rem 0 1rem; }
+.desk {
+  background:
+    radial-gradient(1200px 180px at 50% 0, #d0e2ff55, transparent 60%),
+    linear-gradient(#ececec, #d8d8d8 38%, #c6c6c6);
+  border: 1px solid #b5b5b5;
+  border-radius: 14px;
+  padding: 18px 14px 16px;
+  box-shadow: inset 0 1px 0 #fff, 0 10px 24px #16161618;
+}
+.blocks { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+.machine {
+  background: #f4f4f4;
+  border: 1px solid #8d8d8d;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 16px #16161622, inset 0 0 0 1px #ffffff40;
+}
+.machine-bar {
+  display: flex; align-items: center; gap: 8px;
+  background: linear-gradient(#4c4c4c,#262626);
+  color: #e0e0e0; padding: 7px 11px; font-size: .72rem; letter-spacing: .05em;
+  font-family: "IBM Plex Mono", Consolas, monospace; direction: ltr; text-align: left;
+}
+.led { width: 8px; height: 8px; border-radius: 50%; background: #24a148; box-shadow: 0 0 7px #24a148; flex: none; }
+.led.amber { background: #f1c21b; box-shadow: 0 0 7px #f1c21b; }
+.led.blue { background: #78a9ff; box-shadow: 0 0 7px #4589ff; }
+.screen {
+  background: #0b1526;
+  color: #9ef0f0;
+  font-family: "IBM Plex Mono", Consolas, monospace;
+  font-size: .68rem;
+  line-height: 1.45;
+  direction: ltr; text-align: left;
+  padding: 10px 12px;
+  min-height: 78px;
+  box-shadow: inset 0 0 40px #0008;
+}
+.kb {
+  height: 10px;
+  background: repeating-linear-gradient(90deg, #393939 0 10px, #525252 10px 12px);
+  opacity: .85;
+}
+.machine-body { padding: 12px 14px; background: #fff; }
+.machine-body h4 { margin: 0 0 .4rem; font-size: 1rem; }
+.machine-body p { margin: .35rem 0 .2rem; font-size: .95rem; }
+.chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: .55rem; }
+.chip { font-size: .72rem; background: #e8e8e8; border: 1px solid #c6c6c6; padding: 3px 8px; border-radius: 4px; font-family: "IBM Plex Mono", Consolas, monospace; direction: ltr; }
+.path-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.path-col { border: 1px solid var(--line); border-radius: 12px; padding: 14px; background: #fafafa; }
+.path-col.saas { border-top: 5px solid #0f62fe; background: linear-gradient(#f4f8ff, #fafafa 42%); }
+.path-col.air { border-top: 5px solid #005d5d; background: linear-gradient(#e8f4f4, #fafafa 42%); }
+.path-col h4 { margin: 0 0 .6rem; }
+.rack {
+  background: #1a1a1a;
+  border: 3px solid #525252;
+  border-radius: 6px;
+  padding: 8px 8px 10px;
+  box-shadow: inset 0 0 0 2px #393939, 0 8px 16px #0006;
+}
+.bay {
+  display: flex; align-items: center; justify-content: space-between;
+  background: linear-gradient(#2e2e2e,#1f1f1f);
+  border: 1px solid #525252;
+  margin: 4px 0; padding: 6px 8px;
+  font-family: "IBM Plex Mono", Consolas, monospace;
+  font-size: .68rem; color: #c6c6c6; direction: ltr; text-align: left;
+}
+.bay .dot { width: 6px; height: 6px; border-radius: 50%; background: #24a148; }
+.bay.gpu { background: linear-gradient(#1c3d3d,#122828); color: #9ef0f0; }
+.cloud-row { display: flex; gap: 8px; margin: .6rem 0 .8rem; }
+.region {
+  flex: 1; background: #0f62fe; color: #fff; border-radius: 8px; padding: 10px 8px;
+  text-align: center; font-size: .78rem; box-shadow: 0 6px 12px #0f62fe33;
+}
+.region small { display: block; opacity: .85; font-size: .68rem; margin-top: 2px; }
+.fence {
+  border: 2px dashed #da1e28; background: #fff1f1; color: #750e13;
+  font-size: .8rem; padding: 8px 10px; margin: .5rem 0; text-align: center; font-weight: 700;
+}
+pre.flow {
+  direction: ltr; text-align: left;
+  font-family: "IBM Plex Mono", Consolas, monospace;
+  font-size: .76rem; line-height: 1.5;
+  background: #161616; color: #d4d4d4;
+  padding: 12px 14px; border-radius: 8px; margin: .7rem 0;
+  white-space: pre; overflow-x: auto;
+}
+pre.flow .ok { color: #42be65; }
+pre.flow .warn { color: #f1c21b; }
+pre.flow .dim { color: #8d8d8d; }
+.sys-row { display: grid; grid-template-columns: 1.15fr auto 1fr auto 1.2fr; gap: 8px; align-items: stretch; margin: 1rem 0; }
+.sys-arrow {
+  display: flex; align-items: center; justify-content: center;
+  font-size: .72rem; color: #fff; font-weight: 700;
+  background: #0f62fe; border-radius: 999px; padding: 6px 10px;
+  writing-mode: horizontal-tb; align-self: center; white-space: nowrap;
+  box-shadow: 0 4px 10px #0f62fe44;
+}
+.lpar {
+  background:
+    repeating-linear-gradient(90deg, #001d6c 0 18px, #002d9c 18px 20px),
+    #001d6c;
+  color: #fff; border-radius: 8px; padding: 12px;
+  box-shadow: 0 10px 20px #001d6c44, inset 0 0 0 2px #4589ff66;
+}
+.lpar h4 { color: #fff; margin: 0 0 .4rem; }
+.lpar .chip { background: #0f62fe; border-color: #4589ff; color: #fff; }
+.ibmi {
+  background: #0e0e0e;
+  color: #f4f4f4; border-radius: 8px; padding: 12px;
+  box-shadow: 0 10px 20px #0006, inset 0 0 0 2px #6f6f6f;
+  border-top: 6px solid #c6c6c6;
+}
+.ibmi h4 { color: #fff; margin: 0 0 .4rem; }
+.ibmi .chip { background: #393939; border-color: #6f6f6f; color: #f4f4f4; }
+.travel td:nth-child(2) { font-weight: 600; }
+.estate {
+  margin: 1.4rem 0;
+  background: linear-gradient(#d0d0d0 0 12px, #ececec 12px);
+  border: 1px solid #8d8d8d;
+  border-radius: 12px;
+  padding: 18px 14px 14px;
+  position: relative;
+}
+.estate-label {
+  position: absolute; top: -10px; right: 16px;
+  background: #161616; color: #fff; font-size: .72rem;
+  padding: 2px 10px; border-radius: 4px; letter-spacing: .04em;
+}
+.estate-grid { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 10px; }
+@media (max-width: 900px) {
+  .blocks, .path-grid, .sys-row, .estate-grid { grid-template-columns: 1fr; }
+  .sys-arrow { transform: none; min-height: 28px; }
+}
+@media print {
+  .desk, .path-col, .estate { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">דלג לתוכן</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">IBM BOB • DEVELOPER OPERATING GUIDE</div>
+      <h1>לעבוד עם IBM Bob כמו שותף פיתוח</h1>
+      <p>חוברת הדרכה פשוטה ומעשית: מהרעיון והמפרט, דרך תכנון ומימוש, ועד בדיקות, אבטחה, תיעוד וזיכרון פרויקט.</p>
+      <div class="meta">גרסה 2.0 · חוברת קצה־לקצה · נבדק מול תיעוד IBM Bob · 24 באוגוסט 2026</div>
+    </div>
+  </header>
+  <div class="page-columns">
+    <main id="main-content" class="content">
+      <div class="callout critical"><strong>עיקרון יסוד</strong>Bob הוא חסר־מצב בין שיחות. הקשר מתמשך חייב להישמר במקורות אמת מפורשים. אין לייחס ל־Bob מנגנון Auto Memory שאינו מתועד.</div>
+      <div class="decision-grid" aria-label="מפת החלטה מהירה">
+        <div class="decision-card"><h3>מידע על הפרויקט?</h3><p>שמור ב־<code>AGENTS.md</code>.</p></div>
+        <div class="decision-card"><h3>כלל התנהגות?</h3><p>שמור תחת <code>.bob/rules/</code>.</p></div>
+        <div class="decision-card"><h3>החלטה או לקח?</h3><p>שמור ב־<code>docs/bob-memory/</code> והפנה אליו.</p></div>
+      </div>
+      <div class="callout success"><strong>מסלול קריאה מומלץ</strong>אם זו הפעם הראשונה שלך עם Bob, התחל ב־<a href="#מסלול-קצה-לקצה">מסלול העבודה קצה־לקצה</a>. אחר כך קרא את <a href="#ארכיטקטורה-ואבני-בניין">ארכיטקטורה ואבני בניין</a> ואת <a href="#הקשר-בשיחה-מול-זיכרון-קבצים">הקשר בשיחה מול זיכרון קבצים</a>, ורק אז את הפרקים על <code>AGENTS.md</code>, Rules וזיכרון פרויקט.</div>
+
+      <h1 id="ארכיטקטורה-ואבני-בניין">ארכיטקטורה: אבני בניין אמיתיות</h1>
+      <p>Bob אינו ענן אחד שכותב קוד. ביום־יום אלה שלוש מכונות (או שלוש תוכניות על אותה מכונה) עם תפקידים שונים. ב־V2 IBM מפרידה במפורש בין <strong>Agent</strong> (חשיבה), <strong>Harness</strong> (תשתית, זהות, יומנים, מדיניות) ו־<strong>Clients</strong> (IDE, Shell).</p>
+      <p class="arch-legend">האיורים מתארים מחשב נייד, ארון שרתים, LPAR ומה באמת יוצא מהדיסק — לא תרשים קופסאות.</p>
+
+      <div class="arch desk">
+        <div class="blocks">
+          <article class="machine">
+            <div class="machine-bar"><span class="led"></span> WORKSTATION · Windows / macOS / Linux</div>
+            <div class="screen">C:\work\taskflow&gt; bob<br>Ask | Plan | Agent<br>workspace loaded · .bobignore on<br>pending: 1 diff approval</div>
+            <div class="kb" aria-hidden="true"></div>
+            <div class="machine-body">
+              <h4>Client — שולחן המפתח</h4>
+              <p>כאן רצים IBM Bob IDE או Bob Shell, עץ הפרויקט, Git, Terminal, ואישורי פעולה. הקבצים נשארים על הדיסק המקומי עד שאתם (או Agent מאושר) עורכים אותם.</p>
+              <div class="chip-row"><span class="chip">Bob IDE</span><span class="chip">Bob Shell</span><span class="chip">workspace/</span><span class="chip">MCP client</span><span class="chip">.bobignore</span></div>
+            </div>
+          </article>
+          <article class="machine">
+            <div class="machine-bar"><span class="led amber"></span> HARNESS · auth · audit · policy</div>
+            <div class="screen">session: aviv@il.ibm.com<br>policy: approvals=on<br>audit: write · tools: allowlist<br>bobalytics: ingest</div>
+            <div class="machine-body">
+              <h4>Harness — בקרת הריצה</h4>
+              <p>שכבת זהות, הרשאות, feature flags, טלמטריה ויומן. זו לא המודל. היא מחליטה אילו כלים מותר להפעיל ואיך מתועדת הפעולה — בלי קשר אם פתחתם IDE או Shell.</p>
+              <div class="chip-row"><span class="chip">SSO / API key</span><span class="chip">approvals</span><span class="chip">Bobalytics</span><span class="chip">audit trail</span></div>
+            </div>
+          </article>
+          <article class="machine">
+            <div class="machine-bar"><span class="led blue"></span> MODEL PLANE · inference GPU / API</div>
+            <div class="screen">POST /v1/chat/completions<br>model: granite / hosted mix<br>tokens in: prompt + snippets<br>tokens out: plan / patch</div>
+            <div class="machine-body">
+              <h4>Agent + LLM — מנוע החשיבה</h4>
+              <p>כאן רצה לולאת התכנון והטקסט: Prompt, הקשר שצורף, ותשובת המודל. המודל לא רואה את כל הדיסק — רק מה שה־Client שלח אחרי הרשאות ו־<code>.bobignore</code>.</p>
+              <div class="chip-row"><span class="chip">hosted models</span><span class="chip">watsonx.ai</span><span class="chip">TLS</span><span class="chip">token budget</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <h3 id="מה-נוסע-על-הקו">מה באמת נוסע על הקו</h3>
+      <table class="travel">
+        <thead><tr><th>רכיב</th><th>נשאר אצלכם</th><th>נשלח ל־LLM</th></tr></thead>
+        <tbody>
+          <tr><td>מאגר Git, <code>node_modules</code>, קבצי build</td><td>כן, על הדיסק</td><td>לא — אלא אם צורף במפורש או נקרא ככלי</td></tr>
+          <tr><td>Prompt, קטעי קוד ש־Bob קרא, פלט טרמינל שצורף</td><td>עותק מקומי בשיחה</td><td>כן — זה חומר ה־inference</td></tr>
+          <tr><td><code>.env</code>, מפתחות, PII</td><td>חייב ב־<code>.bobignore</code> + vault</td><td>אסור. אם הגיע ל־Prompt — זה אירוע אבטחה</td></tr>
+          <tr><td>פעולת עריכה / קומפילציה / SQL</td><td>רצה בתחנה או בשרת היעד (IBM i / z/OS)</td><td>המודל מקבל תיאור ותוצאה, לא את המכונה עצמה</td></tr>
+        </tbody>
+      </table>
+      <div class="callout warning"><strong>אל תבלבלו בין הקוד אצלכם לבין הקשר אצל המודל</strong>SaaS לא אומר שהריפו יושב בענן. הוא אומר ש־<em>הטקסט שהמודל רואה</em> יוצא מהתחנה אל נקודת inference מנוהלת. באוויר־פעור אותה לולאה רצה — רק שנקודת ה־inference נמצאת בחדר השרתים שלכם.</div>
+
+      <h3 id="saas-מול-onprem">SaaS מול On‑prem (אוויר־פעור)</h3>
+      <div class="path-grid">
+        <div class="path-col saas">
+          <h4>SaaS — IBM-hosted</h4>
+          <p>המפתח מחובר לאינטרנט הארגוני. Client מתחבר לשירות Bob באזור (ארה״ב, אירופה, יפן — לפי פריסת IBM). ה־Harness והמודלים רצים אצל IBM. קוד המקור נשאר במחשב או ב־Git הפנימי; ל־LLM יוצאים Prompts וקטעים שנקראו.</p>
+          <div class="cloud-row">
+            <div class="region">US region<small>Bob endpoint</small></div>
+            <div class="region">EU region<small>data residency</small></div>
+            <div class="region">JP region<small>data residency</small></div>
+          </div>
+          <pre class="flow"><span class="dim"># laptop on developer VLAN</span>
+Bob IDE  --TLS 1.2+-->  Bob regional endpoint
+                 |  SSO / API key
+                 v
+Harness (auth, policy, audit)
+                 |
+                 v
+<span class="ok">Model API</span>  (hosted models / watsonx)
+                 |
+                 v
+completion --> IDE  -->  you approve diff
+<span class="dim"># MCP local stdio stays on the laptop</span>
+<span class="dim"># remote MCP only if you add a SaaS server</span>
+<span class="dim"># watsonx MCP: DI_ENV_MODE=SaaS</span></pre>
+          <p>מתאים לצוותים שמותר להם לשלוח קטעי קוד לספק ענן עם אמנת עיבוד נתונים, הצפנה במעבר, ואזור שנבחר בגלל ריבונות נתונים.</p>
+        </div>
+        <div class="path-col air">
+          <h4>On‑prem / Air‑gapped</h4>
+          <p>אין מסלול לאינטרנט הציבורי. התחנה, ה־Harness בסביבה הארגונית, ו־<strong>watsonx.ai כתוכנה</strong> על OpenShift / IBM Software Hub יושבים ברשת המסווגת. תמונות קונטיינר מגיעות מ־private registry ששוקף מראש — לא מ־Docker Hub בזמן ריצה.</p>
+          <div class="fence">NO PUBLIC EGRESS · prompts stay inside the DC</div>
+          <div class="rack" aria-label="ארון שרתים פנימי">
+            <div class="bay">U01  private registry (mirrored images)<span class="dot"></span></div>
+            <div class="bay">U04  OpenShift / Software Hub control<span class="dot"></span></div>
+            <div class="bay gpu">U08  watsonx.ai inference · GPU<span class="dot"></span></div>
+            <div class="bay gpu">U09  watsonx.ai inference · GPU<span class="dot"></span></div>
+            <div class="bay">U14  internal CA / SSO<span class="dot"></span></div>
+          </div>
+          <pre class="flow"><span class="dim"># isolated DC | no public egress</span>
+Bob IDE  --private TLS-->  enterprise Harness
+                 |
+                 v
+<span class="ok">watsonx.ai inference</span>  (GPU nodes)
+                 ^
+                 |  models from private registry
+OpenShift cluster  (air-gap install)
+<span class="warn"># prompts never leave the perimeter</span>
+<span class="dim"># MCP: local process or internal host only</span>
+<span class="dim"># watsonx MCP: DI_ENV_MODE=cpd + CPD URL</span></pre>
+          <p>אותה לולאת Agent — ה־API הוא כתובת פנימית. GPU, מפתחות ולוגים נשארים אצל הארגון. חיבור IBM i / IBM Z נעשה ב־VLAN פנימי, לא דרך הענן הציבורי. התקנה כזו היא פרויקט תשתית (שיקוף תמונות, GPU, תעודות), לא סימון ב־IDE.</p>
+        </div>
+      </div>
+      <div class="callout"><strong>מה זה אומר בפועל לצוות</strong>בשני המצבים ה־Client רץ אצל המפתח והכלים (קובץ, טרמינל, MCP) רצים אצלכם או על השרת התפעולי. ההבדל הוא <em>איפה המודל מדבר</em>: endpoint של IBM בענן, או watsonx.ai מאחורי הפיירוול. חיבור watsonx MCP משתמש ב־<code>DI_ENV_MODE=SaaS</code> מול שירות מנוהל, או <code>DI_ENV_MODE=cpd</code> מול כתובת Cloud Pak / Software Hub, מפתח ושם משתמש.</div>
+
+      <h3 id="ibm-i-native">IBM i — Native Connection, לא ייצוא־ייבוא</h3>
+      <p>Premium Package for i מחבר את Bob לסביבת RPG/IBM i עצמה. היכולת המרכזית היא <strong>Native Connection</strong>: קריאת source members מ־QSYS, קומפילציה, SQL ובדיקות בזרימות IBM i — במקום הלולאה הישנה export → עריכה במחשב → import.</p>
+      <div class="sys-row" aria-label="זרימת IBM i">
+        <article class="machine">
+          <div class="machine-bar"><span class="led"></span> DEV PC · Bob IDE + Code for IBM i</div>
+          <div class="screen">LIB: TASKFLOW<br>QRPGLESRC / ORDENTR<br>compile *EVENTF · SQL preview</div>
+          <div class="machine-body">
+            <p>המפתח עובד ב־Ask/Plan/Agent. התוסף Code for IBM i מציג ספריות. ה־MCP client מדבר עם שרת כלים על IBM i.</p>
+            <div class="chip-row"><span class="chip">PP for i</span><span class="chip">SSH session</span><span class="chip">skills / RAG i</span></div>
+          </div>
+        </article>
+        <div class="sys-arrow" aria-hidden="true">SSH / MCP</div>
+        <article class="ibmi">
+          <h4>IBM i · PASE job</h4>
+          <p>IBM i MCP Server רץ כתהליך PASE ברקע, מתחבר ל־DB2 for i דרך Mapepire, וחושף שאילתות SQL ככלי MCP.</p>
+          <div class="chip-row"><span class="chip">ibmi-mcp-server</span><span class="chip">Mapepire</span><span class="chip">stdio / host</span></div>
+        </article>
+        <div class="sys-arrow" aria-hidden="true">SQL</div>
+        <article class="ibmi">
+          <h4>QSYS + DB2 for i</h4>
+          <p>Source physical files, RPG (fixed/free), DDS/DDL, נתונים חיים. Bob קורא members, מציע המרה ל־free-form, ו־SQL על נתונים אמיתיים — לא על עותק ישן במחשב נייד.</p>
+          <div class="chip-row"><span class="chip">QRPGLESRC</span><span class="chip">DB2 for i</span><span class="chip">compile / CALL</span></div>
+        </article>
+      </div>
+      <p>בסביבת SaaS ה־IDE עדיין אצל המפתח; החיבור ל־IBM i הוא לרשת הארגון (VPN או VLAN). באוויר־פעור אותו SSH/MCP נשאר פנימי, וה־LLM יושב על watsonx.ai בחדר השרתים — בלי לצאת לאינטרנט.</p>
+
+      <h3 id="ibm-z-understand">IBM Z — עובדות דטרמיניסטיות לפני המודל</h3>
+      <p>Premium Package for Z (PP4Z) מחליף את watsonx Code Assistant for Z ומכניס מומחיות COBOL/PL/I/HLASM, CICS, IMS, Db2 ו־JCL לתוך Bob. המודל לא מנחש את כל המיינפריים לתוך חלון הקשר. קודם נבנה מאגר ניתוח.</p>
+      <div class="sys-row" aria-label="זרימת IBM Z">
+        <article class="machine">
+          <div class="machine-bar"><span class="led"></span> DEV PC · Bob IDE + PP4Z</div>
+          <div class="screen">Z Architect | Z Code<br>who calls N991DATE?<br>grounded: 30 programs</div>
+          <div class="machine-body">
+            <p>Z Architect Mode לניתוח בלי שינוי קוד; Z Code Mode להסבר, refactor וסטנדרטים. Skills ו־workflows מגיעים עם החבילה, לא מגיליון ריק.</p>
+            <div class="chip-row"><span class="chip">Z Architect</span><span class="chip">Z Code</span><span class="chip">agents.md rules</span></div>
+          </div>
+        </article>
+        <div class="sys-arrow" aria-hidden="true">query MCP</div>
+        <article class="machine">
+          <div class="machine-bar"><span class="led amber"></span> Z UNDERSTAND · analysis server</div>
+          <div class="screen">scan: COBOL PL/I HLASM JCL<br>estate: 10k+ programs<br>query: CALLERS(N991DATE)=30</div>
+          <div class="machine-body">
+            <p>סורק COBOL, PL/I, Assembler, JCL, Control-M/TWS — אלפי תוכניות במקביל — למאגר יחסים שניתן לשאילתה. Bob כותב שאילתות למטא־דאטה במקום grep על 20MB קוד.</p>
+            <div class="chip-row"><span class="chip">call graph</span><span class="chip">data flow</span><span class="chip">data dictionary</span></div>
+          </div>
+        </article>
+        <div class="sys-arrow" aria-hidden="true">DBB / Debug</div>
+        <article class="lpar">
+          <h4>z/OS LPAR</h4>
+          <p>האחוזה החיה: CICS, IMS, Db2, batch. MCP לכלים מקוריים — Dependency Based Build, Z Code Scan, IBM Debug for z/OS — כדי שבילד ודיבאג ירוצו על z/OS, לא על סימולציה במחשב נייד.</p>
+          <div class="chip-row"><span class="chip">COBOL / PL/I</span><span class="chip">CICS · IMS · Db2</span><span class="chip">JCL</span></div>
+        </article>
+      </div>
+      <div class="callout success"><strong>למה זה לא תרשים</strong>במיינפריים שאלה כמו <strong><em>מי קורא ל־N991DATE</em></strong> נכשלת אם סומכים על המודל לבד (13, 29 או 31 תוכניות באותו יום). Z Understand מחזיר את המספר הדטרמיניסטי (למשל 30 קוראים) ואז המודל מסביר. זה החיבור האמיתי: <em>שאילתה למטא־דאטה, לא ניחוש מקור</em>.</div>
+      <p>PP4Z הוא add-on מנוהל מכירה למושב Bob, לא מוצר נפרד להורדה. אחרי שהמנהל מקצה entitlement, המצבים והכלים מופיעים ב־IDE. מול אוויר־פעור: שרת Z Understand ו־LPAR נשארים ברשת המסווגת; ה־LLM מסיק מול watsonx.ai פנימי על בסיס המטא־דאטה, לא מול API ציבורי.</p>
+
+      <div class="estate" aria-label="רצפת דאטה-סנטר ארגונית">
+        <span class="estate-label">ENTERPRISE FLOOR · same VLAN, two inference choices</span>
+        <div class="estate-grid">
+          <article class="machine">
+            <div class="machine-bar"><span class="led"></span> DEV FLOOR</div>
+            <div class="machine-body">
+              <p>מחשבים ניידים עם Bob IDE. Git פנימי. חיבור SSH ל־IBM i ו־TN3270 / MCP ל־z/OS.</p>
+            </div>
+          </article>
+          <article class="machine">
+            <div class="machine-bar"><span class="led blue"></span> INFERENCE · pick one</div>
+            <div class="machine-body">
+              <p><strong>SaaS:</strong> TLS לאזור IBM → מודלים מאוחסנים.<br><strong>Air-gap:</strong> TLS לארון OpenShift בחדר → GPU watsonx.ai, registry פרטי.</p>
+            </div>
+          </article>
+          <article class="machine">
+            <div class="machine-bar"><span class="led amber"></span> SYSTEMS OF RECORD</div>
+            <div class="machine-body">
+              <p>IBM i (QSYS, DB2 for i) ו־IBM Z (CICS, IMS, Db2). הכלים רצים שם. המודל מקבל תוצאות, לא את ה־LPAR.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <h1 id="כיצד-ibm-bob-זוכר-את-הפרויקט-שלך">כיצד IBM Bob זוכר את
+      הפרויקט שלך</h1>
+      <blockquote>
+      <p>מדריך מעשי ליצירת הקשר מתמשך ב־IBM Bob באמצעות
+      <code>AGENTS.md</code>, כללים מותאמים וקבצי ידע של הפרויקט.</p>
+      </blockquote>
+      <p>כל שיחה חדשה עם מודל שפה מתחילה עם חלון הקשר חדש. IBM Bob אינו
+      &quot;זוכר&quot; אוטומטית את כל מה שנאמר בשיחות קודמות. כדי לשמר ידע בין
+      שיחות, יש להכניס את המידע החשוב לקבצים שבוב טוען מחדש או יכול
+      לקרוא מתוך סביבת העבודה.</p>
+      <p>Bob מספק שלושה מנגנונים משלימים:</p>
+      <ol type="1">
+      <li><strong>קובצי <code>AGENTS.md</code></strong> — הקשר קבוע על
+      הפרויקט, הארכיטקטורה, הפקודות והכללים.</li>
+      <li><strong>Custom Rules</strong> — הוראות כלליות או תלויות־מצב
+      תחת <code>.bob/rules/</code>
+      ו־<code>.bob/rules-{mode}/</code>.</li>
+      <li><strong>קובצי ידע מנוהלים בפרויקט</strong> — החלטות, לקחים,
+      סטטוס ותיעוד שבוב קורא לפי דרישה או לפי הוראה
+      ב־<code>AGENTS.md</code>.</li>
+      </ol>
+      <h2 id="מה-bob-באמת-זוכר">מה Bob באמת זוכר</h2>
+      <table>
+      <thead>
+      <tr class="header">
+      <th>מנגנון</th>
+      <th>מי כותב</th>
+      <th>מה נשמר בו</th>
+      <th>היקף</th>
+      <th>מתי נטען</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="odd">
+      <td><code>AGENTS.md</code></td>
+      <td>המשתמש, הצוות או <code>/init</code></td>
+      <td>מבנה, טכנולוגיות, פקודות, מוסכמות וגבולות</td>
+      <td>גלובלי, פרויקט או תיקיית משנה</td>
+      <td>בתחילת שיחה או בעת עבודה בתיקייה רלוונטית</td>
+      </tr>
+      <tr class="even">
+      <td>Custom Rules</td>
+      <td>המשתמש או הצוות</td>
+      <td>סגנון קוד, בדיקות, אבטחה, תהליך עבודה והתנהגות</td>
+      <td>גלובלי, Workspace או מצב מסוים</td>
+      <td>אוטומטית לפי ההיקף והמצב</td>
+      </tr>
+      <tr class="odd">
+      <td>קובצי ידע בפרויקט</td>
+      <td>המשתמש, הצוות או Bob לפי הוראה מפורשת</td>
+      <td>החלטות, לקחים, סטטוס, מילון מונחים וקישורים</td>
+      <td>לפי מבנה שהצוות מגדיר</td>
+      <td>כאשר Bob מתבקש לקרוא אותם או כאשר <code>AGENTS.md</code> מפנה
+      אליהם</td>
+      </tr>
+      <tr class="even">
+      <td>היסטוריית הצ&#39;אט</td>
+      <td>Bob IDE/Shell</td>
+      <td>השיחה הנוכחית או משימה קודמת</td>
+      <td>שיחה/משימה</td>
+      <td>אינה תחליף להקשר קבוע בשיחה חדשה</td>
+      </tr>
+      </tbody>
+      </table>
+      <blockquote>
+      <p><strong>הבחנה חשובה:</strong> בתיעוד הרשמי שנבדק באוגוסט 2026
+      לא מתואר ב־Bob מנגנון זהה ל־Claude Code Auto Memory, אשר מחליט
+      בעצמו אילו העדפות ולקחים לשמור בקובצי זיכרון. ב־Bob נכון להתייחס
+      ל־<code>AGENTS.md</code>, לכללים ולקובצי ידע מנוהלים כמקור האמת
+      המתמשך.</p>
+      </blockquote>
+      <h2 id="הקשר-בשיחה-מול-זיכרון-קבצים">הקשר בשיחה מול זיכרון קבצים</h2>
+      <p>בקורס <strong>מ־0 למוצר מקצועי עם IBM Bob</strong> המושג Context
+      מתאר קודם כול <em>מה Bob רואה במשימה הנוכחית</em>. זה אינו אותו דבר
+      כמו <strong><em>זיכרון פרויקט</em></strong>. בלי ההפרדה הזו מבקשים מ־Bob
+      <strong><em>לזכור</em></strong> דברים שפשוט לא נמצאים בחלון ההקשר.</p>
+      <div class="callout warning"><strong>שתי שכבות, שני מחזורי חיים</strong>
+      הקשר בשיחה נעלם כשפותחים צ'אט חדש. זיכרון בקבצים נטען מחדש — ורק אם
+      כתבתם אותו במקום הנכון.</div>
+      <h3 id="ארבע-שכבות-הקשר">ארבע שכבות הקשר</h3>
+      <table>
+      <thead>
+      <tr class="header">
+      <th>שכבה</th>
+      <th>מה זה</th>
+      <th>מתי חי</th>
+      <th>דוגמה</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="odd">
+      <td>שיחה נוכחית</td>
+      <td>היסטוריית הצ'אט וההנחות ש־Bob מילא</td>
+      <td>עד סוף המשימה / השיחה</td>
+      <td><strong><em>כנראה SQLite</em></strong> — אם לא אישרתם, זה ניחוש</td>
+      </tr>
+      <tr class="even">
+      <td>צירוף משימה (<code>@</code>)</td>
+      <td>קבצים ותיקיות שצירפתם ל־Prompt</td>
+      <td>המשימה הזו בלבד</td>
+      <td><code>@src/tasks</code>, <code>@plan/create-task.md</code></td>
+      </tr>
+      <tr class="odd">
+      <td>הקשר קבוע</td>
+      <td><code>AGENTS.md</code> ו־Rules</td>
+      <td>כל שיחה חדשה בפרויקט</td>
+      <td>stack, פקודות, גבולות, סטטוס משימה = open | done</td>
+      </tr>
+      <tr class="even">
+      <td>זיכרון מנוהל</td>
+      <td><code>docs/bob-memory/</code></td>
+      <td>כשקוראים או כש־<code>AGENTS.md</code> מפנה</td>
+      <td>ADR, לקחים, סטטוס, מילון מונחים</td>
+      </tr>
+      </tbody>
+      </table>
+      <h3 id="מה-לשים-איפה">מה לשים איפה — מפת החלטה מהקורס</h3>
+      <table>
+      <thead>
+      <tr class="header">
+      <th>סוג מידע</th>
+      <th>מקום</th>
+      <th>למה</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="odd">
+      <td>יעד אחד, קריטריוני קבלה, Out of scope למשימה</td>
+      <td>Prompt (CGCA)</td>
+      <td>משתנה בכל משימה; לא שייך ל־<code>AGENTS.md</code></td>
+      </tr>
+      <tr class="even">
+      <td>קבצים שרלוונטיים רק עכשיו</td>
+      <td><code>@path</code></td>
+      <td>מצמצם ניחוש בלי להעמיס את ההקשר הקבוע</td>
+      </tr>
+      <tr class="odd">
+      <td>Stack, פקודות, מבנה, כלל עסקי קבוע</td>
+      <td><code>AGENTS.md</code></td>
+      <td>כל שיחה חדשה חייבת את זה</td>
+      </tr>
+      <tr class="even">
+      <td>התנהגות חוזרת (בדיקות, commits, אבטחה)</td>
+      <td><code>.bob/rules/</code></td>
+      <td>הוראה, לא תיאור ארכיטקטורה</td>
+      </tr>
+      <tr class="odd">
+      <td>החלטה אחרי דיון, לקח מאושר</td>
+      <td><code>docs/bob-memory/</code></td>
+      <td>ארוך מדי ל־<code>AGENTS.md</code>; חייב הפניה</td>
+      </tr>
+      </tbody>
+      </table>
+      <h3 id="cgca-והקשר">CGCA: איך Prompt בונה הקשר למשימה</h3>
+      <p>תבנית הקורס ל־Prompt: <strong>Context, Goal, Constraints, Acceptance</strong>.
+      זה הקשר <em>למשימה</em>. הוא לא מחליף <code>AGENTS.md</code>.</p>
+      <pre class="text"><code>Context: @src/tasks
+Goal: Add All / Open / Done filter
+Constraints: vanilla JS, no new libraries
+AC: all three states work + a unit test
+Show a Plan before editing.</code></pre>
+      <div class="callout success"><strong>כלל אצבע</strong>
+      אם תצטרכו את אותו משפט גם מחר בשיחה חדשה — הוא שייך לקובץ.
+      אם הוא נכון רק לפיצ'ר הזה — הוא שייך ל־Prompt ול־<code>@</code>.</div>
+      <h3 id="הנחות-חייבות-להיכתב">הנחות חייבות להיכתב</h3>
+      <p>כשחסר מידע Bob משלים פער ומתקדם. בקורס זו <strong>הנחה</strong> —
+      לא עובדה. לפני Agent דרשו:</p>
+      <pre class="text"><code>Before any action: write what you understood, list assumptions, ask blocking questions, and propose how to verify. Do not change code.</code></pre>
+      <p>הנחה יציבה (למשל <strong><em>סטטוס משימה הוא רק open או done</em></strong>) עוברת
+      ל־<code>AGENTS.md</code> אחרי אישור אנושי. הנחה חד־פעמית נשארת בשיחה.</p>
+      <h3 id="taskflow-כמקרה-מבחן">TaskFlow כמקרה מבחן</h3>
+      <p>פרויקט ה־Capstone של הקורס הוא <strong>TaskFlow</strong> — מנהל
+      משימות צוותי ב־HTML/CSS/JS, Node.js, Express ו־SQLite. כך מחלקים הקשר:</p>
+      <ul>
+      <li><strong>ב־<code>AGENTS.md</code>:</strong> stack, פקודות
+      <code>npm run dev | test | build</code>, כלל עסקי של סטטוס, חובת בדיקות לפני Done.</li>
+      <li><strong>ב־Prompt עם <code>@</code>:</strong> הקובץ של ה־slice הנוכחי, למשל
+      <code>@plan/create-task.md</code> ו־<code>@public/</code>.</li>
+      <li><strong>ב־memory:</strong> ADR על auth בסיסי, מגבלות ידועות, Runbook למסירה.</li>
+      </ul>
+      <p>Ask → Plan → Agent נשאר הסולם: ב־Ask קוראים הקשר; ב־Plan כותבים תוכנית;
+      ב־Agent מממשים שלב אחד מתוך הקבצים שצוינו.</p>
+      <h2 id="agentsmd--מסמך-ההיכרות-הקבוע-של-bob"><code>AGENTS.md</code> —
+      מסמך ההיכרות הקבוע של Bob</h2>
+      <p><code>AGENTS.md</code> הוא מסמך onboarding תמציתי ומעשי עבור
+      Bob. הוא מסביר לבוב כיצד הפרויקט בנוי וכיצד יש לעבוד בו, בלי לסרוק
+      מחדש את כל המאגר בכל שיחה.</p>
+      <h3 id="מתי-להוסיף-מידע-לagentsmd">מתי להוסיף מידע
+      ל־<code>AGENTS.md</code></h3>
+      <p>הוסף מידע כאשר:</p>
+      <ul>
+      <li>Bob חזר על אותה טעות ביותר משיחה אחת.</li>
+      <li>כלל מסוים חל כמעט על כל משימה בפרויקט.</li>
+      <li>מפתח חדש היה חייב לדעת את המידע כדי לעבוד בבטחה.</li>
+      <li>קיימת פקודת build, test או deploy שאסור לנחש.</li>
+      <li>יש החלטה ארכיטקטונית מחייבת שאינה ברורה מהקוד.</li>
+      <li>יש גבולות פעולה קבועים, לדוגמה: &quot;אין לשנות סכמת DB ללא
+      migration&quot;.</li>
+      </ul>
+      <p>אל תעמיס על <code>AGENTS.md</code>:</p>
+      <ul>
+      <li>תיעוד ארוך שניתן להסיק מהקוד.</li>
+      <li>יומן שינויים מפורט.</li>
+      <li>תמלילי שיחה.</li>
+      <li>פרוצדורה נדירה ורבת שלבים — עדיף להפוך אותה ל־Skill או למסמך
+      workflow ייעודי.</li>
+      <li>סודות, אסימונים, סיסמאות או מידע אישי.</li>
+      </ul>
+      <h2 id="יצירת-agentsmd-באמצעות-init">יצירת <code>AGENTS.md</code>
+      באמצעות <code>/init</code></h2>
+      <p>פתח את הפרויקט ב־Bob IDE, עבור ל־Agent mode והריץ:</p>
+      <pre class="text"><code>/init</code></pre>
+      <p>Bob יסרוק את הקבצים הרלוונטיים וייצר בדרך כלל:</p>
+      <pre class="text"><code>project-root/
+├── AGENTS.md
+└── .bob/
+    ├── rules-code/
+    │   └── AGENTS-code.md
+    ├── rules-plan/
+    │   └── AGENTS-plan.md
+    └── rules-ask/
+        └── AGENTS-ask.md</code></pre>
+      <p>הקובץ הראשי מתאר את הפרויקט כולו. הקבצים תחת <code>.bob</code>
+      מוסיפים הקשר המותאם למצבי העבודה המובנים:</p>
+      <table>
+      <thead>
+      <tr class="header">
+      <th>קובץ</th>
+      <th>מצב</th>
+      <th>דגש מומלץ</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="odd">
+      <td><code>AGENTS.md</code></td>
+      <td>כל המצבים</td>
+      <td>מטרות, מבנה, stack, פקודות, מוסכמות וגבולות</td>
+      </tr>
+      <tr class="even">
+      <td><code>.bob/rules-code/AGENTS-code.md</code></td>
+      <td>Agent/Code</td>
+      <td>מבנה קבצים, שמות, בדיקות, lint ויישום</td>
+      </tr>
+      <tr class="odd">
+      <td><code>.bob/rules-plan/AGENTS-plan.md</code></td>
+      <td>Plan</td>
+      <td>ארכיטקטורה, חלופות, סיכונים, סדר עבודה וקריטריוני קבלה</td>
+      </tr>
+      <tr class="even">
+      <td><code>.bob/rules-ask/AGENTS-ask.md</code></td>
+      <td>Ask</td>
+      <td>אופן ההסבר, מקורות אמת והימנעות משינויים</td>
+      </tr>
+      </tbody>
+      </table>
+      <p>לאחר יצירת הקבצים, בדוק אותם ידנית. <code>/init</code> מייצר
+      נקודת פתיחה — לא מקור אמת חסין טעויות.</p>
+      <h2 id="מבנה-מומלץ-לagentsmd">מבנה מומלץ
+      ל־<code>AGENTS.md</code></h2>
+      <div class="sourceCode" id="cb3"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Project: Payroll Explanation Platform</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Product intent</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Extract structured data from payslip PDFs.</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Explain every field in clear Hebrew.</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never invent a value that was not extracted or calculated.</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Architecture</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Frontend: React + TypeScript.</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Backend: Python 3.12 + FastAPI.</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Database: SQLite for local development.</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Document extraction: IBM watsonx.data intelligence Document Processing.</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Source of truth</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>API contract: <span class="in">`docs/api/openapi.yaml`</span>.</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Payroll terminology: <span class="in">`docs/domain/payroll-glossary-he.md`</span>.</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Architecture decisions: <span class="in">`docs/adr/`</span>.</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Commands</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Install frontend: <span class="in">`npm ci`</span>.</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Run frontend tests: <span class="in">`npm test`</span>.</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Run backend tests: <span class="in">`pytest -q`</span>.</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Run full validation: <span class="in">`make verify`</span>.</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Engineering rules</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Preserve the original extracted value separately from normalized values.</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Every calculated field must include formula and input references.</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Do not log payslip content or personal identifiers.</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Add tests for every parsing rule.</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Definition of done</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Acceptance criteria pass.</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Unit and integration tests pass.</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>No high-severity security findings.</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Documentation is updated when behavior changes.</span></code></pre></div>
+      <h3 id="תבנית-agentsmd-לtaskflow">תבנית <code>AGENTS.md</code> ל־TaskFlow</h3>
+      <p>אותו מבנה, מותאם לפרויקט ה־Capstone של הקורס. שמרו קצר; מה שמשתנה בין slices נשאר ב־Prompt.</p>
+      <pre class="text"><code># Project: TaskFlow
+
+## Product intent
+- Team task list: create, complete, and filter tasks.
+- Do not invent statuses. Allowed values: open | done.
+
+## Architecture
+- Frontend: HTML, CSS, vanilla JavaScript (RTL).
+- Backend: Node.js + Express.
+- Database: SQLite.
+
+## Source of truth
+- API contract: docs/api/tasks.md
+- Plan files: plan/
+- Project memory: docs/bob-memory/INDEX.md
+
+## Commands
+- Install: npm ci
+- Dev: npm run dev
+- Test: npm test
+- Build: npm run build
+
+## Engineering rules
+- Agent must run tests before claiming Done.
+- Parameterized SQL only. Never concatenate user input.
+- Do not read or commit .env.
+
+## Definition of done
+- Acceptance criteria pass.
+- Diff reviewed by a human.
+- AGENTS.md updated if stack, commands, or business rules changed.</code></pre>
+      <h2 id="כיצד-bob-טוען-הקשר">כיצד Bob טוען הקשר</h2>
+      <p>יש שני מסלולי טעינה שונים. הראשון הוא <strong>אוטומטי מקבצים</strong>
+      (להלן). השני הוא <strong>ידני למשימה</strong>: כל מה שמצרפים ב־<code>@</code>
+      ב־Prompt נכנס להקשר של השיחה הזו בלבד. צירוף מדויק עדיף על <strong><em>תסביר את כל הקוד</em></strong>.</p>
+      <h3 id="bob-shell-היררכיית-agentsmd">Bob Shell: היררכיית
+      <code>AGENTS.md</code></h3>
+      <p>תיעוד Bob Shell מתאר טעינה היררכית:</p>
+      <ol type="1">
+      <li><code>~/.bob/AGENTS.md</code> — הקשר גלובלי לכל
+      הפרויקטים.</li>
+      <li><code>AGENTS.md</code> בשורש הפרויקט ובתיקיות האב — הקשר
+      לפרויקט.</li>
+      <li><code>AGENTS.md</code> בתיקיות משנה — הוראות מקומיות לרכיב
+      מסוים.</li>
+      </ol>
+      <p>דוגמה:</p>
+      <pre class="text"><code>~/.bob/AGENTS.md
+workspace/AGENTS.md
+workspace/apps/AGENTS.md
+workspace/apps/payroll-api/AGENTS.md</code></pre>
+      <p>השתמש בקובץ מקומי כאשר כלל שייך רק לרכיב מסוים. לדוגמה, כללי
+      React אינם צריכים להיכנס להקשר של שירות Python.</p>
+      <h3 id="עיקרון-התכנון">עיקרון התכנון</h3>
+      <p>ככל שהמידע כללי יותר — שמור אותו ברמה גבוהה יותר. ככל שהוא
+      ייחודי לרכיב — שמור אותו קרוב יותר לקוד הרלוונטי.</p>
+      <h2 id="custom-rules-תחת-bob">Custom Rules תחת
+      <code>.bob</code></h2>
+      <p>כללים מותאמים מכוונים את ההתנהגות של Bob. הם מתאימים להוראות
+      שחייבות לחול באופן עקבי, אך אינן בהכרח תיאור של הארכיטקטורה.</p>
+      <h3 id="מבנה-workspace-מומלץ">מבנה Workspace מומלץ</h3>
+      <pre class="text"><code>.bob/
+├── rules/
+│   ├── 10-engineering.md
+│   ├── 20-testing.md
+│   ├── 30-security.md
+│   └── 40-documentation.md
+├── rules-agent/
+│   └── 10-implementation.md
+├── rules-plan/
+│   └── 10-planning.md
+└── rules-ask/
+    └── 10-explanations.md</code></pre>
+      <ul>
+      <li><code>.bob/rules/</code> — כללים כלליים לכל המצבים.</li>
+      <li><code>.bob/rules-agent/</code> — כללים למצב Agent.</li>
+      <li><code>.bob/rules-plan/</code> — כללים למצב Plan.</li>
+      <li><code>.bob/rules-ask/</code> — כללים למצב Ask.</li>
+      <li><code>.bob/rules-{mode}/</code> — כללים למצב מותאם אישית.</li>
+      </ul>
+      <p>Bob קורא את הקבצים בתיקיות הכללים גם מתיקיות משנה, ומעבד אותם
+      בסדר אלפביתי. לכן כדאי להשתמש בקידומת מספרית כאשר סדר ההוראות
+      חשוב.</p>
+      <h3 id="כללים-גלובליים">כללים גלובליים</h3>
+      <p>לכללים אישיים או ארגוניים שחלים על כל הפרויקטים:</p>
+      <pre class="text"><code>~/.bob/rules/</code></pre>
+      <p>ב־Windows:</p>
+      <pre class="text"><code>%USERPROFILE%\.bob\rules\</code></pre>
+      <p>כללי Workspace יכולים לגבור על כללים גלובליים. הימנע מסתירות:
+      אם שני כללים נותנים הוראות שונות, התוצאה עלולה להיות לא עקבית.</p>
+      <h2 id="כתיבת-הוראות-יעילות">כתיבת הוראות יעילות</h2>
+      <p>Bob מתייחס להוראות כאל הקשר למודל — לא כאל מנגנון אכיפה קשיח.
+      לכן איכות הניסוח משפיעה על שיעור הציות.</p>
+      <h3 id="היה-ספציפי-וניתן-לבדיקה">היה ספציפי וניתן לבדיקה</h3>
+      <table>
+      <thead>
+      <tr class="header">
+      <th>הוראה חלשה</th>
+      <th>הוראה טובה</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="odd">
+      <td>&quot;כתוב קוד איכותי&quot;</td>
+      <td>&quot;הרץ <code>npm run lint</code> ו־<code>npm test</code> לאחר
+      שינוי בקוד TypeScript&quot;</td>
+      </tr>
+      <tr class="even">
+      <td>&quot;שמור על אבטחה&quot;</td>
+      <td>&quot;אל תכתוב secrets לקוד, ללוגים או לקובצי fixture&quot;</td>
+      </tr>
+      <tr class="odd">
+      <td>&quot;טפל נכון בשגיאות&quot;</td>
+      <td>&quot;החזר שגיאות API בפורמט
+      <code>{code, message, correlationId}</code>&quot;</td>
+      </tr>
+      <tr class="even">
+      <td>&quot;תעד הכול&quot;</td>
+      <td>&quot;הוסף OpenAPI לכל endpoint ציבורי ועדכן
+      <code>docs/api.md</code>&quot;</td>
+      </tr>
+      </tbody>
+      </table>
+      <h3 id="הפרד-בין-ארבעה-סוגי-מידע">הפרד בין ארבעה סוגי מידע</h3>
+      <ol type="1">
+      <li><strong>Facts</strong> — מה נכון לגבי הפרויקט.</li>
+      <li><strong>Rules</strong> — מה חייבים או אסור לעשות.</li>
+      <li><strong>Workflow</strong> — באיזה סדר עובדים.</li>
+      <li><strong>Verification</strong> — כיצד מוכיחים שהמשימה
+      הושלמה.</li>
+      </ol>
+      <h3 id="כתוב-חריגים-במפורש">כתוב חריגים במפורש</h3>
+      <p>במקום:</p>
+      <pre class="text"><code>Always use PostgreSQL.</code></pre>
+      <p>כתוב:</p>
+      <pre class="text"><code>Use PostgreSQL in production. SQLite is permitted only for isolated local tests.</code></pre>
+      <h3 id="אל-תשתמש-במונחים-עמומים">אל תשתמש במונחים עמומים</h3>
+      <p>מילים כמו &quot;בדרך כלל&quot;, &quot;כראוי&quot;, &quot;לפי הצורך&quot; ו־&quot;באיכות גבוהה&quot;
+      אינן מספקות קריטריון פעולה. החלף אותן בתנאי, פקודה או תוצאה
+      צפויה.</p>
+      <h2 id="זיכרון-מבוקר-עבור-bob">זיכרון מבוקר עבור Bob</h2>
+      <p>מכיוון שאין להניח ש־Bob ייצור Auto Memory בעצמו, ניתן לבנות
+      שכבת זיכרון שקופה ומבוקרת בתוך הפרויקט:</p>
+      <pre class="text"><code>docs/bob-memory/
+├── INDEX.md
+├── decisions.md
+├── lessons-learned.md
+├── current-status.md
+├── domain-glossary.md
+└── external-references.md</code></pre>
+      <h3 id="תפקיד-כל-קובץ">תפקיד כל קובץ</h3>
+      <table>
+      <thead>
+      <tr class="header">
+      <th>קובץ</th>
+      <th>תוכן</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="odd">
+      <td><code>INDEX.md</code></td>
+      <td>אינדקס קצר: מה קיים ומתי לקרוא כל קובץ</td>
+      </tr>
+      <tr class="even">
+      <td><code>decisions.md</code></td>
+      <td>החלטות משמעותיות, חלופות שנדחו והנימוק</td>
+      </tr>
+      <tr class="odd">
+      <td><code>lessons-learned.md</code></td>
+      <td>תקלות חוזרות, תיקונים והנחיות מניעה</td>
+      </tr>
+      <tr class="even">
+      <td><code>current-status.md</code></td>
+      <td>מצב נוכחי, חסמים, העבודה הבאה ותאריך עדכון</td>
+      </tr>
+      <tr class="odd">
+      <td><code>domain-glossary.md</code></td>
+      <td>מונחים עסקיים, קיצורים והגדרות מוסכמות</td>
+      </tr>
+      <tr class="even">
+      <td><code>external-references.md</code></td>
+      <td>מקורות חיצוניים, owner ותאריך אימות</td>
+      </tr>
+      </tbody>
+      </table>
+      <p>הוסף ל־<code>AGENTS.md</code> הוראות קריאה ועדכון ברורות:</p>
+      <div class="sourceCode" id="cb11"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Project memory</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Read <span class="in">`docs/bob-memory/INDEX.md`</span> before planning work that spans multiple modules.</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Read <span class="in">`decisions.md`</span> before proposing an architectural change.</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Update <span class="in">`current-status.md`</span> only when a milestone, blocker, or next action changes.</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Add a lesson only after the user confirms the correction or the failure is reproduced.</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never store credentials, personal data, raw prompts, or speculative conclusions.</span></code></pre></div>
+      <h3 id="פורמט-מומלץ-להחלטה">פורמט מומלץ להחלטה</h3>
+      <div class="sourceCode" id="cb12"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## ADR-012 — Preserve raw extraction values</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Date: 2026-08-24</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Status: Accepted</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Context: Normalization can conceal extraction errors.</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decision: Store both <span class="in">`raw_value`</span> and <span class="in">`normalized_value`</span>.</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Rejected alternative: Store only normalized values.</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Consequences: More storage and schema complexity; full auditability.</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Evidence: Link to issue, test, or approved design.</span></code></pre></div>
+      <h3 id="פורמט-מומלץ-ללקח">פורמט מומלץ ללקח</h3>
+      <div class="sourceCode" id="cb13"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## PDF text extraction may preserve visual order incorrectly</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Symptom: Values are associated with the wrong label.</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Confirmed cause: PDF drawing order differs from reading order.</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Correct approach: Use layout coordinates and confidence checks.</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Verification: Run fixtures <span class="in">`tests/payslips/layout_cases/`</span>.</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Do not: Infer a field solely from nearby plain text.</span></code></pre></div>
+      <h2 id="מה-לשמור--ומה-לא">מה לשמור — ומה לא</h2>
+      <h3 id="כדאי-לשמור">כדאי לשמור</h3>
+      <ul>
+      <li>העדפות והחלטות שישפיעו על משימות עתידיות.</li>
+      <li>תיקון שהמשתמש אישר או תקלה ששוחזרה.</li>
+      <li>כללי domain שאינם ניתנים להסיק מהקוד.</li>
+      <li>מקורות אמת חיצוניים והבעלים שלהם.</li>
+      <li>מגבלות סביבה קבועות.</li>
+      <li>סטטוס קצר של עבודה רב־שלבית.</li>
+      </ul>
+      <h3 id="אין-לשמור">אין לשמור</h3>
+      <ul>
+      <li>סיסמאות, tokens, מפתחות API או cookies.</li>
+      <li>מידע אישי שאינו הכרחי לפיתוח.</li>
+      <li>השערות שלא אומתו.</li>
+      <li>פלטים ארוכים שניתן לייצר מחדש.</li>
+      <li>מידע שכבר מופיע בקוד או בקובץ תצורה סמכותי.</li>
+      <li>הנחיה זמנית הרלוונטית למשימה אחת בלבד.</li>
+      </ul>
+      <h2 id="תחזוקה-שוטפת">תחזוקה שוטפת</h2>
+      <p>הרץ <code>/init</code> מחדש לאחר שינוי מהותי, למשל:</p>
+      <ul>
+      <li>הוספת שירות או מודול.</li>
+      <li>שינוי מבנה התיקיות.</li>
+      <li>מעבר framework או שפת תכנות.</li>
+      <li>שינוי פקודות build, test או deploy.</li>
+      <li>שינוי ארכיטקטוני משמעותי.</li>
+      <li>הצטרפות צוות חדש שצריך הקשר משותף.</li>
+      </ul>
+      <p>לאחר <code>/init</code>, בצע review על השינויים. ודא שהפקודות
+      עדיין נכונות ושכללים ידניים חשובים לא נמחקו או דוללו.</p>
+      <p>מומלץ לקבוע בעלים ותאריך review:</p>
+      <div class="sourceCode" id="cb14"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Maintenance</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Owner: Platform Engineering</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Last reviewed: 2026-08-24</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Review cadence: Quarterly and after major architecture changes</span></code></pre></div>
+      <h2 id="אכיפה-rules-אינם-security-control">אכיפה: Rules אינם
+      Security Control</h2>
+      <p><code>AGENTS.md</code> וכללי Bob מכוונים את המודל, אך אינם שכבת
+      אכיפה מוחלטת. פעולה שאסור שתתרחש צריכה להיחסם באמצעות מנגנון
+      טכני.</p>
+      <table>
+      <thead>
+      <tr class="header">
+      <th>צורך</th>
+      <th>מנגנון מתאים</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="odd">
+      <td>להנחות סגנון קוד</td>
+      <td>Rule או <code>AGENTS.md</code></td>
+      </tr>
+      <tr class="even">
+      <td>לדרוש בדיקות לפני השלמה</td>
+      <td>Rule + CI</td>
+      </tr>
+      <tr class="odd">
+      <td>לחסום פקודה מסוכנת</td>
+      <td>הרשאות או lifecycle hook</td>
+      </tr>
+      <tr class="even">
+      <td>למנוע גישה לסודות</td>
+      <td>secret manager, הרשאות ו־<code>.bobignore</code></td>
+      </tr>
+      <tr class="odd">
+      <td>לאכוף מדיניות merge</td>
+      <td>branch protection ו־CI policy</td>
+      </tr>
+      <tr class="even">
+      <td>לאפשר רק כלים מסוימים</td>
+      <td>הגדרות permissions של Bob</td>
+      </tr>
+      </tbody>
+      </table>
+      <p>העיקרון: <strong>הוראה למודל היא הכוונה; guardrail טכני הוא
+      אכיפה.</strong></p>
+      <h2 id="פתרון-תקלות">פתרון תקלות</h2>
+      <h3 id="bob-אינו-פועל-לפי-agentsmd">Bob אינו פועל לפי
+      <code>AGENTS.md</code></h3>
+      <p>בדוק:</p>
+      <ol type="1">
+      <li>שהקובץ נמצא בשורש Workspace הנכון או בהיררכיה שבוב קורא.</li>
+      <li>שהגדרת <code>bob-code.useAgentRules</code> לא הושבתה.</li>
+      <li>שאין כלל סותר תחת <code>.bob/rules/</code>, כלל גלובלי או קובץ
+      מקומי.</li>
+      <li>שההוראה ספציפית, קצרה וניתנת לבדיקה.</li>
+      <li>שהמידע לא קבור במסמך ארוך ולא ממוקד.</li>
+      <li>שבוב עובד במצב שאליו הכלל שייך.</li>
+      </ol>
+      <h3 id="bob-משתמש-במידע-מיושן">Bob משתמש במידע מיושן</h3>
+      <ul>
+      <li>עדכן את מקור האמת בקוד או בתיעוד.</li>
+      <li>הרץ <code>/init</code> מחדש לאחר שינוי גדול.</li>
+      <li>בדוק diff לפני commit.</li>
+      <li>הסר הוראות שאינן תקפות.</li>
+      <li>הוסף לכל החלטה או מקור חיצוני תאריך אימות.</li>
+      </ul>
+      <h3 id="הכללים-גדולים-מדי">הכללים גדולים מדי</h3>
+      <ul>
+      <li>העבר תיעוד נגזר מהקוד למסמכי reference.</li>
+      <li>פצל לפי נושא ומצב.</li>
+      <li>העבר workflows נדירים ל־Skills.</li>
+      <li>השאר ב־<code>AGENTS.md</code> רק מידע שנדרש ברוב השיחות.</li>
+      <li>צור <code>INDEX.md</code> קצר שמפנה לידע מפורט לפי צורך.</li>
+      </ul>
+      <h3 id="הוראות-נעלמות-בשיחה-חדשה">הוראות נעלמות בשיחה חדשה</h3>
+      <p>הנחיה שנכתבה רק בצ&#39;אט אינה זיכרון פרויקט. העבר אותה
+      ל־<code>AGENTS.md</code>, ל־Custom Rule או לקובץ ידע מתאים, ולאחר
+      מכן פתח שיחה חדשה ובדוק שהתנהגות Bob תואמת.</p>
+      <h2 id="תהליך-מומלץ-לצוות">תהליך מומלץ לצוות</h2>
+      <ol type="1">
+      <li>הרץ <code>/init</code> בתחילת הפרויקט.</li>
+      <li>בצע review ותקן את <code>AGENTS.md</code>.</li>
+      <li>פצל כללי רוחב ל־<code>.bob/rules/</code>.</li>
+      <li>פצל כללים תלויי־מצב ל־<code>rules-agent</code>,
+      <code>rules-plan</code> ו־<code>rules-ask</code>.</li>
+      <li>צור <code>docs/bob-memory/INDEX.md</code> עבור החלטות ולקחים
+      שאינם נגזרים מהקוד.</li>
+      <li>שמור את קובצי הפרויקט ב־Git כדי שהצוות יקבל הקשר זהה.</li>
+      <li>אכוף דרישות קריטיות גם ב־CI, בהרשאות או ב־hooks.</li>
+      <li>הרץ <code>/init</code> ובצע review לאחר שינוי מהותי.</li>
+      <li>מחק מידע מיושן במקום לצבור סתירות.</li>
+      <li>בדוק מדי רבעון שההקשר קצר, מדויק ומועיל.</li>
+      </ol>
+      <h2 id="תבנית-מינימלית-להתחלה">תבנית מינימלית להתחלה</h2>
+      <pre class="text"><code>project-root/
+├── AGENTS.md
+├── .bob/
+│   ├── rules/
+│   │   ├── 10-engineering.md
+│   │   ├── 20-testing.md
+│   │   └── 30-security.md
+│   ├── rules-agent/
+│   ├── rules-plan/
+│   └── rules-ask/
+└── docs/
+    └── bob-memory/
+        ├── INDEX.md
+        ├── decisions.md
+        ├── lessons-learned.md
+        └── current-status.md</code></pre>
+      <h2 id="מסלול-קצה-לקצה">מסלול עבודה קצה־לקצה עם Bob</h2>
+      <blockquote><p><strong>הרעיון המרכזי:</strong> Bob הוא שותף פיתוח מהיר, לא קורא מחשבות ולא סמכות מקצועית. האדם מגדיר את הבעיה, הגבולות ודרך ההוכחה; Bob מסייע להבין, לתכנן ולבצע.</p></blockquote>
+      <h3 id="לולאת-העבודה">לולאת העבודה ב־11 צעדים</h3>
+      <ol>
+      <li><strong>רעיון:</strong> נסח את הבעיה, לא את הפתרון הטכנולוגי.</li>
+      <li><strong>כוונת מוצר:</strong> מי המשתמש ומה יהיה טוב יותר עבורו?</li>
+      <li><strong>Mini‑PRD:</strong> הגדר Scope, מחוץ לתחום, מגבלות וקריטריוני קבלה.</li>
+      <li><strong>Baseline:</strong> פתח branch, בדוק את מצב Git והריץ build ובדיקות קיימות.</li>
+      <li><strong>הקשר:</strong> הרץ <code>/init</code>, בצע review והפנה רק לקבצים הרלוונטיים.</li>
+      <li><strong>Plan:</strong> בקש תוכנית, חלופות, סיכונים וסדר בדיקות.</li>
+      <li><strong>Human review:</strong> תקן הנחות ושפה עמומה לפני כתיבת קוד.</li>
+      <li><strong>Agent:</strong> ממש פרוסה קטנה אחת ולא את כל המערכת בבת אחת.</li>
+      <li><strong>Verify:</strong> הרץ lint, typecheck ובדיקות; קרא את ה־diff.</li>
+      <li><strong>Security:</strong> בדוק סודות, קלט, הרשאות, שגיאות ו־dependencies.</li>
+      <li><strong>Commit and learn:</strong> צור commit אטומי; שמור רק לקח יציב במקור אמת.</li>
+      </ol>
+
+      <h2 id="מצבי-עבודה">בחירת מצב העבודה הנכון</h2>
+      <table><thead><tr><th>מטרה</th><th>מצב</th><th>דוגמה טובה</th></tr></thead><tbody>
+      <tr><td>להבין בלי לשנות קבצים</td><td>Ask</td><td>הסבר את זרימת האימות ב־<code>@/src/auth</code>. אל תשנה דבר.</td></tr>
+      <tr><td>לשקול חלופות ולבנות מפרט</td><td>Plan</td><td>תכנן rate limiting; הצג חלופות, סיכונים ובדיקות. אל תממש.</td></tr>
+      <tr><td>לבצע שינוי מאושר</td><td>Agent</td><td>ממש רק שלב 1 מהתוכנית, הרץ בדיקות ועצור.</td></tr>
+      </tbody></table>
+      <div class="callout warning"><strong>לא כל משימה צריכה טקס מלא</strong>תיקון שגיאת כתיב אינו דורש מסמך ארכיטקטורה. שינוי authentication, schema, הרשאות או API ציבורי כן דורש תכנון וביקורת.</div>
+
+      <h2 id="הכנה-בטוחה">הכנת סביבת עבודה בטוחה</h2>
+      <ul class="checklist">
+      <li>ודא שפתחת את ה־repository וה־branch הנכונים.</li>
+      <li>זהה שינויים מקומיים שאינם קשורים למשימה ואל תדרוס אותם.</li>
+      <li>הרץ build ובדיקות בסיס כדי לדעת מה היה תקין לפני השינוי.</li>
+      <li>צור <code>.bobignore</code> עבור secrets, קבצים גדולים ותוצרים אוטומטיים.</li>
+      <li>התחל באישור ידני; אשר אוטומטית רק פקודות מוכרות ונמוכות סיכון.</li>
+      </ul>
+      <pre><code>.env
+.env.*
+secrets/
+*.pem
+*.key
+node_modules/
+dist/
+coverage/
+*.sqlite</code></pre>
+      <div class="callout critical"><strong>גישה שגויה</strong>להפעיל Auto‑approve מלא כדי "לא להפריע לזרימה". התקנת dependency, migration, מחיקה, deploy או push צריכים אישור מפורש בהתאם למדיניות הארגון.</div>
+
+      <h2 id="הגדרת-המוצר">מגדירים את המוצר לפני הקוד</h2>
+      <p>לפני ששואלים כיצד לממש, מנסחים מה צריך לקרות. תבנית Mini‑PRD קצרה מספיקה לרוב המשימות:</p>
+      <pre class="text"><code># שם התכונה
+
+## הבעיה
+משתמש אינו יודע אם העלאת PDF התקבלה.
+
+## המשתמש
+עובד שכר שאינו טכני.
+
+## בתוך התחום
+- PDF יחיד עד 10MB
+- חיווי העלאה וסטטוס עיבוד
+
+## מחוץ לתחום
+- OCR
+- שינוי מערכת ההרשאות
+
+## קריטריוני קבלה
+Given קובץ PDF תקין
+When המשתמש מעלה אותו
+Then מוצגים מזהה, סטטוס וזמן קבלה
+
+## מגבלות
+אין לשמור תוכן מסמך בלוגים; ה־API הקיים נשאר תואם.</code></pre>
+      <table><thead><tr><th>גישה שגויה</th><th>גישה נכונה</th></tr></thead><tbody><tr><td>"בנה מסך העלאה יפה ומקצועי."</td><td>"צור העלאת PDF יחיד עד 10MB, progress, validation והודעה נגישה. אל תשנה API."</td></tr></tbody></table>
+
+      <h2 id="כתיבת-prompt">כותבים Prompt שניתן לבצע ולבדוק</h2>
+      <p>Prompt איכותי הוא חוזה עבודה קצר. השתמש במבנה הבא:</p>
+      <table><thead><tr><th>רכיב</th><th>מה כותבים</th></tr></thead><tbody>
+      <tr><td>מטרה</td><td>תוצאה נצפית אחת.</td></tr><tr><td>הקשר</td><td>קבצים, דוגמאות ומקור אמת באמצעות <code>@</code>.</td></tr>
+      <tr><td>Scope</td><td>מה בפנים ומה בחוץ.</td></tr><tr><td>מגבלות</td><td>תאימות, ספריות, אבטחה וקבצים שאסור לשנות.</td></tr>
+      <tr><td>ראיות</td><td>פקודות ובדיקות שיוכיחו Done.</td></tr><tr><td>עצירה</td><td>מתי Bob חייב לבקש החלטה.</td></tr>
+      </tbody></table>
+      <pre class="text"><code>עבוד ב־Plan mode. אל תממש עדיין.
+מטרה: לתכנן endpoint שמחזיר סטטוס עיבוד למסמך.
+הקשר: קרא את @/src/api/documents.ts ואת @/src/services/jobs.ts.
+בתוך התחום: GET /documents/:id/status והסטטוסים queued, processing, completed, failed.
+מחוץ לתחום: אין שינוי schema ואין dependency חדש.
+Done: תכנית קבצים, error handling, unit tests ו־integration tests.
+אם נדרש שינוי API ציבורי או DB — עצור והצג חלופות.</code></pre>
+      <div class="callout warning"><strong>Prompt ארוך אינו בהכרח טוב</strong>אם ההוראות סותרות או שאין הגדרת Done, עוד מילים רק מעבירות את הבלבול ל־Bob.</div>
+
+      <h2 id="ביקורת-תוכנית">מבקרים את התוכנית לפני המימוש</h2>
+      <p>בדוק תוכנית באמצעות RAVEN:</p>
+      <ul>
+      <li><strong>Requirements:</strong> האם היא מכסה את כל הדרישות ורק אותן?</li>
+      <li><strong>Assumptions:</strong> אילו הנחות Bob הוסיף והאם הן נכונות?</li>
+      <li><strong>Verification:</strong> כיצד כל שלב ייבדק?</li>
+      <li><strong>Effects:</strong> מה ההשפעה על API, נתונים, אבטחה וביצועים?</li>
+      <li><strong>No‑go:</strong> היכן נדרש אישור אנושי?</li>
+      </ul>
+      <table><thead><tr><th>ניסוח חשוד</th><th>ניסוח ניתן לאישור</th></tr></thead><tbody><tr><td>"נעדכן קבצים לפי הצורך ונוסיף טיפול שגיאות מתאים."</td><td>"נעדכן את <code>documents.controller.ts</code>: 404 למזהה חסר, 503 לכשל repository ושתי בדיקות."</td></tr></tbody></table>
+      <p>כאשר קיימת החלטה יקרה — schema, consistency, latency, ספרייה חדשה או API ציבורי — בקש טבלת חלופות והמלצה מנומקת. האדם מחליט.</p>
+
+      <h2 id="מימוש-איטרטיבי">מימוש בפרוסות קטנות</h2>
+      <p>פרוסה אנכית היא חתיכת ערך קטנה שעוברת דרך השכבות הנחוצות ומסתיימת בתוצאה עובדת. היא עדיפה על שינוי רחב שאי אפשר לבדוק עד סופו.</p>
+      <pre class="text"><code>עבוד ב־Agent mode וממש רק את שלב 1 המאושר.
+לפני עריכה: הצג את הקבצים שתשנה ואשר שאין שינוי dependency או schema.
+לאחר עריכה: הרץ unit tests, lint ו־typecheck הרלוונטיים.
+הצג סיכום diff, פקודות ותוצאות. עצור לפני שלב 2.</code></pre>
+      <div class="callout critical"><strong>מלכודת "רק עוד תיקון"</strong>אם Bob שינה 20 קבצים כדי לתקן כפתור, אל תנסה להציל את הכיוון בעשר הודעות. השתמש ב־rollback, צמצם Scope והתחל מחדש מנקודת בסיס.</div>
+
+      <h2 id="בדיקות-ואבטחה">בדיקות, ניפוי ואבטחה</h2>
+      <p><strong>"הקוד נכתב" אינו Done.</strong> נדרשות ראיות: lint/typecheck, בדיקות unit, integration או end‑to‑end לפי הסיכון, וסקירת diff אנושית.</p>
+      <h3>ניפוי תקלה מתודי</h3>
+      <ol><li>שחזר את התקלה באופן עקבי.</li><li>אסוף stack trace, logs וקלט מינימלי.</li><li>בקש 2–3 השערות ואת הראיה שמבדילה ביניהן.</li><li>בצע ניסוי קטן שמשנה משתנה אחד.</li><li>לאחר תיקון, הוסף regression test.</li></ol>
+      <table><thead><tr><th>שגוי</th><th>נכון</th></tr></thead><tbody><tr><td>"יש AssertionError. תקן."</td><td>"שחזר בפקודה X, קרא <code>@terminal</code>, הצג השערות ואל תשנה קוד לפני ראיה."</td></tr></tbody></table>
+      <h3>בדיקת אבטחה בסיסית</h3>
+      <ul class="checklist"><li>אין secrets או PII בקוד, prompt, log או fixture.</li><li>קלט נבדק בגבול המערכת.</li><li>Authorization נאכף בשרת ולא רק ב־UI.</li><li>שגיאות חיצוניות אינן חושפות פרטים פנימיים.</li><li>Dependencies חדשות מוצדקות ונסרקות.</li><li>אין בניית query, command או template מחיבור מחרוזות מסוכן.</li></ul>
+      <div class="callout warning"><strong>Rules אינם Security Control</strong>הנחיה מסייעת, אך אכיפה נעשית באמצעות permissions, <code>.bobignore</code>, hooks, CI, secret scanning וביקורת אנושית.</div>
+
+      <h2 id="git-review">Git, סקירה ותיעוד</h2>
+      <ul class="checklist"><li>קרא את <code>git diff</code> בעצמך.</li><li>ודא שאין קבצים לא קשורים, secrets או generated files.</li><li>בדוק שינויי dependencies ו־lock files.</li><li>הרץ את סט הבדיקות המוסכם.</li><li>צור commit קטן שמייצג שינוי לוגי אחד.</li></ul>
+      <p>בקש ראיות ולא הצהרות: במקום "הכול עובד", דרוש רשימת פקודות, תוצאות ו־exit code; במקום "לא שברתי API", דרוש contract diff ובדיקות.</p>
+      <pre class="text"><code>בצע review בלבד; אל תשנה קבצים.
+השווה את ה־diff לקריטריוני הקבלה.
+חפש חריגה מה־scope, regression, סיכון אבטחה, בדיקה חסרה ומורכבות מיותרת.
+דרג Blocker / High / Medium / Low. לכל ממצא ציין קובץ, ראיה ותיקון.
+אם אין ראיה — אל תמציא ממצא.</code></pre>
+
+      <h2 id="עבודת-צוות">עבודת צוות ומדידה</h2>
+      <ul><li><code>AGENTS.md</code> וכללי workspace נשמרים ב־Git ועוברים review.</li><li>לצוות יש תבנית Mini‑PRD וקריטריוני קבלה.</li><li>מדיניות האישורים נקבעת לפי סיכון.</li><li>אין merge ללא CI וביקורת אנושית.</li><li>החלטות חשובות נשמרות כ־ADR ולא נקברות בצ'אט.</li><li>מודדים זמן מחזור, rollback, defects, עלות ושביעות רצון — לא שורות קוד.</li></ul>
+      <h3>מסלול תרגול בן חמישה ימים</h3>
+      <table><thead><tr><th>יום</th><th>תרגול</th><th>תוצר</th></tr></thead><tbody><tr><td>1</td><td>Ask והיכרות עם codebase</td><td>מפת רכיבים עם הפניות לקוד</td></tr><tr><td>2</td><td><code>/init</code>, review ו־rules</td><td>AGENTS.md ושלושה כללים מדויקים</td></tr><tr><td>3</td><td>Mini‑PRD ו־Plan</td><td>תוכנית שעברה RAVEN</td></tr><tr><td>4</td><td>פרוסה אנכית</td><td>שינוי עם tests ו־commit</td></tr><tr><td>5</td><td>Security review ו־retro</td><td>ממצאים ולקח מתועד</td></tr></tbody></table>
+
+      <h2 id="אבחון-תקלות-עבודה">כאשר Bob אינו מצליח</h2>
+      <table><thead><tr><th>סימפטום</th><th>סיבה אפשרית</th><th>פעולה</th></tr></thead><tbody><tr><td>מתעלם מכלל</td><td>עמום, סותר או Scope שגוי</td><td>נסח כתנאי ניתן לבדיקה ובדוק סדר Rules</td></tr><tr><td>משנה יותר מדי</td><td>Scope לא הוגדר</td><td>Rollback, רשימת קבצים ושלב יחיד</td></tr><tr><td>אותה טעות בשיחה חדשה</td><td>הלקח נשאר בצ'אט</td><td>העבר למקור אמת מתאים</td></tr><tr><td>בדיקות אינן רצות</td><td>פקודת אמת או סביבה חסרה</td><td>עדכן AGENTS.md והפרד כשל סביבה מכשל קוד</td></tr><tr><td>נתקע בכיוון רע</td><td>הקשר מזוהם</td><td>Rollback ושיחה חדשה עם Prompt מצומצם</td></tr></tbody></table>
+
+      <h2 id="סיכום">סיכום</h2>
+      <p>Bob אינו זקוק ל&quot;זיכרון אנושי&quot; כדי לעבוד בעקביות; הוא זקוק
+      למקורות אמת קצרים, מדורגים ומתוחזקים:</p>
+      <ul>
+      <li>הקשר בשיחה (<code>@</code> + Prompt) מסביר <strong>מה רלוונטי למשימה הזו</strong>.</li>
+      <li><code>AGENTS.md</code> מסביר <strong>מהו הפרויקט וכיצד עובדים
+      בו</strong>.</li>
+      <li>Custom Rules מגדירים <strong>כיצד Bob צריך
+      להתנהג</strong>.</li>
+      <li>קובצי ידע מנוהלים שומרים <strong>החלטות, לקחים וסטטוס שאינם
+      נגזרים מהקוד</strong>.</li>
+      <li>CI, הרשאות ו־hooks אוכפים <strong>מה שאסור להשאיר לשיקול דעת
+      המודל</strong>.</li>
+      </ul>
+      <p>כך בונים זיכרון פרויקט שקוף, ניתן לביקורת, משותף לצוות ואינו
+      תלוי בשיחה קודמת.</p>
+      <h2 id="מקורות-רשמיים">מקורות רשמיים</h2>
+      <ul>
+      <li><a href="https://bob.ibm.com/docs/ide/tutorials/start-a-project">Start
+      a project with /init and AGENTS.md — IBM Bob</a></li>
+      <li><a href="https://bob.ibm.com/docs/ide/configuration/rules">Custom
+      rules — IBM Bob IDE</a></li>
+      <li><a href="https://bob.ibm.com/docs/shell/configuration/configuring">Configuring
+      and context files — Bob Shell</a></li>
+      <li><a href="https://bob.ibm.com/docs/ide/getting-started/quickstart">Quickstart
+      — IBM Bob</a></li>
+      <li><a href="https://bob.ibm.com/docs/ide/configuration/lifecycle-hooks">Lifecycle
+      hooks — IBM Bob</a></li>
+      <li><a href="https://bob.ibm.com/docs/ide/configuration/bobignore">Ignoring
+      files — IBM Bob</a></li>
+      <li><a href="https://bob.ibm.com/docs/ide/getting-started/best-practices">Best practices — IBM Bob</a></li>
+      <li><a href="https://bob.ibm.com/docs/ide/tutorials/write-effective-prompts">Write effective prompts — IBM Bob</a></li>
+      <li><a href="https://bob.ibm.com/docs/ide/tutorials/create-a-plan-and-implement-complex-features">Plan and implement complex features — IBM Bob</a></li>
+      </ul>
+      <hr />
+      <p><strong>נבדק מול תיעוד IBM Bob בתאריך:</strong> 24 באוגוסט
+      2026.</p>
+      <p class="source-note"><strong>אבי ויזל</strong> · IBM Israel ·
+      <a href="mailto:aviv@il.ibm.com">aviv@il.ibm.com</a> · 050-729-2012<br>
+      מלווה את הקורס <a href="index.html">מ־0 למוצר מקצועי עם IBM Bob</a> · פרק 8: Context, /init ו־AGENTS.md</p>
+    </main>
+        <nav class="toc-panel" aria-label="תוכן עניינים">
+      <h2>תוכן עניינים</h2>
+      <ul>
+      <li><a href="#ארכיטקטורה-ואבני-בניין">ארכיטקטורה ואבני בניין</a>
+      <ul>
+      <li><a href="#מה-נוסע-על-הקו">מה באמת נוסע על הקו</a></li>
+      <li><a href="#saas-מול-onprem">SaaS מול On‑prem (אוויר־פעור)</a></li>
+      <li><a href="#ibm-i-native">IBM i — Native Connection</a></li>
+      <li><a href="#ibm-z-understand">IBM Z — Z Understand</a></li>
+      </ul></li>
+      <li><a href="#מסלול-קצה-לקצה">מסלול עבודה קצה־לקצה</a><ul>
+      <li><a href="#מצבי-עבודה">בחירת מצב עבודה</a></li>
+      <li><a href="#הכנה-בטוחה">הכנת סביבת עבודה בטוחה</a></li>
+      <li><a href="#הגדרת-המוצר">הגדרת המוצר ו־Mini‑PRD</a></li>
+      <li><a href="#כתיבת-prompt">כתיבת Prompt יעיל</a></li>
+      <li><a href="#ביקורת-תוכנית">ביקורת תוכנית</a></li>
+      <li><a href="#מימוש-איטרטיבי">מימוש איטרטיבי</a></li>
+      <li><a href="#בדיקות-ואבטחה">בדיקות ואבטחה</a></li>
+      <li><a href="#git-review">Git וביקורת</a></li>
+      <li><a href="#עבודת-צוות">עבודת צוות ומדידה</a></li>
+      </ul></li>
+      <li><a href="#כיצד-ibm-bob-זוכר-את-הפרויקט-שלך" id="toc-כיצד-ibm-bob-זוכר-את-הפרויקט-שלך">כיצד IBM Bob זוכר את
+      הפרויקט שלך</a>
+      <ul>
+      <li><a href="#מה-bob-באמת-זוכר" id="toc-מה-bob-באמת-זוכר">מה Bob
+      באמת זוכר</a></li>
+      <li><a href="#הקשר-בשיחה-מול-זיכרון-קבצים">הקשר בשיחה מול זיכרון קבצים</a>
+      <ul>
+      <li><a href="#ארבע-שכבות-הקשר">ארבע שכבות הקשר</a></li>
+      <li><a href="#מה-לשים-איפה">מה לשים איפה</a></li>
+      <li><a href="#cgca-והקשר">CGCA והקשר למשימה</a></li>
+      <li><a href="#הנחות-חייבות-להיכתב">הנחות חייבות להיכתב</a></li>
+      <li><a href="#taskflow-כמקרה-מבחן">TaskFlow כמקרה מבחן</a></li>
+      </ul></li>
+      <li><a href="#agentsmd--מסמך-ההיכרות-הקבוע-של-bob" id="toc-agentsmd--מסמך-ההיכרות-הקבוע-של-bob"><code>AGENTS.md</code>
+      — מסמך ההיכרות הקבוע של Bob</a>
+      <ul>
+      <li><a href="#מתי-להוסיף-מידע-לagentsmd" id="toc-מתי-להוסיף-מידע-לagentsmd">מתי להוסיף מידע
+      ל־<code>AGENTS.md</code></a></li>
+      </ul></li>
+      <li><a href="#יצירת-agentsmd-באמצעות-init" id="toc-יצירת-agentsmd-באמצעות-init">יצירת <code>AGENTS.md</code>
+      באמצעות <code>/init</code></a></li>
+      <li><a href="#מבנה-מומלץ-לagentsmd" id="toc-מבנה-מומלץ-לagentsmd">מבנה מומלץ
+      ל־<code>AGENTS.md</code></a>
+      <ul>
+      <li><a href="#תבנית-agentsmd-לtaskflow">תבנית TaskFlow</a></li>
+      </ul></li>
+      <li><a href="#כיצד-bob-טוען-הקשר" id="toc-כיצד-bob-טוען-הקשר">כיצד
+      Bob טוען הקשר</a>
+      <ul>
+      <li><a href="#bob-shell-היררכיית-agentsmd" id="toc-bob-shell-היררכיית-agentsmd">Bob Shell: היררכיית
+      <code>AGENTS.md</code></a></li>
+      <li><a href="#עיקרון-התכנון" id="toc-עיקרון-התכנון">עיקרון
+      התכנון</a></li>
+      </ul></li>
+      <li><a href="#custom-rules-תחת-bob" id="toc-custom-rules-תחת-bob">Custom Rules תחת
+      <code>.bob</code></a>
+      <ul>
+      <li><a href="#מבנה-workspace-מומלץ" id="toc-מבנה-workspace-מומלץ">מבנה Workspace מומלץ</a></li>
+      <li><a href="#כללים-גלובליים" id="toc-כללים-גלובליים">כללים
+      גלובליים</a></li>
+      </ul></li>
+      <li><a href="#כתיבת-הוראות-יעילות" id="toc-כתיבת-הוראות-יעילות">כתיבת הוראות יעילות</a>
+      <ul>
+      <li><a href="#היה-ספציפי-וניתן-לבדיקה" id="toc-היה-ספציפי-וניתן-לבדיקה">היה ספציפי וניתן לבדיקה</a></li>
+      <li><a href="#הפרד-בין-ארבעה-סוגי-מידע" id="toc-הפרד-בין-ארבעה-סוגי-מידע">הפרד בין ארבעה סוגי
+      מידע</a></li>
+      <li><a href="#כתוב-חריגים-במפורש" id="toc-כתוב-חריגים-במפורש">כתוב
+      חריגים במפורש</a></li>
+      <li><a href="#אל-תשתמש-במונחים-עמומים" id="toc-אל-תשתמש-במונחים-עמומים">אל תשתמש במונחים עמומים</a></li>
+      </ul></li>
+      <li><a href="#זיכרון-מבוקר-עבור-bob" id="toc-זיכרון-מבוקר-עבור-bob">זיכרון מבוקר עבור Bob</a>
+      <ul>
+      <li><a href="#תפקיד-כל-קובץ" id="toc-תפקיד-כל-קובץ">תפקיד כל
+      קובץ</a></li>
+      <li><a href="#פורמט-מומלץ-להחלטה" id="toc-פורמט-מומלץ-להחלטה">פורמט מומלץ להחלטה</a></li>
+      <li><a href="#פורמט-מומלץ-ללקח" id="toc-פורמט-מומלץ-ללקח">פורמט
+      מומלץ ללקח</a></li>
+      </ul></li>
+      <li><a href="#מה-לשמור--ומה-לא" id="toc-מה-לשמור--ומה-לא">מה לשמור
+      — ומה לא</a>
+      <ul>
+      <li><a href="#כדאי-לשמור" id="toc-כדאי-לשמור">כדאי לשמור</a></li>
+      <li><a href="#אין-לשמור" id="toc-אין-לשמור">אין לשמור</a></li>
+      </ul></li>
+      <li><a href="#תחזוקה-שוטפת" id="toc-תחזוקה-שוטפת">תחזוקה
+      שוטפת</a></li>
+      <li><a href="#אכיפה-rules-אינם-security-control" id="toc-אכיפה-rules-אינם-security-control">אכיפה: Rules אינם
+      Security Control</a></li>
+      <li><a href="#פתרון-תקלות" id="toc-פתרון-תקלות">פתרון תקלות</a>
+      <ul>
+      <li><a href="#bob-אינו-פועל-לפי-agentsmd" id="toc-bob-אינו-פועל-לפי-agentsmd">Bob אינו פועל לפי
+      <code>AGENTS.md</code></a></li>
+      <li><a href="#bob-משתמש-במידע-מיושן" id="toc-bob-משתמש-במידע-מיושן">Bob משתמש במידע מיושן</a></li>
+      <li><a href="#הכללים-גדולים-מדי" id="toc-הכללים-גדולים-מדי">הכללים
+      גדולים מדי</a></li>
+      <li><a href="#הוראות-נעלמות-בשיחה-חדשה" id="toc-הוראות-נעלמות-בשיחה-חדשה">הוראות נעלמות בשיחה
+      חדשה</a></li>
+      </ul></li>
+      <li><a href="#תהליך-מומלץ-לצוות" id="toc-תהליך-מומלץ-לצוות">תהליך
+      מומלץ לצוות</a></li>
+      <li><a href="#תבנית-מינימלית-להתחלה" id="toc-תבנית-מינימלית-להתחלה">תבנית מינימלית להתחלה</a></li>
+      <li><a href="#סיכום" id="toc-סיכום">סיכום</a></li>
+      <li><a href="#מקורות-רשמיים" id="toc-מקורות-רשמיים">מקורות
+      רשמיים</a></li>
+      </ul></li>
+      </ul>
+    </nav>
+      </div>
+  <script>
+    document.querySelectorAll('pre').forEach(function(pre){
+      pre.setAttribute('tabindex','0');
+      pre.setAttribute('aria-label','דוגמת קוד');
+    });
+  </script>
+</body>
+</html>

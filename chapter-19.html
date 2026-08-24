@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>פרק 19: Full Stack, זהות והרשאות | קורס IBM Bob</title>
+  <link rel="stylesheet" href="assets/css/guide.css">
+</head>
+<body data-chapter="19">
+  <div class="progress-track"><div class="progress-fill"></div></div>
+  <div class="layout">
+    <aside class="sidebar" aria-label="ניווט פרקים">
+      <div class="sidebar-brand">
+        <a href="index.html">מ־0 למוצר עם IBM Bob</a>
+        <small>34 פרקים · אבי ויזל</small>
+      </div>
+      <div class="nav-phase">יסודות</div>
+<a class="nav-link" href="chapter-01.html"><span class="nav-num">1</span>מהי מערכת תוכנה?</a>
+<a class="nav-link" href="chapter-02.html"><span class="nav-num">2</span>סביבת העבודה של המפתח</a>
+<a class="nav-link" href="chapter-03.html"><span class="nav-num">3</span>Git ורשת הביטחון</a>
+<a class="nav-link" href="chapter-04.html"><span class="nav-num">4</span>יסודות תכנות ללא עומס תחבירי</a>
+<div class="nav-phase">עבודה עם Bob</div>
+<a class="nav-link" href="chapter-05.html"><span class="nav-num">5</span>Bob כשותף למחזור חיי הפיתוח</a>
+<a class="nav-link" href="chapter-06.html"><span class="nav-num">6</span>מצבי Ask, Plan ו-Agent</a>
+<a class="nav-link" href="chapter-07.html"><span class="nav-num">7</span>כתיבת הנחיות יעילות ל-Bob</a>
+<a class="nav-link" href="chapter-08.html"><span class="nav-num">8</span>Context, /init ו-AGENTS.md</a>
+<a class="nav-link" href="chapter-09.html"><span class="nav-num">9</span>גבולות גישה והרשאות</a>
+<a class="nav-link" href="chapter-10.html"><span class="nav-num">10</span>Rules, Custom Modes וסטנדרטיזציה</a>
+<div class="nav-phase">מוצר ותכנון</div>
+<a class="nav-link" href="chapter-11.html"><span class="nav-num">11</span>Product Intent ו-Mini PRD</a>
+<a class="nav-link" href="chapter-12.html"><span class="nav-num">12</span>Stories, קריטריוני קבלה ו-Vertical Slice</a>
+<a class="nav-link" href="chapter-13.html"><span class="nav-num">13</span>תכנון עם Plan Mode</a>
+<a class="nav-link" href="chapter-14.html"><span class="nav-num">14</span>מימוש Agentic באיטרציות</a>
+<div class="nav-phase">בניית Capstone</div>
+<a class="nav-link" href="chapter-15.html"><span class="nav-num">15</span>HTML, CSS וחוויית משתמש</a>
+<a class="nav-link" href="chapter-16.html"><span class="nav-num">16</span>JavaScript ופיתוח מבוסס רכיבים</a>
+<a class="nav-link" href="chapter-17.html"><span class="nav-num">17</span>Backend ו-API</a>
+<a class="nav-link" href="chapter-18.html"><span class="nav-num">18</span>מסד נתונים ושכבת מידע</a>
+<a class="nav-link active" href="chapter-19.html"><span class="nav-num">19</span>Full Stack, זהות והרשאות</a>
+<div class="nav-phase">AI וכלים</div>
+<a class="nav-link" href="chapter-20.html"><span class="nav-num">20</span>API של מודל AI</a>
+<a class="nav-link" href="chapter-21.html"><span class="nav-num">21</span>אמינות, Grounding ו-RAG</a>
+<a class="nav-link" href="chapter-22.html"><span class="nav-num">22</span>MCP, כלים ו-Workflows</a>
+<a class="nav-link" href="chapter-23.html"><span class="nav-num">23</span>Skills ו-Subagents</a>
+<div class="nav-phase">איכות ותפעול</div>
+<a class="nav-link" href="chapter-24.html"><span class="nav-num">24</span>Debugging שיטתי עם Bob</a>
+<a class="nav-link" href="chapter-25.html"><span class="nav-num">25</span>בדיקות ו-Code Review</a>
+<a class="nav-link" href="chapter-26.html"><span class="nav-num">26</span>Secure by Design עם Bob</a>
+<a class="nav-link" href="chapter-27.html"><span class="nav-num">27</span>ארכיטקטורה, פריסה ותפעול</a>
+<a class="nav-link" href="chapter-28.html"><span class="nav-num">28</span>עלויות, ממשל והעברת מוצר</a>
+<div class="nav-phase">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</div>
+<a class="nav-link" href="chapter-29.html"><span class="nav-num">29</span>Bob ו-IBM i — Premium Package</a>
+<a class="nav-link" href="chapter-30.html"><span class="nav-num">30</span>Bob ו-IBM Z — Z Understand וקוד Mainframe</a>
+<a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
+<a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
+<a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+    </aside>
+    <div class="main-column">
+      <header class="chapter-header">
+        <div class="chapter-meta">
+          <span class="badge badge-blue">פרק 19 מתוך 34</span>
+          <span class="badge badge-blue">בניית Capstone</span>
+          <span class="badge">50 דק'</span>
+        </div>
+        <h1>Full Stack, זהות והרשאות</h1>
+        <p class="subtitle">חיבור שכבות + הגנה</p>
+      </header>
+      <main class="content">
+        <section class="section">
+          <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
+          <div class="card card-goal"><p><strong>בסוף הפרק:</strong> חיבור שכבות + הגנה</p></div>
+        </section>
+
+        <section class="section">
+          <h2>מבוא</h2>
+          <p>Full stack = flow שלם + auth. Session/JWT — secrets ב-.env, לא בקוד.</p>
+        </section>
+
+        <section class="section">
+      <div class="section-label label-capstone"><span class="dot"></span>פרויקט Capstone — TaskFlow</div>
+      <div class="card card-capstone"><p>TaskFlow: login בסיסי + protected routes.</p></div>
+    </section>
+
+        <section class="section">
+          <div class="section-label label-concepts"><span class="dot"></span>מושגי מפתח</div>
+          <p class="concept-hint">רחפו מעל שם המושג (או לחצו במסך מגע) לפירוט: מבוא, משמעות וכוונה.</p>
+  <div class="concept-grid"><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-19-0">
+        Authentication
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-19-0" role="tooltip" hidden>
+        <p class="popup-kicker">Authentication</p>
+        <p class="popup-label">מבוא</p>
+        <p>לפני <strong><em>מה מותר</em></strong> צריך לדעת <strong><em>מי אתה</em></strong>. Authentication היא הזיהוי.</p>
+        <p class="popup-label">משמעות</p>
+        <p>תהליך login שמוכיח זהות: סיסמה חזקה, hashing, לא סיסמה בטקסט גלוי.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לזהות משתמש בשרת, לא רק <strong><em>להסתיר כפתור</em></strong> ב-Frontend.</p>
+      </div>
+      <p>מי אתה.</p>
+      <div class="example"><strong>דוגמה:</strong> login</div>
+      <div class="pitfall"><strong>זהירות:</strong> plain password.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-19-1">
+        Authorization
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-19-1" role="tooltip" hidden>
+        <p class="popup-kicker">Authorization</p>
+        <p class="popup-label">מבוא</p>
+        <p>משתמש מחובר עדיין לא רשאי לכל דבר. Authorization היא ההרשאה.</p>
+        <p class="popup-label">משמעות</p>
+        <p>כללים: אילו משימות רואים, אילו פעולות מותרות. מונע גישה ל-ID של אחר.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לבדוק בעלות בשרת בכל /tasks/:id — זה מניעת IDOR.</p>
+      </div>
+      <p>מה מותר.</p>
+      <div class="example"><strong>דוגמה:</strong> my tasks only</div>
+      <div class="pitfall"><strong>זהירות:</strong> IDOR.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-19-2">
+        Session/JWT
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-19-2" role="tooltip" hidden>
+        <p class="popup-kicker">Session/JWT</p>
+        <p class="popup-label">מבוא</p>
+        <p>אחרי login צריך הוכחה לכל בקשה. Session או JWT הם ההוכחה.</p>
+        <p class="popup-label">משמעות</p>
+        <p>אמצעי לזהות בקשות עוקבות. Cookie עם httpOnly עדיף על JWT ב-localStorage.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לא לחשוף טוקן ל-JavaScript אם אפשר — XSS גונב localStorage בקלות.</p>
+      </div>
+      <p>proof after login.</p>
+      <div class="example"><strong>דוגמה:</strong> httpOnly cookie</div>
+      <div class="pitfall"><strong>זהירות:</strong> localStorage JWT — JavaScript בדפדפן יכול לקרוא localStorage, ולכן token שמור שם חשוף ל-XSS. httpOnly cookie נחסמת לגישה מ-JS — הדפדפן שולח אותה אוטומטית אבל קוד הדף לא יכול לגנוב אותה.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-19-3">
+        E2E Flow
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-19-3" role="tooltip" hidden>
+        <p class="popup-kicker">E2E Flow</p>
+        <p class="popup-label">מבוא</p>
+        <p>יחידת קוד ירוקה לא מוכיחה שמשתמש יכול להשלים תרחיש.</p>
+        <p class="popup-label">משמעות</p>
+        <p>מסלול מלא: login → פעולה → logout, כולל כישלון (משתמש לא מורשה).</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לבדוק גם את הדרך העצובה, לא רק happy path של TaskFlow.</p>
+      </div>
+      <p>login → action → logout.</p>
+      <div class="example"><strong>דוגמה:</strong> create as user A</div>
+      <div class="pitfall"><strong>זהירות:</strong> test only happy.</div>
+    </article></div>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-analogy"><span class="dot"></span>משל מהעולם האמיתי</div>
+          <div class="card card-analogy"><p>Authentication ו-Authorization הם שני בדיקות עצמאיות: <strong><em>מי אתה?</em></strong> ו-<strong><em>מה מותר לך?</em></strong>. middleware שבודק רק את ה-token אך לא את ה-ownership מאפשר IDOR — גישה למשימה של משתמש אחר דרך שינוי id ב-URL. שתי הבדיקות חייבות להיות בצד השרת.</p></div>
+          <p><strong>שאלות לחשיבה:</strong> כתבו את ה-middleware של TaskFlow בשלושה שלבים: (1) פענוח token, (2) בדיקת תוקף, (3) בדיקת ownership — task.userId === req.user.id. הגדירו מה מוחזר בכל כשלון.</p>
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-bob"><span class="dot"></span>עבודה עם IBM Bob</div>
+          <div class="mode-row"><span class="mode-pill mode-plan">Plan</span><span class="mode-pill mode-agent">Agent</span></div>
+          <p>Auth plan → implement minimal.</p>
+          <h3>Prompt לדוגמה</h3>
+          <pre class="prompt">Plan: basic auth for TaskFlow. Threats, session, protected /api/tasks. No impl yet.</pre>
+          <p><strong>למה זה עובד:</strong> Security plan.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-warning"><span class="dot"></span>טעות נפוצה</div>
+          <div class="card card-warning">
+            <p><strong>לא:</strong> auth in frontend only.</p>
+            <p><strong>כן:</strong> middleware on every protected route.</p>
+          </div>
+          
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
+          <ol class="steps"><li>Auth plan.</li><li>Login endpoint.</li><li>Middleware.</li><li>Test unauthorized.</li><li>E2E.</li><li>הצלחה = GET /api/tasks ללא token מחזיר 401, עם token מחזיר את המשימות של המשתמש בלבד.</li></ol>
+        </section>
+
+        <section class="section">
+          <h2>תרגיל עצמאי</h2>
+          <p>Threat: access task by ID — mitigation?</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-quiz"><span class="dot"></span>בדקו את עצמכם</div>
+          <div class="quiz"><details>
+      <summary>Auth vs Authz?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> identity vs permission.</div>
+    </details><details>
+      <summary>IDOR?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> access others' data by ID — prevent server-side.</div>
+    </details><details>
+      <summary>httpOnly?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> JS can't steal cookie.</div>
+    </details></div>
+        </section>
+
+        <section class="section">
+          <h2>סיכום</h2>
+          <div class="summary-box">
+            <ul><li>Server auth.</li><li>Middleware.</li><li>No secrets in code.</li><li>E2E auth test.</li></ul>
+          </div>
+        </section>
+      </main>
+
+      <nav class="chapter-nav" aria-label="ניווט בין פרקים">
+        <a class="prev" href="chapter-18.html"><span class="nav-label">פרק קודם</span><span class="nav-title">מסד נתונים ושכבת מידע</span></a>
+        <a class="next" href="chapter-20.html"><span class="nav-label">פרק הבא</span><span class="nav-title">API של מודל AI</span></a>
+      </nav>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <p><strong>אבי ויזל</strong> · IBM Israel</p>
+          <p><a href="mailto:aviv@il.ibm.com">aviv@il.ibm.com</a> · 050-729-2012</p>
+          <p class="footer-meta">קורס IBM Bob · פרק 19 · 2026</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="assets/js/guide.js"></script>
+</body>
+</html>

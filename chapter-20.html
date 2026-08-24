@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>פרק 20: API של מודל AI | קורס IBM Bob</title>
+  <link rel="stylesheet" href="assets/css/guide.css">
+</head>
+<body data-chapter="20">
+  <div class="progress-track"><div class="progress-fill"></div></div>
+  <div class="layout">
+    <aside class="sidebar" aria-label="ניווט פרקים">
+      <div class="sidebar-brand">
+        <a href="index.html">מ־0 למוצר עם IBM Bob</a>
+        <small>34 פרקים · אבי ויזל</small>
+      </div>
+      <div class="nav-phase">יסודות</div>
+<a class="nav-link" href="chapter-01.html"><span class="nav-num">1</span>מהי מערכת תוכנה?</a>
+<a class="nav-link" href="chapter-02.html"><span class="nav-num">2</span>סביבת העבודה של המפתח</a>
+<a class="nav-link" href="chapter-03.html"><span class="nav-num">3</span>Git ורשת הביטחון</a>
+<a class="nav-link" href="chapter-04.html"><span class="nav-num">4</span>יסודות תכנות ללא עומס תחבירי</a>
+<div class="nav-phase">עבודה עם Bob</div>
+<a class="nav-link" href="chapter-05.html"><span class="nav-num">5</span>Bob כשותף למחזור חיי הפיתוח</a>
+<a class="nav-link" href="chapter-06.html"><span class="nav-num">6</span>מצבי Ask, Plan ו-Agent</a>
+<a class="nav-link" href="chapter-07.html"><span class="nav-num">7</span>כתיבת הנחיות יעילות ל-Bob</a>
+<a class="nav-link" href="chapter-08.html"><span class="nav-num">8</span>Context, /init ו-AGENTS.md</a>
+<a class="nav-link" href="chapter-09.html"><span class="nav-num">9</span>גבולות גישה והרשאות</a>
+<a class="nav-link" href="chapter-10.html"><span class="nav-num">10</span>Rules, Custom Modes וסטנדרטיזציה</a>
+<div class="nav-phase">מוצר ותכנון</div>
+<a class="nav-link" href="chapter-11.html"><span class="nav-num">11</span>Product Intent ו-Mini PRD</a>
+<a class="nav-link" href="chapter-12.html"><span class="nav-num">12</span>Stories, קריטריוני קבלה ו-Vertical Slice</a>
+<a class="nav-link" href="chapter-13.html"><span class="nav-num">13</span>תכנון עם Plan Mode</a>
+<a class="nav-link" href="chapter-14.html"><span class="nav-num">14</span>מימוש Agentic באיטרציות</a>
+<div class="nav-phase">בניית Capstone</div>
+<a class="nav-link" href="chapter-15.html"><span class="nav-num">15</span>HTML, CSS וחוויית משתמש</a>
+<a class="nav-link" href="chapter-16.html"><span class="nav-num">16</span>JavaScript ופיתוח מבוסס רכיבים</a>
+<a class="nav-link" href="chapter-17.html"><span class="nav-num">17</span>Backend ו-API</a>
+<a class="nav-link" href="chapter-18.html"><span class="nav-num">18</span>מסד נתונים ושכבת מידע</a>
+<a class="nav-link" href="chapter-19.html"><span class="nav-num">19</span>Full Stack, זהות והרשאות</a>
+<div class="nav-phase">AI וכלים</div>
+<a class="nav-link active" href="chapter-20.html"><span class="nav-num">20</span>API של מודל AI</a>
+<a class="nav-link" href="chapter-21.html"><span class="nav-num">21</span>אמינות, Grounding ו-RAG</a>
+<a class="nav-link" href="chapter-22.html"><span class="nav-num">22</span>MCP, כלים ו-Workflows</a>
+<a class="nav-link" href="chapter-23.html"><span class="nav-num">23</span>Skills ו-Subagents</a>
+<div class="nav-phase">איכות ותפעול</div>
+<a class="nav-link" href="chapter-24.html"><span class="nav-num">24</span>Debugging שיטתי עם Bob</a>
+<a class="nav-link" href="chapter-25.html"><span class="nav-num">25</span>בדיקות ו-Code Review</a>
+<a class="nav-link" href="chapter-26.html"><span class="nav-num">26</span>Secure by Design עם Bob</a>
+<a class="nav-link" href="chapter-27.html"><span class="nav-num">27</span>ארכיטקטורה, פריסה ותפעול</a>
+<a class="nav-link" href="chapter-28.html"><span class="nav-num">28</span>עלויות, ממשל והעברת מוצר</a>
+<div class="nav-phase">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</div>
+<a class="nav-link" href="chapter-29.html"><span class="nav-num">29</span>Bob ו-IBM i — Premium Package</a>
+<a class="nav-link" href="chapter-30.html"><span class="nav-num">30</span>Bob ו-IBM Z — Z Understand וקוד Mainframe</a>
+<a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
+<a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
+<a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+    </aside>
+    <div class="main-column">
+      <header class="chapter-header">
+        <div class="chapter-meta">
+          <span class="badge badge-blue">פרק 20 מתוך 34</span>
+          <span class="badge badge-purple">AI וכלים</span>
+          <span class="badge">40 דק'</span>
+        </div>
+        <h1>API של מודל AI</h1>
+        <p class="subtitle">שילוב מודל — פלט, עלות, כשלים</p>
+      </header>
+      <main class="content">
+        <section class="section">
+          <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
+          <div class="card card-goal"><p><strong>בסוף הפרק:</strong> שילוב מודל — פלט, עלות, כשלים</p></div>
+        </section>
+
+        <section class="section">
+          <h2>מבוא</h2>
+          <p>Model API = שירות חיצוני. Timeout, retry, cost limits, fallbacks.</p>
+        </section>
+
+        <section class="section">
+      <div class="section-label label-capstone"><span class="dot"></span>פרויקט Capstone — TaskFlow</div>
+      <div class="card card-capstone"><p>TaskFlow: <strong><em>הצע כותרת משימה</em></strong> — optional AI assist.</p></div>
+    </section>
+
+        <section class="section">
+          <div class="section-label label-concepts"><span class="dot"></span>מושגי מפתח</div>
+          <p class="concept-hint">רחפו מעל שם המושג (או לחצו במסך מגע) לפירוט: מבוא, משמעות וכוונה.</p>
+  <div class="concept-grid"><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-20-0">
+        Prompt Template
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-20-0" role="tooltip" hidden>
+        <p class="popup-kicker">Prompt Template</p>
+        <p class="popup-label">מבוא</p>
+        <p>קריאה חופשית למודל בכל פעם מייצרת פלט לא יציב. תבנית מייצבת.</p>
+        <p class="popup-label">משמעות</p>
+        <p>מבנה קבוע: הוראת מערכת + משתני משתמש כמו {{ctx}}, בלי להדביק קלט גולמי להוראת מערכת.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לשלוט בגבולות המודל. קלט משתמש ב-system prompt הוא סיכון.</p>
+      </div>
+      <p>system + user pattern.</p>
+      <div class="example"><strong>דוגמה:</strong> Suggest task title for: {{ctx}}</div>
+      <div class="pitfall"><strong>זהירות:</strong> raw user in system.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-20-1">
+        Token Budget
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-20-1" role="tooltip" hidden>
+        <p class="popup-kicker">Token Budget</p>
+        <p class="popup-label">מבוא</p>
+        <p>מודל מתומחר לפי טokens. בלי תקרה העלות והזמן בורחים.</p>
+        <p class="popup-label">משמעות</p>
+        <p>הגבלת אורך קלט ופלט (למשל 500 tokens) לכל קריאה.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לשים מקסימום בכל wrapper. <strong><em>בלי הגבלה</em></strong> אינו מקצועי.</p>
+      </div>
+      <p>max input/output.</p>
+      <div class="example"><strong>דוגמה:</strong> 500 tokens</div>
+      <div class="pitfall"><strong>זהירות:</strong> unbounded.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-20-2">
+        Timeout/Retry
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-20-2" role="tooltip" hidden>
+        <p class="popup-kicker">Timeout/Retry</p>
+        <p class="popup-label">מבוא</p>
+        <p>שירות חיצוני נתקע. בלי timeout המשתמש מחכה לנצח.</p>
+        <p class="popup-label">משמעות</p>
+        <p>זמן מקסימום לקריאה, ומספר ניסיונות חוזרים מוגבל כשיש כשל רגעי.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לעצב כשל: 3 שניות, ניסיון אחד, ואז fallback — לא hang.</p>
+      </div>
+      <p>fail gracefully.</p>
+      <div class="example"><strong>דוגמה:</strong> 3s timeout, 1 retry</div>
+      <div class="pitfall"><strong>זהירות:</strong> hang forever.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-20-3">
+        Fallback
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-20-3" role="tooltip" hidden>
+        <p class="popup-kicker">Fallback</p>
+        <p class="popup-label">מבוא</p>
+        <p>AI הוא רשות, לא עמוד השדרה. כשהמודל נכשל המוצר עדיין חייב לעבוד.</p>
+        <p class="popup-label">משמעות</p>
+        <p>התנהגות חלופית: השארת שדה ריק, הודעה עדינה, או ערך ברירת מחדל — לא 500 למשתמש.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לתכנן UX לכישלון לפני שמחברים מפתח API.</p>
+      </div>
+      <p>when model fails.</p>
+      <div class="example"><strong>דוגמה:</strong> empty suggestion</div>
+      <div class="pitfall"><strong>זהירות:</strong> 500 to user.</div>
+    </article></div>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-analogy"><span class="dot"></span>משל מהעולם האמיתי</div>
+          <div class="card card-analogy"><p>קריאה סינכרונית למודל AI ללא timeout חוסמת את כל ה-request עד לתשובה — אם המודל איטי, המשתמש תקוע. Fallback ברור (הצעה ריקה, הודעת שגיאה ידידותית) מבדיל בין תכונה שנכשלת בחן לבין שירות שמתרסק.</p></div>
+          <p><strong>שאלות לחשיבה:</strong> תכננו את ה-fallback של <strong><em>הצעת כותרת</em></strong> ב-TaskFlow: מה המשתמש רואה אם המודל לא עונה תוך 3 שניות? מה הוא רואה אם ה-API key חסר? רשמו שני תרחישים עם ה-UX המתאים.</p>
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-bob"><span class="dot"></span>עבודה עם IBM Bob</div>
+          <div class="mode-row"><span class="mode-pill mode-plan">Plan</span></div>
+          <p>Design API wrapper.</p>
+          <h3>Prompt לדוגמה</h3>
+          <pre class="prompt">Plan AI suggest-title: interface, timeout, cost cap, fallback. No keys in code.</pre>
+          <p><strong>למה זה עובד:</strong> Resilience design.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-warning"><span class="dot"></span>טעות נפוצה</div>
+          <div class="card card-warning">
+            <p><strong>לא:</strong> sync call, no timeout.</p>
+            <p><strong>כן:</strong> async + timeout + fallback UI.</p>
+          </div>
+          
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
+          <ol class="steps"><li>Plan AI feature.</li><li>Wrapper function.</li><li>Mock test.</li><li>Cost estimate.</li><li>Document.</li><li>הצלחה = wrapper מחזיר fallback תוך 3 שניות כשהמודל לא זמין, mock test עובר.</li></ol>
+        </section>
+
+        <section class="section">
+          <h2>תרגיל עצמאי</h2>
+          <p>Fallback UX — 2 options.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-quiz"><span class="dot"></span>בדקו את עצמכם</div>
+          <div class="quiz"><details>
+      <summary>Token budget?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> control cost + latency.</div>
+    </details><details>
+      <summary>Timeout?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> user not stuck waiting.</div>
+    </details><details>
+      <summary>Keys?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> env only — never commit.</div>
+    </details></div>
+        </section>
+
+        <section class="section">
+          <h2>סיכום</h2>
+          <div class="summary-box">
+            <ul><li>Wrapper layer.</li><li>Timeout + fallback.</li><li>Cost cap.</li><li>Mock tests.</li></ul>
+          </div>
+        </section>
+      </main>
+
+      <nav class="chapter-nav" aria-label="ניווט בין פרקים">
+        <a class="prev" href="chapter-19.html"><span class="nav-label">פרק קודם</span><span class="nav-title">Full Stack, זהות והרשאות</span></a>
+        <a class="next" href="chapter-21.html"><span class="nav-label">פרק הבא</span><span class="nav-title">אמינות, Grounding ו-RAG</span></a>
+      </nav>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <p><strong>אבי ויזל</strong> · IBM Israel</p>
+          <p><a href="mailto:aviv@il.ibm.com">aviv@il.ibm.com</a> · 050-729-2012</p>
+          <p class="footer-meta">קורס IBM Bob · פרק 20 · 2026</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="assets/js/guide.js"></script>
+</body>
+</html>

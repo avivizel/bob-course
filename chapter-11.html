@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>פרק 11: Product Intent ו-Mini PRD | קורס IBM Bob</title>
+  <link rel="stylesheet" href="assets/css/guide.css">
+</head>
+<body data-chapter="11">
+  <div class="progress-track"><div class="progress-fill"></div></div>
+  <div class="layout">
+    <aside class="sidebar" aria-label="ניווט פרקים">
+      <div class="sidebar-brand">
+        <a href="index.html">מ־0 למוצר עם IBM Bob</a>
+        <small>34 פרקים · אבי ויזל</small>
+      </div>
+      <div class="nav-phase">יסודות</div>
+<a class="nav-link" href="chapter-01.html"><span class="nav-num">1</span>מהי מערכת תוכנה?</a>
+<a class="nav-link" href="chapter-02.html"><span class="nav-num">2</span>סביבת העבודה של המפתח</a>
+<a class="nav-link" href="chapter-03.html"><span class="nav-num">3</span>Git ורשת הביטחון</a>
+<a class="nav-link" href="chapter-04.html"><span class="nav-num">4</span>יסודות תכנות ללא עומס תחבירי</a>
+<div class="nav-phase">עבודה עם Bob</div>
+<a class="nav-link" href="chapter-05.html"><span class="nav-num">5</span>Bob כשותף למחזור חיי הפיתוח</a>
+<a class="nav-link" href="chapter-06.html"><span class="nav-num">6</span>מצבי Ask, Plan ו-Agent</a>
+<a class="nav-link" href="chapter-07.html"><span class="nav-num">7</span>כתיבת הנחיות יעילות ל-Bob</a>
+<a class="nav-link" href="chapter-08.html"><span class="nav-num">8</span>Context, /init ו-AGENTS.md</a>
+<a class="nav-link" href="chapter-09.html"><span class="nav-num">9</span>גבולות גישה והרשאות</a>
+<a class="nav-link" href="chapter-10.html"><span class="nav-num">10</span>Rules, Custom Modes וסטנדרטיזציה</a>
+<div class="nav-phase">מוצר ותכנון</div>
+<a class="nav-link active" href="chapter-11.html"><span class="nav-num">11</span>Product Intent ו-Mini PRD</a>
+<a class="nav-link" href="chapter-12.html"><span class="nav-num">12</span>Stories, קריטריוני קבלה ו-Vertical Slice</a>
+<a class="nav-link" href="chapter-13.html"><span class="nav-num">13</span>תכנון עם Plan Mode</a>
+<a class="nav-link" href="chapter-14.html"><span class="nav-num">14</span>מימוש Agentic באיטרציות</a>
+<div class="nav-phase">בניית Capstone</div>
+<a class="nav-link" href="chapter-15.html"><span class="nav-num">15</span>HTML, CSS וחוויית משתמש</a>
+<a class="nav-link" href="chapter-16.html"><span class="nav-num">16</span>JavaScript ופיתוח מבוסס רכיבים</a>
+<a class="nav-link" href="chapter-17.html"><span class="nav-num">17</span>Backend ו-API</a>
+<a class="nav-link" href="chapter-18.html"><span class="nav-num">18</span>מסד נתונים ושכבת מידע</a>
+<a class="nav-link" href="chapter-19.html"><span class="nav-num">19</span>Full Stack, זהות והרשאות</a>
+<div class="nav-phase">AI וכלים</div>
+<a class="nav-link" href="chapter-20.html"><span class="nav-num">20</span>API של מודל AI</a>
+<a class="nav-link" href="chapter-21.html"><span class="nav-num">21</span>אמינות, Grounding ו-RAG</a>
+<a class="nav-link" href="chapter-22.html"><span class="nav-num">22</span>MCP, כלים ו-Workflows</a>
+<a class="nav-link" href="chapter-23.html"><span class="nav-num">23</span>Skills ו-Subagents</a>
+<div class="nav-phase">איכות ותפעול</div>
+<a class="nav-link" href="chapter-24.html"><span class="nav-num">24</span>Debugging שיטתי עם Bob</a>
+<a class="nav-link" href="chapter-25.html"><span class="nav-num">25</span>בדיקות ו-Code Review</a>
+<a class="nav-link" href="chapter-26.html"><span class="nav-num">26</span>Secure by Design עם Bob</a>
+<a class="nav-link" href="chapter-27.html"><span class="nav-num">27</span>ארכיטקטורה, פריסה ותפעול</a>
+<a class="nav-link" href="chapter-28.html"><span class="nav-num">28</span>עלויות, ממשל והעברת מוצר</a>
+<div class="nav-phase">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</div>
+<a class="nav-link" href="chapter-29.html"><span class="nav-num">29</span>Bob ו-IBM i — Premium Package</a>
+<a class="nav-link" href="chapter-30.html"><span class="nav-num">30</span>Bob ו-IBM Z — Z Understand וקוד Mainframe</a>
+<a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
+<a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
+<a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+    </aside>
+    <div class="main-column">
+      <header class="chapter-header">
+        <div class="chapter-meta">
+          <span class="badge badge-blue">פרק 11 מתוך 34</span>
+          <span class="badge badge-purple">מוצר ותכנון</span>
+          <span class="badge">40 דק'</span>
+        </div>
+        <h1>Product Intent ו-Mini PRD</h1>
+        <p class="subtitle">בעיה וערך לפני פתרון</p>
+      </header>
+      <main class="content">
+        <section class="section">
+          <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
+          <div class="card card-goal"><p><strong>בסוף הפרק:</strong> בעיה וערך לפני פתרון</p></div>
+        </section>
+
+        <section class="section">
+          <h2>מבוא</h2>
+          <p>מוצר טוב מתחיל בכאב אמיתי. Mini PRD = מסמך קצר: מי, מה, למה, scope — בלי stack.</p>
+        </section>
+
+        <section class="section">
+      <div class="section-label label-capstone"><span class="dot"></span>פרויקט Capstone — TaskFlow</div>
+      <div class="card card-capstone"><p>כתבו Mini PRD ל-TaskFlow — מנהל משימות לצוות קטן.</p></div>
+    </section>
+
+        <section class="section">
+          <div class="section-label label-concepts"><span class="dot"></span>מושגי מפתח</div>
+          <p class="concept-hint">רחפו מעל שם המושג (או לחצו במסך מגע) לפירוט: מבוא, משמעות וכוונה.</p>
+  <div class="concept-grid"><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-11-0">
+        Problem Statement
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-11-0" role="tooltip" hidden>
+        <p class="popup-kicker">Problem Statement</p>
+        <p class="popup-label">מבוא</p>
+        <p>קל לקפוץ לפתרון (<strong><em>נבנה אפליקציה</em></strong>). Problem Statement עוצר את הקפיצה.</p>
+        <p class="popup-label">משמעות</p>
+        <p>תיאור כאב אמיתי של אדם, בלי טכנולוגיה ובלי רשימת פיצ'רים.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לוודא שבונים מוצר לבעיה קיימת, לא טכנולוגיה שמחפשת לקוח.</p>
+      </div>
+      <p>הבעיה — לא הפתרון.</p>
+      <div class="example"><strong>דוגמה:</strong> <strong><em>צוות מאבד track של משימות</em></strong></div>
+      <div class="pitfall"><strong>זהירות:</strong> <strong><em>נבנה אפליקציית AI</em></strong>.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-11-1">
+        Target User
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-11-1" role="tooltip" hidden>
+        <p class="popup-kicker">Target User</p>
+        <p class="popup-label">מבוא</p>
+        <p><strong><em>כולם</em></strong> אינו משתמש. משתמש מעורפל מייצר מוצר מעורפל.</p>
+        <p class="popup-label">משמעות</p>
+        <p>האדם הספציפי שחווה את הבעיה: תפקיד, הקשר, מגבלה (למשל צוות של חמישה).</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לכתוב מסך והחלטות בשבילו — לא בשביל קהל דמיוני.</p>
+      </div>
+      <p>משתמש ספציפי.</p>
+      <div class="example"><strong>דוגמה:</strong> מפתח בצוות 5 אנשים</div>
+      <div class="pitfall"><strong>זהירות:</strong> <strong><em>כולם</em></strong>.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-11-2">
+        Outcome
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-11-2" role="tooltip" hidden>
+        <p class="popup-kicker">Outcome</p>
+        <p class="popup-label">מבוא</p>
+        <p><strong><em>יהיה טוב יותר</em></strong> לא נמדד. Outcome אומר איך נראה הצלחה.</p>
+        <p class="popup-label">משמעות</p>
+        <p>שינוי מדיד אחרי השימוש: אחוז, זמן, מספר שגיאות, משימות עם סטטוס.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לחבר את V1 למספר. בלי מספר קשה לדעת מתי לעצור.</p>
+      </div>
+      <p>שינוי מדיד.</p>
+      <div class="example"><strong>דוגמה:</strong> 80% משימות עם status</div>
+      <div class="pitfall"><strong>זהירות:</strong> <strong><em>יהיה טוב</em></strong>.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-11-3">
+        Scope
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-11-3" role="tooltip" hidden>
+        <p class="popup-kicker">Scope</p>
+        <p class="popup-label">מבוא</p>
+        <p>PRD בלי גבול הופך לפרויקט אינסופי. Scope מפריד V1 מ-later.</p>
+        <p class="popup-label">משמעות</p>
+        <p>מה נכנס לגרסה הנוכחית ומה במפורש בחוץ: notifications, AI, אפליקציית מובייל.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להגן על ה-Capstone מפני feature creep בזמן עבודה עם Agent.</p>
+      </div>
+      <p>V1 vs later.</p>
+      <div class="example"><strong>דוגמה:</strong> V1: CRUD, לא notifications</div>
+      <div class="pitfall"><strong>זהירות:</strong> feature creep.</div>
+    </article></div>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-analogy"><span class="dot"></span>משל מהעולם האמיתי</div>
+          <div class="card card-analogy"><p>Mini PRD מגדיר מה <strong><em>done</em></strong> נראה כמו לפני שמתחילים לבנות. בלי הגדרה זו, כל feature נראה דחוף ושום דבר לא <strong><em>גמור</em></strong>. V1 Scope שנכתב מראש מאפשר לסגור sprint — לא להוסיף עוד ועוד.</p></div>
+          <p><strong>שאלות לחשיבה:</strong> כתבו שני רשימות ל-TaskFlow V1: 3 פיצ'רים שבפנים (In), ו-3 פיצ'רים שבחוץ (Out of Scope). שמרו כ-scope.md.</p>
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-bob"><span class="dot"></span>עבודה עם IBM Bob</div>
+          <div class="mode-row"><span class="mode-pill mode-ask">Ask</span></div>
+          <p>ראיון — לא קוד.</p>
+          <h3>Prompt לדוגמה</h3>
+          <pre class="prompt">Ask up to 5 questions that clarify user, pain, and outcome. Then write a Mini PRD with no stack choice and no code.</pre>
+          <p><strong>למה זה עובד:</strong> Product לפני tech.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-warning"><span class="dot"></span>טעות נפוצה</div>
+          <div class="card card-warning">
+            <p><strong>לא:</strong> PRD = רשימת features.</p>
+            <p><strong>כן:</strong> PRD = problem + user + outcome + scope.</p>
+          </div>
+          
+        </section>
+
+        <section class="section">
+      <div class="section-label label-deep"><span class="dot"></span>תבנית Mini PRD</div>
+      <div class="card card-deep"><pre class="code-block"># TaskFlow — Mini PRD
+## Problem: [כאב]
+## User: [מי]
+## Outcome: [מדיד]
+## V1 Scope: [in]
+## Out of Scope: [out]
+## Success: [איך נדע]</pre></div>
+    </section>
+
+        <section class="section">
+          <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
+          <ol class="steps"><li>ראיון (או self).</li><li>Problem statement.</li><li>Mini PRD.</li><li>Out of scope list.</li><li>Review.</li><li>הצלחה = Mini PRD של עמוד אחד עם בעיה, משתמש, outcome מדיד ו-Out of Scope list ברורה.</li></ol>
+        </section>
+
+        <section class="section">
+          <h2>תרגיל עצמאי</h2>
+          <p>PRD ל-TaskFlow — 1 עמוד.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-quiz"><span class="dot"></span>בדקו את עצמכם</div>
+          <div class="quiz"><details>
+      <summary>בעיה vs פתרון?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> בעיה = כאב; פתרון = איך.</div>
+    </details><details>
+      <summary>Out of Scope?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> מגביל V1 — חוסך זמן.</div>
+    </details><details>
+      <summary>Outcome מדיד?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> מספר, %, זמן — לא adjective.</div>
+    </details></div>
+        </section>
+
+        <section class="section">
+          <h2>סיכום</h2>
+          <div class="summary-box">
+            <ul><li>Product לפני code.</li><li>PRD = 1 עמוד.</li><li>Scope = guardrail.</li><li>Capstone: TaskFlow PRD.</li></ul>
+          </div>
+        </section>
+      </main>
+
+      <nav class="chapter-nav" aria-label="ניווט בין פרקים">
+        <a class="prev" href="chapter-10.html"><span class="nav-label">פרק קודם</span><span class="nav-title">Rules, Custom Modes וסטנדרטיזציה</span></a>
+        <a class="next" href="chapter-12.html"><span class="nav-label">פרק הבא</span><span class="nav-title">Stories, קריטריוני קבלה ו-Vertical Slice</span></a>
+      </nav>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <p><strong>אבי ויזל</strong> · IBM Israel</p>
+          <p><a href="mailto:aviv@il.ibm.com">aviv@il.ibm.com</a> · 050-729-2012</p>
+          <p class="footer-meta">קורס IBM Bob · פרק 11 · 2026</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="assets/js/guide.js"></script>
+</body>
+</html>

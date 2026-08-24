@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>פרק 4: יסודות תכנות ללא עומס תחבירי | קורס IBM Bob</title>
+  <link rel="stylesheet" href="assets/css/guide.css">
+</head>
+<body data-chapter="4">
+  <div class="progress-track"><div class="progress-fill"></div></div>
+  <div class="layout">
+    <aside class="sidebar" aria-label="ניווט פרקים">
+      <div class="sidebar-brand">
+        <a href="index.html">מ־0 למוצר עם IBM Bob</a>
+        <small>34 פרקים · אבי ויזל</small>
+      </div>
+      <div class="nav-phase">יסודות</div>
+<a class="nav-link" href="chapter-01.html"><span class="nav-num">1</span>מהי מערכת תוכנה?</a>
+<a class="nav-link" href="chapter-02.html"><span class="nav-num">2</span>סביבת העבודה של המפתח</a>
+<a class="nav-link" href="chapter-03.html"><span class="nav-num">3</span>Git ורשת הביטחון</a>
+<a class="nav-link active" href="chapter-04.html"><span class="nav-num">4</span>יסודות תכנות ללא עומס תחבירי</a>
+<div class="nav-phase">עבודה עם Bob</div>
+<a class="nav-link" href="chapter-05.html"><span class="nav-num">5</span>Bob כשותף למחזור חיי הפיתוח</a>
+<a class="nav-link" href="chapter-06.html"><span class="nav-num">6</span>מצבי Ask, Plan ו-Agent</a>
+<a class="nav-link" href="chapter-07.html"><span class="nav-num">7</span>כתיבת הנחיות יעילות ל-Bob</a>
+<a class="nav-link" href="chapter-08.html"><span class="nav-num">8</span>Context, /init ו-AGENTS.md</a>
+<a class="nav-link" href="chapter-09.html"><span class="nav-num">9</span>גבולות גישה והרשאות</a>
+<a class="nav-link" href="chapter-10.html"><span class="nav-num">10</span>Rules, Custom Modes וסטנדרטיזציה</a>
+<div class="nav-phase">מוצר ותכנון</div>
+<a class="nav-link" href="chapter-11.html"><span class="nav-num">11</span>Product Intent ו-Mini PRD</a>
+<a class="nav-link" href="chapter-12.html"><span class="nav-num">12</span>Stories, קריטריוני קבלה ו-Vertical Slice</a>
+<a class="nav-link" href="chapter-13.html"><span class="nav-num">13</span>תכנון עם Plan Mode</a>
+<a class="nav-link" href="chapter-14.html"><span class="nav-num">14</span>מימוש Agentic באיטרציות</a>
+<div class="nav-phase">בניית Capstone</div>
+<a class="nav-link" href="chapter-15.html"><span class="nav-num">15</span>HTML, CSS וחוויית משתמש</a>
+<a class="nav-link" href="chapter-16.html"><span class="nav-num">16</span>JavaScript ופיתוח מבוסס רכיבים</a>
+<a class="nav-link" href="chapter-17.html"><span class="nav-num">17</span>Backend ו-API</a>
+<a class="nav-link" href="chapter-18.html"><span class="nav-num">18</span>מסד נתונים ושכבת מידע</a>
+<a class="nav-link" href="chapter-19.html"><span class="nav-num">19</span>Full Stack, זהות והרשאות</a>
+<div class="nav-phase">AI וכלים</div>
+<a class="nav-link" href="chapter-20.html"><span class="nav-num">20</span>API של מודל AI</a>
+<a class="nav-link" href="chapter-21.html"><span class="nav-num">21</span>אמינות, Grounding ו-RAG</a>
+<a class="nav-link" href="chapter-22.html"><span class="nav-num">22</span>MCP, כלים ו-Workflows</a>
+<a class="nav-link" href="chapter-23.html"><span class="nav-num">23</span>Skills ו-Subagents</a>
+<div class="nav-phase">איכות ותפעול</div>
+<a class="nav-link" href="chapter-24.html"><span class="nav-num">24</span>Debugging שיטתי עם Bob</a>
+<a class="nav-link" href="chapter-25.html"><span class="nav-num">25</span>בדיקות ו-Code Review</a>
+<a class="nav-link" href="chapter-26.html"><span class="nav-num">26</span>Secure by Design עם Bob</a>
+<a class="nav-link" href="chapter-27.html"><span class="nav-num">27</span>ארכיטקטורה, פריסה ותפעול</a>
+<a class="nav-link" href="chapter-28.html"><span class="nav-num">28</span>עלויות, ממשל והעברת מוצר</a>
+<div class="nav-phase">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</div>
+<a class="nav-link" href="chapter-29.html"><span class="nav-num">29</span>Bob ו-IBM i — Premium Package</a>
+<a class="nav-link" href="chapter-30.html"><span class="nav-num">30</span>Bob ו-IBM Z — Z Understand וקוד Mainframe</a>
+<a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
+<a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
+<a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+    </aside>
+    <div class="main-column">
+      <header class="chapter-header">
+        <div class="chapter-meta">
+          <span class="badge badge-blue">פרק 4 מתוך 34</span>
+          <span class="badge badge-blue">יסודות</span>
+          <span class="badge">25 דק'</span>
+        </div>
+        <h1>יסודות תכנות ללא עומס תחבירי</h1>
+        <p class="subtitle">רעיונות לפני סימנים ושפות</p>
+      </header>
+      <main class="content">
+        <section class="section">
+          <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
+          <div class="card card-goal"><p><strong>בסוף הפרק:</strong> רעיונות לפני סימנים ושפות</p></div>
+        </section>
+
+        <section class="section">
+          <h2>מבוא</h2>
+          <p>תכנות = הוראות, החלטות, חזרות ומבנים. Bob כותב תחביר; אתם צריכים להבין לוגיקה.</p>
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-concepts"><span class="dot"></span>מושגי מפתח</div>
+          <p class="concept-hint">רחפו מעל שם המושג (או לחצו במסך מגע) לפירוט: מבוא, משמעות וכוונה.</p>
+  <div class="concept-grid"><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-4-0">
+        משתנה
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-4-0" role="tooltip" hidden>
+        <p class="popup-kicker">משתנה</p>
+        <p class="popup-label">מבוא</p>
+        <p>התוכנה צריכה לזכור ערכים בשמות. משתנה הוא תווית לערך.</p>
+        <p class="popup-label">משמעות</p>
+        <p>שם שמחזיק נתון (מחרוזת, מספר, רשימה) ואפשר לקרוא או לעדכן אותו.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לבחור שמות שמסבירים את עצמם — לכם ול-Bob — כדי שלא ינחשו.</p>
+      </div>
+      <p>שם לערך.</p>
+      <div class="example"><strong>דוגמה:</strong> taskTitle = <strong><em>לסיים PRD</em></strong></div>
+      <div class="pitfall"><strong>זהירות:</strong> שם לא ברור.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-4-1">
+        תנאי
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-4-1" role="tooltip" hidden>
+        <p class="popup-kicker">תנאי</p>
+        <p class="popup-label">מבוא</p>
+        <p>תוכנה לא עושה תמיד אותו דבר. תנאי הוא צומת החלטה.</p>
+        <p class="popup-label">משמעות</p>
+        <p>if / else: אם מצב מסוים מתקיים — בצע א; אחרת — בצע ב. בלי else נשארים מצבים שקטים.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לשאול <strong><em>מה קורה אם הקלט ריק / שגוי / כפול</em></strong> לפני שמממשים.</p>
+      </div>
+      <p>if/else — בחירה.</p>
+      <div class="example"><strong>דוגמה:</strong> if status === 'done' → hide</div>
+      <div class="pitfall"><strong>זהירות:</strong> בלי else — edge cases.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-4-2">
+        לולאה
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-4-2" role="tooltip" hidden>
+        <p class="popup-kicker">לולאה</p>
+        <p class="popup-label">מבוא</p>
+        <p>רשימת משימות דורשת אותה פעולה לכל פריט. לולאה חוזרת במקום להעתיק קוד.</p>
+        <p class="popup-label">משמעות</p>
+        <p>חזרה על פעולה לכל איבר ברשימה, או עד שתנאי עצירה מתקיים.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לוודא שיש תנאי עצירה — לולאה אינסופית מקפיאה את האפליקציה.</p>
+      </div>
+      <p>חזרה על פעולה.</p>
+      <div class="example"><strong>דוגמה:</strong> tasks.forEach(render)</div>
+      <div class="pitfall"><strong>זהירות:</strong> לולאה אינסופית.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-4-3">
+        פונקציה
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-4-3" role="tooltip" hidden>
+        <p class="popup-kicker">פונקציה</p>
+        <p class="popup-label">מבוא</p>
+        <p>במקום לכתוב אותו בלוק פעמיים, נותנים לו שם. פונקציה היא יחידת עבודה.</p>
+        <p class="popup-label">משמעות</p>
+        <p>קוד עם שם, קלט (פרמטרים) ופלט (ערך מוחזר או פעולה). אמורה לעשות דבר אחד.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לבקש מ-Bob פונקציות קצרות — קל לבדוק, קל להסביר, קל לתקן.</p>
+      </div>
+      <p>יחידת עבודה עם שם.</p>
+      <div class="example"><strong>דוגמה:</strong> createTask(title)</div>
+      <div class="pitfall"><strong>זהירות:</strong> פונקציה שעושה 5 דברים.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-4-4">
+        הערך החוזר (return)
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-4-4" role="tooltip" hidden>
+        <p class="popup-kicker">הערך החוזר (return)</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>הערך החוזר (return)</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>מה הפונקציה מחזירה — ה-output המפורש. בלי return — הפונקציה מחזירה undefined.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — פונקציה שמשנה state חיצוני במקום להחזיר ערך — קשה לבדיקה.</p>
+      </div>
+      <p>מה הפונקציה מחזירה — ה-output המפורש. בלי return — הפונקציה מחזירה undefined.</p>
+      <div class="example"><strong>דוגמה:</strong> function add(a, b) { return a + b } ← הפלט הוא a+b, לא undefined</div>
+      <div class="pitfall"><strong>זהירות:</strong> פונקציה שמשנה state חיצוני במקום להחזיר ערך — קשה לבדיקה.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-4-5">
+        Scope
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-4-5" role="tooltip" hidden>
+        <p class="popup-kicker">Scope</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Scope</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>היכן משתנה גלוי. משתנה בתוך פונקציה — לא גלוי מחוצה לה.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — הצהרה על let בתוך if — לא גלוי מחוץ לבלוק ב-JS.</p>
+      </div>
+      <p>היכן משתנה גלוי. משתנה בתוך פונקציה — לא גלוי מחוצה לה.</p>
+      <div class="example"><strong>דוגמה:</strong> const total = tasks.reduce(sum, 0) — total גלוי רק בבלוק הזה</div>
+      <div class="pitfall"><strong>זהירות:</strong> הצהרה על let בתוך if — לא גלוי מחוץ לבלוק ב-JS.</div>
+    </article></div>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-analogy"><span class="dot"></span>משל מהעולם האמיתי</div>
+          <div class="card card-analogy"><p>pseudocode מפריד בין לוגיקה לבין תחביר. כשמבינים את ה-if/else בעברית פשוטה — שגיאת compilation אינה מבלבלת: ברור שהלוגיקה נכונה, ורק הסימנים צריכים תיקון. אם לא הבנתם את ה-pseudocode — אין טעם לקרוא את הקוד.</p></div>
+          <p><strong>שאלות לחשיבה:</strong> מצאו את createTask ב-TaskFlow. בקשו מ-Bob pseudocode שלה. בדקו: האם ה-pseudocode מסביר את כל ה-edge cases — כגון title ריק, משתמש לא מחובר? אם לא — הוסיפו אותם לפני שמאשרים קוד.</p>
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-bob"><span class="dot"></span>עבודה עם IBM Bob</div>
+          <div class="mode-row"><span class="mode-pill mode-ask">Ask</span></div>
+          <p>Ask להסבר לוגיקה — לא קוד מלא.</p>
+          <h3>Prompt לדוגמה</h3>
+          <pre class="prompt">Explain createTask in @api/tasks.js as pseudocode. Do not change any code.</pre>
+          <p><strong>למה זה עובד:</strong> Pseudocode = הבנה בלי תחביר.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-warning"><span class="dot"></span>טעות נפוצה</div>
+          <div class="card card-warning">
+            <p><strong>לא:</strong> Bob כתב קוד עם if nested של 4 רמות — אישרתם כי נראה תקין.</p>
+            <p><strong>כן:</strong> בקשו pseudocode ראשון. אם ה-pseudocode לא מובן לכם — הקוד לא יהיה תקין.</p>
+          </div>
+          
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
+          <ol class="steps"><li>מצאו פונקציה ב-TaskFlow.</li><li>בקשו מ-Bob pseudocode.</li><li>זהו: input, output, conditions, edge cases.</li><li>כתבו pseudocode משלכם לפונקציה שכתב Bob.</li><li>השוו — מצאו את ההבדל.</li><li>הצלחה = זיהיתם edge case אחד שהpseudocode של Bob לא כיסה.</li></ol>
+        </section>
+
+        <section class="section">
+          <h2>תרגיל עצמאי</h2>
+          <p>תארו <strong><em>מחיקת משימה</em></strong> ב-pseudocode — 5 שורות max.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-quiz"><span class="dot"></span>בדקו את עצמכם</div>
+          <div class="quiz"><details>
+      <summary>משתנה vs קבוע?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> משתנה משתנה; קבוע (const) — לא.</div>
+    </details><details>
+      <summary>למה פונקציה קצרה?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> קל לבדוק, לשם, לשכפל.</div>
+    </details><details>
+      <summary>תנאי בלי else?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> מצבים לא צפויים נשברים בשקט.</div>
+    </details><details>
+      <summary>מה מחזירה פונקציה ללא return?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> undefined — לא שגיאה, אבל כל קוד שמשתמש בתוצאה שלה יקבל undefined בשקט.</div>
+    </details><details>
+      <summary>Scope — למה זה חשוב?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> משתנה שמוצהר בתוך if לא גלוי אחרי הבלוק. Bob לפעמים מכריז בלוקלי ומשתמש גלובלית — בדקו scope בdiff.</div>
+    </details></div>
+        </section>
+
+        <section class="section">
+          <h2>סיכום</h2>
+          <div class="summary-box">
+            <ul><li>לוגיקה &gt; תחביר.</li><li>Pseudocode לפני Agent.</li><li>פונקציה = עשה דבר אחד.</li><li>שאלו <strong><em>מה יקרה אם…</em></strong>.</li></ul>
+          </div>
+        </section>
+      </main>
+
+      <nav class="chapter-nav" aria-label="ניווט בין פרקים">
+        <a class="prev" href="chapter-03.html"><span class="nav-label">פרק קודם</span><span class="nav-title">Git ורשת הביטחון</span></a>
+        <a class="next" href="chapter-05.html"><span class="nav-label">פרק הבא</span><span class="nav-title">Bob כשותף למחזור חיי הפיתוח</span></a>
+      </nav>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <p><strong>אבי ויזל</strong> · IBM Israel</p>
+          <p><a href="mailto:aviv@il.ibm.com">aviv@il.ibm.com</a> · 050-729-2012</p>
+          <p class="footer-meta">קורס IBM Bob · פרק 4 · 2026</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="assets/js/guide.js"></script>
+</body>
+</html>

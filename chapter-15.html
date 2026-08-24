@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>פרק 15: HTML, CSS וחוויית משתמש | קורס IBM Bob</title>
+  <link rel="stylesheet" href="assets/css/guide.css">
+</head>
+<body data-chapter="15">
+  <div class="progress-track"><div class="progress-fill"></div></div>
+  <div class="layout">
+    <aside class="sidebar" aria-label="ניווט פרקים">
+      <div class="sidebar-brand">
+        <a href="index.html">מ־0 למוצר עם IBM Bob</a>
+        <small>34 פרקים · אבי ויזל</small>
+      </div>
+      <div class="nav-phase">יסודות</div>
+<a class="nav-link" href="chapter-01.html"><span class="nav-num">1</span>מהי מערכת תוכנה?</a>
+<a class="nav-link" href="chapter-02.html"><span class="nav-num">2</span>סביבת העבודה של המפתח</a>
+<a class="nav-link" href="chapter-03.html"><span class="nav-num">3</span>Git ורשת הביטחון</a>
+<a class="nav-link" href="chapter-04.html"><span class="nav-num">4</span>יסודות תכנות ללא עומס תחבירי</a>
+<div class="nav-phase">עבודה עם Bob</div>
+<a class="nav-link" href="chapter-05.html"><span class="nav-num">5</span>Bob כשותף למחזור חיי הפיתוח</a>
+<a class="nav-link" href="chapter-06.html"><span class="nav-num">6</span>מצבי Ask, Plan ו-Agent</a>
+<a class="nav-link" href="chapter-07.html"><span class="nav-num">7</span>כתיבת הנחיות יעילות ל-Bob</a>
+<a class="nav-link" href="chapter-08.html"><span class="nav-num">8</span>Context, /init ו-AGENTS.md</a>
+<a class="nav-link" href="chapter-09.html"><span class="nav-num">9</span>גבולות גישה והרשאות</a>
+<a class="nav-link" href="chapter-10.html"><span class="nav-num">10</span>Rules, Custom Modes וסטנדרטיזציה</a>
+<div class="nav-phase">מוצר ותכנון</div>
+<a class="nav-link" href="chapter-11.html"><span class="nav-num">11</span>Product Intent ו-Mini PRD</a>
+<a class="nav-link" href="chapter-12.html"><span class="nav-num">12</span>Stories, קריטריוני קבלה ו-Vertical Slice</a>
+<a class="nav-link" href="chapter-13.html"><span class="nav-num">13</span>תכנון עם Plan Mode</a>
+<a class="nav-link" href="chapter-14.html"><span class="nav-num">14</span>מימוש Agentic באיטרציות</a>
+<div class="nav-phase">בניית Capstone</div>
+<a class="nav-link active" href="chapter-15.html"><span class="nav-num">15</span>HTML, CSS וחוויית משתמש</a>
+<a class="nav-link" href="chapter-16.html"><span class="nav-num">16</span>JavaScript ופיתוח מבוסס רכיבים</a>
+<a class="nav-link" href="chapter-17.html"><span class="nav-num">17</span>Backend ו-API</a>
+<a class="nav-link" href="chapter-18.html"><span class="nav-num">18</span>מסד נתונים ושכבת מידע</a>
+<a class="nav-link" href="chapter-19.html"><span class="nav-num">19</span>Full Stack, זהות והרשאות</a>
+<div class="nav-phase">AI וכלים</div>
+<a class="nav-link" href="chapter-20.html"><span class="nav-num">20</span>API של מודל AI</a>
+<a class="nav-link" href="chapter-21.html"><span class="nav-num">21</span>אמינות, Grounding ו-RAG</a>
+<a class="nav-link" href="chapter-22.html"><span class="nav-num">22</span>MCP, כלים ו-Workflows</a>
+<a class="nav-link" href="chapter-23.html"><span class="nav-num">23</span>Skills ו-Subagents</a>
+<div class="nav-phase">איכות ותפעול</div>
+<a class="nav-link" href="chapter-24.html"><span class="nav-num">24</span>Debugging שיטתי עם Bob</a>
+<a class="nav-link" href="chapter-25.html"><span class="nav-num">25</span>בדיקות ו-Code Review</a>
+<a class="nav-link" href="chapter-26.html"><span class="nav-num">26</span>Secure by Design עם Bob</a>
+<a class="nav-link" href="chapter-27.html"><span class="nav-num">27</span>ארכיטקטורה, פריסה ותפעול</a>
+<a class="nav-link" href="chapter-28.html"><span class="nav-num">28</span>עלויות, ממשל והעברת מוצר</a>
+<div class="nav-phase">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</div>
+<a class="nav-link" href="chapter-29.html"><span class="nav-num">29</span>Bob ו-IBM i — Premium Package</a>
+<a class="nav-link" href="chapter-30.html"><span class="nav-num">30</span>Bob ו-IBM Z — Z Understand וקוד Mainframe</a>
+<a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
+<a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
+<a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+    </aside>
+    <div class="main-column">
+      <header class="chapter-header">
+        <div class="chapter-meta">
+          <span class="badge badge-blue">פרק 15 מתוך 34</span>
+          <span class="badge badge-blue">בניית Capstone</span>
+          <span class="badge">45 דק'</span>
+        </div>
+        <h1>HTML, CSS וחוויית משתמש</h1>
+        <p class="subtitle">מסך ברור, נגיש, רספונסיבי</p>
+      </header>
+      <main class="content">
+        <section class="section">
+          <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
+          <div class="card card-goal"><p><strong>בסוף הפרק:</strong> מסך ברור, נגיש, רספונסיבי</p></div>
+        </section>
+
+        <section class="section">
+          <h2>מבוא</h2>
+          <p>HTML = מבנה. CSS = עיצוב. UX = המשתמש מבין בלי manual.</p>
+        </section>
+
+        <section class="section">
+      <div class="section-label label-capstone"><span class="dot"></span>פרויקט Capstone — TaskFlow</div>
+      <div class="card card-capstone"><p>UI TaskFlow: רשימה, טופס הוספה, מצבי All/Open/Done.</p></div>
+    </section>
+
+        <section class="section">
+          <div class="section-label label-concepts"><span class="dot"></span>מושגי מפתח</div>
+          <p class="concept-hint">רחפו מעל שם המושג (או לחצו במסך מגע) לפירוט: מבוא, משמעות וכוונה.</p>
+  <div class="concept-grid"><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-15-0">
+        Semantic HTML
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-15-0" role="tooltip" hidden>
+        <p class="popup-kicker">Semantic HTML</p>
+        <p class="popup-label">מבוא</p>
+        <p>div על כל דבר נראה במסך אבל לא אומר למכונה מה זה. HTML סמנטי כן.</p>
+        <p class="popup-label">משמעות</p>
+        <p>שימוש באלמנטים עם משמעות: button, nav, main, form, label — לא div עם onclick.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: נגישות, מקלדת, וקוד ש-Bob וקורא אנושי מבינים בלי ניחוש.</p>
+      </div>
+      <p>main, nav, button.</p>
+      <div class="example"><strong>דוגמה:</strong> &lt;button&gt; not &lt;div onclick&gt;</div>
+      <div class="pitfall"><strong>זהירות:</strong> div soup.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-15-1">
+        Accessibility
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-15-1" role="tooltip" hidden>
+        <p class="popup-kicker">Accessibility</p>
+        <p class="popup-label">מבוא</p>
+        <p>מסך יפה שאי אפשר להפעיל במקלדת אינו מסך שלם.</p>
+        <p class="popup-label">משמעות</p>
+        <p>תוויות, ניגודיות, סדר פוקוס, aria במקום שצריך, טקסט חלופי.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לבדוק מקלדת וקורא מסך כחלק מ-AC של UI, לא כתוספת בסוף.</p>
+      </div>
+      <p>labels, contrast, keyboard.</p>
+      <div class="example"><strong>דוגמה:</strong> aria-label</div>
+      <div class="pitfall"><strong>זהירות:</strong> color only.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-15-2">
+        Responsive
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-15-2" role="tooltip" hidden>
+        <p class="popup-kicker">Responsive</p>
+        <p class="popup-label">מבוא</p>
+        <p>משתמשים מגיעים גם מטלפון. עיצוב לשולחן בלבד שובר את החוויה.</p>
+        <p class="popup-label">משמעות</p>
+        <p>פריסה שעובדת ברוחבים שונים: flex/grid, נקודות שבירה, לא גלילה אופקית מקרית.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לכלול מובייל ב-AC של TaskFlow לפני שסוגרים את ה-slice.</p>
+      </div>
+      <p>mobile + desktop.</p>
+      <div class="example"><strong>דוגמה:</strong> flex/grid</div>
+      <div class="pitfall"><strong>זהירות:</strong> desktop only.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-15-3">
+        Design Token
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-15-3" role="tooltip" hidden>
+        <p class="popup-kicker">Design Token</p>
+        <p class="popup-label">מבוא</p>
+        <p>צבעים אקראיים בכל קובץ יוצרים מראה לא מקצועי וקשה לתחזוקה.</p>
+        <p class="popup-label">משמעות</p>
+        <p>משתני עיצוב משותפים: צבע, ריווח, רדיוס, גופן — מקור אחד לאמת ויזואלית.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לבקש מ-Bob להשתמש בטוקנים, לא בערכי px ו-hex חדשים בכל פעם.</p>
+      </div>
+      <p>צבעים/spacing עקביים.</p>
+      <div class="example"><strong>דוגמה:</strong> --primary: #0f62fe</div>
+      <div class="pitfall"><strong>זהירות:</strong> random px.</div>
+    </article></div>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-analogy"><span class="dot"></span>משל מהעולם האמיתי</div>
+          <div class="card card-analogy"><p>Semantic HTML ו-design tokens הם גם תיעוד: כשקוראים &lt;button&gt; מבינים שמדובר בפעולה; כשרואים var(--primary) מבינים שזה צבע המערכת. קוד שמשתמש ב-div ו-pixel מפוזרים מכריח את הקורא לנחש כוונה.</p></div>
+          <p><strong>שאלות לחשיבה:</strong> פתחו את ה-UI של TaskFlow בדפדפן וסמנו 3 אלמנטים: האם כל אחד משתמש ב-Semantic HTML? האם CTA הראשי ברור ב-keyboard בלבד?</p>
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-bob"><span class="dot"></span>עבודה עם IBM Bob</div>
+          <div class="mode-row"><span class="mode-pill mode-agent">Agent</span></div>
+          <p>Plan UI → Agent scoped @public.</p>
+          <h3>Prompt לדוגמה</h3>
+          <pre class="prompt">Context: @public/
+Goal: task list + add form
+Constraints: semantic, RTL, mobile
+AC: keyboard nav works</pre>
+          <p><strong>למה זה עובד:</strong> Scoped UI work.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-warning"><span class="dot"></span>טעות נפוצה</div>
+          <div class="card card-warning">
+            <p><strong>לא:</strong> inline styles everywhere.</p>
+            <p><strong>כן:</strong> CSS variables + classes.</p>
+          </div>
+          
+        </section>
+
+        <section class="section">
+      <div class="section-label label-deep"><span class="dot"></span>HTML לדוגמה</div>
+      <div class="card card-deep"><pre class="code-block">&lt;main&gt;
+  &lt;form id="add-task" aria-label="הוספת משימה"&gt;
+    &lt;input name="title" required&gt;
+    &lt;button type="submit"&gt;הוסף&lt;/button&gt;
+  &lt;/form&gt;
+  &lt;ul id="task-list"&gt;&lt;/ul&gt;
+&lt;/main&gt;</pre></div>
+    </section>
+
+        <section class="section">
+          <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
+          <ol class="steps"><li>HTML structure.</li><li>CSS tokens.</li><li>RTL test.</li><li>Mobile width.</li><li>Screenshot.</li><li>הצלחה = UI TaskFlow טוען, RTL נכון, form נגיש ב-keyboard, responsive ב-375px.</li></ol>
+        </section>
+
+        <section class="section">
+          <h2>תרגיל עצמאי</h2>
+          <p>WCAG check — 3 items.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-quiz"><span class="dot"></span>בדקו את עצמכם</div>
+          <div class="quiz"><details>
+      <summary>Semantic?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> meaning for screen readers + SEO.</div>
+    </details><details>
+      <summary>Responsive?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> works all viewports.</div>
+    </details><details>
+      <summary>Token?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> consistent design system.</div>
+    </details></div>
+        </section>
+
+        <section class="section">
+          <h2>סיכום</h2>
+          <div class="summary-box">
+            <ul><li>Semantic HTML.</li><li>RTL + a11y.</li><li>Tokens.</li><li>Capstone UI.</li></ul>
+          </div>
+        </section>
+      </main>
+
+      <nav class="chapter-nav" aria-label="ניווט בין פרקים">
+        <a class="prev" href="chapter-14.html"><span class="nav-label">פרק קודם</span><span class="nav-title">מימוש Agentic באיטרציות</span></a>
+        <a class="next" href="chapter-16.html"><span class="nav-label">פרק הבא</span><span class="nav-title">JavaScript ופיתוח מבוסס רכיבים</span></a>
+      </nav>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <p><strong>אבי ויזל</strong> · IBM Israel</p>
+          <p><a href="mailto:aviv@il.ibm.com">aviv@il.ibm.com</a> · 050-729-2012</p>
+          <p class="footer-meta">קורס IBM Bob · פרק 15 · 2026</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="assets/js/guide.js"></script>
+</body>
+</html>

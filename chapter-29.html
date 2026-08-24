@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>פרק 29: Bob ו-IBM i — Premium Package | קורס IBM Bob</title>
+  <link rel="stylesheet" href="assets/css/guide.css">
+</head>
+<body data-chapter="29">
+  <div class="progress-track"><div class="progress-fill"></div></div>
+  <div class="layout">
+    <aside class="sidebar" aria-label="ניווט פרקים">
+      <div class="sidebar-brand">
+        <a href="index.html">מ־0 למוצר עם IBM Bob</a>
+        <small>34 פרקים · אבי ויזל</small>
+      </div>
+      <div class="nav-phase">יסודות</div>
+<a class="nav-link" href="chapter-01.html"><span class="nav-num">1</span>מהי מערכת תוכנה?</a>
+<a class="nav-link" href="chapter-02.html"><span class="nav-num">2</span>סביבת העבודה של המפתח</a>
+<a class="nav-link" href="chapter-03.html"><span class="nav-num">3</span>Git ורשת הביטחון</a>
+<a class="nav-link" href="chapter-04.html"><span class="nav-num">4</span>יסודות תכנות ללא עומס תחבירי</a>
+<div class="nav-phase">עבודה עם Bob</div>
+<a class="nav-link" href="chapter-05.html"><span class="nav-num">5</span>Bob כשותף למחזור חיי הפיתוח</a>
+<a class="nav-link" href="chapter-06.html"><span class="nav-num">6</span>מצבי Ask, Plan ו-Agent</a>
+<a class="nav-link" href="chapter-07.html"><span class="nav-num">7</span>כתיבת הנחיות יעילות ל-Bob</a>
+<a class="nav-link" href="chapter-08.html"><span class="nav-num">8</span>Context, /init ו-AGENTS.md</a>
+<a class="nav-link" href="chapter-09.html"><span class="nav-num">9</span>גבולות גישה והרשאות</a>
+<a class="nav-link" href="chapter-10.html"><span class="nav-num">10</span>Rules, Custom Modes וסטנדרטיזציה</a>
+<div class="nav-phase">מוצר ותכנון</div>
+<a class="nav-link" href="chapter-11.html"><span class="nav-num">11</span>Product Intent ו-Mini PRD</a>
+<a class="nav-link" href="chapter-12.html"><span class="nav-num">12</span>Stories, קריטריוני קבלה ו-Vertical Slice</a>
+<a class="nav-link" href="chapter-13.html"><span class="nav-num">13</span>תכנון עם Plan Mode</a>
+<a class="nav-link" href="chapter-14.html"><span class="nav-num">14</span>מימוש Agentic באיטרציות</a>
+<div class="nav-phase">בניית Capstone</div>
+<a class="nav-link" href="chapter-15.html"><span class="nav-num">15</span>HTML, CSS וחוויית משתמש</a>
+<a class="nav-link" href="chapter-16.html"><span class="nav-num">16</span>JavaScript ופיתוח מבוסס רכיבים</a>
+<a class="nav-link" href="chapter-17.html"><span class="nav-num">17</span>Backend ו-API</a>
+<a class="nav-link" href="chapter-18.html"><span class="nav-num">18</span>מסד נתונים ושכבת מידע</a>
+<a class="nav-link" href="chapter-19.html"><span class="nav-num">19</span>Full Stack, זהות והרשאות</a>
+<div class="nav-phase">AI וכלים</div>
+<a class="nav-link" href="chapter-20.html"><span class="nav-num">20</span>API של מודל AI</a>
+<a class="nav-link" href="chapter-21.html"><span class="nav-num">21</span>אמינות, Grounding ו-RAG</a>
+<a class="nav-link" href="chapter-22.html"><span class="nav-num">22</span>MCP, כלים ו-Workflows</a>
+<a class="nav-link" href="chapter-23.html"><span class="nav-num">23</span>Skills ו-Subagents</a>
+<div class="nav-phase">איכות ותפעול</div>
+<a class="nav-link" href="chapter-24.html"><span class="nav-num">24</span>Debugging שיטתי עם Bob</a>
+<a class="nav-link" href="chapter-25.html"><span class="nav-num">25</span>בדיקות ו-Code Review</a>
+<a class="nav-link" href="chapter-26.html"><span class="nav-num">26</span>Secure by Design עם Bob</a>
+<a class="nav-link" href="chapter-27.html"><span class="nav-num">27</span>ארכיטקטורה, פריסה ותפעול</a>
+<a class="nav-link" href="chapter-28.html"><span class="nav-num">28</span>עלויות, ממשל והעברת מוצר</a>
+<div class="nav-phase">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</div>
+<a class="nav-link active" href="chapter-29.html"><span class="nav-num">29</span>Bob ו-IBM i — Premium Package</a>
+<a class="nav-link" href="chapter-30.html"><span class="nav-num">30</span>Bob ו-IBM Z — Z Understand וקוד Mainframe</a>
+<a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
+<a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
+<a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+    </aside>
+    <div class="main-column">
+      <header class="chapter-header">
+        <div class="chapter-meta">
+          <span class="badge badge-blue">פרק 29 מתוך 34</span>
+          <span class="badge badge-teal">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</span>
+          <span class="badge">55 דק'</span>
+        </div>
+        <h1>Bob ו-IBM i — Premium Package</h1>
+        <p class="subtitle">RPG, DB2 for i — Developer Mode, DB Mode, Workflows ויכולות מתקדמות</p>
+      </header>
+      <main class="content">
+        <section class="section">
+          <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
+          <div class="card card-goal"><p><strong>בסוף הפרק:</strong> RPG, DB2 for i — Developer Mode, DB Mode, Workflows ויכולות מתקדמות</p></div>
+        </section>
+
+        <section class="section">
+          <h2>מבוא</h2>
+          <p>Premium Package for i (לא plugin — <strong><em>חבילה</em></strong>) הוא ה-add-on הרשמי של IBM ל-Bob V2 עבור פיתוח IBM i. הוא מוסיף שני מצבים חדשים (Developer Mode ו-DB Mode), Native Connection דרך SSH (לא MCP), slash-command <strong><em>/erd</em></strong> ליצירת ERD אוטומטי, ו-Workflows מוכנים: RPG Modernization, RPG Unit Testing, Index Strategy Advisor, Business Rules Extraction ו-Security Reporting. כל workflow ניתן להרחיב — ואפשר ליצור Workflows, Skills וTools משלכם.</p>
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-concepts"><span class="dot"></span>מושגי מפתח</div>
+          <p class="concept-hint">רחפו מעל שם המושג (או לחצו במסך מגע) לפירוט: מבוא, משמעות וכוונה.</p>
+  <div class="concept-grid"><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-29-0">
+        Native Connection (SSH)
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-29-0" role="tooltip" hidden>
+        <p class="popup-kicker">Native Connection (SSH)</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Native Connection (SSH)</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>Bob מתחבר ל-IBM i דרך SSH — אותו חיבור כמו VS Code. לא MCP server חיצוני. אבטחה מלאה, enterprise-grade, תמיכה מלאה של IBM.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — להשתמש ב-open-source MCP server לחיבור — Tim Rowe (מוצר): &quot;Stop it. Don't do it.&quot; אינו מאובטח, לא נתמך ע&quot;י IBM, ולא מספק את שאר יכולות ה-PP for i.</p>
+      </div>
+      <p>Bob מתחבר ל-IBM i דרך SSH — אותו חיבור כמו VS Code. לא MCP server חיצוני. אבטחה מלאה, enterprise-grade, תמיכה מלאה של IBM.</p>
+      <div class="example"><strong>דוגמה:</strong> לחיצה על IBM i icon ב-Bob IDE → בחירת מערכת → עץ ספריות + schema browser. Bob מזהה workspace: local / library list / IFS.</div>
+      <div class="pitfall"><strong>זהירות:</strong> להשתמש ב-open-source MCP server לחיבור — Tim Rowe (מוצר): &quot;Stop it. Don't do it.&quot; אינו מאובטח, לא נתמך ע&quot;י IBM, ולא מספק את שאר יכולות ה-PP for i.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-29-1">
+        /erd — ERD slash-command
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-29-1" role="tooltip" hidden>
+        <p class="popup-kicker">/erd — ERD slash-command</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>/erd — ERD slash-command</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>פקודת /erd schema-name בצ'אט מפעילה skill שמריץ SQL Services queries מרובות על IBM i בו-זמנית (multi-thread) ומייצר Entity Relationship Diagram.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לצפות ל-ERD בלי חיבור Native — /erd דורש חיבור פעיל ל-IBM i ו-DB Mode.</p>
+      </div>
+      <p>פקודת /erd schema-name בצ'אט מפעילה skill שמריץ SQL Services queries מרובות על IBM i בו-זמנית (multi-thread) ומייצר Entity Relationship Diagram.</p>
+      <div class="example"><strong>דוגמה:</strong> /erd toystore → Bob מריץ 4 sub-skills במקביל (columns, keys, foreign keys, constraints) → Mermaid ERD של כל הטבלאות</div>
+      <div class="pitfall"><strong>זהירות:</strong> לצפות ל-ERD בלי חיבור Native — /erd דורש חיבור פעיל ל-IBM i ו-DB Mode.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-29-2">
+        Developer Mode
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-29-2" role="tooltip" hidden>
+        <p class="popup-kicker">Developer Mode</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Developer Mode</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>מצב Bob עם persona של מומחה IBM i: RPG (fixed ו-free-form), CL, DDS, display files, ILE — עם כל ה-skills הרלוונטיים אינפוז' למודל.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לעבוד ב-Agent Mode ללא Developer Mode פעיל — Bob חסר את ה-IBM i context.</p>
+      </div>
+      <p>מצב Bob עם persona של מומחה IBM i: RPG (fixed ו-free-form), CL, DDS, display files, ILE — עם כל ה-skills הרלוונטיים אינפוז' למודל.</p>
+      <div class="example"><strong>דוגמה:</strong> Bob מזהה RPG 1984, מציג Mermaid diagram של תוכנית, מסביר data structures ו-display files</div>
+      <div class="pitfall"><strong>זהירות:</strong> לעבוד ב-Agent Mode ללא Developer Mode פעיל — Bob חסר את ה-IBM i context.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-29-3">
+        DB Mode
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-29-3" role="tooltip" hidden>
+        <p class="popup-kicker">DB Mode</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>DB Mode</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>מצב Bob עם persona של מומחה DB2 for i: SQL, indexes, security, schema design, performance optimization.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לבקש DB analysis ב-Developer Mode — השתמשו ב-DB Mode לכל מה שנוגע לנתונים.</p>
+      </div>
+      <p>מצב Bob עם persona של מומחה DB2 for i: SQL, indexes, security, schema design, performance optimization.</p>
+      <div class="example"><strong>דוגמה:</strong> <strong><em>Report on security of toy store schema</em></strong> → Bob מריץ SQL Services queries ומפיק דו&quot;ח מפורט עם vulnerabilities</div>
+      <div class="pitfall"><strong>זהירות:</strong> לבקש DB analysis ב-Developer Mode — השתמשו ב-DB Mode לכל מה שנוגע לנתונים.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-29-4">
+        RPG Modernization Workflow
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-29-4" role="tooltip" hidden>
+        <p class="popup-kicker">RPG Modernization Workflow</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>RPG Modernization Workflow</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>Workflow מובנה שממיר RPG OPM → ILE → free-form בשלבים עם compile gate בין כל שלב. הוא אינטראקטיבי: שואל שאלות, מזהה I-specs/O-specs/go-tos, ומייצר Summary Report.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לאשר write בלי לקרוא את ה-diff — RPG רגיש מאוד ל-column positions. הWorkflow מבקש approval לפני כל write.</p>
+      </div>
+      <p>Workflow מובנה שממיר RPG OPM → ILE → free-form בשלבים עם compile gate בין כל שלב. הוא אינטראקטיבי: שואל שאלות, מזהה I-specs/O-specs/go-tos, ומייצר Summary Report.</p>
+      <div class="example"><strong>דוגמה:</strong> שלב 1: OPM→ILE (QRPG→QRPGLE) + compile. שלב 2: scan I-specs/O-specs. שלב 3: המרה ל-free-form + write + compile. שלב אחרון: Modernization Summary Report.</div>
+      <div class="pitfall"><strong>זהירות:</strong> לאשר write בלי לקרוא את ה-diff — RPG רגיש מאוד ל-column positions. הWorkflow מבקש approval לפני כל write.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-29-5">
+        Field-Add — DDS + DB + RPG
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-29-5" role="tooltip" hidden>
+        <p class="popup-kicker">Field-Add — DDS + DB + RPG</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Field-Add — DDS + DB + RPG</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>Bob מזהה אוטומטית את ה-display file, הDB file וה-RPG program הקשורים, ומשנה את כולם בו-זמנית. מריץ compile בסוף ומתקן שגיאות.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לתת prompt כללי בלי context — Bob יחפש את הקבצים לבד, אך שם מפורש של display file מזרז ומדייק.</p>
+      </div>
+      <p>Bob מזהה אוטומטית את ה-display file, הDB file וה-RPG program הקשורים, ומשנה את כולם בו-זמנית. מריץ compile בסוף ומתקן שגיאות.</p>
+      <div class="example"><strong>דוגמה:</strong> &quot;Add field 'flight hours' to the flight maintenance screen&quot; → Bob מוצא display file + DB + RPG → מתכנן → מגיש diff לכל קובץ → compile. DDS syntax error? Bob מתקן אוטומטית ומריץ מחדש.</div>
+      <div class="pitfall"><strong>זהירות:</strong> לתת prompt כללי בלי context — Bob יחפש את הקבצים לבד, אך שם מפורש של display file מזרז ומדייק.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-29-6">
+        Bob מתקן שגיאות compile
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-29-6" role="tooltip" hidden>
+        <p class="popup-kicker">Bob מתקן שגיאות compile</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Bob מתקן שגיאות compile</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>כשיש שגיאת DDS/RPG לאחר שינוי, Bob מזהה את השגיאה מה-*EVENTF output, מתקן אוטומטית, ומריץ compile מחדש — ללא התערבות ידנית.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — להניח שהcompile הראשון יצליח תמיד — תמיד לפקח על ה-to-do list panel ולוודא compile clean.</p>
+      </div>
+      <p>כשיש שגיאת DDS/RPG לאחר שינוי, Bob מזהה את השגיאה מה-*EVENTF output, מתקן אוטומטית, ומריץ compile מחדש — ללא התערבות ידנית.</p>
+      <div class="example"><strong>דוגמה:</strong> DDS: &quot;right parenthesis was not found&quot; → Bob updates DDS source → recompile → success</div>
+      <div class="pitfall"><strong>זהירות:</strong> להניח שהcompile הראשון יצליח תמיד — תמיד לפקח על ה-to-do list panel ולוודא compile clean.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-29-7">
+        Job Log Analysis
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-29-7" role="tooltip" hidden>
+        <p class="popup-kicker">Job Log Analysis</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Job Log Analysis</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>Bob יכול לקבל job log ולנתח אותו לזיהוי גורמי שגיאה, בעיות ביצועים וצריכת storage חריגה.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לצפות לדיוק מלא בלי לספק קובץ job log — Bob יכול לחפש לבד אך קובץ מפורש מדויק יותר.</p>
+      </div>
+      <p>Bob יכול לקבל job log ולנתח אותו לזיהוי גורמי שגיאה, בעיות ביצועים וצריכת storage חריגה.</p>
+      <div class="example"><strong>דוגמה:</strong> <strong><em>Who is using all the spool storage?</em></strong> → Bob מריץ SQL Services → מזהה Job Watcher jobs → root cause + המלצות cleanup</div>
+      <div class="pitfall"><strong>זהירות:</strong> לצפות לדיוק מלא בלי לספק קובץ job log — Bob יכול לחפש לבד אך קובץ מפורש מדויק יותר.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-29-8">
+        Custom Workflows / Skills / Tools
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-29-8" role="tooltip" hidden>
+        <p class="popup-kicker">Custom Workflows / Skills / Tools</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Custom Workflows / Skills / Tools</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>Everything in Bob is extendable. ניתן ליצור Workflows, Skills וTools מותאמים. ה-Built-in workflows לא ניתנים לעריכה — אבל אפשר ליצור מחדש בהתאמה אישית.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לנסות לערוך built-in workflows — לא ניתן. צרו workflow חדש מבוסס עליהם.</p>
+      </div>
+      <p>Everything in Bob is extendable. ניתן ליצור Workflows, Skills וTools מותאמים. ה-Built-in workflows לא ניתנים לעריכה — אבל אפשר ליצור מחדש בהתאמה אישית.</p>
+      <div class="example"><strong>דוגמה:</strong> Custom workflow: RPG code review לפי תקנים פנימיים. Custom skill: תיעוד אוטומטי ל-IFS. Custom tool: שליחת Slack notification לאחר compile.</div>
+      <div class="pitfall"><strong>זהירות:</strong> לנסות לערוך built-in workflows — לא ניתן. צרו workflow חדש מבוסס עליהם.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-29-9">
+        Reports → IFS → Source Control
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-29-9" role="tooltip" hidden>
+        <p class="popup-kicker">Reports → IFS → Source Control</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Reports → IFS → Source Control</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>כל דו&quot;ח (modernization summary, business rules, ERD, security report) ניתן לשמירה ב-IFS. Bob ממליץ לשמור מסמכי Markdown ב-source control — הוא ישתמש בהם כ-context בפעולות עתידיות.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לשמור reports רק ב-chat — אחרי reload הם אינם זמינים לBob כ-context.</p>
+      </div>
+      <p>כל דו&quot;ח (modernization summary, business rules, ERD, security report) ניתן לשמירה ב-IFS. Bob ממליץ לשמור מסמכי Markdown ב-source control — הוא ישתמש בהם כ-context בפעולות עתידיות.</p>
+      <div class="example"><strong>דוגמה:</strong> Modernization Report נשמר ל-/home/timerowe/stock/409-report.md. בפעם הבאה שBob מתבקש להוסיף feature לאותה תוכנית — הוא קורא את ה-report.</div>
+      <div class="pitfall"><strong>זהירות:</strong> לשמור reports רק ב-chat — אחרי reload הם אינם זמינים לBob כ-context.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-29-10">
+        Multi-Task (Bob V2)
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-29-10" role="tooltip" hidden>
+        <p class="popup-kicker">Multi-Task (Bob V2)</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Multi-Task (Bob V2)</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>Bob V2 מריץ מספר tasks במקביל. כל task עם to-do list גלוי בראש הממשק. פעולות שרצות על IBM i עצמה (SQL Services, compile, file read) כמעט ללא token usage.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לנסות לעקוב אחרי כל task ידנית — השתמשו ב-to-do list panel בראש הממשק, לא ב-chat scroll.</p>
+      </div>
+      <p>Bob V2 מריץ מספר tasks במקביל. כל task עם to-do list גלוי בראש הממשק. פעולות שרצות על IBM i עצמה (SQL Services, compile, file read) כמעט ללא token usage.</p>
+      <div class="example"><strong>דוגמה:</strong> Business rules extraction: 12 tools רצות בו-זמנית על IBM i — כמעט ללא token usage עד ניתוח הנתונים. Security report + Modernization workflow רצים במקביל.</div>
+      <div class="pitfall"><strong>זהירות:</strong> לנסות לעקוב אחרי כל task ידנית — השתמשו ב-to-do list panel בראש הממשק, לא ב-chat scroll.</div>
+    </article></div>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-analogy"><span class="dot"></span>משל מהעולם האמיתי</div>
+          <div class="card card-analogy"><p>Developer Mode מזהה RPG, DDS ו-ILE כי IBM i context הוזרק למודל — בלי המצב הזה, Bob מטפל ב-RPG כמו בקוד כללי ומפספס מוסכמות קריטיות (column positions, I-specs, compile order). DB Mode מכיר DB2 for i לעומק — שאלת SQL למודל ב-Developer Mode תיתן תשובה פחות מדויקת.</p></div>
+          <p><strong>שאלות לחשיבה:</strong> ב-IBM i שלכם: מה ה-workflow הראשון שתפעילו? Business Rules Extraction על תוכנית קריטית, /erd לתיעוד schema, או Index Strategy Advisor לשיפור ביצועים?</p>
+        </section>
+
+        <section class="section"><h2>תרשים זרימה</h2><div class="flow-diagram"><div class="flow-node">Bob IDE + PP for i</div><span class="flow-arrow">→</span><div class="flow-node secondary">SSH (Native Connection)</div><span class="flow-arrow">→</span><div class="flow-node">IBM i 7.x</div><span class="flow-arrow">→</span><div class="flow-node storage">QSYS + DB2 for i + IFS</div></div>
+<div class="flow-diagram" style="margin-top:0.5rem"><div class="flow-node">RPG Modernization Workflow</div><span class="flow-arrow">→</span><div class="flow-node secondary">OPM→ILE (compile)</div><span class="flow-arrow">→</span><div class="flow-node secondary">→Free-Form (compile)</div><span class="flow-arrow">→</span><div class="flow-node storage">Summary Report → IFS</div></div>
+<p style="font-size:0.85rem;color:var(--ink-secondary);margin-top:0.25rem">Native Connection = SSH ישיר. קומפילציה תמיד על IBM i — גם עבור קוד מ-local workspace. Reports נשמרים ל-IFS ומשמשים כ-context עתידי.</p></section>
+
+        <section class="section">
+          <div class="section-label label-bob"><span class="dot"></span>עבודה עם IBM Bob</div>
+          <div class="mode-row"><span class="mode-pill mode-ask">Ask</span><span class="mode-pill mode-plan">Plan</span><span class="mode-pill mode-agent">Agent</span></div>
+          <p>Developer Mode: Ask להבנת member + /erd לתיעוד schema → Plan להמרה → Agent: RPG Modernization Workflow שלב-שלב. DB Mode: Ask לניתוח schema → Workflow לדו&quot;ח אוטומטי → שמור ל-IFS.</p>
+          <h3>Prompt לדוגמה</h3>
+          <pre class="prompt">In Developer mode, Ask: read QRPGLESRC/ORDENTR. What is this program? Create a Mermaid diagram of its structure. List all display files and database files it uses. Do not change anything.</pre>
+          <p><strong>למה זה עובד:</strong> Ask + Developer Mode = Bob מזהה RPG, DDS, ILE — תוצאה עם context מלא לפני כל שינוי.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-warning"><span class="dot"></span>טעות נפוצה</div>
+          <div class="card card-warning">
+            <p><strong>לא:</strong> להשתמש ב-MCP server חיצוני במקום Native Connection — פחות בטוח, לא נתמך, לא מספק Developer/DB Modes/Workflows.</p>
+            <p><strong>כן:</strong> Premium Package for i עם Native Connection → Developer Mode / DB Mode לפי הצורך → Reports ל-IFS → source control.</p>
+          </div>
+          <div class="compare-grid">
+        <div class="compare-bad"><div class="compare-label">Prompt חלש</div><pre class="prompt">Convert all RPG to free-form</pre></div>
+        <div class="compare-good"><div class="compare-label">Prompt חזק</div><pre class="prompt">Context: @QRPGLESRC/ORDENTR (in Developer mode)
+Goal: Use RPG Modernization Workflow — step by step
+Step 1: OPM→ILE compile gate
+Step 2: free-form conversion compile gate
+AC: Modernization Summary Report saved to IFS, RPG Unit Test suite passes</pre></div>
+      </div>
+        </section>
+
+        <section class="section">
+      <div class="section-label label-deep"><span class="dot"></span>מבנה סביבת עבודה IBM i עם Bob V2</div>
+      <div class="card card-deep"><pre class="code-block"># AGENTS.md — IBM i Project (Premium Package for i)
+## Stack: RPG IV free-form · DB2 for i · CL · DDS · ILE
+## Connection: Native (SSH) — NOT external MCP server
+## Libraries: TASKFLOW (dev) | TASKFLOWP (prod — read-only)
+## Compile: CRTRPGMOD + CRTPGM; always *EVENTF
+## Bob V2 modes:
+- Developer Mode: RPG/CL/DDS analysis, modernization workflow, new code
+- DB Mode: SQL analysis, schema security, index optimization, /erd
+## Rules:
+- Agent compiles after every member change; stop on *EVENTF error
+- Bob auto-corrects compile errors — monitor to-do list, not chat
+- /erd runs in DB Mode; requires active IBM i connection
+- Workflows run on dev library only
+- Save all reports (modernization, ERD, business rules) to IFS docs/
+- Commit IFS docs/ to source control — Bob uses them as future context
+- Compile local code → IBM i temp dir → results back to IDE</pre>
+<p style="margin-top:0.75rem"><strong>Workflows מובנים (Start Workflow ← כפתור בממשק):</strong></p>
+<ul style="margin:0;padding-right:1.2rem">
+<li><strong>RPG Modernization</strong> — OPM→ILE→free-form, compile gate per step, Summary Report</li>
+<li><strong>RPG Unit Testing</strong> — Test Plan → implement test cases (RUDF) — שני שלבים</li>
+<li><strong>Index Strategy Advisor</strong> — מנתח plan cache + MTIs → המלצות indexes</li>
+<li><strong>Business Rules Extraction</strong> — מנתח source + DDS + DB → מסמך עם requirements, validations, calculations, decision logic</li>
+<li><strong>Security Reporting</strong> — מריץ DB2 SQL Services → דו"ח vulnerabilities</li>
+</ul>
+<p style="margin-top:0.75rem"><strong>Custom Extensions:</strong> ניתן ליצור Workflows, Skills וTools מותאמים. Built-in workflows לא ניתנים לעריכה.</p></div>
+    </section>
+
+        <section class="section">
+          <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
+          <ol class="steps"><li>התקינו Premium Package for i + Code for IBM i developer pack ב-Bob V2.</li><li>התחברו ל-IBM i דרך Native Connection (לא MCP). בחרו workspace: library list.</li><li>DB Mode: הריצו /erd schema-name — צפו ב-multi-threaded SQL queries ובMermaid ERD.</li><li>Developer Mode: פתחו member ב-Ask — בקשו Mermaid diagram של התוכנית.</li><li>הפעילו RPG Modernization Workflow — עקבו אחרי compile gates ו-Summary Report.</li><li>הפעילו Business Rules Extraction — שמרו את הדו&quot;ח ל-IFS.</li><li>בקשו מBob לנתח job log: מי מנצל הכי הרבה spool storage?</li></ol>
+        </section>
+
+        <section class="section">
+          <h2>תרגיל עצמאי</h2>
+          <p>הפעילו Index Strategy Advisor ותעדו 3 המלצות שקיבלתם. שמרו את ה-report ל-IFS ובדקו שBob יכול לקרוא אותו בפעם הבאה.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-quiz"><span class="dot"></span>בדקו את עצמכם</div>
+          <div class="quiz"><details>
+      <summary>למה Native Connection ולא MCP server?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> אבטחה: SSH מנוהל IBM, enterprise-grade, security-by-design. MCP server חיצוני הוא open-source, לא נתמך, ולא מספק Developer Mode / DB Mode / Workflows / /erd.</div>
+    </details><details>
+      <summary>מה עושה /erd?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> slash-command שמפעיל skill: מריץ מספר SQL Services queries בו-זמנית על IBM i ומייצר Mermaid Entity Relationship Diagram של ה-schema.</div>
+    </details><details>
+      <summary>RPG Modernization Workflow — כמה שלבים?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> שלושה שלבים עם compile gate: (1) OPM→ILE, (2) scan I/O specs, (3) המרה ל-free-form + write + compile. בסוף: Modernization Summary Report.</div>
+    </details><details>
+      <summary>Developer Mode vs DB Mode?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> Developer = RPG/ILE/CL/DDS. DB = SQL/indexes/security/performance. /erd דורש DB Mode. Modernization Workflow דורש Developer Mode.</div>
+    </details><details>
+      <summary>האם ניתן ליצור Workflows מותאמים?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> כן — everything in Bob is extendable. Built-in workflows לא ניתנים לעריכה, אבל ניתן ליצור Workflows, Skills וTools מותאמים.</div>
+    </details></div>
+        </section>
+
+        <section class="section">
+          <h2>סיכום</h2>
+          <div class="summary-box">
+            <ul><li>Premium Package for i — חבילה, לא plugin.</li><li>Native Connection = SSH, לא MCP.</li><li>/erd — ERD אוטומטי מ-schema ב-IBM i.</li><li>RPG Modernization Workflow: OPM→ILE→free-form, compile gate בכל שלב.</li><li>Bob מתקן שגיאות compile אוטומטית.</li><li>Reports → IFS → source control → context עתידי לBob.</li><li>כל workflows/skills/tools ניתנים להרחבה.</li></ul>
+          </div>
+        </section>
+      </main>
+
+      <nav class="chapter-nav" aria-label="ניווט בין פרקים">
+        <a class="prev" href="chapter-28.html"><span class="nav-label">פרק קודם</span><span class="nav-title">עלויות, ממשל והעברת מוצר</span></a>
+        <a class="next" href="chapter-30.html"><span class="nav-label">פרק הבא</span><span class="nav-title">Bob ו-IBM Z — Z Understand וקוד Mainframe</span></a>
+      </nav>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <p><strong>אבי ויזל</strong> · IBM Israel</p>
+          <p><a href="mailto:aviv@il.ibm.com">aviv@il.ibm.com</a> · 050-729-2012</p>
+          <p class="footer-meta">קורס IBM Bob · פרק 29 · 2026</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="assets/js/guide.js"></script>
+</body>
+</html>

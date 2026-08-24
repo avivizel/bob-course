@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>פרק 30: Bob ו-IBM Z — Z Understand וקוד Mainframe | קורס IBM Bob</title>
+  <link rel="stylesheet" href="assets/css/guide.css">
+</head>
+<body data-chapter="30">
+  <div class="progress-track"><div class="progress-fill"></div></div>
+  <div class="layout">
+    <aside class="sidebar" aria-label="ניווט פרקים">
+      <div class="sidebar-brand">
+        <a href="index.html">מ־0 למוצר עם IBM Bob</a>
+        <small>34 פרקים · אבי ויזל</small>
+      </div>
+      <div class="nav-phase">יסודות</div>
+<a class="nav-link" href="chapter-01.html"><span class="nav-num">1</span>מהי מערכת תוכנה?</a>
+<a class="nav-link" href="chapter-02.html"><span class="nav-num">2</span>סביבת העבודה של המפתח</a>
+<a class="nav-link" href="chapter-03.html"><span class="nav-num">3</span>Git ורשת הביטחון</a>
+<a class="nav-link" href="chapter-04.html"><span class="nav-num">4</span>יסודות תכנות ללא עומס תחבירי</a>
+<div class="nav-phase">עבודה עם Bob</div>
+<a class="nav-link" href="chapter-05.html"><span class="nav-num">5</span>Bob כשותף למחזור חיי הפיתוח</a>
+<a class="nav-link" href="chapter-06.html"><span class="nav-num">6</span>מצבי Ask, Plan ו-Agent</a>
+<a class="nav-link" href="chapter-07.html"><span class="nav-num">7</span>כתיבת הנחיות יעילות ל-Bob</a>
+<a class="nav-link" href="chapter-08.html"><span class="nav-num">8</span>Context, /init ו-AGENTS.md</a>
+<a class="nav-link" href="chapter-09.html"><span class="nav-num">9</span>גבולות גישה והרשאות</a>
+<a class="nav-link" href="chapter-10.html"><span class="nav-num">10</span>Rules, Custom Modes וסטנדרטיזציה</a>
+<div class="nav-phase">מוצר ותכנון</div>
+<a class="nav-link" href="chapter-11.html"><span class="nav-num">11</span>Product Intent ו-Mini PRD</a>
+<a class="nav-link" href="chapter-12.html"><span class="nav-num">12</span>Stories, קריטריוני קבלה ו-Vertical Slice</a>
+<a class="nav-link" href="chapter-13.html"><span class="nav-num">13</span>תכנון עם Plan Mode</a>
+<a class="nav-link" href="chapter-14.html"><span class="nav-num">14</span>מימוש Agentic באיטרציות</a>
+<div class="nav-phase">בניית Capstone</div>
+<a class="nav-link" href="chapter-15.html"><span class="nav-num">15</span>HTML, CSS וחוויית משתמש</a>
+<a class="nav-link" href="chapter-16.html"><span class="nav-num">16</span>JavaScript ופיתוח מבוסס רכיבים</a>
+<a class="nav-link" href="chapter-17.html"><span class="nav-num">17</span>Backend ו-API</a>
+<a class="nav-link" href="chapter-18.html"><span class="nav-num">18</span>מסד נתונים ושכבת מידע</a>
+<a class="nav-link" href="chapter-19.html"><span class="nav-num">19</span>Full Stack, זהות והרשאות</a>
+<div class="nav-phase">AI וכלים</div>
+<a class="nav-link" href="chapter-20.html"><span class="nav-num">20</span>API של מודל AI</a>
+<a class="nav-link" href="chapter-21.html"><span class="nav-num">21</span>אמינות, Grounding ו-RAG</a>
+<a class="nav-link" href="chapter-22.html"><span class="nav-num">22</span>MCP, כלים ו-Workflows</a>
+<a class="nav-link" href="chapter-23.html"><span class="nav-num">23</span>Skills ו-Subagents</a>
+<div class="nav-phase">איכות ותפעול</div>
+<a class="nav-link" href="chapter-24.html"><span class="nav-num">24</span>Debugging שיטתי עם Bob</a>
+<a class="nav-link" href="chapter-25.html"><span class="nav-num">25</span>בדיקות ו-Code Review</a>
+<a class="nav-link" href="chapter-26.html"><span class="nav-num">26</span>Secure by Design עם Bob</a>
+<a class="nav-link" href="chapter-27.html"><span class="nav-num">27</span>ארכיטקטורה, פריסה ותפעול</a>
+<a class="nav-link" href="chapter-28.html"><span class="nav-num">28</span>עלויות, ממשל והעברת מוצר</a>
+<div class="nav-phase">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</div>
+<a class="nav-link" href="chapter-29.html"><span class="nav-num">29</span>Bob ו-IBM i — Premium Package</a>
+<a class="nav-link active" href="chapter-30.html"><span class="nav-num">30</span>Bob ו-IBM Z — Z Understand וקוד Mainframe</a>
+<a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
+<a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
+<a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+    </aside>
+    <div class="main-column">
+      <header class="chapter-header">
+        <div class="chapter-meta">
+          <span class="badge badge-blue">פרק 30 מתוך 34</span>
+          <span class="badge badge-teal">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</span>
+          <span class="badge">55 דק'</span>
+        </div>
+        <h1>Bob ו-IBM Z — Z Understand וקוד Mainframe</h1>
+        <p class="subtitle">COBOL, PL/I, CICS, Db2 — ניתוח גרוס לפני שינוי</p>
+      </header>
+      <main class="content">
+        <section class="section">
+          <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
+          <div class="card card-goal"><p><strong>בסוף הפרק:</strong> COBOL, PL/I, CICS, Db2 — ניתוח גרוס לפני שינוי</p></div>
+        </section>
+
+        <section class="section">
+          <h2>מבוא</h2>
+          <p>IBM Z מחזיק קוד COBOL/PL/I בן עשרות שנות. Bob דרך Premium Package for Z (PP4Z) לא מנחש — הוא שואל קודם את Z Understand, מאגר ניתוח דטרמיניסטי שסורק אלפי תוכניות ויוצר call graph, data flow ו-data dictionary. המודל מסביר על בסיס עובדות, לא ניחושים.</p>
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-concepts"><span class="dot"></span>מושגי מפתח</div>
+          <p class="concept-hint">רחפו מעל שם המושג (או לחצו במסך מגע) לפירוט: מבוא, משמעות וכוונה.</p>
+  <div class="concept-grid"><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-30-0">
+        Z Understand
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-30-0" role="tooltip" hidden>
+        <p class="popup-kicker">Z Understand</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Z Understand</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>שרת ניתוח שסורק COBOL/PL/I/HLASM/JCL למאגר יחסים שניתן לשאילתה.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לשאול את המודל בלבד — יחזיר 13 או 29 תוכניות תלוי בפגישה.</p>
+      </div>
+      <p>שרת ניתוח שסורק COBOL/PL/I/HLASM/JCL למאגר יחסים שניתן לשאילתה.</p>
+      <div class="example"><strong>דוגמה:</strong> CALLERS(N991DATE) = 30 תוכניות — תוצאה דטרמיניסטית</div>
+      <div class="pitfall"><strong>זהירות:</strong> לשאול את המודל בלבד — יחזיר 13 או 29 תוכניות תלוי בפגישה.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-30-1">
+        Z Architect Mode
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-30-1" role="tooltip" hidden>
+        <p class="popup-kicker">Z Architect Mode</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Z Architect Mode</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>מצב ניתוח בלי שינוי קוד — call graph, data flow, impact analysis.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לנתח בלי Z Understand — ניחוש על קוד של 20MB.</p>
+      </div>
+      <p>מצב ניתוח בלי שינוי קוד — call graph, data flow, impact analysis.</p>
+      <div class="example"><strong>דוגמה:</strong> <strong><em>מי קורא ל-N991DATE?</em></strong> → query ל-Z Understand → 30 קוראים מאומתים</div>
+      <div class="pitfall"><strong>זהירות:</strong> לנתח בלי Z Understand — ניחוש על קוד של 20MB.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-30-2">
+        Z Code Mode
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-30-2" role="tooltip" hidden>
+        <p class="popup-kicker">Z Code Mode</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Z Code Mode</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>הסבר, refactor וסטנדרטים לקוד COBOL/PL/I/HLASM.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — refactor ללא impact analysis — שובר תוכניות שקוראות ל-paragraph ששונה.</p>
+      </div>
+      <p>הסבר, refactor וסטנדרטים לקוד COBOL/PL/I/HLASM.</p>
+      <div class="example"><strong>דוגמה:</strong> המרת COBOL implicit paragraph ל-structured sections</div>
+      <div class="pitfall"><strong>זהירות:</strong> refactor ללא impact analysis — שובר תוכניות שקוראות ל-paragraph ששונה.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-30-3">
+        Dependency Based Build (DBB)
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-30-3" role="tooltip" hidden>
+        <p class="popup-kicker">Dependency Based Build (DBB)</p>
+        <p class="popup-label">מבוא</p>
+        <p>המושג <strong><em>Dependency Based Build (DBB)</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
+        <p class="popup-label">משמעות</p>
+        <p>build מבוסס תלויות על z/OS — רק מה שהשתנה.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — full rebuild כל פעם — שעות במקום דקות.</p>
+      </div>
+      <p>build מבוסס תלויות על z/OS — רק מה שהשתנה.</p>
+      <div class="example"><strong>דוגמה:</strong> שינוי copybook → DBB מזהה ומבנה רק תוכניות תלויות</div>
+      <div class="pitfall"><strong>זהירות:</strong> full rebuild כל פעם — שעות במקום דקות.</div>
+    </article></div>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-analogy"><span class="dot"></span>משל מהעולם האמיתי</div>
+          <div class="card card-analogy"><p>מודל שפה מנחש כמה תוכניות קוראות ל-paragraph — Z Understand סופר. הפרש בין 13 ל-30 קוראים הוא הפרש בין regression test חלקי לבין regression test שמוצא את הבאג. Z Understand נותן עובדות דטרמיניסטיות שהמודל לא יכול להשיג מהtext בלבד.</p></div>
+          <p><strong>שאלות לחשיבה:</strong> ב-TaskFlow על Z: אם משנים copybook אחד — כמה תוכניות מושפעות? Z Understand יודע.</p>
+        </section>
+
+        <section class="section"><h2>תרשים זרימה</h2><div class="flow-diagram"><div class="flow-node">Bob IDE + PP4Z</div><span class="flow-arrow">→</span><div class="flow-node secondary">Z Understand MCP</div><span class="flow-arrow">→</span><div class="flow-node">z/OS LPAR</div><span class="flow-arrow">→</span><div class="flow-node storage">COBOL/PL/I/Db2/CICS</div></div><p style="font-size:0.85rem;color:var(--ink-secondary);margin-top:0.25rem">Z Understand מחזיר עובדות דטרמיניסטיות. המודל מסביר על בסיסן — לא מנחש.</p></section>
+
+        <section class="section">
+          <div class="section-label label-bob"><span class="dot"></span>עבודה עם IBM Bob</div>
+          <div class="mode-row"><span class="mode-pill mode-ask">Ask</span><span class="mode-pill mode-plan">Plan</span><span class="mode-pill mode-agent">Agent</span></div>
+          <p>Z Architect (Ask/Plan) → impact analysis → Z Code (Agent) → DBB build → debug.</p>
+          <h3>Prompt לדוגמה</h3>
+          <pre class="prompt">Use Z Architect mode: query Z Understand for all callers of N991DATE. Show the deterministic count and list programs. Do not change any code.</pre>
+          <p><strong>למה זה עובד:</strong> עובדות לפני קוד. Z Understand נותן מספר מדויק — לא ניחוש.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-warning"><span class="dot"></span>טעות נפוצה</div>
+          <div class="card card-warning">
+            <p><strong>לא:</strong> <strong><em>תסביר את כל הקוד של N991DATE</em></strong> — Bob יחזיר ניחוש חלקי.</p>
+            <p><strong>כן:</strong> Z Architect: CALLERS(N991DATE) → 30 תוכניות מאומתות → Plan impact → Z Code: שנו רק N991DATE.</p>
+          </div>
+          <div class="compare-grid">
+        <div class="compare-bad"><div class="compare-label">Prompt חלש</div><pre class="prompt">Refactor the CALCULATE-TAX paragraph</pre></div>
+        <div class="compare-good"><div class="compare-label">Prompt חזק</div><pre class="prompt">Z Architect: find all callers of CALCULATE-TAX paragraph
+Z Understand result: 7 programs
+Plan: assess each caller, update copybook, regression tests for all 7
+Z Code Agent: change one program at a time, DBB build after each</pre></div>
+      </div>
+        </section>
+
+        <section class="section">
+      <div class="section-label label-deep"><span class="dot"></span>מבנה סביבת עבודה IBM Z עם Bob</div>
+      <div class="card card-deep"><pre class="code-block"># AGENTS.md — IBM Z Project
+## Stack: COBOL · PL/I · HLASM · JCL · CICS · IMS · Db2 z/OS
+## Z Understand: https://[internal-host]/zunderstand (read-only MCP)
+## Build: Dependency Based Build (DBB) — never full rebuild
+## Rules:
+- Always query Z Understand before changing a copybook or paragraph
+- Z Architect mode for analysis; Z Code mode for implementation
+- Impact analysis required: list all callers before Agent touches code
+- One program per Agent iteration; DBB build gate after each
+- Debug: IBM Debug for z/OS — not local simulation
+## Deployment: z/OS LPAR via DBB; no manual IEBCOPY</pre></div>
+    </section>
+
+        <section class="section">
+          <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
+          <ol class="steps"><li>Z Architect: שאלו <strong><em>מי קורא ל-[תוכנית]?</em></strong>.</li><li>קבלו מספר דטרמיניסטי מ-Z Understand.</li><li>Plan: impact analysis לכל הקוראים.</li><li>Z Code Agent: שנו תוכנית אחת.</li><li>DBB build + debug ב-z/OS.</li></ol>
+        </section>
+
+        <section class="section">
+          <h2>תרגיל עצמאי</h2>
+          <p>כתבו AGENTS.md ל-Z project: estate scope, Z Understand endpoint, כלל impact analysis לפני כל שינוי copybook, איסור full rebuild.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-quiz"><span class="dot"></span>בדקו את עצמכם</div>
+          <div class="quiz"><details>
+      <summary>למה Z Understand לפני שינוי?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> המודל לבד מנחש. Z Understand נותן מספר מדויק של תוכניות מושפעות — הבדל בין 13 ל-30.</div>
+    </details><details>
+      <summary>Z Architect vs Z Code?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> Architect = ניתוח בלי שינוי. Code = refactor/הסבר בשליטה.</div>
+    </details><details>
+      <summary>DBB במקום full rebuild?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> רק תוכניות שהשתנו או תלויות בשינוי — חוסך שעות build.</div>
+    </details></div>
+        </section>
+
+        <section class="section">
+          <h2>סיכום</h2>
+          <div class="summary-box">
+            <ul><li>Z Understand = עובדות, לא ניחוש.</li><li>Z Architect לניתוח, Z Code לשינוי.</li><li>Impact analysis לפני כל refactor.</li><li>DBB build — תלויות בלבד.</li></ul>
+          </div>
+        </section>
+      </main>
+
+      <nav class="chapter-nav" aria-label="ניווט בין פרקים">
+        <a class="prev" href="chapter-29.html"><span class="nav-label">פרק קודם</span><span class="nav-title">Bob ו-IBM i — Premium Package</span></a>
+        <a class="next" href="chapter-31.html"><span class="nav-label">פרק הבא</span><span class="nav-title">Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</span></a>
+      </nav>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <p><strong>אבי ויזל</strong> · IBM Israel</p>
+          <p><a href="mailto:aviv@il.ibm.com">aviv@il.ibm.com</a> · 050-729-2012</p>
+          <p class="footer-meta">קורס IBM Bob · פרק 30 · 2026</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="assets/js/guide.js"></script>
+</body>
+</html>

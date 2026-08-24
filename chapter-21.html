@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>פרק 21: אמינות, Grounding ו-RAG | קורס IBM Bob</title>
+  <link rel="stylesheet" href="assets/css/guide.css">
+</head>
+<body data-chapter="21">
+  <div class="progress-track"><div class="progress-fill"></div></div>
+  <div class="layout">
+    <aside class="sidebar" aria-label="ניווט פרקים">
+      <div class="sidebar-brand">
+        <a href="index.html">מ־0 למוצר עם IBM Bob</a>
+        <small>34 פרקים · אבי ויזל</small>
+      </div>
+      <div class="nav-phase">יסודות</div>
+<a class="nav-link" href="chapter-01.html"><span class="nav-num">1</span>מהי מערכת תוכנה?</a>
+<a class="nav-link" href="chapter-02.html"><span class="nav-num">2</span>סביבת העבודה של המפתח</a>
+<a class="nav-link" href="chapter-03.html"><span class="nav-num">3</span>Git ורשת הביטחון</a>
+<a class="nav-link" href="chapter-04.html"><span class="nav-num">4</span>יסודות תכנות ללא עומס תחבירי</a>
+<div class="nav-phase">עבודה עם Bob</div>
+<a class="nav-link" href="chapter-05.html"><span class="nav-num">5</span>Bob כשותף למחזור חיי הפיתוח</a>
+<a class="nav-link" href="chapter-06.html"><span class="nav-num">6</span>מצבי Ask, Plan ו-Agent</a>
+<a class="nav-link" href="chapter-07.html"><span class="nav-num">7</span>כתיבת הנחיות יעילות ל-Bob</a>
+<a class="nav-link" href="chapter-08.html"><span class="nav-num">8</span>Context, /init ו-AGENTS.md</a>
+<a class="nav-link" href="chapter-09.html"><span class="nav-num">9</span>גבולות גישה והרשאות</a>
+<a class="nav-link" href="chapter-10.html"><span class="nav-num">10</span>Rules, Custom Modes וסטנדרטיזציה</a>
+<div class="nav-phase">מוצר ותכנון</div>
+<a class="nav-link" href="chapter-11.html"><span class="nav-num">11</span>Product Intent ו-Mini PRD</a>
+<a class="nav-link" href="chapter-12.html"><span class="nav-num">12</span>Stories, קריטריוני קבלה ו-Vertical Slice</a>
+<a class="nav-link" href="chapter-13.html"><span class="nav-num">13</span>תכנון עם Plan Mode</a>
+<a class="nav-link" href="chapter-14.html"><span class="nav-num">14</span>מימוש Agentic באיטרציות</a>
+<div class="nav-phase">בניית Capstone</div>
+<a class="nav-link" href="chapter-15.html"><span class="nav-num">15</span>HTML, CSS וחוויית משתמש</a>
+<a class="nav-link" href="chapter-16.html"><span class="nav-num">16</span>JavaScript ופיתוח מבוסס רכיבים</a>
+<a class="nav-link" href="chapter-17.html"><span class="nav-num">17</span>Backend ו-API</a>
+<a class="nav-link" href="chapter-18.html"><span class="nav-num">18</span>מסד נתונים ושכבת מידע</a>
+<a class="nav-link" href="chapter-19.html"><span class="nav-num">19</span>Full Stack, זהות והרשאות</a>
+<div class="nav-phase">AI וכלים</div>
+<a class="nav-link" href="chapter-20.html"><span class="nav-num">20</span>API של מודל AI</a>
+<a class="nav-link active" href="chapter-21.html"><span class="nav-num">21</span>אמינות, Grounding ו-RAG</a>
+<a class="nav-link" href="chapter-22.html"><span class="nav-num">22</span>MCP, כלים ו-Workflows</a>
+<a class="nav-link" href="chapter-23.html"><span class="nav-num">23</span>Skills ו-Subagents</a>
+<div class="nav-phase">איכות ותפעול</div>
+<a class="nav-link" href="chapter-24.html"><span class="nav-num">24</span>Debugging שיטתי עם Bob</a>
+<a class="nav-link" href="chapter-25.html"><span class="nav-num">25</span>בדיקות ו-Code Review</a>
+<a class="nav-link" href="chapter-26.html"><span class="nav-num">26</span>Secure by Design עם Bob</a>
+<a class="nav-link" href="chapter-27.html"><span class="nav-num">27</span>ארכיטקטורה, פריסה ותפעול</a>
+<a class="nav-link" href="chapter-28.html"><span class="nav-num">28</span>עלויות, ממשל והעברת מוצר</a>
+<div class="nav-phase">Enterprise: IBM i · Z · Java · Orchestrate · On-Prem</div>
+<a class="nav-link" href="chapter-29.html"><span class="nav-num">29</span>Bob ו-IBM i — Premium Package</a>
+<a class="nav-link" href="chapter-30.html"><span class="nav-num">30</span>Bob ו-IBM Z — Z Understand וקוד Mainframe</a>
+<a class="nav-link" href="chapter-31.html"><span class="nav-num">31</span>Bob ו-watsonx Orchestrate — ADK ופיתוח Agents</a>
+<a class="nav-link" href="chapter-32.html"><span class="nav-num">32</span>Bob ו-Java Modernization — מ-WebSphere ל-Liberty + React</a>
+<a class="nav-link" href="chapter-33.html"><span class="nav-num">33</span>ארכיטקטורת Bob SaaS — Regional Deployment ו-Data Flows</a>
+<a class="nav-link" href="chapter-34.html"><span class="nav-num">34</span>ארכיטקטורת Bob On-Prem — פריסה פנים-ארגונית</a>
+    </aside>
+    <div class="main-column">
+      <header class="chapter-header">
+        <div class="chapter-meta">
+          <span class="badge badge-blue">פרק 21 מתוך 34</span>
+          <span class="badge badge-purple">AI וכלים</span>
+          <span class="badge">45 דק'</span>
+        </div>
+        <h1>אמינות, Grounding ו-RAG</h1>
+        <p class="subtitle">תשובות מבוססות מידע מותר</p>
+      </header>
+      <main class="content">
+        <section class="section">
+          <div class="section-label label-goal"><span class="dot"></span>מטרת הפרק</div>
+          <div class="card card-goal"><p><strong>בסוף הפרק:</strong> תשובות מבוססות מידע מותר</p></div>
+        </section>
+
+        <section class="section">
+          <h2>מבוא</h2>
+          <p>RAG = retrieve docs + generate. Grounding = cite sources. No hallucination policy.</p>
+        </section>
+
+        <section class="section">
+      <div class="section-label label-capstone"><span class="dot"></span>פרויקט Capstone — TaskFlow</div>
+      <div class="card card-capstone"><p>TaskFlow: <strong><em>שאל על מדיניות צוות</em></strong> — RAG על docs/.</p></div>
+    </section>
+
+        <section class="section">
+          <div class="section-label label-concepts"><span class="dot"></span>מושגי מפתח</div>
+          <p class="concept-hint">רחפו מעל שם המושג (או לחצו במסך מגע) לפירוט: מבוא, משמעות וכוונה.</p>
+  <div class="concept-grid"><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-21-0">
+        RAG
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-21-0" role="tooltip" hidden>
+        <p class="popup-kicker">RAG</p>
+        <p class="popup-label">מבוא</p>
+        <p>מודל ממציא כשאין לו מקור. RAG נותן לו מסמכים לפני שהוא עונה.</p>
+        <p class="popup-label">משמעות</p>
+        <p>Retrieve מסמכים רלוונטיים, Augment את ה-prompt, Generate תשובה מההקשר שנשלף.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לא לענות מ<strong><em>ידע כללי</em></strong> על מדיניות הצוות — רק מ-docs/.</p>
+      </div>
+      <p>retrieve + augment + generate.</p>
+      <div class="example"><strong>דוגמה:</strong> docs/ → answer</div>
+      <div class="pitfall"><strong>זהירות:</strong> no retrieval.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-21-1">
+        Grounding
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-21-1" role="tooltip" hidden>
+        <p class="popup-kicker">Grounding</p>
+        <p class="popup-label">מבוא</p>
+        <p>תשובה יפה בלי מקור היא סיכון. Grounding קושר משפט לראיה.</p>
+        <p class="popup-label">משמעות</p>
+        <p>החובה שהתשובה תתבסס על הטקסט שאוחזר, לא על המצאה משכנעת.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: אם אין מקור — להגיד <strong><em>לא נמצא במסמכים</em></strong>, לא לנחש.</p>
+      </div>
+      <p>answer from sources.</p>
+      <div class="example"><strong>דוגמה:</strong> cite doc §3</div>
+      <div class="pitfall"><strong>זהירות:</strong> fabricate.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-21-2">
+        Chunk
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-21-2" role="tooltip" hidden>
+        <p class="popup-kicker">Chunk</p>
+        <p class="popup-label">מבוא</p>
+        <p>מסמך שלם גדול מדי לחיפוש מדויק. Chunk שובר אותו לחתיכות.</p>
+        <p class="popup-label">משמעות</p>
+        <p>קטעי טקסט בגודל מוגדר (למשל ~500 תווים) שמאונדקסים לשליפה.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לא להזין את כל המדריך בכל שאלה — זה יקר ולא מדויק.</p>
+      </div>
+      <p>doc pieces for search.</p>
+      <div class="example"><strong>דוגמה:</strong> 500 char chunks</div>
+      <div class="pitfall"><strong>זהירות:</strong> whole doc.</div>
+    </article><article class="concept-card">
+      <button type="button" class="concept-term" aria-expanded="false" aria-controls="concept-pop-21-3">
+        Citation
+        <span class="concept-info" aria-hidden="true">i</span>
+      </button>
+      <div class="concept-popup" id="concept-pop-21-3" role="tooltip" hidden>
+        <p class="popup-kicker">Citation</p>
+        <p class="popup-label">מבוא</p>
+        <p>אמון נבנה כשאפשר ללחוץ על המקור. Citation הוא הקישור.</p>
+        <p class="popup-label">משמעות</p>
+        <p>הפניה לקובץ ולמקום: [policy.md#L12]. בלי ציטוט אין דרך לאמת.</p>
+        <p class="popup-label">כוונה</p>
+        <p>הכוונה: לדרוש ציטוט בכל תשובת RAG. אין ציטוט = אין תשובה.</p>
+      </div>
+      <p>link to source.</p>
+      <div class="example"><strong>דוגמה:</strong> [policy.md#L12]</div>
+      <div class="pitfall"><strong>זהירות:</strong> no cite.</div>
+    </article></div>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-analogy"><span class="dot"></span>משל מהעולם האמיתי</div>
+          <div class="card card-analogy"><p>RAG מפריד בין מה שהמודל <strong><em>יודע</em></strong> מה-training לבין מה שמותר לו להגיד בהקשר זה. בלי retrieval, המודל עונה מה-training data — שעלולה להיות ישנה, שגויה, או לא רלוונטית לארגון. עם retrieval + citation — ניתן לבדוק כל תשובה.</p></div>
+          <p><strong>שאלות לחשיבה:</strong> רשמו 3 מסמכים שיכנסו ל-docs/ של TaskFlow RAG, וכתבו שאלה אחת שצריכה להיות ל-<strong><em>לא נמצא</em></strong> — בדקו שהמערכת שלכם עונה נכון.</p>
+        </section>
+
+        <section class="section"><h2>תרשים זרימה</h2><div class="flow-diagram"><div class="flow-node">Query</div><span class="flow-arrow">→</span><div class="flow-node secondary">Retrieve</div><span class="flow-arrow">→</span><div class="flow-node">Context</div><span class="flow-arrow">→</span><div class="flow-node primary">Answer + Cite</div></div></section>
+
+        <section class="section">
+          <div class="section-label label-bob"><span class="dot"></span>עבודה עם IBM Bob</div>
+          <div class="mode-row"><span class="mode-pill mode-plan">Plan</span><span class="mode-pill mode-agent">Agent</span></div>
+          <p>docs/ first, then RAG plan.</p>
+          <h3>Prompt לדוגמה</h3>
+          <pre class="prompt">Plan RAG for docs/: chunk strategy, cite format, <strong><em>I don't know</em></strong> rule.</pre>
+          <p><strong>למה זה עובד:</strong> Trust architecture.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-warning"><span class="dot"></span>טעות נפוצה</div>
+          <div class="card card-warning">
+            <p><strong>לא:</strong> answer without source.</p>
+            <p><strong>כן:</strong> no cite → <strong><em>לא נמצא במסמכים</em></strong>.</p>
+          </div>
+          
+        </section>
+
+        
+
+        <section class="section">
+          <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
+          <ol class="steps"><li>Create docs/sample.</li><li>Chunk plan.</li><li>Retrieve test.</li><li>Cite check.</li><li>Hallucination test.</li><li>הצלחה = שאלה שיש לה תשובה ב-docs מחזירה citation; שאלה ללא מענה מחזירה <strong><em>לא נמצא במסמכים</em></strong>.</li></ol>
+        </section>
+
+        <section class="section">
+          <h2>תרגיל עצמאי</h2>
+          <p>Question with no doc — expected response?</p>
+        </section>
+
+        <section class="section">
+          <div class="section-label label-quiz"><span class="dot"></span>בדקו את עצמכם</div>
+          <div class="quiz"><details>
+      <summary>RAG vs fine-tune?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> RAG = dynamic docs; fine-tune = model change.</div>
+    </details><details>
+      <summary>Grounding?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> answer tied to retrieved text.</div>
+    </details><details>
+      <summary>No cite?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> say unknown — don't guess.</div>
+    </details></div>
+        </section>
+
+        <section class="section">
+          <h2>סיכום</h2>
+          <div class="summary-box">
+            <ul><li>Retrieve first.</li><li>Always cite.</li><li>Unknown OK.</li><li>Test hallucination.</li></ul>
+          </div>
+        </section>
+      </main>
+
+      <nav class="chapter-nav" aria-label="ניווט בין פרקים">
+        <a class="prev" href="chapter-20.html"><span class="nav-label">פרק קודם</span><span class="nav-title">API של מודל AI</span></a>
+        <a class="next" href="chapter-22.html"><span class="nav-label">פרק הבא</span><span class="nav-title">MCP, כלים ו-Workflows</span></a>
+      </nav>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <p><strong>אבי ויזל</strong> · IBM Israel</p>
+          <p><a href="mailto:aviv@il.ibm.com">aviv@il.ibm.com</a> · 050-729-2012</p>
+          <p class="footer-meta">קורס IBM Bob · פרק 21 · 2026</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="assets/js/guide.js"></script>
+</body>
+</html>
