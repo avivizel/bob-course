@@ -73,7 +73,7 @@ export const CHAPTERS_PART2 = [
       { term: "RAVEN Review", def: "מסגרת לביקורת plan לפני Agent: Requirements / Assumptions / Verification / Effects / No-go.", example: "האם הplan מכסה את ה-AC? אילו הנחות Bob הוסיף? איך כל שלב ייבדק?", pitfall: "auto-approve plan." },
     ],
     analogy: { text: "Plan שנכתב לפני קוד חושף הנחות — כלומר החלקים שBob ממלא לבד מבלי לדעת. Plan שנכתב אחרי קוד הוא תיעוד, לא תכנון. RAVEN review מחפש את ה-«נעדכן לפי הצורך» שבplan — זה תמיד הגיאה שתעלה בproblems.", bridge: "פתחו plan/create-task.md ו-RAVEN אותו: זהו הנחה אחת לא מוצהרת וכתבו כיצד לבדוק אותה לפני שמתחילים לכתוב קוד." },
-    bob: { modes: ["Plan"], workflow: "Plan → RAVEN review → Agent.", prompt: "Plan: create task slice. Files, steps, tests, risks. Save plan/create-task.md. No code.", promptWhy: "Artifact = reviewable." },
+    bob: { modes: ["Plan"], workflow: "Plan → RAVEN review → Agent.", prompt: "Review this plan using RAVEN:\n\nR — Requirements:\nList the explicit requirements.\n\nA — Assumptions:\nList every assumption not guaranteed by the repository or the request.\n\nV — Verification:\nFor each requested outcome, define evidence that proves it works.\n\nE — Effects:\nList files, dependencies, APIs, data, security boundaries and users that may be affected.\n\nN — No-go:\nList components or behavior that must not change.\n\nDo not implement anything yet.", promptWhy: "RAVEN הופך Plan לביקורת שיטתית לפני אישור." },
     mistake: { bad: "Agent בלי plan מאושר.", good: "Plan file → RAVEN review → approve → step 1." },
     lab: ["Plan Mode → create task.", "RAVEN: בדקו Requirements, Assumptions, Verification, Effects, No-go.", "Approve.", "שמרו plan/.", "הצלחה = קובץ plan/create-task.md ב-repo, עם RAVEN pass ולפחות הנחה אחת שזוהתה ותוקנה."],
     exercise: "החילו RAVEN על plan קיים — מצאו הנחה אחת לא מוצהרת.",
@@ -83,7 +83,24 @@ export const CHAPTERS_PART2 = [
       { q: "Plan ארוך?", a: "Split plans — per slice." },
     ],
     summary: ["Plan = חוזה.", "RAVEN review לפני Agent.", "Risks explicit.", "plan/ ב-repo."],
-    deep: { title: "RAVEN — מסגרת ביקורת Plan", html: `<ul style="margin:0;padding-right:1.2rem"><li><strong>R</strong>equirements — האם ה-plan מכסה את כל ה-AC ורק אותם?</li><li><strong>A</strong>ssumptions — אילו הנחות Bob הוסיף? האם הן נכונות?</li><li><strong>V</strong>erification — כיצד כל שלב ייבדק?</li><li><strong>E</strong>ffects — מה ההשפעה על API, נתונים, אבטחה וביצועים?</li><li><strong>N</strong>o-go — היכן נדרש אישור אנושי לפני המשך?</li></ul><p style="margin-top:0.75rem">אם שלב ב-plan מנוסח «נעדכן קבצים לפי הצורך» — זה No-go. בקשו ניסוח ספציפי לפני אישור.</p>` },
+    deep: { title: "RAVEN Review", html: `<p style="margin-top:0">לפני שמאשרים Plan:</p><ul style="margin:0;padding-right:1.2rem"><li><strong>Requirements</strong> — מה בדיוק נדרש?</li><li><strong>Assumptions</strong> — מה Bob מניח שלא נאמר?</li><li><strong>Verification</strong> — איך נדע שהשינוי הצליח?</li><li><strong>Effects</strong> — אילו קבצים, שירותים, APIs, נתונים או משתמשים מושפעים?</li><li><strong>No-go</strong> — מה אסור להשתנות?</li></ul><pre class="code-block" style="margin-top:0.75rem">Review this plan using RAVEN:
+
+R — Requirements:
+List the explicit requirements.
+
+A — Assumptions:
+List every assumption not guaranteed by the repository or the request.
+
+V — Verification:
+For each requested outcome, define evidence that proves it works.
+
+E — Effects:
+List files, dependencies, APIs, data, security boundaries and users that may be affected.
+
+N — No-go:
+List components or behavior that must not change.
+
+Do not implement anything yet.</pre><p style="margin-top:0.75rem">אם שלב ב-plan מנוסח «נעדכן קבצים לפי הצורך» — זה No-go. בקשו ניסוח ספציפי לפני אישור.</p>` },
   },
   {
     num: 14,
@@ -99,8 +116,8 @@ export const CHAPTERS_PART2 = [
       { term: "Inline Instruction", def: "הערה בקובץ לשינוי ממוקד.", example: "// TODO: add validation", pitfall: "vague TODO." },
       { term: "Stop Condition", def: "מתי עוצרים.", example: "test fail → stop", pitfall: "fix loop forever." },
     ],
-    analogy: { text: "כל iteration מסתיים בשתי שאלות: האם ה-test עבר? האם ה-diff מובן? אם התשובה לאחת מהן לא — עוצרים. Agent שממשיך על כשלון בנה שכבות על שגיאה; כל iteration נוסף מרחיק את נקודת החזרה.", bridge: "כתבו 3 stop conditions ספציפיות ל-TaskFlow Agent: מה יגרום לכם לעצור, לבדוק ולהחליט — לפני שממשיכים לשלב הבא." },
-    bob: { modes: ["Agent"], workflow: "שלב אחד → tests → diff → decision.", prompt: "Implement step 1 only from @plan/create-task.md. Run tests. Show diff. Stop.", promptWhy: "Bounded iteration." },
+    analogy: { text: "כל iteration מסתיים בשתי שאלות: האם ה-test עבר? האם ה-diff מובן? אם התשובה לאחת מהן לא — עוצרים. Agent שממשיך על כשלון בנה שכבות על שגיאה; כל iteration נוסף מרחיק את נקודת החזרה. לפני ביצוע ב-Agent, RAVEN check על ה-plan המאושר מוודא שהשלב שאתם עומדים לממש עדיין תואם לדרישות, להנחות ולגבולות ה-No-go.", bridge: "כתבו 3 stop conditions ספציפיות ל-TaskFlow Agent: מה יגרום לכם לעצור, לבדוק ולהחליט — לפני שממשיכים לשלב הבא. לאחר מכן הריצו RAVEN על ה-plan המאושר ובדקו שה-stop conditions אכן מופיעות ב-Verification או ב-No-go." },
+    bob: { modes: ["Agent"], workflow: "RAVEN check על plan מאושר → שלב אחד → tests → diff → decision.", prompt: "Run a RAVEN check on the approved plan. Then implement step 1 only from @plan/create-task.md. Run tests. Show diff. Stop.", promptWhy: "בודק את ה-plan שוב רגע לפני הביצוע." },
     mistake: { bad: "Agent continues after test fail.", good: "Stop → diagnose → new plan." },
     lab: ["Step 1 Agent.", "Run tests.", "Review diff.", "Approve or rollback.", "Document.", "הצלחה = שלב 1 מ-plan/create-task.md ממומש, tests ירוקים, diff מובן ומאושר."],
     exercise: "Stop condition — 3 triggers.",
@@ -136,7 +153,7 @@ export const CHAPTERS_PART2 = [
       { q: "Token?", a: "consistent design system." },
     ],
     summary: ["Semantic HTML.", "RTL + a11y.", "Tokens.", "Capstone UI."],
-    deep: { title: "HTML לדוגמה", html: `<pre class="code-block">&lt;main&gt;
+    deep: { title: "מה Bob יכול לעשות — ומה אתם חייבים להבין", html: `<p style="margin-top:0"><strong>Bob יכול:</strong></p><ul style="margin:0;padding-right:1.2rem"><li>לייצר markup</li><li>לכתוב CSS</li><li>לשפר responsive layout</li></ul><p style="margin:0.75rem 0 0.25rem"><strong>האדם חייב להבין:</strong></p><ul style="margin:0;padding-right:1.2rem"><li>structure vs style</li><li>semantics</li><li>accessibility basics</li><li>מה קורה במסך לאחר השינוי</li></ul><pre class="code-block" style="margin-top:0.75rem">&lt;main&gt;
   &lt;form id="add-task" aria-label="הוספת משימה"&gt;
     &lt;input name="title" required&gt;
     &lt;button type="submit"&gt;הוסף&lt;/button&gt;
@@ -169,6 +186,7 @@ export const CHAPTERS_PART2 = [
       { q: "Component?", a: "reuse + test isolation." },
     ],
     summary: ["Events + fetch.", "Components.", "State central.", "Modules."],
+    deep: { title: "מה Bob יכול לעשות — ומה אתם חייבים להבין", html: `<p style="margin-top:0"><strong>Bob יכול:</strong></p><ul style="margin:0;padding-right:1.2rem"><li>לכתוב event handlers</li><li>לבצע fetch</li><li>לשנות DOM</li></ul><p style="margin:0.75rem 0 0.25rem"><strong>האדם חייב להבין:</strong></p><pre class="code-block">event → state/data → function → DOM/result</pre><ul style="margin:0;padding-right:1.2rem"><li>async operation</li><li>error path</li></ul>` },
   },
   {
     num: 17,
@@ -196,7 +214,12 @@ export const CHAPTERS_PART2 = [
       { q: "Server validation?", a: "client can lie." },
     ],
     summary: ["Contract first.", "Correct status.", "Validate server.", "Test with curl."],
-    deep: { title: "API Contract", html: `<pre class="code-block">POST /api/tasks
+    deep: { title: "מה Bob יכול לעשות — ומה אתם חייבים להבין", html: `<p style="margin-top:0"><strong>Bob יכול:</strong></p><ul style="margin:0;padding-right:1.2rem"><li>ליצור endpoint</li><li>לכתוב request handling</li></ul><p style="margin:0.75rem 0 0.25rem"><strong>האדם חייב להבין:</strong></p><pre class="code-block">Request
+→ Validation
+→ Authorization
+→ Business Logic
+→ Persistence
+→ Response</pre><ul style="margin:0;padding-right:1.2rem"><li>HTTP method</li><li>status code</li><li>failure case</li></ul><pre class="code-block" style="margin-top:0.75rem">POST /api/tasks
 Body: { "title": string (required) }
 201: { "id": number, "title": string, "status": "open" }
 400: { "error": "title required" }</pre>` },
@@ -226,6 +249,7 @@ Body: { "title": string (required) }
       { q: "PK?", a: "unique id per row." },
     ],
     summary: ["Schema explicit.", "Migrations.", "Parameterized.", "Repo layer."],
+    deep: { title: "מה Bob יכול לעשות — ומה אתם חייבים להבין", html: `<p style="margin-top:0"><strong>Bob יכול:</strong></p><ul style="margin:0;padding-right:1.2rem"><li>לכתוב schema</li><li>query</li><li>migration</li></ul><p style="margin:0.75rem 0 0.25rem"><strong>האדם חייב להבין:</strong></p><ul style="margin:0;padding-right:1.2rem"><li>table</li><li>key</li><li>relationship</li><li>transaction</li><li>why parameterized query matters</li><li>data loss risk</li></ul>` },
   },
   {
     num: 19,
@@ -252,6 +276,8 @@ Body: { "title": string (required) }
       { q: "httpOnly?", a: "JS can't steal cookie." },
     ],
     summary: ["Server auth.", "Middleware.", "No secrets in code.", "E2E auth test."],
+    deep: { title: "מה Bob יכול לעשות — ומה אתם חייבים להבין", html: `<p style="margin-top:0"><strong>Bob יכול:</strong></p><ul style="margin:0;padding-right:1.2rem"><li>לכתוב login logic</li><li>middleware/decorator</li><li>session handling</li></ul><p style="margin:0.75rem 0 0.25rem"><strong>האדם חייב להבין את ההבדל בין:</strong></p><pre class="code-block">Authentication = מי אתה?
+Authorization  = מה מותר לך?</pre><ul style="margin:0;padding-right:1.2rem"><li>session</li><li>password handling</li><li>IDOR / object-level authorization</li></ul>` },
   },
   {
     num: 20,
@@ -394,10 +420,10 @@ Body: { "title": string (required) }
       { term: "Review Checklist", def: "security, AC, style.", example: "SQL params?", pitfall: "LGTM blind." },
       { term: "Coverage", def: "what's tested.", example: "critical paths", pitfall: "100% vanity." },
     ],
-    analogy: { text: "Test שנכתב אחרי קוד בודק מה הקוד עושה — לא מה הוא צריך לעשות. AC שנכתבה לפני קוד היא ה-spec; test שנגזר ממנה בודק עמידה ב-spec. Code review ב-Bob הוא עזר, לא תחליף — המפתח הוא שמכיר את ה-business logic ורואה את מה שBob מחמיץ.", bridge: "מצאו path אחד ב-TaskFlow שאין לו test: כתבו AC בפורמט Given/When/Then ואז test שבודק בדיוק את ה-AC — לא את מה שהקוד כבר עושה." },
-    bob: { modes: ["Agent"], workflow: "Tests for AC.", prompt: "From @plan/create-task.md AC: write integration tests for POST /api/tasks. Run. Report.", promptWhy: "AC → tests." },
-    mistake: { bad: "merge without tests.", good: "AC → tests → review → merge." },
-    lab: ["Tests for slice 1.", "Run CI/local.", "Bob review + human.", "Fix findings.", "Merge.", "הצלחה = unit + integration tests עוברים ב-CI, review checklist מסומן, merge ל-main."],
+    analogy: { text: "Test שנכתב אחרי קוד בודק מה הקוד עושה — לא מה הוא צריך לעשות. AC שנכתבה לפני קוד היא ה-spec; test שנגזר ממנה בודק עמידה ב-spec. Code review ב-Bob הוא עזר, לא תחליף — המפתח הוא שמכיר את ה-business logic ורואה את מה שBob מחמיץ. RAVEN review ב-code review שואל לא רק «האם זה עובד?» אלא גם «אילו הנחות נוספו? מה הושפע? ומה היה אסור לגעת בו?».", bridge: "מצאו path אחד ב-TaskFlow שאין לו test: כתבו AC בפורמט Given/When/Then ואז test שבודק בדיוק את ה-AC — לא את מה שהקוד כבר עושה. לאחר מכן עברו עליו עם checklist RAVEN review." },
+    bob: { modes: ["Agent"], workflow: "AC → tests → RAVEN review → merge.", prompt: "From @plan/create-task.md AC: write integration tests for POST /api/tasks. Run. Report. Then review the diff with this checklist: Requirements met? Hidden assumptions introduced? Verification evidence? Unintended effects? No-go boundaries preserved?", promptWhy: "RAVEN הופך review לביקורת מלאה יותר." },
+    mistake: { bad: "merge without tests.", good: "AC → tests → RAVEN review → merge." },
+    lab: ["Tests for slice 1.", "Run CI/local.", "Bob review + human.", "עברו על checklist: Requirements met? Hidden assumptions introduced? Verification evidence? Unintended effects? No-go boundaries preserved?", "Fix findings.", "הצלחה = unit + integration tests עוברים ב-CI, review checklist מסומן, merge ל-main."],
     exercise: "Review checklist — 8 items.",
     quiz: [
       { q: "Unit vs integration?", a: "unit = piece; integration = together." },
@@ -419,10 +445,10 @@ Body: { "title": string (required) }
       { term: "Headers", def: "CSP, HSTS.", example: "helmet.js", pitfall: "default none." },
       { term: "Threat Model", def: "who attacks what.", example: "IDOR on /tasks/:id", pitfall: "no threats." },
     ],
-    analogy: { text: "אבטחה שנוספת בסוף הפרויקט מחייבת refactor — headers, validation ו-secrets management שלא תוכננו מראש. Threat model שנכתב ב-PRD הופך כל feature request לשאלת אבטחה: «מה התוקף יכול לעשות עם זה?» — לפני שכותבים שורה.", bridge: "זהו את ה-Threat #1 של TaskFlow בהגדרת STRIDE: כתבו Asset, Threat ו-Mitigation אחת. בדקו שה-Mitigation מיושמת כבר בקוד." },
-    bob: { modes: ["Ask"], workflow: "Threat model before feature.", prompt: "Threat model TaskFlow: assets, threats, mitigations. STRIDE lite. No code.", promptWhy: "Design security." },
-    mistake: { bad: "security audit at end only.", good: "threat per feature." },
-    lab: ["Threat model.", "Fix 1 finding.", "Secret scan.", "Header check.", "Document.", "הצלחה = threat model עם STRIDE lite, לפחות finding אחת תוקנה, secret scan נקי, CSP header פעיל."],
+    analogy: { text: "אבטחה שנוספת בסוף הפרויקט מחייבת refactor — headers, validation ו-secrets management שלא תוכננו מראש. Threat model שנכתב ב-PRD הופך כל feature request לשאלת אבטחה: «מה התוקף יכול לעשות עם זה?» — לפני שכותבים שורה. ב-RAVEN של security חשוב במיוחד לבדוק Assumptions על trust boundaries, Effects על attack surface, ו-No-go כמו «אין secrets בקוד».", bridge: "זהו את ה-Threat #1 של TaskFlow בהגדרת STRIDE: כתבו Asset, Threat ו-Mitigation אחת. לאחר מכן הוסיפו RAVEN security review: מה הנחתם על trust boundary, מה ה-attack surface שהושפע, ומה אסור שישתנה?" },
+    bob: { modes: ["Ask"], workflow: "Threat model + RAVEN security review לפני feature.", prompt: "Threat model TaskFlow: assets, threats, mitigations. STRIDE lite. Then add RAVEN notes: Assumptions about trust boundaries, Effects on attack surface, and No-go items such as no secrets in code. No code.", promptWhy: "מאחד threat modeling עם גבולות אבטחה מפורשים." },
+    mistake: { bad: "security audit at end only.", good: "threat per feature + RAVEN security review." },
+    lab: ["Threat model.", "RAVEN security review: Assumptions / Effects / No-go.", "Fix 1 finding.", "Secret scan.", "Header check.", "הצלחה = threat model עם STRIDE lite, לפחות finding אחת תוקנה, secret scan נקי, CSP header פעיל, ו-No-go כמו «אין secrets בקוד» נשמר."],
     exercise: "STRIDE on login — 1 per letter?",
     quiz: [
       { q: "Injection?", a: "params — validate + param queries." },
@@ -470,8 +496,8 @@ Body: { "title": string (required) }
       { term: "Audit Trail", def: "who did what.", example: "userId, action, ts", pitfall: "no logs." },
       { term: "Handover", def: "docs + demo + shadow.", example: "2h pairing", pitfall: "README only." },
     ],
-    analogy: { text: "Handover שמורכב מ-README בלבד הוא handover שיכשל. הצוות הבא נתקל בquestions שלא ענו עליהם: איפה ה-secrets? איך מתאוששים מ-DB down? מה הquality bars? Runbook + ADR + Known Limitations הם התשובות שכתובות — לא שנשאלות לראשונה בתקלה.", bridge: "בדקו את ה-README של TaskFlow: רשמו 3 שאלות שצוות חדש ישאל שאין להן תשובה שם. הוסיפו את התשובות ל-Runbook לפני שסוגרים את ה-sprint." },
-    bob: { modes: ["Agent"], workflow: "Generate handover pack.", prompt: "Update README, Runbook, ADR summary, AGENTS.md, Known Limitations for TaskFlow. Budget alerts section.", promptWhy: "Complete handover." },
+    analogy: { text: "Handover שמורכב מ-README בלבד הוא handover שיכשל. הצוות הבא נתקל בquestions שלא ענו עליהם: איפה ה-secrets? איך מתאוששים מ-DB down? מה הquality bars? Runbook + ADR + Known Limitations הם התשובות שכתובות — לא שנשאלות לראשונה בתקלה. RAVEN summary במסירה מבטיח שלא מוסרים רק קבצים, אלא גם את הדרישות, ההנחות, הראיות, ההשפעות והגבולות שאסור להפר בהמשך.", bridge: "בדקו את ה-README של TaskFlow: רשמו 3 שאלות שצוות חדש ישאל שאין להן תשובה שם. הוסיפו את התשובות ל-Runbook, ואז כתבו RAVEN summary קצר למסירה לפני שסוגרים את ה-sprint." },
+    bob: { modes: ["Agent"], workflow: "Generate handover pack + RAVEN summary.", prompt: "Update README, Runbook, ADR summary, AGENTS.md, Known Limitations for TaskFlow. Add a RAVEN summary section covering Requirements, Assumptions, Verification, Effects, and No-go. Include budget alerts section.", promptWhy: "מסירה מלאה כוללת גם הקשר שיפוטי, לא רק artifacts." },
     mistake: { bad: "token cost only.", good: "infra + support + failure cost." },
     lab: ["Cost estimate.", "Runbook.", "Handover to peer.", "Peer runs solo.", "Sign-off checklist.", "הצלחה = peer הריץ TaskFlow לבד, תיקן בעיה אחת ללא עזרתכם, ו-sign-off checklist הושלם."],
     exercise: "Handover checklist — 10 items.",

@@ -155,8 +155,8 @@
 
         <section class="section">
           <div class="section-label label-analogy"><span class="dot"></span>משל מהעולם האמיתי</div>
-          <div class="card card-analogy"><p>אבטחה שנוספת בסוף הפרויקט מחייבת refactor — headers, validation ו-secrets management שלא תוכננו מראש. Threat model שנכתב ב-PRD הופך כל feature request לשאלת אבטחה: <strong><em>מה התוקף יכול לעשות עם זה?</em></strong> — לפני שכותבים שורה.</p></div>
-          <p><strong>שאלות לחשיבה:</strong> זהו את ה-Threat #1 של TaskFlow בהגדרת STRIDE: כתבו Asset, Threat ו-Mitigation אחת. בדקו שה-Mitigation מיושמת כבר בקוד.</p>
+          <div class="card card-analogy"><p>אבטחה שנוספת בסוף הפרויקט מחייבת refactor — headers, validation ו-secrets management שלא תוכננו מראש. Threat model שנכתב ב-PRD הופך כל feature request לשאלת אבטחה: <strong><em>מה התוקף יכול לעשות עם זה?</em></strong> — לפני שכותבים שורה. ב-RAVEN של security חשוב במיוחד לבדוק Assumptions על trust boundaries, Effects על attack surface, ו-No-go כמו <strong><em>אין secrets בקוד</em></strong>.</p></div>
+          <p><strong>שאלות לחשיבה:</strong> זהו את ה-Threat #1 של TaskFlow בהגדרת STRIDE: כתבו Asset, Threat ו-Mitigation אחת. לאחר מכן הוסיפו RAVEN security review: מה הנחתם על trust boundary, מה ה-attack surface שהושפע, ומה אסור שישתנה?</p>
         </section>
 
         
@@ -164,17 +164,17 @@
         <section class="section">
           <div class="section-label label-bob"><span class="dot"></span>עבודה עם IBM Bob</div>
           <div class="mode-row"><span class="mode-pill mode-ask">Ask</span></div>
-          <p>Threat model before feature.</p>
+          <p>Threat model + RAVEN security review לפני feature.</p>
           <h3>Prompt לדוגמה</h3>
-          <pre class="prompt">Threat model TaskFlow: assets, threats, mitigations. STRIDE lite. No code.</pre>
-          <p><strong>למה זה עובד:</strong> Design security.</p>
+          <pre class="prompt">Threat model TaskFlow: assets, threats, mitigations. STRIDE lite. Then add RAVEN notes: Assumptions about trust boundaries, Effects on attack surface, and No-go items such as no secrets in code. No code.</pre>
+          <p><strong>למה זה עובד:</strong> מאחד threat modeling עם גבולות אבטחה מפורשים.</p>
         </section>
 
         <section class="section">
           <div class="section-label label-warning"><span class="dot"></span>טעות נפוצה</div>
           <div class="card card-warning">
             <p><strong>לא:</strong> security audit at end only.</p>
-            <p><strong>כן:</strong> threat per feature.</p>
+            <p><strong>כן:</strong> threat per feature + RAVEN security review.</p>
           </div>
           
         </section>
@@ -183,7 +183,7 @@
 
         <section class="section">
           <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
-          <ol class="steps"><li>Threat model.</li><li>Fix 1 finding.</li><li>Secret scan.</li><li>Header check.</li><li>Document.</li><li>הצלחה = threat model עם STRIDE lite, לפחות finding אחת תוקנה, secret scan נקי, CSP header פעיל.</li></ol>
+          <ol class="steps"><li>Threat model.</li><li>RAVEN security review: Assumptions / Effects / No-go.</li><li>Fix 1 finding.</li><li>Secret scan.</li><li>Header check.</li><li>הצלחה = threat model עם STRIDE lite, לפחות finding אחת תוקנה, secret scan נקי, CSP header פעיל, ו-No-go כמו <strong><em>אין secrets בקוד</em></strong> נשמר.</li></ol>
         </section>
 
         <section class="section">

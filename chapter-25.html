@@ -155,8 +155,8 @@
 
         <section class="section">
           <div class="section-label label-analogy"><span class="dot"></span>משל מהעולם האמיתי</div>
-          <div class="card card-analogy"><p>Test שנכתב אחרי קוד בודק מה הקוד עושה — לא מה הוא צריך לעשות. AC שנכתבה לפני קוד היא ה-spec; test שנגזר ממנה בודק עמידה ב-spec. Code review ב-Bob הוא עזר, לא תחליף — המפתח הוא שמכיר את ה-business logic ורואה את מה שBob מחמיץ.</p></div>
-          <p><strong>שאלות לחשיבה:</strong> מצאו path אחד ב-TaskFlow שאין לו test: כתבו AC בפורמט Given/When/Then ואז test שבודק בדיוק את ה-AC — לא את מה שהקוד כבר עושה.</p>
+          <div class="card card-analogy"><p>Test שנכתב אחרי קוד בודק מה הקוד עושה — לא מה הוא צריך לעשות. AC שנכתבה לפני קוד היא ה-spec; test שנגזר ממנה בודק עמידה ב-spec. Code review ב-Bob הוא עזר, לא תחליף — המפתח הוא שמכיר את ה-business logic ורואה את מה שBob מחמיץ. RAVEN review ב-code review שואל לא רק <strong><em>האם זה עובד?</em></strong> אלא גם <strong><em>אילו הנחות נוספו? מה הושפע? ומה היה אסור לגעת בו?</em></strong>.</p></div>
+          <p><strong>שאלות לחשיבה:</strong> מצאו path אחד ב-TaskFlow שאין לו test: כתבו AC בפורמט Given/When/Then ואז test שבודק בדיוק את ה-AC — לא את מה שהקוד כבר עושה. לאחר מכן עברו עליו עם checklist RAVEN review.</p>
         </section>
 
         
@@ -164,17 +164,17 @@
         <section class="section">
           <div class="section-label label-bob"><span class="dot"></span>עבודה עם IBM Bob</div>
           <div class="mode-row"><span class="mode-pill mode-agent">Agent</span></div>
-          <p>Tests for AC.</p>
+          <p>AC → tests → RAVEN review → merge.</p>
           <h3>Prompt לדוגמה</h3>
-          <pre class="prompt">From @plan/create-task.md AC: write integration tests for POST /api/tasks. Run. Report.</pre>
-          <p><strong>למה זה עובד:</strong> AC → tests.</p>
+          <pre class="prompt">From @plan/create-task.md AC: write integration tests for POST /api/tasks. Run. Report. Then review the diff with this checklist: Requirements met? Hidden assumptions introduced? Verification evidence? Unintended effects? No-go boundaries preserved?</pre>
+          <p><strong>למה זה עובד:</strong> RAVEN הופך review לביקורת מלאה יותר.</p>
         </section>
 
         <section class="section">
           <div class="section-label label-warning"><span class="dot"></span>טעות נפוצה</div>
           <div class="card card-warning">
             <p><strong>לא:</strong> merge without tests.</p>
-            <p><strong>כן:</strong> AC → tests → review → merge.</p>
+            <p><strong>כן:</strong> AC → tests → RAVEN review → merge.</p>
           </div>
           
         </section>
@@ -183,7 +183,7 @@
 
         <section class="section">
           <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
-          <ol class="steps"><li>Tests for slice 1.</li><li>Run CI/local.</li><li>Bob review + human.</li><li>Fix findings.</li><li>Merge.</li><li>הצלחה = unit + integration tests עוברים ב-CI, review checklist מסומן, merge ל-main.</li></ol>
+          <ol class="steps"><li>Tests for slice 1.</li><li>Run CI/local.</li><li>Bob review + human.</li><li>עברו על checklist: Requirements met? Hidden assumptions introduced? Verification evidence? Unintended effects? No-go boundaries preserved?</li><li>Fix findings.</li><li>הצלחה = unit + integration tests עוברים ב-CI, review checklist מסומן, merge ל-main.</li></ol>
         </section>
 
         <section class="section">

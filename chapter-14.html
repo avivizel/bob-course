@@ -158,8 +158,8 @@
 
         <section class="section">
           <div class="section-label label-analogy"><span class="dot"></span>משל מהעולם האמיתי</div>
-          <div class="card card-analogy"><p>כל iteration מסתיים בשתי שאלות: האם ה-test עבר? האם ה-diff מובן? אם התשובה לאחת מהן לא — עוצרים. Agent שממשיך על כשלון בנה שכבות על שגיאה; כל iteration נוסף מרחיק את נקודת החזרה.</p></div>
-          <p><strong>שאלות לחשיבה:</strong> כתבו 3 stop conditions ספציפיות ל-TaskFlow Agent: מה יגרום לכם לעצור, לבדוק ולהחליט — לפני שממשיכים לשלב הבא.</p>
+          <div class="card card-analogy"><p>כל iteration מסתיים בשתי שאלות: האם ה-test עבר? האם ה-diff מובן? אם התשובה לאחת מהן לא — עוצרים. Agent שממשיך על כשלון בנה שכבות על שגיאה; כל iteration נוסף מרחיק את נקודת החזרה. לפני ביצוע ב-Agent, RAVEN check על ה-plan המאושר מוודא שהשלב שאתם עומדים לממש עדיין תואם לדרישות, להנחות ולגבולות ה-No-go.</p></div>
+          <p><strong>שאלות לחשיבה:</strong> כתבו 3 stop conditions ספציפיות ל-TaskFlow Agent: מה יגרום לכם לעצור, לבדוק ולהחליט — לפני שממשיכים לשלב הבא. לאחר מכן הריצו RAVEN על ה-plan המאושר ובדקו שה-stop conditions אכן מופיעות ב-Verification או ב-No-go.</p>
         </section>
 
         
@@ -167,10 +167,10 @@
         <section class="section">
           <div class="section-label label-bob"><span class="dot"></span>עבודה עם IBM Bob</div>
           <div class="mode-row"><span class="mode-pill mode-agent">Agent</span></div>
-          <p>שלב אחד → tests → diff → decision.</p>
+          <p>RAVEN check על plan מאושר → שלב אחד → tests → diff → decision.</p>
           <h3>Prompt לדוגמה</h3>
-          <pre class="prompt">Implement step 1 only from @plan/create-task.md. Run tests. Show diff. Stop.</pre>
-          <p><strong>למה זה עובד:</strong> Bounded iteration.</p>
+          <pre class="prompt">Run a RAVEN check on the approved plan. Then implement step 1 only from @plan/create-task.md. Run tests. Show diff. Stop.</pre>
+          <p><strong>למה זה עובד:</strong> בודק את ה-plan שוב רגע לפני הביצוע.</p>
         </section>
 
         <section class="section">

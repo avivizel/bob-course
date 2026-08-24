@@ -183,8 +183,13 @@
         </section>
 
         <section class="section">
-      <div class="section-label label-deep"><span class="dot"></span>API Contract</div>
-      <div class="card card-deep"><pre class="code-block">POST /api/tasks
+      <div class="section-label label-deep"><span class="dot"></span>מה Bob יכול לעשות — ומה אתם חייבים להבין</div>
+      <div class="card card-deep"><p style="margin-top:0"><strong>Bob יכול:</strong></p><ul style="margin:0;padding-right:1.2rem"><li>ליצור endpoint</li><li>לכתוב request handling</li></ul><p style="margin:0.75rem 0 0.25rem"><strong>האדם חייב להבין:</strong></p><pre class="code-block">Request
+→ Validation
+→ Authorization
+→ Business Logic
+→ Persistence
+→ Response</pre><ul style="margin:0;padding-right:1.2rem"><li>HTTP method</li><li>status code</li><li>failure case</li></ul><pre class="code-block" style="margin-top:0.75rem">POST /api/tasks
 Body: { "title": string (required) }
 201: { "id": number, "title": string, "status": "open" }
 400: { "error": "title required" }</pre></div>

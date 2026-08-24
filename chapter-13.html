@@ -169,8 +169,25 @@
           <div class="mode-row"><span class="mode-pill mode-plan">Plan</span></div>
           <p>Plan → RAVEN review → Agent.</p>
           <h3>Prompt לדוגמה</h3>
-          <pre class="prompt">Plan: create task slice. Files, steps, tests, risks. Save plan/create-task.md. No code.</pre>
-          <p><strong>למה זה עובד:</strong> Artifact = reviewable.</p>
+          <pre class="prompt">Review this plan using RAVEN:
+
+R — Requirements:
+List the explicit requirements.
+
+A — Assumptions:
+List every assumption not guaranteed by the repository or the request.
+
+V — Verification:
+For each requested outcome, define evidence that proves it works.
+
+E — Effects:
+List files, dependencies, APIs, data, security boundaries and users that may be affected.
+
+N — No-go:
+List components or behavior that must not change.
+
+Do not implement anything yet.</pre>
+          <p><strong>למה זה עובד:</strong> RAVEN הופך Plan לביקורת שיטתית לפני אישור.</p>
         </section>
 
         <section class="section">
@@ -183,8 +200,25 @@
         </section>
 
         <section class="section">
-      <div class="section-label label-deep"><span class="dot"></span>RAVEN — מסגרת ביקורת Plan</div>
-      <div class="card card-deep"><ul style="margin:0;padding-right:1.2rem"><li><strong>R</strong>equirements — האם ה-plan מכסה את כל ה-AC ורק אותם?</li><li><strong>A</strong>ssumptions — אילו הנחות Bob הוסיף? האם הן נכונות?</li><li><strong>V</strong>erification — כיצד כל שלב ייבדק?</li><li><strong>E</strong>ffects — מה ההשפעה על API, נתונים, אבטחה וביצועים?</li><li><strong>N</strong>o-go — היכן נדרש אישור אנושי לפני המשך?</li></ul><p style="margin-top:0.75rem">אם שלב ב-plan מנוסח «נעדכן קבצים לפי הצורך» — זה No-go. בקשו ניסוח ספציפי לפני אישור.</p></div>
+      <div class="section-label label-deep"><span class="dot"></span>RAVEN Review</div>
+      <div class="card card-deep"><p style="margin-top:0">לפני שמאשרים Plan:</p><ul style="margin:0;padding-right:1.2rem"><li><strong>Requirements</strong> — מה בדיוק נדרש?</li><li><strong>Assumptions</strong> — מה Bob מניח שלא נאמר?</li><li><strong>Verification</strong> — איך נדע שהשינוי הצליח?</li><li><strong>Effects</strong> — אילו קבצים, שירותים, APIs, נתונים או משתמשים מושפעים?</li><li><strong>No-go</strong> — מה אסור להשתנות?</li></ul><pre class="code-block" style="margin-top:0.75rem">Review this plan using RAVEN:
+
+R — Requirements:
+List the explicit requirements.
+
+A — Assumptions:
+List every assumption not guaranteed by the repository or the request.
+
+V — Verification:
+For each requested outcome, define evidence that proves it works.
+
+E — Effects:
+List files, dependencies, APIs, data, security boundaries and users that may be affected.
+
+N — No-go:
+List components or behavior that must not change.
+
+Do not implement anything yet.</pre><p style="margin-top:0.75rem">אם שלב ב-plan מנוסח «נעדכן קבצים לפי הצורך» — זה No-go. בקשו ניסוח ספציפי לפני אישור.</p></div>
     </section>
 
         <section class="section">

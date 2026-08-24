@@ -177,13 +177,13 @@
         <p class="popup-label">מבוא</p>
         <p>המושג <strong><em>Error Log</em></strong> הוא אחד מאבני הבניין של הפרק.</p>
         <p class="popup-label">משמעות</p>
-        <p>פלט שגיאות ב-Terminal. השורה הראשונה = הגורם; השורות הבאות = stack trace.</p>
+        <p>פלט שמראה מה קרה בזמן ההרצה. ב־Python traceback קוראים קודם את שורת ה־exception האחרונה כדי לזהות את סוג השגיאה וההודעה, ואז עולים דרך ה־stack frames כדי להבין מאיפה היא הגיעה.</p>
         <p class="popup-label">כוונה</p>
-        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לקרוא רק את שורת ה-stack האחרונה ולפספס את הסיבה האמיתית.</p>
+        <p>הכוונה: להבין מתי להשתמש בו, ומה משתבש אם מתעלמים — לקרוא רק את תחילת ה־traceback או להסתכל על שורה בודדת בלי ההקשר.</p>
       </div>
-      <p>פלט שגיאות ב-Terminal. השורה הראשונה = הגורם; השורות הבאות = stack trace.</p>
-      <div class="example"><strong>דוגמה:</strong> ModuleNotFoundError: No module named 'tasks' → בדקו את הנתיב או ההתקנה</div>
-      <div class="pitfall"><strong>זהירות:</strong> לקרוא רק את שורת ה-stack האחרונה ולפספס את הסיבה האמיתית.</div>
+      <p>פלט שמראה מה קרה בזמן ההרצה. ב־Python traceback קוראים קודם את שורת ה־exception האחרונה כדי לזהות את סוג השגיאה וההודעה, ואז עולים דרך ה־stack frames כדי להבין מאיפה היא הגיעה.</p>
+      <div class="example"><strong>דוגמה:</strong> Traceback (most recent call last): ... ModuleNotFoundError: No module named 'tasks'</div>
+      <div class="pitfall"><strong>זהירות:</strong> לקרוא רק את תחילת ה־traceback או להסתכל על שורה בודדת בלי ההקשר.</div>
     </article></div>
         </section>
 
@@ -220,7 +220,7 @@
 
         <section class="section">
           <div class="section-label label-lab"><span class="dot"></span>מעבדה מודרכת</div>
-          <ol class="steps"><li>פתחו TaskFlow ב-Bob IDE.</li><li>בקשו מ-Bob הסבר לכל חבילה ב-requirements.txt.</li><li>הריצו python app.py אחרי שהבנתם מה הוא עושה.</li><li>פתחו שגיאה מכוונת — מחקו חבילה — ובדקו מה מופיע בTerminal.</li><li>תעדו: מה השגיאה הראשונה שראיתם? האם הצגתם לBob את שורה 1 של הlog?</li><li>הצלחה = הבנתם איך הפרויקט רץ בפיתוח וזיהיתם שגיאה אחת בעצמכם.</li></ol>
+          <ol class="steps"><li>פתחו TaskFlow ב-Bob IDE.</li><li>בקשו מ-Bob הסבר לכל חבילה ב-requirements.txt.</li><li>הריצו python app.py אחרי שהבנתם מה הוא עושה.</li><li>פתחו שגיאה מכוונת — מחקו חבילה — ובדקו מה מופיע בTerminal.</li><li>תעדו: האם הצגתם ל-Bob את הודעת ה-exception ואת ה-traceback הרלוונטי, בלי להסתיר את ההקשר?</li><li>הצלחה = הבנתם איך הפרויקט רץ בפיתוח וזיהיתם שגיאה אחת בעצמכם.</li></ol>
         </section>
 
         <section class="section">
@@ -237,8 +237,8 @@
       <summary>מה עושה requirements.txt?</summary>
       <div class="answer"><strong>תשובה לדוגמה:</strong> מגדיר אילו חבילות Python צריך להתקין כדי שהפרויקט ירוץ בצורה עקבית.</div>
     </details><details>
-      <summary>למה לקרוא שגיאה מההתחלה?</summary>
-      <div class="answer"><strong>תשובה לדוגמה:</strong> השורה הראשונה לרוב מצביעה על הסיבה; סוף הלוג = תוצאה.</div>
+      <summary>מאיפה מתחילים לקרוא Python traceback?</summary>
+      <div class="answer"><strong>תשובה לדוגמה:</strong> מזהים את סוג ה־exception וההודעה בסוף, ואז עולים דרך ה־frames כדי לאתר את מקור הבעיה.</div>
     </details><details>
       <summary>מה ההבדל בין pip install -r requirements.txt לבין python app.py?</summary>
       <div class="answer"><strong>תשובה לדוגמה:</strong> pip install מתקין את התלויות. python app.py מפעיל את האפליקציה. אם מדלגים על ההתקנה — ההרצה עלולה להיכשל.</div>
