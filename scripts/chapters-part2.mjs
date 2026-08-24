@@ -837,7 +837,7 @@ Authorization  = מה מותר לך?</pre><ul style="margin:0;padding-right:1.2r
     time: "35 דק'",
     intro: "Bob SaaS מבוסס על ארכיטקטורה מבוזרת הפרוסה במספר אזורים בענן, ומחברת את ה-Client בצורה מאובטחת לשירותי ה-inference. הבנת ה-Data Flow חיונית כדי להבטיח עמידה בכללי אבטחת מידע וסוברניות נתונים (Data Residency). * הארכיטקטורה המוצגת בפרק זה היא מופשטת ונועדה להמחשת ה-data flow בלבד (Illustrative / not a contractual architecture; רכיבי ה-implementation בפועל עשויים להשתנות).",
     concepts: [
-      { term: "Multi-Model Orchestration וניתוב משימות", def: "Bob משתמש ב-Multi-Model Orchestration מבוסס AI כדי לנתב משימות שונות למודלים המתאימים ביותר. הניתוב מתחשב ביכולות המודל, בדיוק הנדרש, בעלויות (Cost), בביצועים (Performance) ובזמינות האזורית.", example: "ניתוב משימות קוד מורכבות או הסברים למודל Reasoning חזק, ומשימות פשוטות למודל מהיר וחסכוני.", pitfall: "הנחה שיש מודל קבוע יחיד לכל סוגי המשימות, או שכל המודלים זמינים בכל האזורים." },
+      { term: "Multi-Model Orchestration וניתוב משימות", def: "Bob SaaS מגיע עם חמישה מודלים זמינים מארבעה ספקים: Anthropic (Claude Haiku, Claude Sonnet, Claude Opus), OpenAI (GPT OSS) ו-EssentialAI (RNJ). Bob מנתב כל משימה למודל המתאים ביותר לפי יכולת, מהירות, עלות וזמינות אזורית.", example: "משימות השלמת קוד מהירות → Claude Haiku; ניתוח ארכיטקטורה מורכב → Claude Opus; משימות עם GPT OSS או RNJ לפי הקשר הארגוני.", pitfall: "הנחה שיש מודל קבוע יחיד לכל סוגי המשימות, או שכל המודלים זמינים בכל האזורים." },
       { term: "Regional Deployment ו-Data Residency", def: "SaaS deployment אזורי המאפשר לארגונים לנתב את התעבורה והפניות שלהם לאזורים גאוגרפיים מוגדרים (כגון ארה\"ב, אירופה או יפן) בהתאם לדרישות ה-data residency והרגולציה המקומית.", example: "לקוח אירופאי המגדיר ניתוב בלעדי לאזור אירופה לשמירה על סוברניות הנתונים.", pitfall: "הנחה שכל האזורים מציעים יכולות ורכיבי תשתית זהים לחלוטין ללא בדיקה של המקור הרשמי." },
       { term: "Bob Model Gateway", def: "שכבת routing קונספטואלית בין ה-Client ל-LLMs. מטפלת ב-AuthZ, Metering, feature flags ו-audit. הוא לא ה-LLM עצמו — הוא ה-broker שמנתב לכל מודל.", example: "Bob IDE → TLS → Bob Model Gateway → מודל מתאים (לפי ניתוב דינמי) → completion → IDE", pitfall: "לבלבל בין Bob Model Gateway (שכבת ניתוב) לבין ה-LLM עצמו." },
       { term: "מה עובר על הקו ו-.bobignore", def: "בכל בקשה נשלח רק ה-inference payload המכיל את ה-prompts, קטעי קוד שצורפו במפורש (ע'י @) ופלט ה-terminal. הקובץ .bobignore הוא מנגנון לצמצום ה-context והגישה של Bob לקבצים רגישים בפרויקט.", example: "חסימת קובצי הגדרות מקומיים (.env) וספריות צד שלישי (node_modules) ב-.bobignore", pitfall: "הנחה ש-.bobignore הוא פתרון אבטחה מוחלט — יש להשתמש בו לצמצום קונטקסט אך לא כתחליף ל-secrets management, בקרת גישה (access control) או data governance ארגוני." },
@@ -863,22 +863,33 @@ Authorization  = מה מותר לך?</pre><ul style="margin:0;padding-right:1.2r
       { q: "האם מודלי השפה בענן שומרים את קוד המקור שלנו?", a: "לא. המודלים משמשים ל-inference בלבד ואינם שומרים או מאחסנים את קוד המקור הנשלח ב-payload." }
     ],
     summary: [
-      "Bob משתמש ב-multi-model orchestration לניתוב משימות לפי עלות וביצועים.",
+      "Bob SaaS כולל 5 מודלים: Claude Haiku, Claude Sonnet, Claude Opus (Anthropic) · GPT OSS (OpenAI) · RNJ (EssentialAI).",
+      "Bob מנתב משימות אוטומטית בין המודלים לפי יכולת, עלות וביצועים.",
       "פריסה אזורית (US/EU/JP) תומכת בדרישות Data Residency וסוברניות.",
       ".bobignore מצמצם קונטקסט של פניות אך אינו תחליף ל-secrets management שלם.",
       "רכיבי התשתית הפיזיים הם פרטי מימוש ועשויים להשתנות (Illustrative architecture)."
     ],
-    deep: { title: "היבטי אבטחה ב-Bob SaaS (Conceptual Architecture)", html: `<p style="margin-bottom:0.75rem"><strong>Multi-Model Orchestration — עקרונות ניתוב (Illustrative):</strong></p>
-<p style="margin-bottom:0.75rem;font-size:0.9rem">Bob מנתב משימות שונות למודלים לפי יכולת, דיוק, עלות וזמינות אזורית. IBM Granite הוא המודל המאושר לקוד enterprise. מודלים נוספים עשויים להשתתף בניתוב — הרשימה המלאה מנוהלת דינמית על-ידי הפלטפורמה ואינה מפורסמת כהתחייבות חוזית.</p>
+    deep: { title: "מודלי Bob SaaS — רשימה מאומתת וארכיטקטורת ניתוב", html: `<p style="margin-bottom:0.75rem"><strong>מודלים זמינים ב-Bob SaaS:</strong></p>
+<table style="width:100%;border-collapse:collapse;font-size:0.9rem;margin-bottom:1rem">
+<thead><tr style="border-bottom:2px solid var(--line)"><th style="text-align:right;padding:6px 8px">ספק (Provider)</th><th style="text-align:right;padding:6px 8px">שם המודל</th></tr></thead>
+<tbody>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px"><strong>Anthropic</strong></td><td style="padding:6px 8px">Claude Haiku</td></tr>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px"><strong>Anthropic</strong></td><td style="padding:6px 8px">Claude Sonnet</td></tr>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px"><strong>Anthropic</strong></td><td style="padding:6px 8px">Claude Opus</td></tr>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px"><strong>OpenAI</strong></td><td style="padding:6px 8px">GPT OSS</td></tr>
+<tr><td style="padding:6px 8px"><strong>EssentialAI</strong></td><td style="padding:6px 8px">RNJ</td></tr>
+</tbody>
+</table>
+<p style="margin-bottom:0.75rem"><strong>עקרונות ניתוב (Multi-Model Orchestration):</strong></p>
 <table style="width:100%;border-collapse:collapse;font-size:0.9rem;margin-bottom:1rem">
 <thead><tr style="border-bottom:2px solid var(--line)"><th style="text-align:right;padding:6px 8px">עיקרון ניתוב</th><th style="text-align:right;padding:6px 8px">הסבר</th></tr></thead>
 <tbody>
 <tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px"><strong>יכולת מודל</strong></td><td style="padding:6px 8px">ניתוב לפי strength של כל מודל — קוד, reasoning, כתיבה</td></tr>
-<tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px"><strong>עלות וביצועים</strong></td><td style="padding:6px 8px">משימות פשוטות → מודל מהיר וזול; משימות מורכבות → מודל מדויק</td></tr>
+<tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px"><strong>עלות וביצועים</strong></td><td style="padding:6px 8px">משימות פשוטות → Claude Haiku / RNJ (מהיר, זול); מורכבות → Claude Opus (מדויק)</td></tr>
 <tr><td style="padding:6px 8px"><strong>זמינות אזורית</strong></td><td style="padding:6px 8px">לא כל מודל זמין בכל אזור — הפלטפורמה מנהלת אוטומטית</td></tr>
 </tbody>
 </table>
-<p style="margin-top:0.75rem;font-size:0.85rem;color:var(--ink-secondary)">* רשימת המודלים הספציפיים אינה מפורסמת כהתחייבות חוזית (Illustrative). מנגנון Metering מודד את נפח השימוש לחיוב ובקרה. לרשימה מאומתת — ראו תיעוד IBM הרשמי של גרסתכם.</p>` },
+<p style="margin-top:0.75rem;font-size:0.85rem;color:var(--ink-secondary)">מנגנון Metering מודד את נפח השימוש בכל מודל לחיוב ובקרה. זמינות מודלים ספציפיים עשויה להשתנות לפי אזור ו-entitlement. לרשימה מאומתת — ראו תיעוד IBM הרשמי של גרסתכם.</p>` },
   },
   {
     num: 34,
